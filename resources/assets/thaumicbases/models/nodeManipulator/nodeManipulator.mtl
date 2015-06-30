@@ -1,0 +1,22 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl MainMaterial
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /media/modbder/4a8c65d6-bd17-496b-96f7-61c4094ab270/projects/ThaumicBases/resources/assets/thaumicbases/textures/blocks/nodeManipulator/baseUVMap.png
+
+newmtl fociMaterial
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd /media/modbder/4a8c65d6-bd17-496b-96f7-61c4094ab270/projects/ThaumicBases/resources/assets/thaumicbases/textures/blocks/nodeManipulator/fociUVMap.png

@@ -1,0 +1,39 @@
+package tb.common.block;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.common.entities.EntityAspectOrb;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
+public class BlockAshroom extends BlockTBPlant {
+
+	public BlockAshroom(int stages, int delay, boolean isCrop) {
+		super(stages, delay, isCrop);
+	}
+	
+	@Override
+	public void func_149853_b(World w, Random r,int x, int y, int z)
+	{
+		int meta = w.getBlockMetadata(x, y, z);
+		w.setBlockMetadataWithNotify(x, y, z, Math.min(growthStages,meta+1), 3);
+	}
+
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+    {
+    	if(metadata >= this.growthStages - 1)
+    	{
+    		for(int i = 0; i < 16 + world.rand.nextInt(64); ++i)
+    		{
+    			Aspect primal = Aspect.getPrimalAspects().get(world.rand.nextInt(Aspect.getPrimalAspects().size()));
+				EntityAspectOrb orb = new EntityAspectOrb(world, x, y, z, primal, 1);
+				if(!world.isRemote)
+					world.spawnEntityInWorld(orb);
+    		}
+    	}
+        return super.getDrops(world, x, y, z, metadata, fortune);
+    }
+}

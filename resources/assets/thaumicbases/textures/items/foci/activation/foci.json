@@ -1,0 +1,28 @@
+{
+  "Level upgrades": [
+    [
+      "Frugal",
+      "Potency"
+    ],
+    [
+      "Frugal",
+      "Potency"
+    ],
+    [
+      "Frugal",
+      "Potency"
+    ],
+    [
+      "Frugal",
+      "Potency"
+    ],
+    [
+      "Frugal",
+      "Potency"
+    ]
+  ],
+  "Upgrade values": [
+    "Frugal: -10% Cost",
+    "Potency: +8 to range"
+  ]
+}

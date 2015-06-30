@@ -1,0 +1,26 @@
+{
+  "Level upgrades": [
+    [
+      "Frugal"
+    ],
+    [
+      "Frugal"
+    ],
+    [
+      "Frugal",
+      "Aquatic",
+      "Netheric"
+    ],
+    [
+      "Frugal"
+    ],
+    [
+      "Frugal"
+    ]
+  ],
+  "Upgrade values": [
+    "Frugal: -10% Cost",
+    "L3:Aquatic: Water crystalizes into Aqua essentia",
+    "L3:Netheric: Foci can also drain lava"
+  ]
+}

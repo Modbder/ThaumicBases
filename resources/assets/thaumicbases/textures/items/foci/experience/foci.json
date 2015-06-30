@@ -1,0 +1,36 @@
+{
+  "Level upgrades": [
+    [
+      "Potency",
+      "Frugal"
+    ],
+    [
+      "Potency",
+      "Frugal"
+    ],
+    [
+      "Potency",
+      "Frugal",
+      "Vaporizing",
+      "Decomposing"
+    ],
+    [
+      "Potency",
+      "Frugal"
+    ],
+    [
+      "Potency",
+      "Frugal",
+      "Vaporizing",
+      "Decomposing"
+    ]
+  ],
+  "Upgrade values": [
+    "Potency: +10% XP collected",
+    "Frugal: -10% Cost",
+    "L3:Vaporizing: Broken blocks 50% leave Crystaline Essentia
+	L5:Vaporizing: Broken blocks always leva Crystaline Essentia",
+    "L3:Decomposing: Monsters can be processed too. Costs 5x, peacefull only. 
+	L5:Decomposing: Agressive mobs can also be decomposed, 10x cost."
+  ]
+}

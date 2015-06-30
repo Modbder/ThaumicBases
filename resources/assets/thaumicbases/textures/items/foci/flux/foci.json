@@ -1,0 +1,36 @@
+{
+  "Level upgrades": [
+    [
+      "Potency",
+      "Frugal"
+    ],
+    [
+      "Potency",
+      "Frugal"
+    ],
+    [
+      "Potency",
+      "Frugal",
+      "Warping",
+      "Crystalizing"
+    ],
+    [
+      "Potency",
+      "Frugal"
+    ],
+    [
+      "Potency",
+      "Frugal",
+      "Calming",
+      "Crystalizing"
+    ]
+  ],
+  "Upgrade values": [
+    "Potency: -2 to delay",
+    "Frugal: -10% Cost",
+    "L3:Warping: Every flux destroyed adds temporary warp
+	L5:Calming: Every flux destroyed removes temporary warp. Has a 5% chance to remove warp",
+    "L3:Crystalizing: Every flux destroyed drops potentia crystals. 
+	L5:Crystalizing: Every flux destroyed drops random crystal"
+  ]
+}
