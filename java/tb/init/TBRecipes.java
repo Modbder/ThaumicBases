@@ -1,7 +1,10 @@
 package tb.init;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
+import tb.common.block.BlockHalfSlab;
 import tb.common.block.BlockTBPlant;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
@@ -9,6 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -17,6 +21,8 @@ public class TBRecipes {
 	
 	public static void setup()
 	{
+		OreDictionary.registerOre("obsidian", Blocks.obsidian);
+		
 		ShapelessOreRecipe qBl = new ShapelessOreRecipe(new ItemStack(TBBlocks.quicksilverBlock), new Object[]{"quicksilver","quicksilver","quicksilver","quicksilver","quicksilver","quicksilver","quicksilver","quicksilver","quicksilver"});
 		ShapelessOreRecipe qSi = new ShapelessOreRecipe(new ItemStack(ConfigItems.itemResource, 9, 3),new Object[]{"blockQuicksilver"});
 		ShapelessOreRecipe qBr = new ShapelessOreRecipe(new ItemStack(TBBlocks.quicksilverBrick, 4, 0),new Object[]{"blockQuicksilver","blockQuicksilver","blockQuicksilver","blockQuicksilver"});
@@ -66,6 +72,26 @@ public class TBRecipes {
 		GameRegistry.addRecipe(iGw);
 		GameRegistry.addRecipe(biP);
 		
+		for(int i = 0; i < BlockHalfSlab.parents.length; ++i)
+		{
+			ShapedOreRecipe slabRec = new ShapedOreRecipe(new ItemStack(TBBlocks.genericSlab,6,i),new Object[]{
+				"###",
+				'#',BlockHalfSlab.parents[i]
+			});
+			slabs.add(slabRec);
+			GameRegistry.addRecipe(slabRec);
+		}
+		
+		for(int i = 0; i < 8; ++i)
+		{
+			ShapedOreRecipe slabRec = new ShapedOreRecipe(new ItemStack(TBBlocks.crystalSlab,6,i),new Object[]{
+				"###",
+				'#',new ItemStack(TBBlocks.crystalBlock,1,i)
+			});
+			slabs.add(slabRec);
+			GameRegistry.addRecipe(slabRec);
+		}
+		
 		BlockTBPlant.class.cast(TBBlocks.plax).dropItem = new ItemStack(Items.string,3,0);
 		BlockTBPlant.class.cast(TBBlocks.plax).dropSeed = new ItemStack(TBItems.plaxSeed,1,0);
 		
@@ -95,5 +121,7 @@ public class TBRecipes {
 	}
 	
 	public static final Hashtable<String, IRecipe> recipes = new Hashtable<String, IRecipe>();
+	
+	public static final List<ShapedOreRecipe> slabs = new ArrayList<ShapedOreRecipe>();
 
 }

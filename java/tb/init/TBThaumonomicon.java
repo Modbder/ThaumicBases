@@ -1,6 +1,7 @@
 package tb.init;
 
 import cpw.mods.fml.common.Loader;
+import tb.utils.TBConfig;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -19,6 +20,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -27,6 +29,8 @@ public class TBThaumonomicon {
 	@SuppressWarnings({ "unchecked" })
 	public static void setup()
 	{
+		OreDictionary.registerOre("pestleAndMortar", new ItemStack(TBItems.mortar,1,OreDictionary.WILDCARD_VALUE));
+		
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.pyrofluid,1,OreDictionary.WILDCARD_VALUE), new AspectList().add(Aspect.FIRE, 16).add(Aspect.MAGIC, 8).add(Aspect.LIGHT, 6));
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.ironGreatwood,1,OreDictionary.WILDCARD_VALUE), new AspectList().add(Aspect.TREE, 1).add(Aspect.METAL, 1));
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBItems.plaxSeed), new AspectList().add(Aspect.CROP, 1).add(Aspect.CLOTH, 1));
@@ -100,11 +104,6 @@ public class TBThaumonomicon {
 		CrucibleRecipe flaxiumRec = new CrucibleRecipe("TB.Flaxium",new ItemStack(TBBlocks.flaxium,1,0),new ItemStack(Blocks.red_flower,1,2),new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.MAGIC, 2));
 		CrucibleRecipe glieoniaRec = new CrucibleRecipe("TB.Glieonia",new ItemStack(TBItems.glieoniaSeed,1,0),new ItemStack(Blocks.red_flower,1,3),new AspectList().add(Aspect.LIGHT, 8).add(Aspect.MAGIC, 6).add(Aspect.LIFE, 4));
 		CrucibleRecipe briarRec = new CrucibleRecipe("TB.Briar",new ItemStack(TBBlocks.briar,1,0),new ItemStack(Blocks.double_plant,1,4),new AspectList().add(Aspect.HEAL, 4).add(Aspect.LIFE, 4).add(Aspect.PLANT, 4));
-		CrucibleRecipe tobaccoSeedRec = new CrucibleRecipe("TB.Tobacco",new ItemStack(TBItems.tobaccoSeeds,1,0),new ItemStack(Items.wheat_seeds,1,0),new AspectList().add(Aspect.MIND, 4).add(Aspect.WATER, 4).add(Aspect.MAN, 4).add(Aspect.CROP, 4));
-		CrucibleRecipe angryTobaccoRec = new CrucibleRecipe("TB.Tobacco.Angry",new ItemStack(TBItems.tobacco,1,2),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.WEAPON, 4).add(Aspect.HUNGER, 4));
-		CrucibleRecipe miningTobaccoRec = new CrucibleRecipe("TB.Tobacco.Mining",new ItemStack(TBItems.tobacco,1,5),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.MINE, 4).add(Aspect.MOTION, 4));
-		CrucibleRecipe wisdomTobaccoRec = new CrucibleRecipe("TB.Tobacco.Wisdom",new ItemStack(TBItems.tobacco,1,4),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.MIND, 4).add(Aspect.AIR, 4));
-		CrucibleRecipe taintTobaccoRec = new CrucibleRecipe("TB.Tobacco.Tainted",new ItemStack(TBItems.tobacco,1,7),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.TAINT, 4).add(Aspect.MIND, 4));
 		CrucibleRecipe cleanEFabricRec = new CrucibleRecipe("TB.Spike.Iron",new ItemStack(ConfigItems.itemResource,1,7),new ItemStack(TBItems.resource,1,8),new AspectList().add(Aspect.ORDER, 1));
 		
 		InfusionEnchantmentRecipe elderKnowledgeEnch = new InfusionEnchantmentRecipe("TB.ElderKnowledge",TBEnchant.elderKnowledge,2,new AspectList().add(Aspect.MAGIC, 8).add(Aspect.MIND, 8).add(Aspect.WEAPON, 8), new ItemStack[]{new ItemStack(Items.paper,1,0),new ItemStack(Items.paper,1,0),new ItemStack(Items.paper,1,0),new ItemStack(ConfigItems.itemZombieBrain,1,0),new ItemStack(ConfigItems.itemResource,1,14)});
@@ -118,26 +117,6 @@ public class TBThaumonomicon {
 			new ItemStack(ConfigItems.itemEssence,1,0),
 			new ItemStack(TBItems.resource,1,6),
 			new ItemStack(Items.sugar,1,0)
-		});
-		
-		ShapelessArcaneRecipe pestleRecipe = new ShapelessArcaneRecipe("TB.Tobacco",TBItems.mortar,new AspectList().add(primals(4)),new Object[]{
-			new ItemStack(Items.bowl),
-			new ItemStack(Items.stick),
-			new ItemStack(Blocks.wooden_slab),
-			new ItemStack(Blocks.wooden_slab),
-			new ItemStack(Blocks.wooden_slab)
-		});
-		
-		ShapedArcaneRecipe pipeRecipe = new ShapedArcaneRecipe("TB.Tobacco",TBItems.greatwoodPipe,new AspectList().add(primals(4)),new Object[]{
-			"#@ ",
-			" ##",
-			'#',new ItemStack(ConfigBlocks.blockWoodenDevice,1,6),
-			'@',new ItemStack(ConfigItems.itemResource,1,14)
-		});
-		
-		ShapelessArcaneRecipe genTobaccoRec = new ShapelessArcaneRecipe("TB.Tobacco",new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.ORDER, 1).add(Aspect.ENTROPY, 1), new Object[]{
-			new ItemStack(TBItems.mortar,1,OreDictionary.WILDCARD_VALUE),
-			new ItemStack(TBItems.resource,1,7)
 		});
 		
 		ShapedArcaneRecipe[] toolsRec = new ShapedArcaneRecipe[10];
@@ -263,7 +242,7 @@ public class TBThaumonomicon {
 		CrucibleRecipe[] shards = new CrucibleRecipe[6];
 		
 		for(int i = 0; i < 6; ++i)
-			shards[i] = new CrucibleRecipe("TB.OreDestruction",new ItemStack(ConfigItems.itemShard,12,i),new ItemStack(ConfigBlocks.blockCustomOre,1,1+i),new AspectList().add(Aspect.ENTROPY, 2).add(Aspect.MAGIC, 1).add(getPrimalForLoop(i),3));
+			shards[i] = new CrucibleRecipe("TB.OreDestruction",new ItemStack(ConfigItems.itemShard,TBConfig.shardsFromOre,i),new ItemStack(ConfigBlocks.blockCustomOre,1,1+i),new AspectList().add(Aspect.ENTROPY, 2).add(Aspect.MAGIC, 1).add(getPrimalForLoop(i),3));
 		
 		CrucibleRecipe[] cBlocks = new CrucibleRecipe[7];
 		
@@ -292,27 +271,6 @@ public class TBThaumonomicon {
 			new ItemStack(TBBlocks.crystalBlock,1,7)
 		});
 		
-		InfusionRecipe eldritchTobacoRec = new InfusionRecipe("TB.Tobacco.Eldritch",new ItemStack(TBItems.tobacco,1,1),1,new AspectList().add(Aspect.ELDRITCH, 4).add(Aspect.DEATH, 1),new ItemStack(TBItems.tobacco,1,0),new ItemStack[]{
-			new ItemStack(Items.ender_eye,1,0),
-			new ItemStack(Items.arrow,1,0)
-		});
-		
-		InfusionRecipe wispyTobaccoRec = new InfusionRecipe("TB.Tobacco.Wispy",new ItemStack(TBItems.tobacco,1,8),1,new AspectList().add(Aspect.AURA, 4).add(Aspect.MAGIC, 6),new ItemStack(TBItems.tobacco,1,0),new ItemStack[]{
-			new ItemStack(ConfigItems.itemResource,1,14),
-			new ItemStack(ConfigItems.itemCrystalEssence,1,OreDictionary.WILDCARD_VALUE)
-		});
-		
-		InfusionRecipe silverwoodPipeRec = new InfusionRecipe("TB.SilverwoodPipe",new ItemStack(TBItems.silverwoodPipe,1,0),4,new AspectList().add(Aspect.AURA, 8).add(Aspect.ORDER, 32).add(Aspect.HEAL, 16),new ItemStack(TBItems.greatwoodPipe,1,0),new ItemStack[]{
-			new ItemStack(ConfigItems.itemResource,1,14),
-			new ItemStack(ConfigItems.itemResource,1,14),
-			new ItemStack(ConfigItems.itemResource,1,14),
-			new ItemStack(ConfigBlocks.blockWoodenDevice,1,7),
-			new ItemStack(ConfigBlocks.blockWoodenDevice,1,7),
-			new ItemStack(ConfigBlocks.blockWoodenDevice,1,7),
-			new ItemStack(ConfigBlocks.blockWoodenDevice,1,7),
-			new ItemStack(ConfigBlocks.blockCustomPlant,1,2)
-		});
-		
 		InfusionRecipe voidSeedRec = new InfusionRecipe("TB.VoidSeed",new ItemStack(TBItems.voidSeed,1,0),3,new AspectList().add(Aspect.ELDRITCH, 16).add(Aspect.DARKNESS, 16).add(Aspect.CROP, 16),new ItemStack(ConfigItems.itemResource,1,17),new ItemStack[]{
 			new ItemStack(Items.wheat_seeds,1,0),
 			new ItemStack(Items.pumpkin_seeds,1,0),
@@ -321,11 +279,6 @@ public class TBThaumonomicon {
 			new ItemStack(Items.carrot,1,0),
 			new ItemStack(Items.nether_wart,1,0),
 		});
-		
-		ShapelessArcaneRecipe saturatingTobaccoRec = new ShapelessArcaneRecipe("TB.Tobacco.Saturating",new ItemStack(TBItems.tobacco,1,3),new AspectList().add(Aspect.EARTH, 10).add(Aspect.FIRE, 10).add(Aspect.WATER, 10),new Object[]{new ItemStack(TBItems.tobacco,1,0),new ItemStack(Items.pumpkin_seeds)});
-		ShapelessArcaneRecipe saturatingTobaccoRecM = new ShapelessArcaneRecipe("TB.Tobacco.Saturating",new ItemStack(TBItems.tobacco,1,3),new AspectList().add(Aspect.EARTH, 10).add(Aspect.FIRE, 10).add(Aspect.WATER, 10),new Object[]{new ItemStack(TBItems.tobacco,1,0),new ItemStack(Items.melon_seeds)});
-		
-		ShapelessArcaneRecipe sanityTobaccoRec = new ShapelessArcaneRecipe("TB.Tobacco.Knowledge",new ItemStack(TBItems.tobacco,1,6),new AspectList().add(Aspect.ORDER, 10).add(Aspect.AIR, 10).add(Aspect.ENTROPY, 10),new Object[]{new ItemStack(TBItems.tobacco,1,0)});
 		
 		ShapedArcaneRecipe bloodyChestRec = new ShapedArcaneRecipe("TB.BloodyRobes",new ItemStack(TBItems.bloodyChest,1,0),new AspectList().add(Aspect.AIR, 5), new Object[]{
 			"# #",
@@ -473,7 +426,9 @@ public class TBThaumonomicon {
 			new ItemStack(TBBlocks.dustBlock,1,0)
 		});
 		
-		InfusionRecipe brightFociRec = new InfusionRecipe("TB.NodeFoci.Bright",new ItemStack(TBItems.nodeFoci,1,0),3,new AspectList().add(Aspect.AURA, 64).add(Aspect.LIGHT, 16).add(Aspect.ENERGY, 32),new ItemStack(ConfigItems.itemResource,1,15),new ItemStack[]{
+		boolean flag = TBConfig.brightFociRequiresPrimordialPearl;
+		
+		InfusionRecipe brightFociRec = new InfusionRecipe("TB.NodeFoci.Bright",new ItemStack(TBItems.nodeFoci,1,0),3,new AspectList().add(Aspect.AURA, flag ? 256 : 64).add(Aspect.LIGHT, flag ? 64 : 16).add(Aspect.ENERGY, flag ? 256 : 32),flag ? new ItemStack(ConfigItems.itemEldritchObject,1,3) : new ItemStack(ConfigItems.itemResource,1,15),new ItemStack[]{
 			new ItemStack(ConfigBlocks.blockMetalDevice,1,7),
 			new ItemStack(ConfigItems.itemResource,1,14),
 			new ItemStack(ConfigBlocks.blockCustomPlant,1,3),
@@ -619,6 +574,9 @@ public class TBThaumonomicon {
 		//-2,-18
 		//5,-3
 		
+		IRecipe[] slabs = new IRecipe[12];
+		slabs = TBRecipes.slabs.toArray(slabs);
+		
 		new ResearchItem("TB.DecoBlocks",catName,new AspectList(),-1,0,0,new ItemStack(TBBlocks.quicksilverBlock,1,0))
 		.setRound()
 		.setAutoUnlock()
@@ -629,7 +587,8 @@ public class TBThaumonomicon {
 			new ResearchPage(TBRecipes.recipes.get("quicksilverBrick")),
 			new ResearchPage(TBRecipes.recipes.get("eldritchArk")),
 			new ResearchPage(TBRecipes.recipes.get("ironGreatwood")),
-			new ResearchPage(oldRec)
+			new ResearchPage(oldRec),
+			new ResearchPage(slabs)
 			).registerResearchItem();
 		
 		new ResearchItem("TB.AdvancedEntropy",catName,new AspectList().add(Aspect.ENTROPY, 3).add(Aspect.MAGIC, 3).add(Aspect.CRAFT, 3),-1,-2,1,new ItemStack(Items.blaze_powder,1,0))
@@ -944,99 +903,7 @@ public class TBThaumonomicon {
 			new ResearchPage("tb.rec.redlon.page.0"),
 			new ResearchPage(redlonRec)
 			).registerResearchItem();
-		
-		new ResearchItem("TB.Tobacco",catName,new AspectList().add(Aspect.CROP, 4).add(Aspect.HARVEST, 4).add(Aspect.MAN, 4).add(Aspect.MIND, 4),1,-11,3,new ItemStack(TBItems.greatwoodPipe,1,0))
-		.setParents("TB.Plax")
-		.setConcealed()
-		.setPages(
-			new ResearchPage("tb.rec.tobacco.page.0"),
-			new ResearchPage(tobaccoSeedRec),
-			new ResearchPage("tb.rec.tobacco.page.1"),
-			new ResearchPage(pipeRecipe),
-			new ResearchPage(pestleRecipe),
-			new ResearchPage(genTobaccoRec),
-			new ResearchPage("tb.rec.tobacco.page.2")
-			).registerResearchItem();
-		
-		new ResearchItem("TB.Tobacco.Eldritch",catName,new AspectList().add(Aspect.DEATH, 4).add(Aspect.ELDRITCH, 4),1,-14,0,new ItemStack(TBItems.tobacco,1,1))
-		.setParents("TB.Tobacco","TB.INFUSION")
-		.setConcealed()
-		.setSecondary()
-		.setPages(
-			new ResearchPage("tb.rec.etobacco.page.0"),
-			new ResearchPage(eldritchTobacoRec)
-			).registerResearchItem();
-		
-		new ResearchItem("TB.Tobacco.Wispy",catName,new AspectList().add(Aspect.AURA, 4).add(Aspect.MAGIC, 4),2,-14,0,new ItemStack(TBItems.tobacco,1,8))
-		.setParents("TB.Tobacco","TB.INFUSION")
-		.setConcealed()
-		.setSecondary()
-		.setPages(
-			new ResearchPage("tb.rec.wtobacco.page.0"),
-			new ResearchPage(wispyTobaccoRec)
-			).registerResearchItem();
-		
-		new ResearchItem("TB.Tobacco.Angry",catName,new AspectList().add(Aspect.WEAPON, 4).add(Aspect.HUNGER, 4),3,-14,0,new ItemStack(TBItems.tobacco,1,2))
-		.setParents("TB.Tobacco")
-		.setConcealed()
-		.setSecondary()
-		.setPages(
-			new ResearchPage("tb.rec.atobacco.page.0"),
-			new ResearchPage(angryTobaccoRec)
-			).registerResearchItem();
-		
-		new ResearchItem("TB.Tobacco.Mining",catName,new AspectList().add(Aspect.MINE, 4).add(Aspect.MOTION, 4),4,-13,0,new ItemStack(TBItems.tobacco,1,5))
-		.setParents("TB.Tobacco")
-		.setConcealed()
-		.setSecondary()
-		.setPages(
-			new ResearchPage("tb.rec.mtobacco.page.0"),
-			new ResearchPage(miningTobaccoRec)
-			).registerResearchItem();
-		
-		new ResearchItem("TB.Tobacco.Wisdom",catName,new AspectList().add(Aspect.MIND, 4).add(Aspect.AIR, 4),4,-12,0,new ItemStack(TBItems.tobacco,1,4))
-		.setParents("TB.Tobacco")
-		.setConcealed()
-		.setSecondary()
-		.setPages(
-			new ResearchPage("tb.rec.witobacco.page.0"),
-			new ResearchPage(wisdomTobaccoRec)
-			).registerResearchItem();
-		
-		new ResearchItem("TB.Tobacco.Tainted",catName,new AspectList().add(Aspect.MIND, 4).add(Aspect.TAINT, 4),4,-11,0,new ItemStack(TBItems.tobacco,1,7))
-		.setParents("TB.Tobacco")
-		.setConcealed()
-		.setSecondary()
-		.setPages(
-			new ResearchPage("tb.rec.ttobacco.page.0"),
-			new ResearchPage(taintTobaccoRec)
-			).registerResearchItem();
-		
-		new ResearchItem("TB.Tobacco.Saturating",catName,new AspectList().add(Aspect.FLESH, 4).add(Aspect.HUNGER, 4),2,-13,0,new ItemStack(TBItems.tobacco,1,3))
-		.setParents("TB.Tobacco")
-		.setConcealed()
-		.setSecondary()
-		.setPages(
-			new ResearchPage("tb.rec.stobacco.page.0"),
-			new ResearchPage(new ShapelessArcaneRecipe[]{saturatingTobaccoRec,saturatingTobaccoRecM})
-			).registerResearchItem();
-		
-		new ResearchItem("TB.Tobacco.Sanity",catName,new AspectList().add(Aspect.ORDER, 4).add(Aspect.MIND, 4),3,-12,0,new ItemStack(TBItems.tobacco,1,6))
-		.setParents("TB.Tobacco")
-		.setConcealed()
-		.setSecondary()
-		.setPages(
-			new ResearchPage("tb.rec.satobacco.page.0"),
-			new ResearchPage(sanityTobaccoRec)
-			).registerResearchItem();
-		
-		new ResearchItem("TB.SilverwoodPipe",catName,new AspectList().add(Aspect.ORDER, 8).add(Aspect.HEAL, 8).add(Aspect.AURA, 8),5,-15,1,new ItemStack(TBItems.silverwoodPipe,1,0))
-		.setParents("TB.Tobacco","TB.INFUSION")
-		.setConcealed()
-		.setPages(
-			new ResearchPage("tb.rec.silverPipe.page.0"),
-			new ResearchPage(silverwoodPipeRec)
-			).registerResearchItem();
+
 		
 		new ResearchItem("TB.VoidSeed",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.ELDRITCH, 6).add(Aspect.DARKNESS, 6),10,-7,1,new ItemStack(TBItems.voidSeed,1,0))
 		.setParents("TB.Aurelia","TB.VOIDMETAL")
@@ -1185,8 +1052,13 @@ public class TBThaumonomicon {
 			new ResearchPage(nodeManipulatorRec)
 			).registerResearchItem();
 		
+		if(flag)
+			copy(ResearchCategories.getResearchList("ELDRITCH").research.get("PRIMPEARL"),"TB.PRIMPEARL",catName,3,-27).setConcealed().setHidden().registerResearchItem();
+		
+		String[] bParents = flag ? new String[]{"TB.NodeMan","TB.PRIMPEARL"} : new String[]{"TB.NodeMan"};
+		
 		new ResearchItem("TB.NodeFoci.Bright",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.LIGHT, 8),2,-26,0,new ItemStack(TBItems.nodeFoci,1,0))
-		.setParents("TB.NodeMan")
+		.setParents(bParents)
 		.setConcealed()
 		.setSecondary()
 		.setPages(
@@ -1349,20 +1221,162 @@ public class TBThaumonomicon {
 		ThaumcraftApi.getCraftingRecipes().add(glieoniaRec);
 		ThaumcraftApi.getCraftingRecipes().add(briarRec);
 		ThaumcraftApi.getCraftingRecipes().add(rosehipRec);
-		ThaumcraftApi.getCraftingRecipes().add(tobaccoSeedRec);
-		ThaumcraftApi.getCraftingRecipes().add(pestleRecipe);
-		ThaumcraftApi.getCraftingRecipes().add(pipeRecipe);
-		ThaumcraftApi.getCraftingRecipes().add(genTobaccoRec);
-		ThaumcraftApi.getCraftingRecipes().add(eldritchTobacoRec);
-		ThaumcraftApi.getCraftingRecipes().add(wispyTobaccoRec);
-		ThaumcraftApi.getCraftingRecipes().add(angryTobaccoRec);
-		ThaumcraftApi.getCraftingRecipes().add(miningTobaccoRec);
-		ThaumcraftApi.getCraftingRecipes().add(wisdomTobaccoRec);
-		ThaumcraftApi.getCraftingRecipes().add(taintTobaccoRec);
-		ThaumcraftApi.getCraftingRecipes().add(saturatingTobaccoRec);
-		ThaumcraftApi.getCraftingRecipes().add(saturatingTobaccoRecM);
-		ThaumcraftApi.getCraftingRecipes().add(sanityTobaccoRec);
-		ThaumcraftApi.getCraftingRecipes().add(silverwoodPipeRec);
+		if(TBConfig.allowTobacco)
+		{
+			
+			ShapelessArcaneRecipe saturatingTobaccoRec = new ShapelessArcaneRecipe("TB.Tobacco.Saturating",new ItemStack(TBItems.tobacco,1,3),new AspectList().add(Aspect.EARTH, 10).add(Aspect.FIRE, 10).add(Aspect.WATER, 10),new Object[]{new ItemStack(TBItems.tobacco,1,0),new ItemStack(Items.pumpkin_seeds)});
+			ShapelessArcaneRecipe saturatingTobaccoRecM = new ShapelessArcaneRecipe("TB.Tobacco.Saturating",new ItemStack(TBItems.tobacco,1,3),new AspectList().add(Aspect.EARTH, 10).add(Aspect.FIRE, 10).add(Aspect.WATER, 10),new Object[]{new ItemStack(TBItems.tobacco,1,0),new ItemStack(Items.melon_seeds)});
+			InfusionRecipe silverwoodPipeRec = new InfusionRecipe("TB.SilverwoodPipe",new ItemStack(TBItems.silverwoodPipe,1,0),4,new AspectList().add(Aspect.AURA, 8).add(Aspect.ORDER, 32).add(Aspect.HEAL, 16),new ItemStack(TBItems.greatwoodPipe,1,0),new ItemStack[]{
+				new ItemStack(ConfigItems.itemResource,1,14),
+				new ItemStack(ConfigItems.itemResource,1,14),
+				new ItemStack(ConfigItems.itemResource,1,14),
+				new ItemStack(ConfigBlocks.blockWoodenDevice,1,7),
+				new ItemStack(ConfigBlocks.blockWoodenDevice,1,7),
+				new ItemStack(ConfigBlocks.blockWoodenDevice,1,7),
+				new ItemStack(ConfigBlocks.blockWoodenDevice,1,7),
+				new ItemStack(ConfigBlocks.blockCustomPlant,1,2)
+			});
+			InfusionRecipe eldritchTobacoRec = new InfusionRecipe("TB.Tobacco.Eldritch",new ItemStack(TBItems.tobacco,1,1),1,new AspectList().add(Aspect.ELDRITCH, 4).add(Aspect.DEATH, 1),new ItemStack(TBItems.tobacco,1,0),new ItemStack[]{
+				new ItemStack(Items.ender_eye,1,0),
+				new ItemStack(Items.arrow,1,0)
+			});
+			
+			InfusionRecipe wispyTobaccoRec = new InfusionRecipe("TB.Tobacco.Wispy",new ItemStack(TBItems.tobacco,1,8),1,new AspectList().add(Aspect.AURA, 4).add(Aspect.MAGIC, 6),new ItemStack(TBItems.tobacco,1,0),new ItemStack[]{
+				new ItemStack(ConfigItems.itemResource,1,14),
+				new ItemStack(ConfigItems.itemCrystalEssence,1,OreDictionary.WILDCARD_VALUE)
+			});
+			ShapelessArcaneRecipe pestleRecipe = new ShapelessArcaneRecipe("TB.Tobacco",TBItems.mortar,new AspectList().add(primals(4)),new Object[]{
+				new ItemStack(Items.bowl),
+				new ItemStack(Items.stick),
+				new ItemStack(Blocks.wooden_slab),
+				new ItemStack(Blocks.wooden_slab),
+				new ItemStack(Blocks.wooden_slab)
+			});
+			ShapedArcaneRecipe pipeRecipe = new ShapedArcaneRecipe("TB.Tobacco",TBItems.greatwoodPipe,new AspectList().add(primals(4)),new Object[]{
+				"#@ ",
+				" ##",
+				'#',new ItemStack(ConfigBlocks.blockWoodenDevice,1,6),
+				'@',new ItemStack(ConfigItems.itemResource,1,14)
+			});
+			ShapelessArcaneRecipe genTobaccoRec = new ShapelessArcaneRecipe("TB.Tobacco",new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.ORDER, 1).add(Aspect.ENTROPY, 1), new Object[]{
+				"pestleAndMortar",
+				new ItemStack(TBItems.resource,1,7)
+			});
+			CrucibleRecipe tobaccoSeedRec = new CrucibleRecipe("TB.Tobacco",new ItemStack(TBItems.tobaccoSeeds,1,0),new ItemStack(Items.wheat_seeds,1,0),new AspectList().add(Aspect.MIND, 4).add(Aspect.WATER, 4).add(Aspect.MAN, 4).add(Aspect.CROP, 4));
+			CrucibleRecipe angryTobaccoRec = new CrucibleRecipe("TB.Tobacco.Angry",new ItemStack(TBItems.tobacco,1,2),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.WEAPON, 4).add(Aspect.HUNGER, 4));
+			CrucibleRecipe miningTobaccoRec = new CrucibleRecipe("TB.Tobacco.Mining",new ItemStack(TBItems.tobacco,1,5),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.MINE, 4).add(Aspect.MOTION, 4));
+			CrucibleRecipe wisdomTobaccoRec = new CrucibleRecipe("TB.Tobacco.Wisdom",new ItemStack(TBItems.tobacco,1,4),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.MIND, 4).add(Aspect.AIR, 4));
+			CrucibleRecipe taintTobaccoRec = new CrucibleRecipe("TB.Tobacco.Tainted",new ItemStack(TBItems.tobacco,1,7),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.TAINT, 4).add(Aspect.MIND, 4));
+			ShapelessArcaneRecipe sanityTobaccoRec = new ShapelessArcaneRecipe("TB.Tobacco.Knowledge",new ItemStack(TBItems.tobacco,1,6),new AspectList().add(Aspect.ORDER, 10).add(Aspect.AIR, 10).add(Aspect.ENTROPY, 10),new Object[]{new ItemStack(TBItems.tobacco,1,0)});
+			
+			new ResearchItem("TB.Tobacco",catName,new AspectList().add(Aspect.CROP, 4).add(Aspect.HARVEST, 4).add(Aspect.MAN, 4).add(Aspect.MIND, 4),1,-11,3,new ItemStack(TBItems.greatwoodPipe,1,0))
+			.setParents("TB.Plax")
+			.setConcealed()
+			.setPages(
+				new ResearchPage("tb.rec.tobacco.page.0"),
+				new ResearchPage(tobaccoSeedRec),
+				new ResearchPage("tb.rec.tobacco.page.1"),
+				new ResearchPage(pipeRecipe),
+				new ResearchPage(pestleRecipe),
+				new ResearchPage(genTobaccoRec),
+				new ResearchPage("tb.rec.tobacco.page.2")
+				).registerResearchItem();
+			
+			new ResearchItem("TB.Tobacco.Eldritch",catName,new AspectList().add(Aspect.DEATH, 4).add(Aspect.ELDRITCH, 4),1,-14,0,new ItemStack(TBItems.tobacco,1,1))
+			.setParents("TB.Tobacco","TB.INFUSION")
+			.setConcealed()
+			.setSecondary()
+			.setPages(
+				new ResearchPage("tb.rec.etobacco.page.0"),
+				new ResearchPage(eldritchTobacoRec)
+				).registerResearchItem();
+			
+			new ResearchItem("TB.Tobacco.Wispy",catName,new AspectList().add(Aspect.AURA, 4).add(Aspect.MAGIC, 4),2,-14,0,new ItemStack(TBItems.tobacco,1,8))
+			.setParents("TB.Tobacco","TB.INFUSION")
+			.setConcealed()
+			.setSecondary()
+			.setPages(
+				new ResearchPage("tb.rec.wtobacco.page.0"),
+				new ResearchPage(wispyTobaccoRec)
+				).registerResearchItem();
+			
+			new ResearchItem("TB.Tobacco.Angry",catName,new AspectList().add(Aspect.WEAPON, 4).add(Aspect.HUNGER, 4),3,-14,0,new ItemStack(TBItems.tobacco,1,2))
+			.setParents("TB.Tobacco")
+			.setConcealed()
+			.setSecondary()
+			.setPages(
+				new ResearchPage("tb.rec.atobacco.page.0"),
+				new ResearchPage(angryTobaccoRec)
+				).registerResearchItem();
+			
+			new ResearchItem("TB.Tobacco.Mining",catName,new AspectList().add(Aspect.MINE, 4).add(Aspect.MOTION, 4),4,-13,0,new ItemStack(TBItems.tobacco,1,5))
+			.setParents("TB.Tobacco")
+			.setConcealed()
+			.setSecondary()
+			.setPages(
+				new ResearchPage("tb.rec.mtobacco.page.0"),
+				new ResearchPage(miningTobaccoRec)
+				).registerResearchItem();
+			
+			new ResearchItem("TB.Tobacco.Wisdom",catName,new AspectList().add(Aspect.MIND, 4).add(Aspect.AIR, 4),4,-12,0,new ItemStack(TBItems.tobacco,1,4))
+			.setParents("TB.Tobacco")
+			.setConcealed()
+			.setSecondary()
+			.setPages(
+				new ResearchPage("tb.rec.witobacco.page.0"),
+				new ResearchPage(wisdomTobaccoRec)
+				).registerResearchItem();
+			
+			new ResearchItem("TB.Tobacco.Tainted",catName,new AspectList().add(Aspect.MIND, 4).add(Aspect.TAINT, 4),4,-11,0,new ItemStack(TBItems.tobacco,1,7))
+			.setParents("TB.Tobacco")
+			.setConcealed()
+			.setSecondary()
+			.setPages(
+				new ResearchPage("tb.rec.ttobacco.page.0"),
+				new ResearchPage(taintTobaccoRec)
+				).registerResearchItem();
+			
+			new ResearchItem("TB.Tobacco.Saturating",catName,new AspectList().add(Aspect.FLESH, 4).add(Aspect.HUNGER, 4),2,-13,0,new ItemStack(TBItems.tobacco,1,3))
+			.setParents("TB.Tobacco")
+			.setConcealed()
+			.setSecondary()
+			.setPages(
+				new ResearchPage("tb.rec.stobacco.page.0"),
+				new ResearchPage(new ShapelessArcaneRecipe[]{saturatingTobaccoRec,saturatingTobaccoRecM})
+				).registerResearchItem();
+			
+			new ResearchItem("TB.Tobacco.Sanity",catName,new AspectList().add(Aspect.ORDER, 4).add(Aspect.MIND, 4),3,-12,0,new ItemStack(TBItems.tobacco,1,6))
+			.setParents("TB.Tobacco")
+			.setConcealed()
+			.setSecondary()
+			.setPages(
+				new ResearchPage("tb.rec.satobacco.page.0"),
+				new ResearchPage(sanityTobaccoRec)
+				).registerResearchItem();
+			
+			new ResearchItem("TB.SilverwoodPipe",catName,new AspectList().add(Aspect.ORDER, 8).add(Aspect.HEAL, 8).add(Aspect.AURA, 8),5,-15,1,new ItemStack(TBItems.silverwoodPipe,1,0))
+			.setParents("TB.Tobacco","TB.INFUSION")
+			.setConcealed()
+			.setPages(
+				new ResearchPage("tb.rec.silverPipe.page.0"),
+				new ResearchPage(silverwoodPipeRec)
+				).registerResearchItem();
+			
+			ThaumcraftApi.getCraftingRecipes().add(tobaccoSeedRec);
+			ThaumcraftApi.getCraftingRecipes().add(pestleRecipe);
+			ThaumcraftApi.getCraftingRecipes().add(pipeRecipe);
+			ThaumcraftApi.getCraftingRecipes().add(genTobaccoRec);
+			ThaumcraftApi.getCraftingRecipes().add(eldritchTobacoRec);
+			ThaumcraftApi.getCraftingRecipes().add(wispyTobaccoRec);
+			ThaumcraftApi.getCraftingRecipes().add(angryTobaccoRec);
+			ThaumcraftApi.getCraftingRecipes().add(miningTobaccoRec);
+			ThaumcraftApi.getCraftingRecipes().add(wisdomTobaccoRec);
+			ThaumcraftApi.getCraftingRecipes().add(taintTobaccoRec);
+			ThaumcraftApi.getCraftingRecipes().add(saturatingTobaccoRec);
+			ThaumcraftApi.getCraftingRecipes().add(saturatingTobaccoRecM);
+			ThaumcraftApi.getCraftingRecipes().add(sanityTobaccoRec);
+			ThaumcraftApi.getCraftingRecipes().add(silverwoodPipeRec);
+		}
 		ThaumcraftApi.getCraftingRecipes().add(voidSeedRec);
 		ThaumcraftApi.getCraftingRecipes().add(ironSpikeRec);
 		ThaumcraftApi.getCraftingRecipes().add(thaumiumSpikeRec);
