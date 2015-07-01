@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import tb.utils.TBConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -145,7 +146,7 @@ public class BlockPyrofluid extends Block{
     {
     	ArrayList<ItemStack> retLst = new ArrayList<ItemStack>();
     	
-    	retLst.add(new ItemStack(Items.blaze_powder,5+world.rand.nextInt(32),0));
+    	retLst.add(new ItemStack(Items.blaze_powder,TBConfig.minBlazePowderFromPyrofluid+world.rand.nextInt(TBConfig.maxBlazePowderFromPyrofluid-TBConfig.minBlazePowderFromPyrofluid),0));
     	
     	return retLst;
     }
