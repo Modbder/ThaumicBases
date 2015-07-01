@@ -22,6 +22,16 @@ public class TBConfig implements IDummyConfig{
 		calmingFociUID = cfg.getInt("calmingFociUID", "Foci", 46, 0, Integer.MAX_VALUE, "");
 		crystalizationFociUID = cfg.getInt("crystalizationFociUID", "Foci", 47, 0, Integer.MAX_VALUE, "");
 		warpingFociUID = cfg.getInt("warpingFociUID", "Foci", 48, 0, Integer.MAX_VALUE, "");
+		
+		allowTobacco = cfg.getBoolean("allowTobacco", "General", true, "If set to falso the tobacco will be disabled - there will be no recipes/no entries in Thaumonomicon");
+		minBlazePowderFromPyrofluid = cfg.getInt("minBlazePowderFromPyrofluid", "Pyrofluid", 5, 0, Integer.MAX_VALUE, "");
+		maxBlazePowderFromPyrofluid = cfg.getInt("maxBlazePowderFromPyrofluid", "Pyrofluid", 5+32, 0, Integer.MAX_VALUE, "");
+	
+		speedMultiplierForFurnace = cfg.getInt("speedMultiplierForFurnace", "Advanced Alchemy Furnace", 2, 0, Integer.MAX_VALUE, "This is the speed of the Advanced Alchamical Furnace. TC's basic has 1.");
+		makeRequireAlumentium = cfg.getBoolean("makeRequireAlumentium", "Advanced Alchemy Furnace", true, "Does the Advanced Alchemical Furnace requires Alumentium to work faster");
+		
+		shardsFromOre = cfg.getInt("shardsFromOre", "General", 8, 1, 64, "Amount of shards recieved from crucible ore processing");
+		brightFociRequiresPrimordialPearl = cfg.getBoolean("brightFociRequiresPrimordialPearl", "General", true, "Does the Brightness Foci for the Node Manipulator requires a Primordial Pearl");
 	}
 	
 	static Configuration cfg;
@@ -39,5 +49,16 @@ public class TBConfig implements IDummyConfig{
 	public static int calmingFociUID;
 	public static int crystalizationFociUID;
 	public static int warpingFociUID;
+	
+	public static boolean allowTobacco;
+	
+	public static int minBlazePowderFromPyrofluid;
+	public static int maxBlazePowderFromPyrofluid;
+	
+	public static int speedMultiplierForFurnace;
+	public static boolean makeRequireAlumentium;
+	
+	public static int shardsFromOre;
+	public static boolean brightFociRequiresPrimordialPearl;
 
 }
