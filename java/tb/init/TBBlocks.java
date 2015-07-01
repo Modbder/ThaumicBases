@@ -8,9 +8,11 @@ import tb.common.block.BlockAureliaPlant;
 import tb.common.block.BlockBriar;
 import tb.common.block.BlockCryingObelisk;
 import tb.common.block.BlockCrystalBlock;
+import tb.common.block.BlockCrystalSlab;
 import tb.common.block.BlockEntityDeconstructor;
 import tb.common.block.BlockFlaxium;
 import tb.common.block.BlockGoldenOakSapling;
+import tb.common.block.BlockHalfSlab;
 import tb.common.block.BlockKnose;
 import tb.common.block.BlockLucritePlant;
 import tb.common.block.BlockNodeManipulator;
@@ -28,6 +30,8 @@ import tb.common.block.TBSidedBlock;
 import tb.common.itemblock.ItemBlockCrystal;
 import tb.common.itemblock.ItemBlockModeManipulator;
 import tb.common.itemblock.ItemBlockPyrofluid;
+import tb.common.itemblock.ItemBlockSlab_0;
+import tb.common.itemblock.ItemBlockSlab_1;
 import tb.common.itemblock.ItemBlockSpike;
 import tb.common.itemblock.ItemBlockTBLeaves;
 import tb.common.itemblock.ItemBlockTBLogs;
@@ -109,6 +113,10 @@ public class TBBlocks {
 		BlocksRegistry.registerBlock(genLogs, "genLogs",core,ItemBlockTBLogs.class);
 		OreDictionary.registerOre("logWood", new ItemStack(genLogs,1,OreDictionary.WILDCARD_VALUE));
 		BlocksRegistry.registerBlock(nodeManipulator, "nodeManipulator",core,ItemBlockModeManipulator.class);
+		BlocksRegistry.registerBlock(genericSlab, "genericSlab",core,ItemBlockSlab_0.class);
+		BlocksRegistry.registerBlock(genericSlab_full, "genericSlab_full",core,ItemBlockSlab_0.class);
+		BlocksRegistry.registerBlock(crystalSlab, "crystalSlab",core,ItemBlockSlab_1.class);
+		BlocksRegistry.registerBlock(crystalSlab_full, "crystalSlab_full",core,ItemBlockSlab_1.class);
 	}
 	
 	public static Block quicksilverBlock = new TBBlock(Material.rock,false).setBlockName("quicksilverBlock").setBlockTextureName("thaumicbases:quicksilverBlock").setHardness(0.5F);
@@ -152,6 +160,10 @@ public class TBBlocks {
 	public static Block oldDiamond = new TBSidedBlock(Material.rock,false).setBlockName("TBoldDiamond").setBlockTextureName("thaumicbases:diamond_block").setHardness(1).setResistance(1);
 	public static Block genLogs = new BlockTBLog();
 	public static Block nodeManipulator = new BlockNodeManipulator().setBlockName("nodeManipulator");
+	public static Block genericSlab = new BlockHalfSlab(false,Material.rock).setHardness(1).setResistance(10).setBlockName("tb.slab.");
+	public static Block genericSlab_full = new BlockHalfSlab(true,Material.rock).setHardness(1).setResistance(10).setBlockName("tb.slab.");
+	public static Block crystalSlab = new BlockCrystalSlab(false,Material.glass).setBlockName("tb.crystalslab.");
+	public static Block crystalSlab_full = new BlockCrystalSlab(true,Material.glass).setBlockName("tb.crystalslab.");
 	
 	public static final Class<TBCore> core = TBCore.class;
 }
