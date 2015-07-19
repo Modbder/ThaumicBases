@@ -254,3 +254,6 @@ tc.research_name.TB.Tobacco.Sanity=心净烟草
 tc.research_text.TB.Tobacco.Sanity=就是那些医生想要的
 tc.research_name.TB.SilverwoodPipe=银树烟斗
 tc.research_text.TB.SilverwoodPipe=被净化了的烟
+tb.rec.silverPipe.page.0=你所创造的大部分烟草都是安全的，但不是所有烟草都是如此。你认为唯一的解决方法就是去弄一个更好的烟斗。银树就是一个很完美的材料。尽管它并不像宏伟之木那样平庸，过程也比奥术加工要复杂得多，银树烟斗也是一个更好的烟斗。它能够无效你的烟草的大部分负面效果，而那些没有负面效果的烟草则会获得额外的正面效果
+tc.research_name.TB.VoidSeed=虚空种子
+tc.research_text.TB.VoidSeed=这次是来真的
