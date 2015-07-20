@@ -1,8 +1,13 @@
+#Traslated by PatchouliHina From InfinityStudio
+
+tc.research_category.THAUMICBASES=神秘基础学
+
 enchantment.tainted=污染
 enchantment.elderKnowledge=睿智
 enchantment.eldritchBane=异域杀手
 enchantment.magicTouch=魔法之触
 enchantment.vaporising=蒸发
+
 tile.quicksilverBlock.name=水银块
 tile.quicksilverBrick.name=水银砖块
 tile.crystalBlockfire.name=火之魔晶块
@@ -21,7 +26,6 @@ tile.ironGreatwood.name=复合框架宏伟之木
 tile.plax.name=纤化麦
 tile.aurelia.name=灵气花
 tile.aureliaPetal.name=灵气花瓣
-tc.research_category.THAUMICBASES=神秘基础学
 tile.rainbowCactus.name=彩虹仙人掌
 tile.ashroom.name=始源蘑菇
 tile.spikeiron.name=铁钉
@@ -125,11 +129,12 @@ item.nodeFoci.purity.name=§e节点调节核心:纯净
 item.nodeFoci.sinister.name=§e节点调节核心:凶险
 item.nodeFoci.stability.name=§e节点调节核心:稳定
 item.nodeFoci.taint.name=§e节点调节核心:污染
+
 tc.research_name.TB.CRUCIBLE=基础炼金术
 tc.research_text.TB.CRUCIBLE=沸腾并且冒着泡
 tc.research_name.TB.AdvancedEntropy=高等混沌过程
 tc.research_text.TB.AdvancedEntropy=小型粉碎机!
-tb.rec.advEntr.page.0=炼金术提供了更多你想要的东西!以前你只能使用混沌粉碎一些简单的物品。然而,你已经发现了一种用混沌粉碎更多的物品的方法。然而你意识到有一个可以使这个过程更为高效的方法,但为了得到这个方法,你需要更多的研究。
+tb.rec.advEntr.page.0=炼金术提供了更多你想要的东西!以前你只能使用混沌粉碎一些简单的物品.然而,你已经发现了一种用混沌粉碎更多的物品的方法.然而你意识到有一个可以使这个过程更为高效的方法,但为了得到这个方法,你需要更多的研究.
 tc.research_name.TB.MasterEntropy=混沌过程精通
 tc.research_text.TB.MasterEntropy=110%的效率!
 tb.rec.mastEntr.page.0=最后你终于达到了!在进行了深入的混沌过程研究之后,你终于精通了这项技术.你现在可以在分解羊毛和沙子的时候得到100%的产出,分解烈焰棒的时候可以得到200%的产出.
@@ -141,7 +146,7 @@ tc.research_text.TB.SimpleDublication=更多!
 tb.rec.simDup.page.0=你已经成功地掌握了炼金术复制的艺术!你的想法是复制的箭,然后它成功了!然而,你也发现了复制雪球到方法,奇怪的是,这种思路也能应用于红石。
 tc.research_name.TB.OreDestruction=矿石分解
 tc.research_text.TB.OreDestruction=混沌过程
-tb.rec.oreDestr.page.0=掌握了混沌过程的知识之后,你发现了一个方法来处理矿石,然而这些矿石必须使用精准采集得到.这个过程需要更多的要素-仅仅是混沌是不够的,如果不加入魔力要素强化魔力碎片的话,碎片也会被粉碎.对应的矿石的原始要素也是必要的-否则碎片会在坩埚中被瞬间溶解。这是你可以达到的最好的混沌过程研究……仅仅在这个阶段……
+tb.rec.oreDestr.page.0=掌握了混沌过程的知识之后,你发现了一个方法来处理矿石,然而这些矿石必须使用精准采集得到.这个过程需要更多的要素,但是仅仅是混沌是不够的,如果不加入魔力(Praecantatio)要素强化魔力碎片的话,碎片也会被粉碎.对应的矿石的原始要素也是必要的,否则碎片会在坩埚中被瞬间溶解.这是你可以达到的最好的混沌过程研究……仅仅在这个阶段……
 tc.research_name.TB.Amber=琥珀制造
 tc.research_text.TB.Amber=被时间捕获!
 tb.rec.amber.page.0=你发现了一种方法来创造琥珀,只需要把足够的陷阱要素与云杉树苗放进坩埚.有趣的是,其他类型的树苗对于琥珀来说太过平凡而没法得到成品.
@@ -150,7 +155,7 @@ tc.research_text.TB.DecoBlocks=这些都是真的吗?
 tb.rec.decoBlocks.page.0=在很长一段时间里,神秘使只能使用琥珀块作为装饰.最近,增加一系列装饰方块的研究被发现了——这些就是神秘使最新的装饰方块:
 tc.research_name.TB.Quicksilver=水银制造
 tc.research_text.TB.Quicksilver=这危险吗?
-tb.rec.cinnabar.page.0=每次你把银树原木分解为木板时总会产生疑惑——那些是什么气体?经过一些研究,你发现那是一些微小的水银蒸汽!之后你找到了一种方法把它们收集在坩埚中并且使用秩序要素进行结晶.然而,从银树原木中得到的水银不是真正的水银,它并不会结晶.要使它结晶你还需要加入一些毒药要素.
+tb.rec.cinnabar.page.0=每次你把银树原木分解为木板时总会产生疑惑——那些是什么气体?经过一些研究,你发现那是一些微小的水银蒸汽!之后你找到了一种方法把它们收集在坩埚中并且使用秩序要素进行结晶.然而,从银树原木中得到的水银不是真正的水银,它并不会结晶.要使它结晶你还需要加入一些毒药(Venenum)要素.
 tc.research_name.TB.SM=世界盐复制
 tc.research_text.TB.SM=这合理吗?
 tb.rec.sm.page.0=最近的研究让你得到了一个非常有趣的想法——世界盐是由具有所有原始要素的平衡碎片得到的.好吧,如果你给一个坩埚和所有的原始要素,能让世界盐在坩埚中呆一段时间吗?然而这样是不够的——世界盐太脆弱,在坩埚中会瞬间溶解,但是如果在坩埚中加入魔力要素,世界盐将会被强化到可以吸收额外的原始要素,之后你就会得到2堆世界盐了!
@@ -387,11 +392,13 @@ tc.research_name.TB.Vaporising=附魔:蒸发
 tc.research_text.TB.Vaporising=便携式晶化器
 tc.research_name.TB.Tainted=附魔:污染
 tc.research_text.TB.Tainted=毁灭大地!
+
 tb.txt.knoseFragment=右击以获得知识
 tb.txt.howlBelow=有什么东西在世界深处的咆哮...
 tb.txt.howlDeeper=你听见了基岩之下的咆哮,你想要更加深入...
 tb.txt.taintDevelop=那是什么?你想回忆起刚刚发生了什么!
 tb.txt.spawnSet=出生点已设置!
+
 tb.foci.aquatic.name=晶化
 tb.foci.aquatic.desc=摧毁水方块时可能会将水结晶为源质
 tb.foci.netheric.name=地狱
