@@ -38,5 +38,10 @@ public class TBServer implements IGuiHandler{
 	{
 		
 	}
+	
+	public void lightning(World world, double sx, double sy, double sz, double ex, double ey, double ez, int dur, float curve, int speed, int type)
+	{
+		
+	}
 
 }
