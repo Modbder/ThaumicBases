@@ -1,13 +1,11 @@
 #Traslated by PatchouliHina From InfinityStudio
 
 tc.research_category.THAUMICBASES=神秘基础学
-
 enchantment.tainted=污染
 enchantment.elderKnowledge=睿智
 enchantment.eldritchBane=异域杀手
 enchantment.magicTouch=魔法之触
 enchantment.vaporising=蒸发
-
 tile.quicksilverBlock.name=水银块
 tile.quicksilverBrick.name=水银砖块
 tile.crystalBlockfire.name=火之魔晶块
@@ -129,7 +127,6 @@ item.nodeFoci.purity.name=§e节点调节核心:纯净
 item.nodeFoci.sinister.name=§e节点调节核心:凶险
 item.nodeFoci.stability.name=§e节点调节核心:稳定
 item.nodeFoci.taint.name=§e节点调节核心:污染
-
 tc.research_name.TB.CRUCIBLE=基础炼金术
 tc.research_text.TB.CRUCIBLE=沸腾并且冒着泡
 tc.research_name.TB.AdvancedEntropy=高等混沌过程
@@ -297,7 +294,7 @@ tb.rec.actFoci.page.0=当你研究了镜子传送物品的能力之后,你通过
 tb.rec.actFoci.page.1=<LINE>§l           能效升级 §r<LINE>所有等级可用.这个升级会增加核心10距离的限制.但是并不会在未加载的区块中生效!
 tc.research_name.TB.AdvAlc=高级炼金炉
 tc.research_text.TB.AdvAlc=让火焰更旺盛一些吧
-tb.rec.advAlc.page.0=你对炼金炉的速度已经忍无可忍了.你相信一定有一种方法可以让这该死的东西提高效率!当然,接上更多的风箱可能有帮助,但是那也只是杯水车薪.然而,使用炉子边的风的魔法能量增强炉子的火焰怎么样呢?结果炉子急剧升温导致结构熔毁以至于结构也被破坏了.因此你需要使用神秘金属来提高炉子的抗热性!结果你得到了一个像普通炼金炉的炉子,但是它有普通4倍的速度!它还可以接上风箱来进一步提升它的速度.
+tb.rec.advAlc.page.0=你对炼金炉的速度已经忍无可忍了.你相信一定有一种方法可以让这该死的东西提高效率!当然,接上更多的风箱可能有帮助,但是那也只是杯水车薪.然而,使用炉子边的风的魔法能量增强炉子的火焰怎么样呢?结果炉子急剧升温导致结构熔毁以至于结构也被破坏了.因此你需要使用神秘金属来提高炉子的抗热性!结果你得到了一个像普通炼金炉的炉子,但是它有普通2倍的速度!它还可以接上风箱来进一步提升它的速度.
 tc.research_name.TB.CryingObs=尖叫黑曜石
 tc.research_text.TB.CryingObs=永远不会实现
 tb.rec.cryingObs.page.0=一个神秘使应该重生在他睡过的床边吗?床是不可信赖的——它们会着火,而且"你只能在晚上入睡","你现在不能睡觉,周围有怪物在游荡",或者甚至"这个床已经被占用了".是时候结束这种废话了!通过将床的特性注入黑曜石之中,你创造了一块尖叫黑曜石.将两块尖叫黑曜石叠在一起,它们会组成一个方尖碑,然后右击它.如果方尖碑没有被损坏,你会在最近右击的方尖碑附近重生.在床上睡觉时会将重生地点重置到床上.
@@ -392,13 +389,11 @@ tc.research_name.TB.Vaporising=附魔:蒸发
 tc.research_text.TB.Vaporising=便携式晶化器
 tc.research_name.TB.Tainted=附魔:污染
 tc.research_text.TB.Tainted=毁灭大地!
-
 tb.txt.knoseFragment=右击以获得知识
 tb.txt.howlBelow=有什么东西在世界深处的咆哮...
 tb.txt.howlDeeper=你听见了基岩之下的咆哮,你想要更加深入...
 tb.txt.taintDevelop=那是什么?你想回忆起刚刚发生了什么!
 tb.txt.spawnSet=出生点已设置!
-
 tb.foci.aquatic.name=晶化
 tb.foci.aquatic.desc=摧毁水方块时可能会将水结晶为源质
 tb.foci.netheric.name=地狱
@@ -413,3 +408,30 @@ tb.foci.crystalization.name=结晶
 tb.foci.crystalization.desc=咒波会掉落Potentia晶化源质.等级II时掉了随机种类的晶化源质
 tb.foci.calming.name=平静
 tb.foci.calming.desc=抵消扭曲升级的效果.清除咒波时可以移除使用者的临时扭曲与常规扭曲
+tile.tb.slab.tile.TBoldLapis.name=远古青金石台阶
+tile.tb.slab.tile.TBoldIron.name=远古铁台阶
+tile.tb.slab.tile.TBoldGold.name=远古金台阶
+tile.tb.slab.tile.TBoldDiamond.name=远古钻石台阶
+tile.tb.slab.tile.TBoldCobblestone.name=远古圆石台阶
+tile.tb.slab.tile.TBoldBricks.name=远古石砖台阶
+tile.tb.slab.tile.TBoldCobblestoneMossy.name=远古苔石台阶
+tile.tb.slab.tile.eldritchArk.name=远古镶金黑曜石台阶
+tile.tb.crystalslab.air.name=风之水晶台阶
+tile.tb.crystalslab.water.name=水之水晶台阶
+tile.tb.crystalslab.fire.name=火之水晶台阶
+tile.tb.crystalslab.earth.name=地之水晶台阶
+tile.tb.crystalslab.order.name=秩序水晶台阶
+tile.tb.crystalslab.entropy.name=混沌水晶台阶
+tile.tb.crystalslab.mixed.name=复相水晶台阶
+tile.tb.crystalslab.tainted.name=污染水晶台阶
+tc.research_name.TB.PRIMPEARL=原始珍珠
+tc.research_text.TB.PRIMPEARL=开端之前
+item.herobrinesScythe.name=白瞳者之镰
+tc.research_name.TB.EntityDecAdv=高级解构工作台
+tc.research_text.TB.EntityDecAdv=更好的分解!
+tb.rec.eDeca.page.0=你已经成功改进了你的解构工作台.你发现基础的解构工作台太不稳定而且充满混沌.它有时候甚至会把知识也分解了,并且会带来扭曲.你找到了一个方法来解决这个问题.你发现当你手持晶簇块并右击解构工作台时,解构工作台会被晶簇块所稳定下来.所有原始要素的晶簇块都可以用来稳定它.
+tb.rec.eDeca.page.1=每一个晶簇块都会增加设备10格的知识传输距离.它们同时可以降低污染知识的概率,并且可以提升解构工作台的效率.如果所有种类的晶簇块都被安装上了,那么解构工作台会达到最佳的稳定状态,知识传输距离会变成无限并且将知识被污染的概率降低到0.同时解构工作台的工作速度会提升到难以置信的迅速,还能像分解物品那样分解生物.物品并不总是会产生知识,但是使用高级解构工作台会有更高的概率得到它们.然而高级解构工作台也只会得到原始要素.
+tc.research_name.TB.HerobrinesScythe=白瞳者之镰
+tc.research_text.TB.HerobrinesScythe=你最可怕的噩梦...
+tb.rec.hScythe.page.0=你曾在你的噩梦中见过它.你按照你的印象制作了一把复制品.它如梦似幻,似乎并不属于这个世界.你甚至不知道你已经在疯狂的道路上狂飙了多远.不管怎么说,尽管你已经清除如何制作一把它的复制品,但是这个过程也十分艰难.你需要所有有关死亡的知识才能制作出这个梦魇.
+tb.rec.hScythe.page.1=这件武器极具威力,它不仅仅能造成疯狂的伤害,似乎还能撕开这个世界.每次它撕碎血肉时,它都会产生一股微小的能量脉冲,这股能量脉冲能在周围的敌人中无限反弹,从一个跳到另一个,直到无人生还.这股能量脉冲会造成白瞳者之镰相同的伤害,并且可以被力量药水或者力量附魔所加强.白瞳者之镰甚至可以像虚空锄一般自我修复.自从你制作出了它,其他的神秘使都对你退避三舍.他们在谈论你已经完全变成白色的眼睛,似乎"他"又回来了一样.但是你确信这只是他们的嫉妒和愚蠢,不是吗?..
