@@ -159,7 +159,7 @@ public class TBBlocks {
 	public static Block oldGold = new TBSidedBlock(Material.rock,false).setBlockName("TBoldGold").setBlockTextureName("thaumicbases:gold_block").setHardness(1).setResistance(1);
 	public static Block oldDiamond = new TBSidedBlock(Material.rock,false).setBlockName("TBoldDiamond").setBlockTextureName("thaumicbases:diamond_block").setHardness(1).setResistance(1);
 	public static Block genLogs = new BlockTBLog();
-	public static Block nodeManipulator = new BlockNodeManipulator().setBlockName("nodeManipulator");
+	public static Block nodeManipulator = new BlockNodeManipulator().setBlockName("nodeManipulator").setHardness(1);
 	public static Block genericSlab = new BlockHalfSlab(false,Material.rock).setHardness(1).setResistance(10).setBlockName("tb.slab.");
 	public static Block genericSlab_full = new BlockHalfSlab(true,Material.rock).setHardness(1).setResistance(10).setBlockName("tb.slab.");
 	public static Block crystalSlab = new BlockCrystalSlab(false,Material.glass).setBlockName("tb.crystalslab.");
