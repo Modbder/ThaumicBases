@@ -22,6 +22,7 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.wands.FocusUpgradeType;
 import thaumcraft.api.wands.ItemFocusBasic;
+import thaumcraft.common.Thaumcraft;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
 import thaumcraft.common.items.ItemCrystalEssence;
@@ -29,6 +30,8 @@ import thaumcraft.common.items.wands.WandManager;
 
 public class FociFlux extends ItemFocusBasic
 {
+	
+	Object beam = null;
 
 	public int getFocusColor(ItemStack focusstack) {
 		return 0x64379d;
@@ -111,6 +114,9 @@ public class FociFlux extends ItemFocusBasic
         
         Vec3 lookVec = player.getLookVec();
         
+        if(player.worldObj.isRemote)
+			beam = Thaumcraft.proxy.beamCont(player.worldObj, player, player.posX+lookVec.xCoord*2, player.posY+player.getEyeHeight()+lookVec.yCoord*2, player.posZ+lookVec.zCoord*2, 6, 0xff00ff, true, 2, beam, 2);
+        
         if(potencyLevel == 5 || player.ticksExisted % 10-potencyLevel*2 == 0)
 	        for(int i = 0; i < d3; ++i)
 	        {
@@ -192,5 +198,9 @@ public class FociFlux extends ItemFocusBasic
     	this.icon = reg.registerIcon(getIconString());
     }
 
+	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer p, int count)
+	{
+		beam = null;
+	}
 	
 }

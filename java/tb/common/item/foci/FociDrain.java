@@ -20,6 +20,7 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.wands.FocusUpgradeType;
 import thaumcraft.api.wands.ItemFocusBasic;
+import thaumcraft.common.Thaumcraft;
 import thaumcraft.common.config.ConfigItems;
 import thaumcraft.common.items.ItemCrystalEssence;
 import thaumcraft.common.items.wands.WandManager;
@@ -27,6 +28,8 @@ import thaumcraft.common.items.wands.WandManager;
 public class FociDrain extends ItemFocusBasic
 {
 
+	Object beam = null;
+	
 	public int getFocusColor(ItemStack focusstack) {
 		return 0x191770;
 	}
@@ -112,6 +115,9 @@ public class FociDrain extends ItemFocusBasic
         	{
         		if(b == Blocks.water)
         		{
+        			if(player.worldObj.isRemote)
+        				beam = Thaumcraft.proxy.beamCont(player.worldObj, player, pos.hitVec.xCoord, pos.hitVec.yCoord, pos.hitVec.zCoord, 1, 0x5555ff, true, 2, beam, 2);
+        			
         			if(this.getUpgradeLevel(foci, TBFociUpgrades.aquatic) > 0 || player.ticksExisted % 5 == 0)
         			{
         				b.onBlockDestroyedByPlayer(player.worldObj, pos.blockX, pos.blockY, pos.blockZ, player.worldObj.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ));
@@ -134,6 +140,9 @@ public class FociDrain extends ItemFocusBasic
         		
            		if(b == Blocks.lava && this.getUpgradeLevel(foci, TBFociUpgrades.netheric) > 0)
         		{
+        			if(player.worldObj.isRemote)
+        				beam = Thaumcraft.proxy.beamCont(player.worldObj, player, pos.hitVec.xCoord, pos.hitVec.yCoord, pos.hitVec.zCoord, 1, 0xff5555, true, 2, beam, 2);
+           			
         			if(player.ticksExisted % 5 == 0 && WandManager.consumeVisFromInventory(player, new AspectList().add(Aspect.FIRE, 3)))
         			{
         				b.onBlockDestroyedByPlayer(player.worldObj, pos.blockX, pos.blockY, pos.blockZ, player.worldObj.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ));
@@ -146,6 +155,11 @@ public class FociDrain extends ItemFocusBasic
         	}
         }
 		
+	}
+	
+	public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer p, int count)
+	{
+		beam = null;
 	}
 	
     @SideOnly(Side.CLIENT)
