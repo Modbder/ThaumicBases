@@ -24,7 +24,7 @@ public class TBEnchant {
 		tainted = new EnchantmentTainted(TBConfig.taintedID,9,EnumEnchantmentType.weapon).setName("tainted");
 		vaporising = new EnchantmentVaporising(TBConfig.vaporisingID,6,EnumEnchantmentType.weapon).setName("vaporising");
 
-		if(Loader.isModLoaded("ThaumicTinkerer"))
+		if(Loader.isModLoaded("ThaumicTinkerer") && TBConfig.enableTTCompathability)
 		{
 			try
 			{

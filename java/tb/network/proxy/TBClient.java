@@ -1,6 +1,7 @@
 package tb.network.proxy;
 
 import DummyCore.Client.GuiCommon;
+import tb.client.render.item.HerobrinesScytheRenderer;
 import tb.client.render.item.NodeFociRenderer;
 import tb.client.render.item.NodeManipulatorItemRenderer;
 import tb.client.render.tile.RenderEntityDeconstructor;
@@ -12,6 +13,7 @@ import tb.common.tile.TileNodeManipulator;
 import tb.common.tile.TileOverchanter;
 import tb.init.TBBlocks;
 import tb.init.TBItems;
+import thaumcraft.client.fx.bolt.FXLightningBolt;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -48,7 +50,19 @@ public class TBClient extends TBServer {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileNodeManipulator.class, new RenderNodeManipulator());
 	
 		MinecraftForgeClient.registerItemRenderer(TBItems.nodeFoci, new NodeFociRenderer());
+		MinecraftForgeClient.registerItemRenderer(TBItems.herobrinesScythe, new HerobrinesScytheRenderer());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TBBlocks.nodeManipulator), new NodeManipulatorItemRenderer());
+	}
+	
+	@Override
+	public void lightning(World world, double sx, double sy, double sz, double ex, double ey, double ez, int dur, float curve, int speed, int type)
+	{
+		FXLightningBolt bolt = new FXLightningBolt(world, sx, sy, sz, ex, ey, ez, world.rand.nextLong(), dur, curve, speed);
+		
+		bolt.defaultFractal();
+		bolt.setType(type);
+		bolt.setWidth(0.125F);
+		bolt.finalizeBolt();
 	}
 
 }

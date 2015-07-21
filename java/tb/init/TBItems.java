@@ -12,6 +12,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import tb.common.item.ItemBloodyArmor;
 import tb.common.item.ItemConcentratedTaint;
+import tb.common.item.ItemHerobrinesScythe;
 import tb.common.item.ItemKnoseFragment;
 import tb.common.item.ItemKnoseSeeds;
 import tb.common.item.ItemMortarAndPestle;
@@ -91,6 +92,7 @@ public class TBItems {
 		ItemRegistry.registerItem(fociFlux, "fociFlux",core);
 		
 		ItemRegistry.registerItem(nodeFoci, "nodeFoci",core);
+		ItemRegistry.registerItem(herobrinesScythe, "herobrinesScythe",core);
 		
 		OreDictionary.registerOre("ingotThauminite", new ItemStack(resource,1,1));
 		
@@ -150,6 +152,8 @@ public class TBItems {
 	public static Item fociFlux = new FociFlux().setUnlocalizedName("fluxFoci").setTextureName("thaumicbases:foci/flux/foci");
 	
 	public static Item nodeFoci = new ItemNodeFoci().setUnlocalizedName("nodeFoci.");
+	
+	public static Item herobrinesScythe = new ItemHerobrinesScythe().setUnlocalizedName("herobrinesScythe").setTextureName("thaumicbases:herobrinesScythe");
 	
 	public static WandCap WAND_CAP_THAUMINITE;
 	

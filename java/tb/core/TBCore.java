@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import net.minecraftforge.common.MinecraftForge;
 import DummyCore.Core.Core;
 import tb.common.enchantment.EnchantmentHandler;
+import tb.common.event.TBEventHandler;
 import tb.init.TBBlocks;
 import tb.init.TBEnchant;
 import tb.init.TBFociUpgrades;
@@ -26,14 +27,15 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import static tb.core.TBCore.*;
 
-@Mod(modid = modid, version = version, name = name)
+@Mod(modid = modid, version = version, name = name,dependencies=dependencies)
 public class TBCore {
 
 	public static final String modid = "thaumicbases";
-	public static final String version = "1.0.1710.8";
+	public static final String version = "1.0.1710.34";
 	public static final String name = "Thaumic Bases";
 	public static final String serverProxy = "tb.network.proxy.TBServer";
 	public static final String clientProxy = "tb.network.proxy.TBClient";
+	public static final String dependencies = "required-after:Thaumcraft@[4.2.3.5,);required-after:Baubles@[1.0.1.10,);required-after:DummyCore@[1.6,);";
 	
 	public static final TBConfig cfg = new TBConfig();
 	
@@ -66,6 +68,7 @@ public class TBCore {
 	public void init(FMLInitializationEvent event)
 	{
 		MinecraftForge.EVENT_BUS.register(new EnchantmentHandler());
+		MinecraftForge.EVENT_BUS.register(new TBEventHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		TBFociUpgrades.init();
 		proxy.registerRenderInformation();

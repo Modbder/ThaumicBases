@@ -32,6 +32,8 @@ public class TBConfig implements IDummyConfig{
 		
 		shardsFromOre = cfg.getInt("shardsFromOre", "General", 8, 1, 64, "Amount of shards recieved from crucible ore processing");
 		brightFociRequiresPrimordialPearl = cfg.getBoolean("brightFociRequiresPrimordialPearl", "General", true, "Does the Brightness Foci for the Node Manipulator requires a Primordial Pearl");
+	
+		enableTTCompathability = cfg.getBoolean("enableTTCompathability", "General", true, "Allow the mod to register it's enchantments in the Thaumic Tinkerer's enchanter? Set to false if Thaumic Tinkerer is crashing you.");
 	}
 	
 	static Configuration cfg;
@@ -51,6 +53,7 @@ public class TBConfig implements IDummyConfig{
 	public static int warpingFociUID;
 	
 	public static boolean allowTobacco;
+	public static boolean enableTTCompathability;
 	
 	public static int minBlazePowderFromPyrofluid;
 	public static int maxBlazePowderFromPyrofluid;

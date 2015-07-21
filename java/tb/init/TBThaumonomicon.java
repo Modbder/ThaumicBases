@@ -204,7 +204,7 @@ public class TBThaumonomicon {
 			'@',new ItemStack(ConfigItems.itemResource,1,14)
 		});
 		
-		ShapedArcaneRecipe thaumicWandCore = new ShapedArcaneRecipe("ROD_tb.thaumium", new ItemStack(TBItems.resource,1,3), primals(50), new Object[]{
+		ShapedArcaneRecipe thaumicWandCore = new ShapedArcaneRecipe("ROD_tbthaumium", new ItemStack(TBItems.resource,1,3), primals(50), new Object[]{
 			" @#",
 			"@#@",
 			"#@ ",
@@ -260,7 +260,7 @@ public class TBThaumonomicon {
 			else
 				cTaintedBlocks[i] = new CrucibleRecipe("TB.CrystalBlocks",new ItemStack(TBBlocks.crystalBlock,1,7),new ItemStack(ConfigBlocks.blockCrystal,1,i),new AspectList().add(primals(1)).add(Aspect.CRAFT, 2).add(primals(1)).add(Aspect.TAINT, 2));
 		
-		InfusionRecipe voidRodRecipe = new InfusionRecipe("ROD_tb.void", new ItemStack(TBItems.resource,1,4), 6, new AspectList().add(Aspect.ELDRITCH, 64).add(Aspect.VOID, 64).add(Aspect.MAGIC, 64).add(Aspect.AURA, 24).add(Aspect.ENERGY, 24), new ItemStack(TBItems.resource,1,3), new ItemStack[]{
+		InfusionRecipe voidRodRecipe = new InfusionRecipe("ROD_tbvoid", new ItemStack(TBItems.resource,1,4), 6, new AspectList().add(Aspect.ELDRITCH, 64).add(Aspect.VOID, 64).add(Aspect.MAGIC, 64).add(Aspect.AURA, 24).add(Aspect.ENERGY, 24), new ItemStack(TBItems.resource,1,3), new ItemStack[]{
 			new ItemStack(ConfigItems.itemResource,1,16),
 			new ItemStack(ConfigItems.itemResource,1,16),
 			new ItemStack(ConfigItems.itemResource,1,16),
@@ -538,6 +538,13 @@ public class TBThaumonomicon {
 			new ItemStack(TBItems.knoseFragment,1,7),
 		});
 		
+		InfusionRecipe herobrinesScytheRec = new InfusionRecipe("TB.HerobrinesScythe",new ItemStack(TBItems.herobrinesScythe,1,0),7,new AspectList().add(Aspect.WEAPON, 128).add(Aspect.ENERGY, 64).add(Aspect.AURA, 12).add(Aspect.ELDRITCH, 32).add(Aspect.DEATH, 64),new ItemStack(ConfigItems.itemHoeVoid),new ItemStack[]{
+			new ItemStack(Items.nether_star),
+			new ItemStack(ConfigItems.itemBucketDeath),
+			new ItemStack(ConfigItems.itemWandRod,1,100),
+			new ItemStack(ConfigItems.itemBucketDeath)
+		});
+		
 		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.tobacco,1,1), 1);
 		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.nodeFoci,1,1), 1);
 		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.nodeFoci,1,9), 2);
@@ -547,29 +554,29 @@ public class TBThaumonomicon {
 		
 		copy(crucRes,"TB.CRUCIBLE",catName,0,0).setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("ALCHEMY").research.get("THAUMIUM"),"TB.THAUMIUM",catName,4,0).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("ALCHEMY").research.get("THAUMIUM"),"TB.THAUMIUM",catName,7,1).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("INFUSION"),"TB.INFUSION",catName,0,-16).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("INFUSION"),"TB.INFUSION",catName,0,-18).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("ELDRITCH").research.get("VOIDMETAL"),"TB.VOIDMETAL",catName,10,0).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("ELDRITCH").research.get("VOIDMETAL"),"TB.VOIDMETAL",catName,13,1).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("ENCHFABRIC"),"TB.ENCHFABRIC",catName,5,-3).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("ENCHFABRIC"),"TB.ENCHFABRIC",catName,8,-4).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("FOCUSEXCAVATION"),"TB.FOCUSEXCAVATION",catName,-1,-20).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("FOCUSEXCAVATION"),"TB.FOCUSEXCAVATION",catName,-1,-22).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("ALCHEMY").research.get("JARVOID"),"TB.JARVOID",catName,1,-20).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("ALCHEMY").research.get("JARVOID"),"TB.JARVOID",catName,1,-22).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("FLUXSCRUB"),"TB.FLUXSCRUB",catName,4,-18).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("FLUXSCRUB"),"TB.FLUXSCRUB",catName,4,-20).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("MIRRORHAND"),"TB.MIRRORHAND",catName,-2,-14).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("MIRRORHAND"),"TB.MIRRORHAND",catName,-2,-16).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("ALCHEMY").research.get("DISTILESSENTIA"),"TB.DISTILESSENTIA",catName,4,4).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("ALCHEMY").research.get("DISTILESSENTIA"),"TB.DISTILESSENTIA",catName,7,5).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("BELLOWS"),"TB.BELLOWS",catName,2,2).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("BELLOWS"),"TB.BELLOWS",catName,5,3).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("NODESTABILIZERADV"),"TB.NODESTABILIZERADV",catName,-1,-21).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("NODESTABILIZERADV"),"TB.NODESTABILIZERADV",catName,-1,-23).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("VISPOWER"),"TB.VISPOWER",catName,1,-21).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("VISPOWER"),"TB.VISPOWER",catName,1,-23).setConcealed().setHidden().registerResearchItem();
 		
 		//-2,-18
 		//5,-3
@@ -683,7 +690,7 @@ public class TBThaumonomicon {
 			new ResearchPage(cinnabar)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Thauminite",catName,new AspectList().add(Aspect.METAL, 4).add(Aspect.MAGIC, 3).add(Aspect.CRYSTAL, 8).add(Aspect.CRAFT, 2),6,-1,2,new ItemStack(TBItems.resource,1,1))
+		new ResearchItem("TB.Thauminite",catName,new AspectList().add(Aspect.METAL, 4).add(Aspect.MAGIC, 3).add(Aspect.CRYSTAL, 8).add(Aspect.CRAFT, 2),9,0,2,new ItemStack(TBItems.resource,1,1))
 		.setParents("TB.THAUMIUM")
 		.setConcealed()
 		.setPages(
@@ -695,7 +702,7 @@ public class TBThaumonomicon {
 			new ResearchPage(toolsRec)
 			).registerResearchItem();
 		
-		new ResearchItem("ROD_tbthaumium",catName,new AspectList().add(Aspect.METAL, 4).add(Aspect.MAGIC, 3).add(Aspect.AURA, 4).add(Aspect.CRAFT, 2).add(Aspect.MAN, 6),6,1,2,new ItemStack(TBItems.resource,1,3))
+		new ResearchItem("ROD_tbthaumium",catName,new AspectList().add(Aspect.METAL, 4).add(Aspect.MAGIC, 3).add(Aspect.AURA, 4).add(Aspect.CRAFT, 2).add(Aspect.MAN, 6),9,2,2,new ItemStack(TBItems.resource,1,3))
 		.setParents("TB.THAUMIUM")
 		.setConcealed()
 		.setPages(
@@ -703,8 +710,8 @@ public class TBThaumonomicon {
 			new ResearchPage(thaumicWandCore)
 			).registerResearchItem();
 		
-		new ResearchItem("ROD_tbvoid",catName,new AspectList().add(Aspect.ELDRITCH, 4).add(Aspect.MAGIC, 3).add(Aspect.AURA, 4).add(Aspect.VOID, 2).add(Aspect.MIND, 6),9,1,4,new ItemStack(TBItems.resource,1,4))
-		.setParents("ROD_tbthaumium","TB.VOIDMETAL","TB.SMB","TB.CrystalBlocks")
+		new ResearchItem("ROD_tbvoid",catName,new AspectList().add(Aspect.ELDRITCH, 4).add(Aspect.MAGIC, 3).add(Aspect.AURA, 4).add(Aspect.VOID, 2).add(Aspect.MIND, 6),12,2,4,new ItemStack(TBItems.resource,1,4))
+		.setParents("ROD_tbthaumium","TB.VOIDMETAL")
 		.setConcealed()
 		.setSpecial()
 		.setPages(
@@ -712,7 +719,7 @@ public class TBThaumonomicon {
 			new ResearchPage(voidRodRecipe)
 			).registerResearchItem();
 		
-		new ResearchItem("CAP_thauminite",catName,new AspectList().add(Aspect.METAL, 4).add(Aspect.MAGIC, 3).add(Aspect.AURA, 4),7,-3,2,new ItemStack(TBItems.resource,1,2))
+		new ResearchItem("CAP_thauminite",catName,new AspectList().add(Aspect.METAL, 4).add(Aspect.MAGIC, 3).add(Aspect.AURA, 4),10,-2,2,new ItemStack(TBItems.resource,1,2))
 		.setParents("TB.Thauminite")
 		.setConcealed()
 		.setPages(
@@ -744,7 +751,7 @@ public class TBThaumonomicon {
 			new ResearchPage(shards)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Enchantments",catName,new AspectList(),-3,-2,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/enchantments_icon.png"))
+		new ResearchItem("TB.Enchantments",catName,new AspectList(),-3,2,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/enchantments_icon.png"))
 		.setAutoUnlock()
 		.setRound()
 		.setStub()
@@ -757,9 +764,9 @@ public class TBThaumonomicon {
 			new ResearchPage("tb.rec.enchantments.page.5")
 			).registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("INFUSIONENCHANTMENT"), "TB.INFUSIONENCHANTMENT", catName, -4, -1).setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("INFUSIONENCHANTMENT"), "TB.INFUSIONENCHANTMENT", catName, -4, 3).setHidden().registerResearchItem();
 		
-		new ResearchItem("TB.ElderKnowledge",catName,new AspectList().add(Aspect.MAGIC, 8).add(Aspect.MIND, 8).add(Aspect.WEAPON, 8),-5,-1,1,new ResourceLocation("thaumicbases","textures/enchantments/elder_knowledge.png"))
+		new ResearchItem("TB.ElderKnowledge",catName,new AspectList().add(Aspect.MAGIC, 8).add(Aspect.MIND, 8).add(Aspect.WEAPON, 8),-5,3,1,new ResourceLocation("thaumicbases","textures/enchantments/elder_knowledge.png"))
 		.setParents("TB.INFUSIONENCHANTMENT","TB.Enchantments")
 		.setSecondary()
 		.setConcealed()
@@ -767,7 +774,7 @@ public class TBThaumonomicon {
 			new ResearchPage(elderKnowledgeEnch)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.EldritchBane",catName,new AspectList().add(Aspect.DEATH, 8).add(Aspect.ELDRITCH, 8).add(Aspect.WEAPON, 8),-4,0,1,new ResourceLocation("thaumicbases","textures/enchantments/eldritch_bane.png"))
+		new ResearchItem("TB.EldritchBane",catName,new AspectList().add(Aspect.DEATH, 8).add(Aspect.ELDRITCH, 8).add(Aspect.WEAPON, 8),-4,4,1,new ResourceLocation("thaumicbases","textures/enchantments/eldritch_bane.png"))
 		.setParents("TB.INFUSIONENCHANTMENT","TB.Enchantments")
 		.setSecondary()
 		.setConcealed()
@@ -775,7 +782,7 @@ public class TBThaumonomicon {
 			new ResearchPage(elderBaneEnch)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.MagicTouch",catName,new AspectList().add(Aspect.MAGIC, 8).add(Aspect.AURA, 8).add(Aspect.WEAPON, 8),-4,-2,1,new ResourceLocation("thaumicbases","textures/enchantments/magic_touched.png"))
+		new ResearchItem("TB.MagicTouch",catName,new AspectList().add(Aspect.MAGIC, 8).add(Aspect.AURA, 8).add(Aspect.WEAPON, 8),-4,2,1,new ResourceLocation("thaumicbases","textures/enchantments/magic_touched.png"))
 		.setParents("TB.INFUSIONENCHANTMENT","TB.Enchantments")
 		.setSecondary()
 		.setConcealed()
@@ -783,7 +790,7 @@ public class TBThaumonomicon {
 			new ResearchPage(magicTouchEnch)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Vaporising",catName,new AspectList().add(Aspect.MAGIC, 8).add(Aspect.CRYSTAL, 8).add(Aspect.TRAP, 8),-3,-1,1,new ResourceLocation("thaumicbases","textures/enchantments/vaporising.png"))
+		new ResearchItem("TB.Vaporising",catName,new AspectList().add(Aspect.MAGIC, 8).add(Aspect.CRYSTAL, 8).add(Aspect.TRAP, 8),-3,3,1,new ResourceLocation("thaumicbases","textures/enchantments/vaporising.png"))
 		.setParents("TB.INFUSIONENCHANTMENT","TB.Enchantments")
 		.setSecondary()
 		.setConcealed()
@@ -791,7 +798,7 @@ public class TBThaumonomicon {
 			new ResearchPage(vaporisingEnch)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Tainted",catName,new AspectList().add(Aspect.TAINT, 16),-5,0,1,new ResourceLocation("thaumicbases","textures/enchantments/tainted.png"))
+		new ResearchItem("TB.Tainted",catName,new AspectList().add(Aspect.TAINT, 16),-5,4,1,new ResourceLocation("thaumicbases","textures/enchantments/tainted.png"))
 		.setParents("TB.INFUSIONENCHANTMENT","TB.Enchantments")
 		.setSecondary()
 		.setConcealed()
@@ -799,7 +806,7 @@ public class TBThaumonomicon {
 			new ResearchPage(taintedEnch)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.BasicPlants",catName,new AspectList(),0,-6,0,new ItemStack(Items.wheat_seeds,1,0))
+		new ResearchItem("TB.BasicPlants",catName,new AspectList(),0,-8,0,new ItemStack(Items.wheat_seeds,1,0))
 		.setParents("TB.CRUCIBLE")
 		.setRound()
 		.setPages(
@@ -807,14 +814,14 @@ public class TBThaumonomicon {
 			new ResearchPage(sweedRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Plax",catName,new AspectList().add(Aspect.CROP, 1).add(Aspect.CLOTH, 1),0,-8,1,new ItemStack(TBItems.plaxSeed,1,0))
+		new ResearchItem("TB.Plax",catName,new AspectList().add(Aspect.CROP, 1).add(Aspect.CLOTH, 1),0,-10,1,new ItemStack(TBItems.plaxSeed,1,0))
 		.setParents("TB.BasicPlants")
 		.setPages(
 			new ResearchPage("tb.rec.plax.page.0"),
 			new ResearchPage(plaxRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Briar",catName,new AspectList().add(Aspect.CROP, 4).add(Aspect.PLANT, 4).add(Aspect.HEAL, 4),-1,-11,1,new ItemStack(TBItems.resource,1,6))
+		new ResearchItem("TB.Briar",catName,new AspectList().add(Aspect.CROP, 4).add(Aspect.PLANT, 4).add(Aspect.HEAL, 4),-1,-13,1,new ItemStack(TBItems.resource,1,6))
 		.setParents("TB.Plax")
 		.setConcealed()
 		.setPages(
@@ -823,7 +830,7 @@ public class TBThaumonomicon {
 			new ResearchPage(rosehipRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Aurelia",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.MAGIC, 6).add(Aspect.AURA, 6),3,-7,0,new ItemStack(TBBlocks.aurelia,1,0))
+		new ResearchItem("TB.Aurelia",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.MAGIC, 6).add(Aspect.AURA, 6),3,-9,0,new ItemStack(TBBlocks.aurelia,1,0))
 		.setParents("TB.BasicPlants")
 		.setPages(
 			new ResearchPage("tb.rec.aurelia.page.0"),
@@ -831,7 +838,7 @@ public class TBThaumonomicon {
 			new ResearchPage(aureliaRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Knose",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.MIND, 6).add(Aspect.EARTH, 6),2,-9,0,new ItemStack(TBItems.knoseFragment,1,OreDictionary.WILDCARD_VALUE))
+		new ResearchItem("TB.Knose",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.MIND, 6).add(Aspect.EARTH, 6),2,-11,0,new ItemStack(TBItems.knoseFragment,1,OreDictionary.WILDCARD_VALUE))
 		.setParents("TB.Aurelia","TB.CrystalBlocks")
 		.setConcealed()
 		.setPages(
@@ -841,7 +848,7 @@ public class TBThaumonomicon {
 			new ResearchPage(knowledgeFragmentRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Ashroom",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.ENTROPY, 6).add(Aspect.AURA, 6).add(Aspect.AIR, 6).add(Aspect.CROP, 4),4,-9,2,new ItemStack(TBBlocks.ashroom))
+		new ResearchItem("TB.Ashroom",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.ENTROPY, 6).add(Aspect.AURA, 6).add(Aspect.AIR, 6).add(Aspect.CROP, 4),4,-11,2,new ItemStack(TBBlocks.ashroom))
 		.setParents("TB.Aurelia")
 		.setConcealed()
 		.setPages(
@@ -849,7 +856,7 @@ public class TBThaumonomicon {
 			new ResearchPage(aspectShroomRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Glieonia",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.LIGHT, 6).add(Aspect.SENSES, 6).add(Aspect.FIRE, 6).add(Aspect.PLANT, 4),5,-8,2,new ItemStack(TBItems.glieoniaSeed))
+		new ResearchItem("TB.Glieonia",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.LIGHT, 6).add(Aspect.SENSES, 6).add(Aspect.FIRE, 6).add(Aspect.PLANT, 4),5,-10,2,new ItemStack(TBItems.glieoniaSeed))
 		.setParents("TB.Aurelia")
 		.setConcealed()
 		.setPages(
@@ -857,7 +864,7 @@ public class TBThaumonomicon {
 			new ResearchPage(glieoniaRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Flaxium",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.ENTROPY, 6).add(Aspect.AURA, 6).add(Aspect.MAGIC, 6),3,-10,2,new ItemStack(TBBlocks.flaxium))
+		new ResearchItem("TB.Flaxium",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.ENTROPY, 6).add(Aspect.AURA, 6).add(Aspect.MAGIC, 6),3,-12,2,new ItemStack(TBBlocks.flaxium))
 		.setParents("TB.Aurelia")
 		.setConcealed()
 		.setPages(
@@ -865,14 +872,14 @@ public class TBThaumonomicon {
 			new ResearchPage(flaxiumRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Metalleat",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.MAGIC, 6).add(Aspect.METAL, 6).add(Aspect.EXCHANGE, 6),-3,-7,0,new ItemStack(TBItems.metalleatSeeds,1,0))
+		new ResearchItem("TB.Metalleat",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.MAGIC, 6).add(Aspect.METAL, 6).add(Aspect.EXCHANGE, 6),-3,-9,0,new ItemStack(TBItems.metalleatSeeds,1,0))
 		.setParents("TB.BasicPlants")
 		.setPages(
 			new ResearchPage("tb.rec.metalleat.page.0"),
 			new ResearchPage(metalleatRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Lazullia",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.MAGIC, 6).add(Aspect.GREED, 6).add(Aspect.CRYSTAL, 6).add(Aspect.PLANT, 6).add(Aspect.SENSES, 8),-5,-8,2,new ItemStack(TBItems.lazulliaSeeds,1,0))
+		new ResearchItem("TB.Lazullia",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.MAGIC, 6).add(Aspect.GREED, 6).add(Aspect.CRYSTAL, 6).add(Aspect.PLANT, 6).add(Aspect.SENSES, 8),-5,-10,2,new ItemStack(TBItems.lazulliaSeeds,1,0))
 		.setParents("TB.Metalleat")
 		.setConcealed()
 		.setPages(
@@ -880,7 +887,7 @@ public class TBThaumonomicon {
 			new ResearchPage(lazulliaRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.RainbowCacti",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.MAGIC, 6).add(Aspect.EXCHANGE, 6).add(Aspect.CROP, 6).add(Aspect.ENTROPY, 6).add(Aspect.SENSES, 8),-4,-9,2,new ItemStack(TBBlocks.rainbowCactus,1,0))
+		new ResearchItem("TB.RainbowCacti",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.MAGIC, 6).add(Aspect.EXCHANGE, 6).add(Aspect.CROP, 6).add(Aspect.ENTROPY, 6).add(Aspect.SENSES, 8),-4,-11,2,new ItemStack(TBBlocks.rainbowCactus,1,0))
 		.setParents("TB.Metalleat")
 		.setConcealed()
 		.setPages(
@@ -888,7 +895,7 @@ public class TBThaumonomicon {
 			new ResearchPage(rainbowCactiRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Lucrite",catName,new AspectList().add(Aspect.GREED, 6).add(Aspect.MAGIC, 6).add(Aspect.PLANT, 6).add(Aspect.HUNGER, 6),-2,-9,0,new ItemStack(TBItems.lucriteSeeds,1,0))
+		new ResearchItem("TB.Lucrite",catName,new AspectList().add(Aspect.GREED, 6).add(Aspect.MAGIC, 6).add(Aspect.PLANT, 6).add(Aspect.HUNGER, 6),-2,-11,0,new ItemStack(TBItems.lucriteSeeds,1,0))
 		.setParents("TB.Metalleat","TB.SMB")
 		.setConcealed()
 		.setPages(
@@ -896,7 +903,7 @@ public class TBThaumonomicon {
 			new ResearchPage(lucriteRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Redlon",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.MECHANISM, 6).add(Aspect.ENERGY, 6).add(Aspect.CROP, 6).add(Aspect.ORDER, 6).add(Aspect.GREED, 8),-3,-10,3,new ItemStack(TBItems.redlonSeeds,1,0))
+		new ResearchItem("TB.Redlon",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.MECHANISM, 6).add(Aspect.ENERGY, 6).add(Aspect.CROP, 6).add(Aspect.ORDER, 6).add(Aspect.GREED, 8),-3,-12,3,new ItemStack(TBItems.redlonSeeds,1,0))
 		.setParents("TB.Metalleat")
 		.setConcealed()
 		.setPages(
@@ -905,15 +912,15 @@ public class TBThaumonomicon {
 			).registerResearchItem();
 
 		
-		new ResearchItem("TB.VoidSeed",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.ELDRITCH, 6).add(Aspect.DARKNESS, 6),10,-7,1,new ItemStack(TBItems.voidSeed,1,0))
-		.setParents("TB.Aurelia","TB.VOIDMETAL")
+		new ResearchItem("TB.VoidSeed",catName,new AspectList().add(Aspect.LIFE, 6).add(Aspect.ELDRITCH, 6).add(Aspect.DARKNESS, 6),13,-3,1,new ItemStack(TBItems.voidSeed,1,0))
+		.setParents("TB.VOIDMETAL")
 		.setConcealed()
 		.setPages(
 			new ResearchPage("tb.rec.voidSeed.page.0"),
 			new ResearchPage(voidSeedRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Spike.Iron",catName,new AspectList().add(Aspect.WEAPON, 6).add(Aspect.HUNGER, 6).add(Aspect.METAL, 6),4,-5,1,new ItemStack(TBBlocks.spike,1,0))
+		new ResearchItem("TB.Spike.Iron",catName,new AspectList().add(Aspect.WEAPON, 6).add(Aspect.HUNGER, 6).add(Aspect.METAL, 6),7,-6,1,new ItemStack(TBBlocks.spike,1,0))
 		.setParents("TB.ENCHFABRIC")
 		.setPages(
 			new ResearchPage("tb.rec.spikeIron.page.0"),
@@ -921,7 +928,7 @@ public class TBThaumonomicon {
 			new ResearchPage(cleanEFabricRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Spike.Thaumic",catName,new AspectList().add(Aspect.WEAPON, 6).add(Aspect.MAGIC, 6).add(Aspect.MECHANISM, 6),6,-5,1,new ItemStack(TBBlocks.spike,1,2))
+		new ResearchItem("TB.Spike.Thaumic",catName,new AspectList().add(Aspect.WEAPON, 6).add(Aspect.MAGIC, 6).add(Aspect.MECHANISM, 6),9,-6,1,new ItemStack(TBBlocks.spike,1,2))
 		.setConcealed()
 		.setParents("TB.THAUMIUM","TB.Spike.Iron")
 		.setPages(
@@ -929,7 +936,7 @@ public class TBThaumonomicon {
 			new ResearchPage(thaumiumSpikeRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.BloodyRobes",catName,new AspectList().add(Aspect.HUNGER, 6).add(Aspect.FLESH, 6).add(Aspect.ARMOR, 6),5,-6,1,new ItemStack(TBItems.bloodyChest,1,0))
+		new ResearchItem("TB.BloodyRobes",catName,new AspectList().add(Aspect.HUNGER, 6).add(Aspect.FLESH, 6).add(Aspect.ARMOR, 6),8,-8,1,new ItemStack(TBItems.bloodyChest,1,0))
 		.setConcealed()
 		.setParents("TB.Spike.Iron")
 		.setPages(
@@ -939,7 +946,7 @@ public class TBThaumonomicon {
 			new ResearchPage(bloodyBootsRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Spike.Void",catName,new AspectList().add(Aspect.WEAPON, 6).add(Aspect.ELDRITCH, 6).add(Aspect.ARMOR, 6),8,-5,2,new ItemStack(TBBlocks.spike,1,4))
+		new ResearchItem("TB.Spike.Void",catName,new AspectList().add(Aspect.WEAPON, 6).add(Aspect.ELDRITCH, 6).add(Aspect.ARMOR, 6),11,-6,2,new ItemStack(TBBlocks.spike,1,4))
 		.setConcealed()
 		.setParents("TB.VOIDMETAL","TB.Spike.Thaumic")
 		.setPages(
@@ -956,7 +963,7 @@ public class TBThaumonomicon {
 			new ResearchPage("tb.rec.minorTaint.page.0")
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Foci.Drain",catName,new AspectList().add(Aspect.WATER, 6).add(Aspect.VOID, 3),0,-18,0,new ItemStack(TBItems.fociDrain))
+		new ResearchItem("TB.Foci.Drain",catName,new AspectList().add(Aspect.WATER, 6).add(Aspect.VOID, 3),0,-20,0,new ItemStack(TBItems.fociDrain))
 		.setParents("TB.INFUSION","TB.FOCUSEXCAVATION","TB.JARVOID")
 		.setConcealed()
 		.setSecondary()
@@ -967,7 +974,7 @@ public class TBThaumonomicon {
 			new ResearchPage("tb.rec.drainFoci.page.2")
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Foci.Experience",catName,new AspectList().add(Aspect.GREED, 16).add(Aspect.HUNGER, 16).add(Aspect.MINE, 2).add(Aspect.MIND, 8),-2,-18,1,new ItemStack(TBItems.fociExperience))
+		new ResearchItem("TB.Foci.Experience",catName,new AspectList().add(Aspect.GREED, 16).add(Aspect.HUNGER, 16).add(Aspect.MINE, 2).add(Aspect.MIND, 8),-2,-20,1,new ItemStack(TBItems.fociExperience))
 		.setParents("TB.INFUSION","TB.FOCUSEXCAVATION")
 		.setConcealed()
 		.setPages(
@@ -977,7 +984,7 @@ public class TBThaumonomicon {
 			new ResearchPage("tb.rec.expFoci.page.2")
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Foci.Flux",catName,new AspectList().add(Aspect.WATER, 4).add(Aspect.ORDER, 4).add(Aspect.VOID, 4),2,-18,0,new ItemStack(TBItems.fociFlux))
+		new ResearchItem("TB.Foci.Flux",catName,new AspectList().add(Aspect.WATER, 4).add(Aspect.ORDER, 4).add(Aspect.VOID, 4),2,-20,0,new ItemStack(TBItems.fociFlux))
 		.setParents("TB.INFUSION","TB.JARVOID","TB.FLUXSCRUB")
 		.setConcealed()
 		.setSecondary()
@@ -989,7 +996,7 @@ public class TBThaumonomicon {
 			new ResearchPage("tb.rec.fluxFoci.page.3")
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Foci.Activation",catName,new AspectList().add(Aspect.TRAVEL, 4).add(Aspect.MOTION, 4).add(Aspect.SENSES, 4),-2,-16,0,new ItemStack(TBItems.fociActivation))
+		new ResearchItem("TB.Foci.Activation",catName,new AspectList().add(Aspect.TRAVEL, 4).add(Aspect.MOTION, 4).add(Aspect.SENSES, 4),-2,-18,0,new ItemStack(TBItems.fociActivation))
 		.setParents("TB.INFUSION","TB.MIRRORHAND")
 		.setConcealed()
 		.setSecondary()
@@ -999,14 +1006,14 @@ public class TBThaumonomicon {
 			new ResearchPage("tb.rec.actFoci.page.1")
 			).registerResearchItem();
 		
-		new ResearchItem("TB.AdvAlc",catName,new AspectList().add(Aspect.MOTION, 16).add(Aspect.AIR, 16).add(Aspect.FIRE, 8).add(Aspect.CRAFT, 4),4,2,2,new ItemStack(TBBlocks.advAlchFurnace))
+		new ResearchItem("TB.AdvAlc",catName,new AspectList().add(Aspect.MOTION, 16).add(Aspect.AIR, 16).add(Aspect.FIRE, 8).add(Aspect.CRAFT, 4),7,3,2,new ItemStack(TBBlocks.advAlchFurnace))
 		.setParents("TB.THAUMIUM","TB.DISTILESSENTIA","TB.BELLOWS")
 		.setPages(
 			new ResearchPage("tb.rec.advAlc.page.0"),
 			new ResearchPage(advFurnaceRecipe)
 			).registerResearchItem();
 
-		new ResearchItem("TB.CryingObs",catName,new AspectList().add(Aspect.TRAVEL, 8).add(Aspect.LIFE, 8).add(Aspect.SOUL, 8),6,-16,2,new ItemStack(TBBlocks.cryingObsidian,1,0))
+		new ResearchItem("TB.CryingObs",catName,new AspectList().add(Aspect.TRAVEL, 8).add(Aspect.LIFE, 8).add(Aspect.SOUL, 8),6,-18,2,new ItemStack(TBBlocks.cryingObsidian,1,0))
 		.setParents("TB.INFUSION")
 		.setConcealed()
 		.setPages(
@@ -1014,7 +1021,7 @@ public class TBThaumonomicon {
 			new ResearchPage(cryingObsidianRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Overchanter",catName,new AspectList().add(primals(8)).add(Aspect.MIND, 8).add(Aspect.MAGIC, 8),6,-18,3,new ItemStack(TBBlocks.overchanter,1,0))
+		new ResearchItem("TB.Overchanter",catName,new AspectList().add(primals(8)).add(Aspect.MIND, 8).add(Aspect.MAGIC, 8),6,-20,3,new ItemStack(TBBlocks.overchanter,1,0))
 		.setParents("TB.INFUSION")
 		.setConcealed()
 		.setPages(
@@ -1024,7 +1031,7 @@ public class TBThaumonomicon {
 			new ResearchPage(overchanterRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.EntityDec",catName,new AspectList().add(Aspect.MIND, 8).add(Aspect.DEATH, 8).add(Aspect.SOUL, 8),7,-17,1,new ItemStack(TBBlocks.entityDeconstructor,1,0))
+		new ResearchItem("TB.EntityDec",catName,new AspectList().add(Aspect.MIND, 8).add(Aspect.DEATH, 8).add(Aspect.SOUL, 8),7,-19,1,new ItemStack(TBBlocks.entityDeconstructor,1,0))
 		.setParents("TB.INFUSION")
 		.setSecondary()
 		.setConcealed()
@@ -1033,7 +1040,16 @@ public class TBThaumonomicon {
 			new ResearchPage(entityDeconstructorRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.GoldenOak",catName,new AspectList().add(Aspect.GREED, 8).add(Aspect.HUNGER, 8).add(Aspect.CROP, 8),-4,-14,0,new ItemStack(TBBlocks.goldenOakSapling,1,0))
+		new ResearchItem("TB.EntityDecAdv",catName,new AspectList().add(Aspect.MIND, 8).add(Aspect.DEATH, 8),9,-19,1,new ItemStack(ConfigBlocks.blockCrystal,1,OreDictionary.WILDCARD_VALUE))
+		.setParents("TB.EntityDec")
+		.setSecondary()
+		.setConcealed()
+		.setPages(
+			new ResearchPage("tb.rec.eDeca.page.0"),
+			new ResearchPage("tb.rec.eDeca.page.1")
+			).registerResearchItem();
+		
+		new ResearchItem("TB.GoldenOak",catName,new AspectList().add(Aspect.GREED, 8).add(Aspect.HUNGER, 8).add(Aspect.CROP, 8),-4,-16,0,new ItemStack(TBBlocks.goldenOakSapling,1,0))
 		.setParents("TB.INFUSION","TB.Briar")
 		.setConcealed()
 		.setPages(
@@ -1041,7 +1057,7 @@ public class TBThaumonomicon {
 			new ResearchPage(goldenOakRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.NodeMan",catName,new AspectList().add(Aspect.MECHANISM, 8).add(Aspect.AURA, 8).add(Aspect.ENERGY, 16).add(Aspect.MAGIC, 8),0,-23,3,new ItemStack(TBBlocks.nodeManipulator))
+		new ResearchItem("TB.NodeMan",catName,new AspectList().add(Aspect.MECHANISM, 8).add(Aspect.AURA, 8).add(Aspect.ENERGY, 16).add(Aspect.MAGIC, 8),0,-25,3,new ItemStack(TBBlocks.nodeManipulator))
 		.setParents("TB.INFUSION","TB.NODESTABILIZERADV","TB.VISPOWER")
 		.setConcealed()
 		.setPages(
@@ -1053,11 +1069,11 @@ public class TBThaumonomicon {
 			).registerResearchItem();
 		
 		if(flag)
-			copy(ResearchCategories.getResearchList("ELDRITCH").research.get("PRIMPEARL"),"TB.PRIMPEARL",catName,3,-27).setConcealed().setHidden().registerResearchItem();
+			copy(ResearchCategories.getResearchList("ELDRITCH").research.get("PRIMPEARL"),"TB.PRIMPEARL",catName,3,-29).setConcealed().setHidden().registerResearchItem();
 		
 		String[] bParents = flag ? new String[]{"TB.NodeMan","TB.PRIMPEARL"} : new String[]{"TB.NodeMan"};
 		
-		new ResearchItem("TB.NodeFoci.Bright",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.LIGHT, 8),2,-26,0,new ItemStack(TBItems.nodeFoci,1,0))
+		new ResearchItem("TB.NodeFoci.Bright",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.LIGHT, 8),2,-28,0,new ItemStack(TBItems.nodeFoci,1,0))
 		.setParents(bParents)
 		.setConcealed()
 		.setSecondary()
@@ -1066,7 +1082,7 @@ public class TBThaumonomicon {
 			new ResearchPage(brightFociRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.NodeFoci.Destr",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.DEATH, 8).add(Aspect.VOID, 8),1,-26,0,new ItemStack(TBItems.nodeFoci,1,1))
+		new ResearchItem("TB.NodeFoci.Destr",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.DEATH, 8).add(Aspect.VOID, 8),1,-28,0,new ItemStack(TBItems.nodeFoci,1,1))
 		.setParents("TB.NodeMan")
 		.setConcealed()
 		.setSecondary()
@@ -1075,7 +1091,7 @@ public class TBThaumonomicon {
 			new ResearchPage(destructionFociRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.NodeFoci.Efficiency",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.MAGIC, 8).add(Aspect.ENERGY, 8),-1,-26,0,new ItemStack(TBItems.nodeFoci,1,2))
+		new ResearchItem("TB.NodeFoci.Efficiency",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.MAGIC, 8).add(Aspect.ENERGY, 8),-1,-28,0,new ItemStack(TBItems.nodeFoci,1,2))
 		.setParents("TB.NodeMan")
 		.setConcealed()
 		.setSecondary()
@@ -1084,7 +1100,7 @@ public class TBThaumonomicon {
 			new ResearchPage(efficiencyFociRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.NodeFoci.Hunger",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.HUNGER, 16).add(Aspect.ENERGY, 16),0,-27,0,new ItemStack(TBItems.nodeFoci,1,3))
+		new ResearchItem("TB.NodeFoci.Hunger",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.HUNGER, 16).add(Aspect.ENERGY, 16),0,-29,0,new ItemStack(TBItems.nodeFoci,1,3))
 		.setParents("TB.NodeMan")
 		.setConcealed()
 		.setSecondary()
@@ -1094,7 +1110,7 @@ public class TBThaumonomicon {
 			new ResearchPage(hungerFociRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.NodeFoci.Unstable",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.ENTROPY, 8).add(Aspect.VOID, 8),-2,-26,0,new ItemStack(TBItems.nodeFoci,1,4))
+		new ResearchItem("TB.NodeFoci.Unstable",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.ENTROPY, 8).add(Aspect.VOID, 8),-2,-28,0,new ItemStack(TBItems.nodeFoci,1,4))
 		.setParents("TB.NodeMan")
 		.setConcealed()
 		.setSecondary()
@@ -1103,7 +1119,7 @@ public class TBThaumonomicon {
 			new ResearchPage(unstableFociRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.NodeFoci.Purity",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.LIFE, 8).add(Aspect.ORDER, 8),3,-25,0,new ItemStack(TBItems.nodeFoci,1,5))
+		new ResearchItem("TB.NodeFoci.Purity",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.LIFE, 8).add(Aspect.ORDER, 8),3,-27,0,new ItemStack(TBItems.nodeFoci,1,5))
 		.setParents("TB.NodeMan")
 		.setConcealed()
 		.setSecondary()
@@ -1112,7 +1128,7 @@ public class TBThaumonomicon {
 			new ResearchPage(pureFociRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.NodeFoci.Sinister",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.UNDEAD, 8).add(Aspect.ENTROPY, 8),-3,-25,0,new ItemStack(TBItems.nodeFoci,1,6))
+		new ResearchItem("TB.NodeFoci.Sinister",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.UNDEAD, 8).add(Aspect.ENTROPY, 8),-3,-27,0,new ItemStack(TBItems.nodeFoci,1,6))
 		.setParents("TB.NodeMan")
 		.setConcealed()
 		.setSecondary()
@@ -1121,7 +1137,7 @@ public class TBThaumonomicon {
 			new ResearchPage(sinisterFociRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.NodeFoci.Speed",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.MOTION, 8).add(Aspect.ENERGY, 8),-4,-24,0,new ItemStack(TBItems.nodeFoci,1,7))
+		new ResearchItem("TB.NodeFoci.Speed",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.MOTION, 8).add(Aspect.ENERGY, 8),-4,-26,0,new ItemStack(TBItems.nodeFoci,1,7))
 		.setParents("TB.NodeMan")
 		.setConcealed()
 		.setSecondary()
@@ -1130,7 +1146,7 @@ public class TBThaumonomicon {
 			new ResearchPage(speedFociRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.NodeFoci.Stability",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.ORDER, 8).add(Aspect.EXCHANGE, 8),4,-24,0,new ItemStack(TBItems.nodeFoci,1,8))
+		new ResearchItem("TB.NodeFoci.Stability",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.ORDER, 8).add(Aspect.EXCHANGE, 8),4,-26,0,new ItemStack(TBItems.nodeFoci,1,8))
 		.setParents("TB.NodeMan")
 		.setConcealed()
 		.setSecondary()
@@ -1139,7 +1155,7 @@ public class TBThaumonomicon {
 			new ResearchPage(stabilityFociRec)
 			).registerResearchItem();
 		
-		new ResearchItem("TB.NodeFoci.Taint",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.TAINT, 16).add(Aspect.ENERGY, 8),0,-29,0,new ItemStack(TBItems.nodeFoci,1,9))
+		new ResearchItem("TB.NodeFoci.Taint",catName,new AspectList().add(Aspect.AURA, 8).add(Aspect.TAINT, 16).add(Aspect.ENERGY, 8),0,-31,0,new ItemStack(TBItems.nodeFoci,1,9))
 		.setParents("TB.NodeMan")
 		.setConcealed()
 		.setSecondary()
@@ -1148,11 +1164,22 @@ public class TBThaumonomicon {
 			new ResearchPage(taintFociRec)
 			).registerResearchItem();
 		
+		new ResearchItem("TB.HerobrinesScythe",catName,new AspectList().add(Aspect.ELDRITCH, 16).add(Aspect.DEATH, 16).add(Aspect.WEAPON, 16).add(Aspect.AURA, 8).add(Aspect.ENERGY, 6),15,1,4,new ItemStack(TBItems.herobrinesScythe,1,0))
+		.setParents("TB.VOIDMETAL")
+		.setConcealed()
+		.setSpecial()
+		.setPages(
+			new ResearchPage("tb.rec.hScythe.page.0"),
+			new ResearchPage("tb.rec.hScythe.page.1"),
+			new ResearchPage(herobrinesScytheRec)
+			).registerResearchItem();
+		
 		//TODO last recipes
 		//-4,-14
 		
 		ResearchCategories.getResearch("TB.CRUCIBLE").setSiblings("TB.BasicPlants");
 		
+		ThaumcraftApi.addWarpToResearch("TB.HerobrinesScythe", 4);
 		ThaumcraftApi.addWarpToResearch("TB.Tainted", 3);
 		ThaumcraftApi.addWarpToResearch("TB.Aurelia", 2);
 		ThaumcraftApi.addWarpToResearch("TB.Flaxium", 2);
@@ -1269,7 +1296,7 @@ public class TBThaumonomicon {
 			CrucibleRecipe taintTobaccoRec = new CrucibleRecipe("TB.Tobacco.Tainted",new ItemStack(TBItems.tobacco,1,7),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.TAINT, 4).add(Aspect.MIND, 4));
 			ShapelessArcaneRecipe sanityTobaccoRec = new ShapelessArcaneRecipe("TB.Tobacco.Knowledge",new ItemStack(TBItems.tobacco,1,6),new AspectList().add(Aspect.ORDER, 10).add(Aspect.AIR, 10).add(Aspect.ENTROPY, 10),new Object[]{new ItemStack(TBItems.tobacco,1,0)});
 			
-			new ResearchItem("TB.Tobacco",catName,new AspectList().add(Aspect.CROP, 4).add(Aspect.HARVEST, 4).add(Aspect.MAN, 4).add(Aspect.MIND, 4),1,-11,3,new ItemStack(TBItems.greatwoodPipe,1,0))
+			new ResearchItem("TB.Tobacco",catName,new AspectList().add(Aspect.CROP, 4).add(Aspect.HARVEST, 4).add(Aspect.MAN, 4).add(Aspect.MIND, 4),1,-13,3,new ItemStack(TBItems.greatwoodPipe,1,0))
 			.setParents("TB.Plax")
 			.setConcealed()
 			.setPages(
@@ -1282,7 +1309,7 @@ public class TBThaumonomicon {
 				new ResearchPage("tb.rec.tobacco.page.2")
 				).registerResearchItem();
 			
-			new ResearchItem("TB.Tobacco.Eldritch",catName,new AspectList().add(Aspect.DEATH, 4).add(Aspect.ELDRITCH, 4),1,-14,0,new ItemStack(TBItems.tobacco,1,1))
+			new ResearchItem("TB.Tobacco.Eldritch",catName,new AspectList().add(Aspect.DEATH, 4).add(Aspect.ELDRITCH, 4),1,-16,0,new ItemStack(TBItems.tobacco,1,1))
 			.setParents("TB.Tobacco","TB.INFUSION")
 			.setConcealed()
 			.setSecondary()
@@ -1291,7 +1318,7 @@ public class TBThaumonomicon {
 				new ResearchPage(eldritchTobacoRec)
 				).registerResearchItem();
 			
-			new ResearchItem("TB.Tobacco.Wispy",catName,new AspectList().add(Aspect.AURA, 4).add(Aspect.MAGIC, 4),2,-14,0,new ItemStack(TBItems.tobacco,1,8))
+			new ResearchItem("TB.Tobacco.Wispy",catName,new AspectList().add(Aspect.AURA, 4).add(Aspect.MAGIC, 4),2,-16,0,new ItemStack(TBItems.tobacco,1,8))
 			.setParents("TB.Tobacco","TB.INFUSION")
 			.setConcealed()
 			.setSecondary()
@@ -1300,7 +1327,7 @@ public class TBThaumonomicon {
 				new ResearchPage(wispyTobaccoRec)
 				).registerResearchItem();
 			
-			new ResearchItem("TB.Tobacco.Angry",catName,new AspectList().add(Aspect.WEAPON, 4).add(Aspect.HUNGER, 4),3,-14,0,new ItemStack(TBItems.tobacco,1,2))
+			new ResearchItem("TB.Tobacco.Angry",catName,new AspectList().add(Aspect.WEAPON, 4).add(Aspect.HUNGER, 4),3,-16,0,new ItemStack(TBItems.tobacco,1,2))
 			.setParents("TB.Tobacco")
 			.setConcealed()
 			.setSecondary()
@@ -1309,7 +1336,7 @@ public class TBThaumonomicon {
 				new ResearchPage(angryTobaccoRec)
 				).registerResearchItem();
 			
-			new ResearchItem("TB.Tobacco.Mining",catName,new AspectList().add(Aspect.MINE, 4).add(Aspect.MOTION, 4),4,-13,0,new ItemStack(TBItems.tobacco,1,5))
+			new ResearchItem("TB.Tobacco.Mining",catName,new AspectList().add(Aspect.MINE, 4).add(Aspect.MOTION, 4),4,-15,0,new ItemStack(TBItems.tobacco,1,5))
 			.setParents("TB.Tobacco")
 			.setConcealed()
 			.setSecondary()
@@ -1318,7 +1345,7 @@ public class TBThaumonomicon {
 				new ResearchPage(miningTobaccoRec)
 				).registerResearchItem();
 			
-			new ResearchItem("TB.Tobacco.Wisdom",catName,new AspectList().add(Aspect.MIND, 4).add(Aspect.AIR, 4),4,-12,0,new ItemStack(TBItems.tobacco,1,4))
+			new ResearchItem("TB.Tobacco.Wisdom",catName,new AspectList().add(Aspect.MIND, 4).add(Aspect.AIR, 4),4,-14,0,new ItemStack(TBItems.tobacco,1,4))
 			.setParents("TB.Tobacco")
 			.setConcealed()
 			.setSecondary()
@@ -1327,7 +1354,7 @@ public class TBThaumonomicon {
 				new ResearchPage(wisdomTobaccoRec)
 				).registerResearchItem();
 			
-			new ResearchItem("TB.Tobacco.Tainted",catName,new AspectList().add(Aspect.MIND, 4).add(Aspect.TAINT, 4),4,-11,0,new ItemStack(TBItems.tobacco,1,7))
+			new ResearchItem("TB.Tobacco.Tainted",catName,new AspectList().add(Aspect.MIND, 4).add(Aspect.TAINT, 4),4,-13,0,new ItemStack(TBItems.tobacco,1,7))
 			.setParents("TB.Tobacco")
 			.setConcealed()
 			.setSecondary()
@@ -1336,7 +1363,7 @@ public class TBThaumonomicon {
 				new ResearchPage(taintTobaccoRec)
 				).registerResearchItem();
 			
-			new ResearchItem("TB.Tobacco.Saturating",catName,new AspectList().add(Aspect.FLESH, 4).add(Aspect.HUNGER, 4),2,-13,0,new ItemStack(TBItems.tobacco,1,3))
+			new ResearchItem("TB.Tobacco.Saturating",catName,new AspectList().add(Aspect.FLESH, 4).add(Aspect.HUNGER, 4),2,-15,0,new ItemStack(TBItems.tobacco,1,3))
 			.setParents("TB.Tobacco")
 			.setConcealed()
 			.setSecondary()
@@ -1345,7 +1372,7 @@ public class TBThaumonomicon {
 				new ResearchPage(new ShapelessArcaneRecipe[]{saturatingTobaccoRec,saturatingTobaccoRecM})
 				).registerResearchItem();
 			
-			new ResearchItem("TB.Tobacco.Sanity",catName,new AspectList().add(Aspect.ORDER, 4).add(Aspect.MIND, 4),3,-12,0,new ItemStack(TBItems.tobacco,1,6))
+			new ResearchItem("TB.Tobacco.Sanity",catName,new AspectList().add(Aspect.ORDER, 4).add(Aspect.MIND, 4),3,-14,0,new ItemStack(TBItems.tobacco,1,6))
 			.setParents("TB.Tobacco")
 			.setConcealed()
 			.setSecondary()
@@ -1354,7 +1381,7 @@ public class TBThaumonomicon {
 				new ResearchPage(sanityTobaccoRec)
 				).registerResearchItem();
 			
-			new ResearchItem("TB.SilverwoodPipe",catName,new AspectList().add(Aspect.ORDER, 8).add(Aspect.HEAL, 8).add(Aspect.AURA, 8),5,-15,1,new ItemStack(TBItems.silverwoodPipe,1,0))
+			new ResearchItem("TB.SilverwoodPipe",catName,new AspectList().add(Aspect.ORDER, 8).add(Aspect.HEAL, 8).add(Aspect.AURA, 8),5,-17,1,new ItemStack(TBItems.silverwoodPipe,1,0))
 			.setParents("TB.Tobacco","TB.INFUSION")
 			.setConcealed()
 			.setPages(
@@ -1406,6 +1433,7 @@ public class TBThaumonomicon {
 		ThaumcraftApi.getCraftingRecipes().add(speedFociRec);
 		ThaumcraftApi.getCraftingRecipes().add(stabilityFociRec);
 		ThaumcraftApi.getCraftingRecipes().add(taintFociRec);
+		ThaumcraftApi.getCraftingRecipes().add(herobrinesScytheRec);
 		
 		//TODO actual recipes
 		
@@ -1464,7 +1492,9 @@ public class TBThaumonomicon {
 		rItem.parentsHidden = res.parentsHidden;
 		rItem.siblings = res.siblings;
 		rItem.setPages(res.getPages());
-		rItem.setAspectTriggers(res.getAspectTriggers());
+		rItem.setAspectTriggers(new Aspect[0]);
+		rItem.setEntityTriggers(new String[0]);
+		rItem.setItemTriggers(new ItemStack[0]);
 		
 		if(res.isAutoUnlock())
 			rItem.setAutoUnlock();

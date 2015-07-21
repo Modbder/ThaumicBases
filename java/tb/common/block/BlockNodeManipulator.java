@@ -3,6 +3,7 @@ package tb.common.block;
 import tb.common.item.ItemNodeFoci;
 import tb.common.tile.TileNodeManipulator;
 import tb.init.TBItems;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
@@ -71,6 +72,19 @@ public class BlockNodeManipulator extends BlockContainer{
 			w.setBlockMetadataWithNotify(x, y, z, 0, 3);
     	}
     	return true;
+    }
+    
+    @Override
+    public void breakBlock(World w, int x, int y, int z, Block b, int meta)
+    {
+    	if(meta > 0) //Fix for the manipulator not dropping the foci.
+    	{
+    		ItemStack foci = new ItemStack(TBItems.nodeFoci,1,meta-1);
+    		EntityItem itm = new EntityItem(w,x+0.5D,y+0.5D,z+0.5D,foci);
+    		if(!w.isRemote)
+    			w.spawnEntityInWorld(itm);
+    	}
+    	super.breakBlock(w, x, y, z, b, meta);
     }
 
 }

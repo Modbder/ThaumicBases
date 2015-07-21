@@ -14,11 +14,6 @@ public class BlockKnose extends BlockTBPlant {
 		super(stages, delay, isCrop);
 	}
 	
-	@Override
-	public boolean func_149851_a(World w, int x,int y, int z, boolean remote) {
-		return false;
-	}
-	
     public boolean canBlockStay(World w, int x, int y, int z)
     {
     	return !w.isAirBlock(x, y-1, z) && canPlaceBlockOn(w.getBlock(x, y-1, z));

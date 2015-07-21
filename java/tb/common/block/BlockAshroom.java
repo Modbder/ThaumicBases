@@ -26,7 +26,7 @@ public class BlockAshroom extends BlockTBPlant {
     {
     	if(metadata >= this.growthStages - 1)
     	{
-    		for(int i = 0; i < 16 + world.rand.nextInt(64); ++i)
+    		for(int i = 0; i < 8 + world.rand.nextInt(32); ++i) //Nerf for the shrooms
     		{
     			Aspect primal = Aspect.getPrimalAspects().get(world.rand.nextInt(Aspect.getPrimalAspects().size()));
 				EntityAspectOrb orb = new EntityAspectOrb(world, x, y, z, primal, 1);

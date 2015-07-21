@@ -27,6 +27,8 @@ public class BlockAdvAlchemicalFurnace extends BlockContainer{
 	public BlockAdvAlchemicalFurnace()
 	{
 		super(Material.rock);
+		this.setHardness(2);
+		this.setResistance(3);
 	}
 	
 	@SideOnly(Side.CLIENT)

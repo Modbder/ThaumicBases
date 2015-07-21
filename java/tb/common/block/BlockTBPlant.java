@@ -11,6 +11,7 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -146,7 +147,9 @@ public class BlockTBPlant extends BlockBush implements IGrowable
 
 	//growPlant
 	@Override
-	public void func_149853_b(World w, Random r,int x, int y, int z) {
+	public void func_149853_b(World w, Random r,int x, int y, int z) 
+	{
+		w.setBlockMetadataWithNotify(x, y, z, Math.min(growthStages-1, w.getBlockMetadata(x, y, z)+r.nextInt(3)+1), 3);
 	}
 	
     @SideOnly(Side.CLIENT)
@@ -175,16 +178,20 @@ public class BlockTBPlant extends BlockBush implements IGrowable
 
         if (metadata >= growthStages-1)
         {
-            for (int i = 0; i < 1 + fortune; ++i)
+            for (int i = 0; i < (world.rand.nextDouble()*(fortune) > 0.75D ? 2 : 1); ++i) //Fix for the seed duplication
             {
                 if (world.rand.nextInt(growthStages) <= metadata)
                 {
                 	if(dropSeed != null)
+                	{
                 		ret.add(dropSeed.copy());
+                		if(dropSeed.getItem() instanceof ItemBlock) //Fix for the primal shroom duplication
+                			break;
+                	}
                 }
             }
             
-            for (int i = 0; i < 1 + fortune; ++i)
+            for (int i = 0; i < 1 + world.rand.nextInt(fortune+1); ++i) //Change for the resource drop
             {
                 if (world.rand.nextInt(growthStages) <= metadata)
                 {
