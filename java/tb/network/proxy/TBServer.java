@@ -1,6 +1,8 @@
 package tb.network.proxy;
 
 import tb.common.inventory.ContainerOverchanter;
+import tb.common.inventory.ContainerThaumicAnvil;
+import tb.common.inventory.ContainerVoidAnvil;
 import tb.common.tile.TileOverchanter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -23,6 +25,14 @@ public class TBServer implements IGuiHandler{
 					return new ContainerOverchanter(player.inventory,tile);
 				}
 			}
+		}else
+		{
+			
+			if(ID == 0x421921)
+				return new ContainerThaumicAnvil(player.inventory, world, x, y, z, player);
+			
+			if(ID == 0x421920)
+				return new ContainerVoidAnvil(player.inventory, world, x, y, z, player);
 		}
 		
 		return null;

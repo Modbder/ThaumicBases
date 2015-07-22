@@ -20,9 +20,12 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class TBThaumonomicon {
 
@@ -41,8 +44,6 @@ public class TBThaumonomicon {
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBItems.resource,1,7), new AspectList().add(Aspect.PLANT, 1).add(Aspect.MAN, 1));
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBItems.tobacco,1,0), new AspectList().add(Aspect.PLANT, 1).add(Aspect.MAN, 1).add(Aspect.ENTROPY, 0));
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBItems.mortar,1,OreDictionary.WILDCARD_VALUE), new AspectList().add(Aspect.TREE, 6).add(Aspect.TOOL, 1));
-		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.genLeaves,1,0), new AspectList().add(Aspect.PLANT, 1));
-		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.goldenOakSapling,1,OreDictionary.WILDCARD_VALUE), new AspectList().add(Aspect.PLANT, 3).add(Aspect.GREED, 1));
 		
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBItems.knoseFragment,1,0), new AspectList().add(Aspect.PLANT, 1).add(Aspect.AIR, 6));
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBItems.knoseFragment,1,1), new AspectList().add(Aspect.PLANT, 1).add(Aspect.FIRE, 6));
@@ -53,6 +54,24 @@ public class TBThaumonomicon {
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBItems.knoseFragment,1,6), new AspectList().add(Aspect.PLANT, 1).add(primals(2)));
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBItems.knoseFragment,1,7), new AspectList().add(Aspect.PLANT, 1).add(Aspect.TAINT, 6));
 		
+		boolean isFMLoaded = Loader.isModLoaded("ForbiddenMagic");
+		Aspect nether = Aspect.FIRE;
+		if(isFMLoaded)
+			nether = Aspect.getAspect("infernus");
+		
+		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.genLeaves,1,0),new int[]{0,8}, new AspectList().add(Aspect.PLANT, 1));
+		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.genLeaves,1,1),new int[]{1,9}, new AspectList().add(Aspect.PLANT, 1).add(Aspect.LIFE, 1));
+		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.genLeaves,1,2),new int[]{2,10}, new AspectList().add(Aspect.PLANT, 1).add(nether, 1));
+		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.genLeaves,1,3),new int[]{3,11}, new AspectList().add(Aspect.PLANT, 1).add(Aspect.ELDRITCH, 1));
+		
+		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.genLogs,1,0), new int[]{0,4,8}, new AspectList().add(Aspect.TREE, 3).add(Aspect.HEAL, 1).add(Aspect.LIFE, 1));
+		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.genLogs,1,1), new int[]{1,5,9}, new AspectList().add(Aspect.TREE, 3).add(Aspect.FIRE, 1).add(nether, 1));
+		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.genLogs,1,2), new int[]{2,6,10}, new AspectList().add(Aspect.TREE, 3).add(Aspect.ELDRITCH, 1).add(Aspect.VOID, 1));
+		
+		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.sapling,1,0), new int[]{0,8}, new AspectList().add(Aspect.PLANT, 3).add(Aspect.GREED, 1));
+		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.sapling,1,1), new int[]{1,9}, new AspectList().add(Aspect.PLANT, 3).add(Aspect.LIFE, 1));
+		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.sapling,1,2), new int[]{2,10}, new AspectList().add(Aspect.PLANT, 3).add(nether, 1));
+		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.sapling,1,3), new int[]{3,11}, new AspectList().add(Aspect.PLANT, 3).add(Aspect.ELDRITCH, 1));
 		
 		ResearchCategories.registerCategory(catName, icon, back);
 			
@@ -406,7 +425,7 @@ public class TBThaumonomicon {
 			new ItemStack(ConfigItems.itemResource,1,15)
 		});
 		
-		InfusionRecipe goldenOakRec = new InfusionRecipe("TB.GoldenOak",new ItemStack(TBBlocks.goldenOakSapling),2,new AspectList().add(Aspect.PLANT, 16).add(Aspect.GREED, 64),new ItemStack(Blocks.sapling,1,0),new ItemStack[]{
+		InfusionRecipe goldenOakRec = new InfusionRecipe("TB.GoldenOak",new ItemStack(TBBlocks.sapling),2,new AspectList().add(Aspect.PLANT, 16).add(Aspect.GREED, 64),new ItemStack(Blocks.sapling,1,0),new ItemStack[]{
 			new ItemStack(Items.apple),
 			new ItemStack(Items.apple),
 			new ItemStack(Items.golden_apple),
@@ -545,12 +564,121 @@ public class TBThaumonomicon {
 			new ItemStack(ConfigItems.itemBucketDeath)
 		});
 		
+		ShapedArcaneRecipe relocatorRec = new ShapedArcaneRecipe("TB.Relocator",new ItemStack(TBBlocks.relocator,1,0),new AspectList().add(Aspect.AIR, 5).add(Aspect.EARTH, 15).add(Aspect.WATER, 5),new Object[]{
+			"GAG",
+			"ENE",
+			"GWG",
+			'G',new ItemStack(ConfigBlocks.blockWoodenDevice,1,6),
+			'A',"shardAir",
+			'E',"shardEarth",
+			'W',"shardWater",
+			'N',new ItemStack(ConfigItems.itemResource,1,1)
+		});
+		
+		ShapedArcaneRecipe irelocatorRec = new ShapedArcaneRecipe("TB.Relocator",new ItemStack(TBBlocks.relocator,1,6),new AspectList().add(Aspect.AIR, 5).add(Aspect.EARTH, 15).add(Aspect.WATER, 5),new Object[]{
+			"GAG",
+			"ENE",
+			"GWG",
+			'G',new ItemStack(ConfigBlocks.blockWoodenDevice,1,6),
+			'A',"shardAir",
+			'E',"shardEarth",
+			'W',"shardWater",
+			'N',new ItemStack(ConfigItems.itemResource,1,0)
+		});
+		
+		ShapedOreRecipe voidBlockRec = new ShapedOreRecipe(new ItemStack(TBBlocks.voidBlock,1,0),new Object[]{
+			"###",
+			"###",
+			"###",
+			'#',new ItemStack(ConfigItems.itemResource,1,16)
+		});
+		
+		ShapelessOreRecipe voidIngotRec = new ShapelessOreRecipe(new ItemStack(ConfigItems.itemResource,9,16),new ItemStack(TBBlocks.voidBlock));
+		
+		ShapedOreRecipe voidShearsRec = new ShapedOreRecipe(new ItemStack(TBItems.voidShears),new Object[]{
+			" #",
+			"# ",
+			'#',new ItemStack(ConfigItems.itemResource,1,16)
+		});
+		
+		ShapedOreRecipe voidFlint = new ShapedOreRecipe(new ItemStack(TBItems.voidFAS),new Object[]{
+			"# ",
+			" C",
+			'#',new ItemStack(ConfigItems.itemResource,1,16),
+			'C',new ItemStack(Items.flint)
+		});
+		
+		ShapedArcaneRecipe thaumicAnvilRec = new ShapedArcaneRecipe("TB.ThaumicAnvil",new ItemStack(TBBlocks.thaumicAnvil,1,0),primals(25),new Object[]{
+			"###",
+			" $ ",
+			"$$$",
+			'#',new ItemStack(ConfigBlocks.blockCosmeticSolid,1,4),
+			'$',new ItemStack(ConfigItems.itemResource,1,2)
+		});
+		
+		InfusionRecipe voidAnvilRec = new InfusionRecipe("TB.VoidAnvil",new ItemStack(TBBlocks.voidAnvil,1,0),3,new AspectList().add(Aspect.CRAFT,32).add(Aspect.TOOL, 24).add(Aspect.WEAPON,24).add(Aspect.ORDER, 48),new ItemStack(TBBlocks.thaumicAnvil,1,OreDictionary.WILDCARD_VALUE),new ItemStack[]{
+			new ItemStack(TBBlocks.voidBlock),
+			new ItemStack(TBBlocks.voidBlock),
+			new ItemStack(TBBlocks.voidBlock),
+			new ItemStack(TBBlocks.voidBlock),
+			new ItemStack(TBBlocks.voidBlock)
+		});
+		
+		InfusionRecipe peacefulSaplingRec = new InfusionRecipe("TB.PeacefulSapling",new ItemStack(TBBlocks.sapling,1,1),2,new AspectList().add(Aspect.TREE, 16).add(Aspect.LIFE, 12).add(Aspect.HEAL, 6),new ItemStack(Blocks.sapling,1,2),new ItemStack[]{
+			new ItemStack(Items.slime_ball),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Items.slime_ball),
+			new ItemStack(ConfigBlocks.blockCustomPlant,1,2),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(ConfigBlocks.blockMetalDevice,1,13),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(ConfigBlocks.blockCustomPlant,1,2)
+		});
+		
+		InfusionRecipe netherSaplingRec = new InfusionRecipe("TB.NetherSapling",new ItemStack(TBBlocks.sapling,1,2),5,new AspectList().add(Aspect.TREE, 32).add(nether, 32).add(Aspect.HUNGER, 16),new ItemStack(ConfigBlocks.blockCustomPlant,1,0),new ItemStack[]{
+			new ItemStack(ConfigBlocks.blockCustomPlant,1,3),
+			new ItemStack(ConfigItems.itemShard,1,1),
+			new ItemStack(ConfigBlocks.blockCustomPlant,1,3),
+			new ItemStack(ConfigBlocks.blockCustomPlant,1,4),
+			new ItemStack(ConfigBlocks.blockCustomPlant,1,3),
+			new ItemStack(ConfigBlocks.blockCustomPlant,1,3),
+			new ItemStack(ConfigItems.itemShard,1,1),
+			new ItemStack(Items.lava_bucket,1,0),
+			new ItemStack(ConfigItems.itemShard,1,1),
+			new ItemStack(ConfigBlocks.blockCustomPlant,1,4)
+		});
+		
+		InfusionRecipe enderSaplingRec = new InfusionRecipe("TB.EnderSapling",new ItemStack(TBBlocks.sapling,1,3),7,new AspectList().add(Aspect.TREE, 64).add(Aspect.ELDRITCH, 24).add(Aspect.VOID, 16).add(Aspect.DARKNESS, 8),new ItemStack(ConfigBlocks.blockCustomPlant,1,1),new ItemStack[]{
+			new ItemStack(ConfigItems.itemShard,1,6),
+			new ItemStack(Items.ender_pearl,1,0),
+			new ItemStack(ConfigItems.itemShard,1,6),
+			new ItemStack(ConfigItems.itemResource,1,1),
+			new ItemStack(Items.ender_pearl,1,0),
+			new ItemStack(Items.ender_pearl,1,0),
+			new ItemStack(ConfigBlocks.blockCustomPlant,1,4),
+			new ItemStack(ConfigItems.itemShard,1,6),
+			new ItemStack(Items.ender_pearl,1,0),
+			new ItemStack(ConfigItems.itemShard,1,6),
+			new ItemStack(ConfigItems.itemResource,1,1)
+		});
+		
 		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.tobacco,1,1), 1);
 		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.nodeFoci,1,1), 1);
 		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.nodeFoci,1,9), 2);
 		
 		ResearchCategoryList ALCHEMY = ResearchCategories.getResearchList("ALCHEMY");
 		ResearchItem crucRes = ALCHEMY.research.get("CRUCIBLE");
+		
+		ResearchItem voidIngot = ResearchCategories.getResearchList("ELDRITCH").research.get("VOIDMETAL");
+		
+		ResearchPage[] currentPages = voidIngot.getPages();
+		ResearchPage[] newPages = new ResearchPage[currentPages.length+4];
+		System.arraycopy(currentPages, 0, newPages, 0, currentPages.length);
+		newPages[newPages.length-4] = new ResearchPage(voidFlint);
+		newPages[newPages.length-3] = new ResearchPage(voidShearsRec);
+		newPages[newPages.length-2] = new ResearchPage(voidBlockRec);
+		newPages[newPages.length-1] = new ResearchPage(voidIngotRec);
+		voidIngot.setPages(newPages);
 		
 		copy(crucRes,"TB.CRUCIBLE",catName,0,0).setHidden().registerResearchItem();
 		
@@ -566,9 +694,9 @@ public class TBThaumonomicon {
 		
 		copy(ResearchCategories.getResearchList("ALCHEMY").research.get("JARVOID"),"TB.JARVOID",catName,1,-22).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("FLUXSCRUB"),"TB.FLUXSCRUB",catName,4,-20).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("FLUXSCRUB"),"TB.FLUXSCRUB",catName,0,-20).setConcealed().setHidden().registerResearchItem();
 		
-		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("MIRRORHAND"),"TB.MIRRORHAND",catName,-2,-16).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("MIRRORHAND"),"TB.MIRRORHAND",catName,-2,-18).setConcealed().setHidden().registerResearchItem();
 		
 		copy(ResearchCategories.getResearchList("ALCHEMY").research.get("DISTILESSENTIA"),"TB.DISTILESSENTIA",catName,7,5).setConcealed().setHidden().registerResearchItem();
 		
@@ -577,6 +705,8 @@ public class TBThaumonomicon {
 		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("NODESTABILIZERADV"),"TB.NODESTABILIZERADV",catName,-1,-23).setConcealed().setHidden().registerResearchItem();
 		
 		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("VISPOWER"),"TB.VISPOWER",catName,1,-23).setConcealed().setHidden().registerResearchItem();
+		
+		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("LEVITATOR"),"TB.LEVITATOR",catName,0,6).setConcealed().setHidden().registerResearchItem();
 		
 		//-2,-18
 		//5,-3
@@ -963,7 +1093,7 @@ public class TBThaumonomicon {
 			new ResearchPage("tb.rec.minorTaint.page.0")
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Foci.Drain",catName,new AspectList().add(Aspect.WATER, 6).add(Aspect.VOID, 3),0,-20,0,new ItemStack(TBItems.fociDrain))
+		new ResearchItem("TB.Foci.Drain",catName,new AspectList().add(Aspect.WATER, 6).add(Aspect.VOID, 3),-1,-20,0,new ItemStack(TBItems.fociDrain))
 		.setParents("TB.INFUSION","TB.FOCUSEXCAVATION","TB.JARVOID")
 		.setConcealed()
 		.setSecondary()
@@ -984,7 +1114,7 @@ public class TBThaumonomicon {
 			new ResearchPage("tb.rec.expFoci.page.2")
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Foci.Flux",catName,new AspectList().add(Aspect.WATER, 4).add(Aspect.ORDER, 4).add(Aspect.VOID, 4),2,-20,0,new ItemStack(TBItems.fociFlux))
+		new ResearchItem("TB.Foci.Flux",catName,new AspectList().add(Aspect.WATER, 4).add(Aspect.ORDER, 4).add(Aspect.VOID, 4),0,-20,0,new ItemStack(TBItems.fociFlux))
 		.setParents("TB.INFUSION","TB.JARVOID","TB.FLUXSCRUB")
 		.setConcealed()
 		.setSecondary()
@@ -996,7 +1126,7 @@ public class TBThaumonomicon {
 			new ResearchPage("tb.rec.fluxFoci.page.3")
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Foci.Activation",catName,new AspectList().add(Aspect.TRAVEL, 4).add(Aspect.MOTION, 4).add(Aspect.SENSES, 4),-2,-18,0,new ItemStack(TBItems.fociActivation))
+		new ResearchItem("TB.Foci.Activation",catName,new AspectList().add(Aspect.TRAVEL, 4).add(Aspect.MOTION, 4).add(Aspect.SENSES, 4),-2,-19,0,new ItemStack(TBItems.fociActivation))
 		.setParents("TB.INFUSION","TB.MIRRORHAND")
 		.setConcealed()
 		.setSecondary()
@@ -1049,7 +1179,7 @@ public class TBThaumonomicon {
 			new ResearchPage("tb.rec.eDeca.page.1")
 			).registerResearchItem();
 		
-		new ResearchItem("TB.GoldenOak",catName,new AspectList().add(Aspect.GREED, 8).add(Aspect.HUNGER, 8).add(Aspect.CROP, 8),-4,-16,0,new ItemStack(TBBlocks.goldenOakSapling,1,0))
+		new ResearchItem("TB.GoldenOak",catName,new AspectList().add(Aspect.GREED, 8).add(Aspect.HUNGER, 8).add(Aspect.CROP, 8),-4,-16,0,new ItemStack(TBBlocks.sapling,1,0))
 		.setParents("TB.INFUSION","TB.Briar")
 		.setConcealed()
 		.setPages(
@@ -1174,6 +1304,56 @@ public class TBThaumonomicon {
 			new ResearchPage(herobrinesScytheRec)
 			).registerResearchItem();
 		
+		new ResearchItem("TB.Relocator",catName,new AspectList().add(Aspect.MOTION, 4).add(Aspect.AIR, 4).add(Aspect.VOID, 4),0,8,1,new ItemStack(TBBlocks.relocator,1,0))
+		.setParents("TB.LEVITATOR")
+		.setConcealed()
+		.setPages(
+			new ResearchPage("tb.rec.relocator.page.0"),
+			new ResearchPage(relocatorRec),
+			new ResearchPage(irelocatorRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.ThaumicAnvil",catName,new AspectList().add(Aspect.METAL, 4).add(Aspect.CRAFT, 3),9,4,2,new ItemStack(TBBlocks.thaumicAnvil,1,0))
+		.setParents("TB.THAUMIUM")
+		.setConcealed()
+		.setPages(
+			new ResearchPage("tb.rec.thaumicAnvil.page.0"),
+			new ResearchPage(thaumicAnvilRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.VoidAnvil",catName,new AspectList().add(Aspect.METAL, 4).add(Aspect.CRAFT, 3).add(Aspect.TOOL,4).add(Aspect.ELDRITCH, 4),12,4,2,new ItemStack(TBBlocks.voidAnvil,1,0))
+		.setParents("TB.VOIDMETAL","TB.ThaumicAnvil")
+		.setConcealed()
+		.setPages(
+			new ResearchPage("tb.rec.voidAnvil.page.0"),
+			new ResearchPage("tb.rec.voidAnvil.page.1"),
+			new ResearchPage(voidAnvilRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.PeacefulSapling",catName,new AspectList().add(Aspect.LIFE, 8).add(Aspect.HEAL, 8).add(Aspect.TREE, 8),-7,-16,0,new ItemStack(TBBlocks.sapling,1,1))
+		.setParents("TB.GoldenOak")
+		.setConcealed()
+		.setPages(
+			new ResearchPage("tb.rec.peacefulTree.page.0"),
+			new ResearchPage(peacefulSaplingRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.NetherSapling",catName,new AspectList().add(Aspect.TREE, 8).add(Aspect.FIRE, 8).add(nether, 8),-6,-15,0,new ItemStack(TBBlocks.sapling,1,2))
+		.setParents("TB.GoldenOak")
+		.setConcealed()
+		.setPages(
+			new ResearchPage("tb.rec.netherTree.page.0"),
+			new ResearchPage(netherSaplingRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.EnderSapling",catName,new AspectList().add(Aspect.TREE, 8).add(Aspect.ELDRITCH, 8).add(Aspect.VOID, 8),-6,-17,0,new ItemStack(TBBlocks.sapling,1,3))
+		.setParents("TB.GoldenOak")
+		.setConcealed()
+		.setPages(
+			new ResearchPage("tb.rec.enderTree.page.0"),
+			new ResearchPage(enderSaplingRec)
+			).registerResearchItem();
+		
 		//TODO last recipes
 		//-4,-14
 		
@@ -1193,6 +1373,7 @@ public class TBThaumonomicon {
 		ThaumcraftApi.addWarpToResearch("TB.NodeMan", 1);
 		ThaumcraftApi.addWarpToResearch("TB.NodeFoci.Destr", 2);
 		ThaumcraftApi.addWarpToResearch("TB.NodeFoci.Taint", 3);
+		ThaumcraftApi.addWarpToResearch("TB.VoidAnvil", 2);
 		
 		ThaumcraftApi.getCraftingRecipes().add(wool3Rec);
 		ThaumcraftApi.getCraftingRecipes().add(sandstone3Rec);
@@ -1248,6 +1429,8 @@ public class TBThaumonomicon {
 		ThaumcraftApi.getCraftingRecipes().add(glieoniaRec);
 		ThaumcraftApi.getCraftingRecipes().add(briarRec);
 		ThaumcraftApi.getCraftingRecipes().add(rosehipRec);
+		
+		
 		if(TBConfig.allowTobacco)
 		{
 			
@@ -1434,7 +1617,18 @@ public class TBThaumonomicon {
 		ThaumcraftApi.getCraftingRecipes().add(stabilityFociRec);
 		ThaumcraftApi.getCraftingRecipes().add(taintFociRec);
 		ThaumcraftApi.getCraftingRecipes().add(herobrinesScytheRec);
+		ThaumcraftApi.getCraftingRecipes().add(relocatorRec);
+		ThaumcraftApi.getCraftingRecipes().add(irelocatorRec);
+		ThaumcraftApi.getCraftingRecipes().add(thaumicAnvilRec);
+		ThaumcraftApi.getCraftingRecipes().add(voidAnvilRec);
+		ThaumcraftApi.getCraftingRecipes().add(peacefulSaplingRec);
+		ThaumcraftApi.getCraftingRecipes().add(netherSaplingRec);
+		ThaumcraftApi.getCraftingRecipes().add(enderSaplingRec);
 		
+		CraftingManager.getInstance().getRecipeList().add(voidBlockRec);
+		CraftingManager.getInstance().getRecipeList().add(voidIngotRec);
+		CraftingManager.getInstance().getRecipeList().add(voidShearsRec);
+		CraftingManager.getInstance().getRecipeList().add(voidFlint);
 		//TODO actual recipes
 		
 		for(int i = 0; i < 6; ++i)

@@ -31,7 +31,7 @@ import static tb.core.TBCore.*;
 public class TBCore {
 
 	public static final String modid = "thaumicbases";
-	public static final String version = "1.0.1710.34";
+	public static final String version = "1.1.1710.15";
 	public static final String name = "Thaumic Bases";
 	public static final String serverProxy = "tb.network.proxy.TBServer";
 	public static final String clientProxy = "tb.network.proxy.TBClient";

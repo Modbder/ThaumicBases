@@ -27,6 +27,8 @@ import tb.common.item.ItemThauminitePickaxe;
 import tb.common.item.ItemThauminiteShears;
 import tb.common.item.ItemThauminiteShovel;
 import tb.common.item.ItemThauminiteSword;
+import tb.common.item.ItemVoidFlintAndSteel;
+import tb.common.item.ItemVoidShears;
 import tb.common.item.TBResource;
 import tb.common.item.TBTobacco;
 import tb.common.item.foci.FociActivation;
@@ -94,6 +96,9 @@ public class TBItems {
 		ItemRegistry.registerItem(nodeFoci, "nodeFoci",core);
 		ItemRegistry.registerItem(herobrinesScythe, "herobrinesScythe",core);
 		
+		ItemRegistry.registerItem(voidShears, "voidShears",core);
+		ItemRegistry.registerItem(voidFAS, "voidFAS",core);
+		
 		OreDictionary.registerOre("ingotThauminite", new ItemStack(resource,1,1));
 		
 		WAND_CAP_THAUMINITE = new WandCap("thauminite",0.85F,new ItemStack(resource,1,2),6);
@@ -154,6 +159,9 @@ public class TBItems {
 	public static Item nodeFoci = new ItemNodeFoci().setUnlocalizedName("nodeFoci.");
 	
 	public static Item herobrinesScythe = new ItemHerobrinesScythe().setUnlocalizedName("herobrinesScythe").setTextureName("thaumicbases:herobrinesScythe");
+	
+	public static Item voidShears = new ItemVoidShears().setTextureName("thaumicbases:shears").setUnlocalizedName("tb.voidShears").setFull3D().setMaxDamage(184).setFull3D().setMaxStackSize(1);
+	public static Item voidFAS = new ItemVoidFlintAndSteel().setTextureName("thaumicbases:flint_and_steel").setUnlocalizedName("tb.voidFAS").setFull3D().setMaxDamage(184).setFull3D().setMaxStackSize(1);
 	
 	public static WandCap WAND_CAP_THAUMINITE;
 	

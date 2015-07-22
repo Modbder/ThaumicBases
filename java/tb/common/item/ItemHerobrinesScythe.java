@@ -12,6 +12,8 @@ import thaumcraft.api.IWarpingGear;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -29,6 +31,7 @@ import net.minecraft.stats.AchievementList;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -45,6 +48,13 @@ public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarp
 	{
 		return EnumRarity.uncommon;
 	}
+	
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List lst, boolean held) 
+    {
+    	lst.add(EnumChatFormatting.ITALIC+"Well, they’re nothing..."); //Do not translate this line, it is a reference to TheAtlanticCraft's song - The Herobrine
+    }
 	
 	public void onUpdate(ItemStack stk, World w, Entity entity, int slot, boolean held)
 	{

@@ -1,6 +1,9 @@
 package tb.network.proxy;
 
 import DummyCore.Client.GuiCommon;
+import tb.client.gui.GuiThaumicAnvil;
+import tb.client.gui.GuiVoidAnvil;
+import tb.client.render.block.ThaumicRelocatorRenderer;
 import tb.client.render.item.HerobrinesScytheRenderer;
 import tb.client.render.item.NodeFociRenderer;
 import tb.client.render.item.NodeManipulatorItemRenderer;
@@ -15,6 +18,7 @@ import tb.init.TBBlocks;
 import tb.init.TBItems;
 import thaumcraft.client.fx.bolt.FXLightningBolt;
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -37,6 +41,13 @@ public class TBClient extends TBServer {
 					return new GuiCommon(new ContainerOverchanter(player.inventory,tile), tile);
 				}
 			}
+		}else
+		{
+			if(ID == 0x421921)
+				return new GuiThaumicAnvil(player.inventory, world, x, y, z);
+			
+			if(ID == 0x421920)
+				return new GuiVoidAnvil(player.inventory, world, x, y, z);
 		}
 		
 		return null;
@@ -48,10 +59,13 @@ public class TBClient extends TBServer {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDeconstructor.class, new RenderEntityDeconstructor());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileOverchanter.class, new RenderOverchanter());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileNodeManipulator.class, new RenderNodeManipulator());
+		
 	
 		MinecraftForgeClient.registerItemRenderer(TBItems.nodeFoci, new NodeFociRenderer());
 		MinecraftForgeClient.registerItemRenderer(TBItems.herobrinesScythe, new HerobrinesScytheRenderer());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(TBBlocks.nodeManipulator), new NodeManipulatorItemRenderer());
+	
+		RenderingRegistry.registerBlockHandler(new ThaumicRelocatorRenderer());
 	}
 	
 	@Override
