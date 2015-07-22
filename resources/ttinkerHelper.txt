@@ -1,0 +1,11 @@
+C:thaumic.tinkerer.common.enchantment.core.EnchantmentManager
+{
+	F:rules(D:Multimap,V=ArrayListMultimap,I=1)<Integer,BasicCompatibilityRule>
+
+	M:registerExponentialCostData(Enchantment enchantment, String texture, boolean vanilla, AspectList level1Aspects, String research)
+}
+
+C:thaumic.tinkerer.common.enchantment.core.rule.BasicCompatibilityRule
+{
+	C:BasicCompatibilityRule(Enchantment illegal)(I=0)
+}
