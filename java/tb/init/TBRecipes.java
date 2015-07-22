@@ -8,6 +8,7 @@ import tb.common.block.BlockHalfSlab;
 import tb.common.block.BlockTBPlant;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -32,6 +33,8 @@ public class TBRecipes {
 		ShapelessOreRecipe tnB = new ShapelessOreRecipe(new ItemStack(TBBlocks.thauminiteBlock, 1, 0),new Object[]{"ingotThauminite","ingotThauminite","ingotThauminite","ingotThauminite","ingotThauminite","ingotThauminite","ingotThauminite","ingotThauminite","ingotThauminite"});
 		ShapelessOreRecipe tiB = new ShapelessOreRecipe(new ItemStack(TBItems.resource,9,1),new Object[]{TBBlocks.thauminiteBlock});
 		ShapelessOreRecipe biP = new ShapelessOreRecipe(new ItemStack(Blocks.planks,4,2),new Object[]{new ItemStack(TBBlocks.genLogs,1,0)});
+		ShapelessOreRecipe spP = new ShapelessOreRecipe(new ItemStack(Blocks.planks,4,1),new Object[]{new ItemStack(TBBlocks.genLogs,1,1)});
+		ShapelessOreRecipe enP = new ShapelessOreRecipe(new ItemStack(TBBlocks.enderPlanks,4,0),new Object[]{new ItemStack(TBBlocks.genLogs,1,2)});
 		
 		ShapedOreRecipe eAr = new ShapedOreRecipe(new ItemStack(TBBlocks.eldritchArk,5,0),new Object[]{
 			"@#@",
@@ -49,6 +52,10 @@ public class TBRecipes {
 			'#',new ItemStack(ConfigBlocks.blockWoodenDevice,1,6)
 		});
 		
+		GameRegistry.addSmelting(new ItemStack(TBBlocks.genLogs,1,0), new ItemStack(Items.coal,1,1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(TBBlocks.genLogs,1,1), new ItemStack(Items.coal,1,1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(TBBlocks.genLogs,1,2), new ItemStack(Items.coal,1,1), 0.15F);
+		
 		recipes.put("quicksilverBlock", qBl);
 		recipes.put("quicksilver", qSi);
 		recipes.put("quicksilverBrick", qBr);
@@ -60,6 +67,8 @@ public class TBRecipes {
 		recipes.put("eldritchArk", eAr);
 		recipes.put("ironGreatwood", iGw);
 		recipes.put("birchPlanks", biP);
+		recipes.put("sprucePlanks", spP);
+		recipes.put("enderPlanks", enP);
 		GameRegistry.addRecipe(qBl);
 		GameRegistry.addRecipe(qSi);
 		GameRegistry.addRecipe(qBr);
@@ -71,6 +80,8 @@ public class TBRecipes {
 		GameRegistry.addRecipe(eAr);
 		GameRegistry.addRecipe(iGw);
 		GameRegistry.addRecipe(biP);
+		GameRegistry.addRecipe(spP);
+		GameRegistry.addRecipe(enP);
 		
 		for(int i = 0; i < BlockHalfSlab.parents.length; ++i)
 		{
@@ -118,6 +129,8 @@ public class TBRecipes {
 		
 		BlockTBPlant.class.cast(TBBlocks.voidPlant).dropItem = new ItemStack(ConfigItems.itemResource,1,17);
 		BlockTBPlant.class.cast(TBBlocks.voidPlant).dropSeed = new ItemStack(TBItems.voidSeed,1,0);
+		
+		EntityEnderman.setCarriable(TBBlocks.genLogs, true);
 	}
 	
 	public static final Hashtable<String, IRecipe> recipes = new Hashtable<String, IRecipe>();

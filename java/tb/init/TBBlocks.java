@@ -11,7 +11,6 @@ import tb.common.block.BlockCrystalBlock;
 import tb.common.block.BlockCrystalSlab;
 import tb.common.block.BlockEntityDeconstructor;
 import tb.common.block.BlockFlaxium;
-import tb.common.block.BlockGoldenOakSapling;
 import tb.common.block.BlockHalfSlab;
 import tb.common.block.BlockKnose;
 import tb.common.block.BlockLucritePlant;
@@ -20,14 +19,20 @@ import tb.common.block.BlockOverchanter;
 import tb.common.block.BlockPyrofluid;
 import tb.common.block.BlockRainbowCactus;
 import tb.common.block.BlockRedlonStem;
+import tb.common.block.BlockRelocator;
 import tb.common.block.BlockSpike;
 import tb.common.block.BlockSweed;
 import tb.common.block.BlockTBLeaves;
 import tb.common.block.BlockTBLog;
 import tb.common.block.BlockTBPlant;
+import tb.common.block.BlockTBSapling;
+import tb.common.block.BlockThaumicAnvil;
+import tb.common.block.BlockVoid;
+import tb.common.block.BlockVoidAnvil;
 import tb.common.block.TBBlock;
 import tb.common.block.TBSidedBlock;
 import tb.common.itemblock.ItemBlockCrystal;
+import tb.common.itemblock.ItemBlockMetadata;
 import tb.common.itemblock.ItemBlockModeManipulator;
 import tb.common.itemblock.ItemBlockPyrofluid;
 import tb.common.itemblock.ItemBlockSlab_0;
@@ -35,11 +40,13 @@ import tb.common.itemblock.ItemBlockSlab_1;
 import tb.common.itemblock.ItemBlockSpike;
 import tb.common.itemblock.ItemBlockTBLeaves;
 import tb.common.itemblock.ItemBlockTBLogs;
+import tb.common.itemblock.ItemBlockTBSapling;
 import tb.core.TBCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemAnvilBlock;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -79,7 +86,8 @@ public class TBBlocks {
 		BlocksRegistry.registerBlock(voidPlant, "voidPlant",core,ItemBlock.class);
 		BlocksRegistry.registerBlock(spike, "spike",core,ItemBlockSpike.class);
 		BlocksRegistry.registerBlock(overchanter, "overchanter",core,ItemBlock.class);
-		BlocksRegistry.registerBlock(goldenOakSapling, "goldenOakSapling",core,ItemBlock.class);
+		BlocksRegistry.registerBlock(sapling, "goldenOakSapling",core,ItemBlockTBSapling.class);
+		OreDictionary.registerOre("treeSapling", sapling);
 		BlocksRegistry.registerBlock(genLeaves, "genLeaves",core,ItemBlockTBLeaves.class);
 		BlocksRegistry.registerBlock(cryingObsidian, "cryingObsidian",core,ItemBlock.class);
 		cryingObsidian.setHarvestLevel("pickaxe", 3);
@@ -117,6 +125,20 @@ public class TBBlocks {
 		BlocksRegistry.registerBlock(genericSlab_full, "genericSlab_full",core,ItemBlockSlab_0.class);
 		BlocksRegistry.registerBlock(crystalSlab, "crystalSlab",core,ItemBlockSlab_1.class);
 		BlocksRegistry.registerBlock(crystalSlab_full, "crystalSlab_full",core,ItemBlockSlab_1.class);
+		BlocksRegistry.registerBlock(relocator, "relocator",core,ItemBlockMetadata.class);
+		BlocksRegistry.registerBlock(voidBlock, "voidBlock",core,ItemBlock.class);
+		OreDictionary.registerOre("blockVoidMetal", voidBlock);
+		OreDictionary.registerOre("blockVoidmetal", voidBlock);
+		OreDictionary.registerOre("blockVoid", voidBlock);
+		OreDictionary.registerOre("voidBlock", voidBlock);
+		BlocksRegistry.registerBlock(thaumicAnvil, "thaumicAnvil",core,ItemAnvilBlock.class);
+		BlocksRegistry.registerBlock(voidAnvil, "voidAnvil",core,ItemAnvilBlock.class);
+		BlocksRegistry.registerBlock(enderPlanks, "enderPlanks",core,ItemBlock.class);
+		OreDictionary.registerOre("plankWood", enderPlanks);
+		
+		Blocks.fire.setFireInfo(genLogs, 5, 5);
+		Blocks.fire.setFireInfo(genLeaves, 30, 60);
+		Blocks.fire.setFireInfo(enderPlanks, 5, 20);
 	}
 	
 	public static Block quicksilverBlock = new TBBlock(Material.rock,false).setBlockName("quicksilverBlock").setBlockTextureName("thaumicbases:quicksilverBlock").setHardness(0.5F);
@@ -145,7 +167,7 @@ public class TBBlocks {
 	public static Block voidPlant = new BlockTBPlant(4,32,true).setBlockName("voidPlant").setBlockTextureName("thaumicbases:voidPlant/");
 	public static Block spike = new BlockSpike().setBlockName("spike").setHardness(3).setResistance(3).setStepSound(Block.soundTypeMetal);
 	public static Block overchanter = new BlockOverchanter().setBlockName("overchanter").setHardness(5).setResistance(5);
-	public static Block goldenOakSapling = new BlockGoldenOakSapling().setBlockName("goldenOakSapling").setBlockTextureName("thaumicbases:goldenOak/sapling");
+	public static Block sapling = new BlockTBSapling();
 	public static Block genLeaves = new BlockTBLeaves();
 	public static Block cryingObsidian = new BlockCryingObelisk().setBlockName("cryingObsidian").setBlockTextureName("thaumicbases:cryingObelisk/").setHardness(10).setResistance(10);
 	public static Block oldCobble = new TBBlock(Material.rock,false).setBlockName("TBoldCobblestone").setBlockTextureName("thaumicbases:cobblestone").setHardness(1).setResistance(1);
@@ -164,6 +186,12 @@ public class TBBlocks {
 	public static Block genericSlab_full = new BlockHalfSlab(true,Material.rock).setHardness(1).setResistance(10).setBlockName("tb.slab.");
 	public static Block crystalSlab = new BlockCrystalSlab(false,Material.glass).setBlockName("tb.crystalslab.");
 	public static Block crystalSlab_full = new BlockCrystalSlab(true,Material.glass).setBlockName("tb.crystalslab.");
+	public static Block relocator = new BlockRelocator().setBlockName("thaumicRelocator");
+	public static Block voidBlock = new BlockVoid().setBlockName("tb.voidblock");
+	public static Block thaumicAnvil = new BlockThaumicAnvil().setBlockName("thaumicAnvil").setBlockTextureName("thaumicbases:thaumiumAnvil/").setHardness(6).setResistance(16).setStepSound(Block.soundTypeAnvil);
+	public static Block voidAnvil = new BlockVoidAnvil().setBlockName("voidAnvil").setBlockTextureName("thaumicbases:voidAnvil/");
+	public static Block enderPlanks = new TBBlock(Material.wood, false).setBlockName("enderPlanks").setBlockTextureName("thaumicbases:enderTree/planks").setHardness(2).setResistance(45).setStepSound(Block.soundTypeWood);
+			
 	
 	public static final Class<TBCore> core = TBCore.class;
 }
