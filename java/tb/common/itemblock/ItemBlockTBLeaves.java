@@ -14,7 +14,7 @@ public class ItemBlockTBLeaves extends ItemBlock{
 	
     public String getUnlocalizedName(ItemStack stk)
     {
-    	return "tile."+BlockTBLeaves.names[stk.getItemDamage()];
+    	return "tile."+BlockTBLeaves.names[stk.getItemDamage()%8];
     }
     
     public int getMetadata(int meta)
