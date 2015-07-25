@@ -2,11 +2,13 @@
 
 tc.research_category.THAUMICBASES=神秘基础学
 
+#enchantments
 enchantment.tainted=污染
 enchantment.elderKnowledge=睿智
 enchantment.eldritchBane=异域杀手
 enchantment.magicTouch=魔法之触
 enchantment.vaporising=蒸发
+
 tile.quicksilverBlock.name=水银块
 tile.quicksilverBrick.name=水银砖块
 tile.crystalBlockfire.name=火之魔晶块
@@ -145,6 +147,7 @@ item.nodeFoci.sinister.name=§e节点调节核心:凶险
 item.nodeFoci.stability.name=§e节点调节核心:稳定
 item.nodeFoci.taint.name=§e节点调节核心:污染
 
+#Researchs
 tc.research_name.TB.CRUCIBLE=基础炼金术
 tc.research_text.TB.CRUCIBLE=沸腾并且冒着泡
 tc.research_name.TB.AdvancedEntropy=高等混沌过程
@@ -381,7 +384,7 @@ tc.research_text.TB.HerobrinesScythe=你最可怕的噩梦...
 tb.rec.hScythe.page.0=你曾在你的噩梦中见过它.你按照你的印象制作了一把复制品.它如梦似幻,似乎并不属于这个世界.你甚至不知道你已经在疯狂的道路上狂飙了多远.不管怎么说,尽管你已经清除如何制作一把它的复制品,但是这个过程也十分艰难.你需要所有有关死亡的知识才能制作出这个梦魇.
 tb.rec.hScythe.page.1=这件武器极具威力,它不仅仅能造成疯狂的伤害,似乎还能撕开这个世界.每次它撕碎血肉时,它都会产生一股微小的能量脉冲,这股能量脉冲能在周围的敌人中无限反弹,从一个跳到另一个,直到无人生还.这股能量脉冲会造成白瞳者之镰相同的伤害,并且可以被力量药水或者力量附魔所加强.白瞳者之镰甚至可以像虚空锄一般自我修复.自从你制作出了它,其他的神秘使都对你退避三舍.他们在谈论你已经完全变成白色的眼睛,似乎"他"又回来了一样.但是你确信这只是他们的嫉妒和愚蠢,不是吗?..
 
-
+#Research from TC4
 tc.research_name.TB.INFUSIONENCHANTMENT=注魔法附魔
 tc.research_text.TB.INFUSIONENCHANTMENT=用要素源质附魔
 tc.research_name.TB.THAUMIUM=魔导金属
@@ -410,7 +413,6 @@ tc.research_name.TB.VISPOWER=掌控魔力
 tc.research_text.TB.VISPOWER=魔力归于人民
 tc.research_name.TB.PRIMPEARL=原始珍珠
 tc.research_text.TB.PRIMPEARL=开端之前
-
 tc.research_name.TB.ElderKnowledge=附魔:睿智
 tc.research_text.TB.ElderKnowledge=长者的知识
 tc.research_name.TB.EldritchBane=附魔:异域杀手
@@ -422,12 +424,14 @@ tc.research_text.TB.Vaporising=便携式晶化器
 tc.research_name.TB.Tainted=附魔:污染
 tc.research_text.TB.Tainted=毁灭大地!
 
+#Messages
 tb.txt.knoseFragment=右击以获得知识
 tb.txt.howlBelow=有什么东西在世界深处的咆哮...
 tb.txt.howlDeeper=你听见了基岩之下的咆哮,你想要更加深入...
 tb.txt.taintDevelop=那是什么?你想回忆起刚刚发生了什么!
 tb.txt.spawnSet=出生点已设置!
 
+#Foci enchantments
 tb.foci.aquatic.name=晶化
 tb.foci.aquatic.desc=摧毁水方块时可能会将水结晶为源质
 tb.foci.netheric.name=地狱
@@ -442,3 +446,48 @@ tb.foci.crystalization.name=结晶
 tb.foci.crystalization.desc=咒波会掉落Potentia晶化源质.等级II时掉了随机种类的晶化源质
 tb.foci.calming.name=平静
 tb.foci.calming.desc=抵消扭曲升级的效果.清除咒波时可以移除使用者的临时扭曲与常规扭曲
+
+#Ver 1.0171.15
+tile.tb.voidblock.name=虚空金属块
+tile.thaumicAnvil.intact.name=神秘铁砧
+tile.thaumicAnvil.slightlyDamaged.name=轻微损坏的神秘铁砧
+tile.thaumicAnvil.veryDamaged.name=严重损坏的神秘铁砧
+tile.voidAnvil.intact.name=虚空铁砧
+tile.voidAnvil.slightlyDamaged.name=轻微损坏的虚空铁砧
+tile.voidAnvil.veryDamaged.name=严重损坏的虚空铁砧
+tile.thaumicRelocator.name=扩展奥术悬浮台
+tile.peacefullTreeSapling.name=和平树苗
+tile.netherTreeSapling.name=地狱树苗
+tile.enderTreeSapling.name=末影树苗
+tile.peacefullTreeLog.name=和平树原木
+tile.netherTreeLog.name=地狱树原木
+tile.enderTreeLog.name=末影树原木
+tile.peacefullTreeLeaves.name=和平树叶
+tile.netherTreeLeaves.name=地狱树叶
+tile.enderTreeLeaves.name=末影树叶
+tile.enderPlanks.name=末影树木板
+item.tb.voidShears.name=虚空剪刀
+item.tb.voidFAS.name=虚空打火石
+tc.research_name.TB.LEVITATOR=奥术悬浮台
+tc.research_text.TB.LEVITATOR=下面该研究怎么飞了
+tc.research_name.TB.ThaumicAnvil=神秘铁砧
+tc.research_text.TB.ThaumicAnvil=为什么他们从没想过?
+tb.rec.thaumicAnvil.page.0=你已经烦透了那些铁砧,它们仅仅在敲击几下之后就碎了并且像黑洞一样吸收你的经验!因此你使用了神秘金属的知识制作了一个更好的神秘铁砧,它的耐久性大大改善了并且能够保持完整的功能!<BR>神秘铁砧当然不是一个普通的铁砧,它能够比普通铁砧吸收更多的生命力量,能把铁砧能够进行加工的等级上限提升到60.你在它上面进行物品修复时,并不会受到消耗惩罚,每一次修复的消耗都像第一次修复那样!
+tc.research_name.TB.VoidAnvil=虚空铁砧
+tc.research_text.TB.VoidAnvil=修复乘以修复
+tb.rec.voidAnvil.page.0=尽管神秘铁砧已经十分优秀了,但是它也会损坏.可能不会损坏的非常快,但是它终究还是会坏的.然而当你解锁了虚空金属之后得到了一个想法,为什么不用它们来制作一个铁砧呢?这个结果是...十分有趣的.<BR>首先,你所制作的这个铁砧保持了虚空金属的基本特性——自我修复,因此铁砧会自动的修复自己的损伤.但是虚空铁砧也具有不同的特性,不论你在它上面进行何种工作,不论是修复,改名或者使用附魔书,它都只吸取7级的经验.
+tb.rec.voidAnvil.page.1=虚空铁砧像神秘铁砧一样也不会有多次修复惩罚.<BR>当你修复你的工具时,你发现了一些虚空金属流入了你的工具裂缝之中,但是那并没有什么可担心的,不是吗?
+tc.research_name.TB.EnderSapling=末影树
+tc.research_text.TB.EnderSapling=末地的记忆
+tb.rec.enderTree.page.0=你成功的将末地的知识与神秘自然中的树知识结合在一起.这棵注入了末地能量的树会把它脚下的普通方块变为末地之物——末地石.它也有几率把黑曜石从末地中带来,不过这个概率比较低.奇怪的是树下的世界看起来十分薄,以至于偶尔会有来自于末地的生物来到现实世界.然而那些大型的生物例如末影龙是不可能通过这样狭小的世界门.末影树的原木可以用来制作一种具有极高爆炸抵抗的木板.
+tc.research_name.TB.NetherSapling=地狱树
+tc.research_text.TB.NetherSapling=烈焰升起!
+tb.rec.netherTree.page.0=你成功的将地狱门的知识与神秘树结合在了一起.结果你得到了一种新的树木,它能在它脚下打开一个微小的地狱门.这个传送门十分微小,以至于肉眼是无法看见的,但是地狱的烈焰已经足矣穿过它来到现实世界.因此,地狱树脚下的普通方块会被感染成为地狱的形态.来自地狱的生物也会偶尔穿过这个世界门.地狱树也具有地狱岩的特性,它不会被火焰所烧毁也不会将火焰扩散,但是地狱树上的火焰不会熄灭.
+tc.research_name.TB.PeacefulSapling=和平树
+tc.research_text.TB.PeacefulSapling=更多生命
+tb.rec.peacefulTree.page.0=你发现所有的动物都会被光明所吸引.您也注意到它们可以从不同的地方冒出来.你研究了这个现象,然后成功创造了一种树,它能吸引所有种类的动物朝它走来.基于它生长的生物群系,不同的动物会随机出现在它的树叶之下.你需要将它们的数量控制一下,因为它们会远远不断的出现!
+tc.research_name.TB.Relocator=扩展奥术悬浮台
+tc.research_text.TB.Relocator=向前和向后
+tb.rec.relocator.page.0=自从你发明了奥术悬浮台,你一直在思考,为什么不能把它放在墙里?然后你发现了一个稍稍改进奥术悬浮台的方法,因此现在你可以把它放在墙上或者天花板上了.而且,通过轻微改变配方,使用源动之炎代替闪耀之光,你得到了一个与之前功能相反的设备,它将会把所有东西拉向它而不是推开.这两个设备由于与奥术悬浮台使用相同的工作原理,因此它们也具有同样的特性,并且遵循同样的限制.
+
+#This is the end of the file
