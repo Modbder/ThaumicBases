@@ -2,6 +2,7 @@ package tb.init;
 
 import tb.common.tile.TileAdvAlchemicalFurnace;
 import tb.common.tile.TileEntityDeconstructor;
+import tb.common.tile.TileNodeLinker;
 import tb.common.tile.TileNodeManipulator;
 import tb.common.tile.TileOverchanter;
 import tb.common.tile.TileRelocator;
@@ -16,6 +17,7 @@ public class TBTiles {
 		GameRegistry.registerTileEntity(TileOverchanter.class, "tb.overchanter");
 		GameRegistry.registerTileEntity(TileNodeManipulator.class, "tb.manipulator");
 		GameRegistry.registerTileEntity(TileRelocator.class, "tb.relocator");
+		GameRegistry.registerTileEntity(TileNodeLinker.class, "tb.nodeLinker");
 	}
 
 }

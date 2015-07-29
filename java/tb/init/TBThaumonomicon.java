@@ -1,6 +1,8 @@
 package tb.init;
 
 import cpw.mods.fml.common.Loader;
+import tb.api.RevolverUpgrade;
+import tb.utils.RevolverInfusionRecipe;
 import tb.utils.TBConfig;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
@@ -662,6 +664,151 @@ public class TBThaumonomicon {
 			new ItemStack(ConfigItems.itemResource,1,1)
 		});
 		
+		InfusionRecipe revolverRec = new InfusionRecipe("TB.Revolver",new ItemStack(TBItems.revolver,1,0),5,new AspectList().add(Aspect.WEAPON, 256).add(Aspect.METAL, 32).add(Aspect.TREE, 16).add(Aspect.TOOL, 12).add(Aspect.ENERGY, 32).add(Aspect.MECHANISM, 12).add(Aspect.VOID, 16).add(Aspect.FIRE, 32),new ItemStack(Blocks.iron_block),new ItemStack[]{
+			new ItemStack(Items.fire_charge,1,0),
+			new ItemStack(Items.gunpowder,1,0),
+			new ItemStack(ConfigItems.itemResource,1,15),
+			new ItemStack(ConfigBlocks.blockMagicalLog,1,0),
+			new ItemStack(Items.gunpowder,1,0),
+			new ItemStack(ConfigItems.itemFocusFire,1,OreDictionary.WILDCARD_VALUE),
+			new ItemStack(Items.fire_charge,1,0),
+			new ItemStack(Items.gunpowder,1,0),
+			new ItemStack(ConfigItems.itemBowBone,1,OreDictionary.WILDCARD_VALUE),
+			new ItemStack(ConfigBlocks.blockMagicalLog,1,0),
+			new ItemStack(Items.gunpowder,1,0),
+			new ItemStack(Blocks.redstone_torch,1,0)
+		});
+		
+		RevolverInfusionRecipe accuracyRec = new RevolverInfusionRecipe("TB.Revolver.Accuracy", RevolverUpgrade.accuracy, 1, new AspectList().add(Aspect.ORDER, 8).add(Aspect.SENSES,8), new ItemStack[]{
+			new ItemStack(Blocks.glass_pane,1,OreDictionary.WILDCARD_VALUE),
+			new ItemStack(Items.carrot,1,0),
+			new ItemStack(Blocks.glass_pane,1,OreDictionary.WILDCARD_VALUE),
+			new ItemStack(Blocks.glass_pane,1,OreDictionary.WILDCARD_VALUE),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Blocks.glass_pane,1,OreDictionary.WILDCARD_VALUE)
+		});
+		
+		RevolverInfusionRecipe atropodsRec = new RevolverInfusionRecipe("TB.Revolver.Atropods", RevolverUpgrade.atropodsBane, 1, new AspectList().add(Aspect.DEATH, 8).add(Aspect.BEAST, 8).add(Aspect.CLOTH, 8), new ItemStack[]{
+			new ItemStack(Items.spider_eye,1,0),
+			new ItemStack(Items.fermented_spider_eye,1,0),
+			new ItemStack(Items.spider_eye,1,0),
+			new ItemStack(ConfigItems.itemResource,1,14)
+		});
+		
+		RevolverInfusionRecipe eldritchBRec = new RevolverInfusionRecipe("TB.Revolver.EldritchBane", RevolverUpgrade.eldritchBane, 2, new AspectList().add(Aspect.DEATH, 8).add(Aspect.ELDRITCH, 8), new ItemStack[]{
+			new ItemStack(Items.ender_eye,1,0),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Items.ender_pearl,1,0)
+		});
+		
+		RevolverInfusionRecipe duelingRec = new RevolverInfusionRecipe("TB.Revolver.Dueling", RevolverUpgrade.dueling, 2, new AspectList().add(Aspect.DEATH, 8).add(Aspect.MAN, 8), new ItemStack[]{
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Items.bed,1,0),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Items.ghast_tear,1,0),
+			new ItemStack(ConfigItems.itemResource,1,14)
+		});
+		
+		RevolverInfusionRecipe efficiencyRec = new RevolverInfusionRecipe("TB.Revolver.Efficiency", RevolverUpgrade.efficiency, 0, new AspectList().add(Aspect.ORDER, 8).add(Aspect.EXCHANGE, 8), new ItemStack[]{
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Items.blaze_powder,1,0),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Items.enchanted_book,1,0),
+			new ItemStack(ConfigItems.itemResource,1,14)
+		});
+		
+		RevolverInfusionRecipe eldritchRec = new RevolverInfusionRecipe("TB.Revolver.Eldritch", RevolverUpgrade.eldritch, 5, new AspectList().add(Aspect.ELDRITCH, 8).add(Aspect.VOID, 8), new ItemStack[]{
+			new ItemStack(ConfigItems.itemEldritchObject,1,0),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(ConfigItems.itemEldritchObject,1,0),
+			new ItemStack(ConfigItems.itemResource,1,14)
+		});
+		
+		RevolverInfusionRecipe heavyRec = new RevolverInfusionRecipe("TB.Revolver.Heavy", RevolverUpgrade.heavy, 0, new AspectList().add(Aspect.WEAPON, 8).add(Aspect.METAL, 8), new ItemStack[]{
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Items.iron_sword,1,OreDictionary.WILDCARD_VALUE),
+			new ItemStack(ConfigItems.itemResource,1,14)
+		});
+		
+		RevolverInfusionRecipe knowledgeRec = new RevolverInfusionRecipe("TB.Revolver.Knowledge", RevolverUpgrade.knowledge, 0, new AspectList().add(Aspect.MIND, 8).add(Aspect.AURA, 8), new ItemStack[]{
+			new ItemStack(ConfigItems.itemInkwell,1,OreDictionary.WILDCARD_VALUE),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Items.book,1,0),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Items.paper,1,0)
+		});
+		
+		RevolverInfusionRecipe piercingRec = new RevolverInfusionRecipe("TB.Revolver.Piercing", RevolverUpgrade.piercig, 12, new AspectList().add(Aspect.WEAPON, 32).add(Aspect.AIR, 64), new ItemStack[]{
+			new ItemStack(ConfigItems.itemPrimalArrow,1,0),
+			new ItemStack(ConfigItems.itemPrimalArrow,1,1),
+			new ItemStack(ConfigItems.itemPrimalArrow,1,2),
+			new ItemStack(Items.diamond_sword,1,OreDictionary.WILDCARD_VALUE),
+			new ItemStack(ConfigItems.itemPrimalArrow,1,3),
+			new ItemStack(ConfigItems.itemPrimalArrow,1,4),
+			new ItemStack(ConfigItems.itemPrimalArrow,1,5)
+		});
+		
+		RevolverInfusionRecipe powerRec = new RevolverInfusionRecipe("TB.Revolver.Power", RevolverUpgrade.power, 2, new AspectList().add(Aspect.WEAPON, 16), new ItemStack[]{
+			new ItemStack(Items.gunpowder),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Items.fire_charge),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Items.fireworks,1,OreDictionary.WILDCARD_VALUE)
+		});
+		
+		RevolverInfusionRecipe primalRec = new RevolverInfusionRecipe("TB.Revolver.Primal", RevolverUpgrade.primal, 12, new AspectList().add(Aspect.WEAPON, 64).add(primals(64)).add(Aspect.MAGIC, 64), new ItemStack[]{
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(ConfigItems.itemEldritchObject,1,3),
+			new ItemStack(Items.diamond),
+			new ItemStack(ConfigItems.itemEldritchObject,1,3),
+			new ItemStack(ConfigItems.itemResource,1,14),
+		});
+		
+		ItemStack silver = OreDictionary.doesOreNameExist("ingotSilver") ? OreDictionary.getOres("ingotSilver").get(0) : new ItemStack(ConfigItems.itemResource,1,15);
+		
+		RevolverInfusionRecipe silverRec = new RevolverInfusionRecipe("TB.Revolver.Silver", RevolverUpgrade.silver, 0, new AspectList().add(Aspect.DEATH, 8).add(Aspect.BEAST, 8).add(Aspect.UNDEAD, 8), new ItemStack[]{
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(ConfigItems.itemResource,1,3),
+			silver,
+			new ItemStack(ConfigItems.itemResource,1,3),
+			new ItemStack(ConfigItems.itemResource,1,14),
+		});
+		
+		RevolverInfusionRecipe speedRec = new RevolverInfusionRecipe("TB.Revolver.Speed", RevolverUpgrade.speed, 2, new AspectList().add(Aspect.MOTION, 8).add(Aspect.AIR, 8), new ItemStack[]{
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(Items.feather),
+			new ItemStack(ConfigItems.itemResource,1,14),
+		});
+		
+		RevolverInfusionRecipe taintedRec = new RevolverInfusionRecipe("TB.Revolver.Tainted", RevolverUpgrade.tainted, 4, new AspectList().add(Aspect.TAINT, 8).add(Aspect.WEAPON, 8), new ItemStack[]{
+			new ItemStack(ConfigItems.itemResource,1,11),
+			new ItemStack(ConfigItems.itemResource,1,14),
+			new ItemStack(ConfigItems.itemResource,1,12),
+			new ItemStack(ConfigItems.itemResource,1,14)
+		});
+		
+		RevolverInfusionRecipe voidRec = new RevolverInfusionRecipe("TB.Revolver.Void", RevolverUpgrade.uvoid, 4, new AspectList().add(Aspect.VOID, 8).add(Aspect.TOOL, 8), new ItemStack[]{
+			new ItemStack(ConfigItems.itemResource,1,16),
+			new ItemStack(ConfigItems.itemResource,1,16),
+			new ItemStack(ConfigItems.itemResource,1,16),
+			new ItemStack(ConfigItems.itemResource,1,16),
+			new ItemStack(ConfigItems.itemResource,1,16)
+		});
+		
+		ShapedArcaneRecipe nodeLinkRec = new ShapedArcaneRecipe("TB.NodeLinker", new ItemStack(TBBlocks.nodeLinker,1,0), primals(5), new Object[]{
+			"TPT",
+			"ANA",
+			"BOB",
+			'T',new ItemStack(ConfigBlocks.blockMetalDevice,1,14),
+			'P',new ItemStack(ConfigItems.itemResource,1,15),
+			'A',new ItemStack(ConfigBlocks.blockCosmeticSolid,1,6),
+			'B',new ItemStack(ConfigBlocks.blockCosmeticSolid,1,7),
+			'O',Blocks.obsidian,
+			'N',new ItemStack(ConfigItems.itemResource,1,0)
+		});
+		
+		//TODO recipes
+		
 		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.tobacco,1,1), 1);
 		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.nodeFoci,1,1), 1);
 		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.nodeFoci,1,9), 2);
@@ -1114,7 +1261,7 @@ public class TBThaumonomicon {
 			new ResearchPage("tb.rec.expFoci.page.2")
 			).registerResearchItem();
 		
-		new ResearchItem("TB.Foci.Flux",catName,new AspectList().add(Aspect.WATER, 4).add(Aspect.ORDER, 4).add(Aspect.VOID, 4),0,-20,0,new ItemStack(TBItems.fociFlux))
+		new ResearchItem("TB.Foci.Flux",catName,new AspectList().add(Aspect.WATER, 4).add(Aspect.ORDER, 4).add(Aspect.VOID, 4),-1,-19,0,new ItemStack(TBItems.fociFlux))
 		.setParents("TB.INFUSION","TB.JARVOID","TB.FLUXSCRUB")
 		.setConcealed()
 		.setSecondary()
@@ -1354,6 +1501,162 @@ public class TBThaumonomicon {
 			new ResearchPage(enderSaplingRec)
 			).registerResearchItem();
 		
+		new ResearchItem("TB.Revolver",catName,new AspectList().add(Aspect.WEAPON, 5).add(Aspect.FIRE, 5).add(Aspect.VOID, 4).add(Aspect.TOOL, 2).add(Aspect.ENERGY, 2),-6,-21,4,new ItemStack(TBItems.revolver,1,0))
+		.setParents("TB.INFUSION")
+		.setConcealed()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.page.0"),
+			new ResearchPage("tb.rec.revolver.page.1"),
+			new ResearchPage("tb.rec.revolver.page.2"),
+			new ResearchPage(revolverRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Accuracy",catName,new AspectList().add(Aspect.ORDER, 8).add(Aspect.MECHANISM, 8).add(Aspect.SENSES, 4),-9,-19,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/ACCURACY.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.acc.page.0"),
+			new ResearchPage(accuracyRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Atropods",catName,new AspectList().add(Aspect.DEATH, 8).add(Aspect.BEAST, 8).add(Aspect.CLOTH, 4),-9,-20,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/BANE_OF_ATROPODS.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.atr.page.0"),
+			new ResearchPage(atropodsRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.EldritchBane",catName,new AspectList().add(Aspect.DEATH, 8).add(Aspect.ELDRITCH, 4),-10,-20,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/BANE_OF_ELDRITCH.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.elb.page.0"),
+			new ResearchPage(eldritchBRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Dueling",catName,new AspectList().add(Aspect.DEATH, 8).add(Aspect.MAN, 8),-9,-21,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/DUELING.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.duel.page.0"),
+			new ResearchPage(duelingRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Efficiency",catName,new AspectList().add(Aspect.ORDER, 8).add(Aspect.EXCHANGE, 8),-9,-22,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/EFFICIENCY.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.eff.page.0"),
+			new ResearchPage(efficiencyRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Eldritch",catName,new AspectList().add(Aspect.ELDRITCH, 8).add(Aspect.VOID, 8),-10,-22,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/ELDRITCH.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.eld.page.0"),
+			new ResearchPage(eldritchRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Heavy",catName,new AspectList().add(Aspect.WEAPON, 8).add(Aspect.METAL, 8),-9,-23,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/HEAVY.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.hev.page.0"),
+			new ResearchPage(heavyRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Knowledge",catName,new AspectList().add(Aspect.MIND, 8).add(Aspect.MAGIC, 8),-8,-24,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/KNOWLEGDE.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.kno.page.0"),
+			new ResearchPage(knowledgeRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Piercing",catName,new AspectList().add(Aspect.WEAPON, 8).add(Aspect.AIR, 8),-7,-25,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/PIERCING.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.pir.page.0"),
+			new ResearchPage(piercingRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Power",catName,new AspectList().add(Aspect.WEAPON, 8).add(Aspect.MECHANISM, 8),-7,-24,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/POWER.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.pow.page.0"),
+			new ResearchPage(powerRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Primal",catName,new AspectList().add(Aspect.WEAPON, 8).add(Aspect.AURA, 8).add(primals(16)),-10,-25,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/PRIMAL.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setSpecial()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.primal.page.0"),
+			new ResearchPage(primalRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Silver",catName,new AspectList().add(Aspect.DEATH, 8).add(Aspect.UNDEAD, 8),-6,-24,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/SILVER.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.sil.page.0"),
+			new ResearchPage(silverRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Speed",catName,new AspectList().add(Aspect.MOTION, 8).add(Aspect.AIR, 8),-5,-24,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/SPEED.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.spe.page.0"),
+			new ResearchPage(speedRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Tainted",catName,new AspectList().add(Aspect.TAINT, 8).add(Aspect.MAGIC, 8),-4,-24,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/TAINTED.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.tai.page.0"),
+			new ResearchPage(taintedRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Revolver.Void",catName,new AspectList().add(Aspect.VOID, 8).add(Aspect.METAL, 8),-5,-25,0,new ResourceLocation("thaumicbases","textures/thaumonomicon/revolver/VOID.png"))
+		.setParents("TB.Revolver")
+		.setConcealed()
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.revolver.void.page.0"),
+			new ResearchPage(voidRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.NodeLinker",catName,new AspectList().add(Aspect.MECHANISM, 8).add(Aspect.AURA, 8).add(Aspect.TRAVEL, 16).add(Aspect.MAGIC, 8),4,-23,3,new ItemStack(TBBlocks.nodeLinker))
+		.setParents("TB.VISPOWER")
+		.setConcealed()
+		.setPages(
+			new ResearchPage("tb.rec.nodeLink.page.0"),
+			new ResearchPage("tb.rec.nodeLink.page.1"),
+			new ResearchPage("tb.rec.nodeLink.page.2"),
+			new ResearchPage(nodeLinkRec)
+			).registerResearchItem();
+		
 		//TODO last recipes
 		//-4,-14
 		
@@ -1374,6 +1677,10 @@ public class TBThaumonomicon {
 		ThaumcraftApi.addWarpToResearch("TB.NodeFoci.Destr", 2);
 		ThaumcraftApi.addWarpToResearch("TB.NodeFoci.Taint", 3);
 		ThaumcraftApi.addWarpToResearch("TB.VoidAnvil", 2);
+		ThaumcraftApi.addWarpToResearch("TB.Revolver.Eldritch", 2);
+		ThaumcraftApi.addWarpToResearch("TB.Revolver.Primal", 4);
+		ThaumcraftApi.addWarpToResearch("TB.Revolver.Tainted", 3);
+		ThaumcraftApi.addWarpToResearch("TB.Revolver.Void", 2);
 		
 		ThaumcraftApi.getCraftingRecipes().add(wool3Rec);
 		ThaumcraftApi.getCraftingRecipes().add(sandstone3Rec);
@@ -1629,6 +1936,25 @@ public class TBThaumonomicon {
 		CraftingManager.getInstance().getRecipeList().add(voidIngotRec);
 		CraftingManager.getInstance().getRecipeList().add(voidShearsRec);
 		CraftingManager.getInstance().getRecipeList().add(voidFlint);
+		
+		ThaumcraftApi.getCraftingRecipes().add(revolverRec);
+		ThaumcraftApi.getCraftingRecipes().add(accuracyRec);
+		ThaumcraftApi.getCraftingRecipes().add(atropodsRec);
+		ThaumcraftApi.getCraftingRecipes().add(eldritchBRec);
+		ThaumcraftApi.getCraftingRecipes().add(duelingRec);
+		ThaumcraftApi.getCraftingRecipes().add(efficiencyRec);
+		ThaumcraftApi.getCraftingRecipes().add(eldritchRec);
+		ThaumcraftApi.getCraftingRecipes().add(heavyRec);
+		ThaumcraftApi.getCraftingRecipes().add(knowledgeRec);
+		ThaumcraftApi.getCraftingRecipes().add(piercingRec);
+		ThaumcraftApi.getCraftingRecipes().add(powerRec);
+		ThaumcraftApi.getCraftingRecipes().add(primalRec);
+		ThaumcraftApi.getCraftingRecipes().add(silverRec);
+		ThaumcraftApi.getCraftingRecipes().add(speedRec);
+		ThaumcraftApi.getCraftingRecipes().add(taintedRec);
+		ThaumcraftApi.getCraftingRecipes().add(voidRec);
+		
+		ThaumcraftApi.getCraftingRecipes().add(nodeLinkRec);
 		//TODO actual recipes
 		
 		for(int i = 0; i < 6; ++i)

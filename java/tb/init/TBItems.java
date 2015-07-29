@@ -18,6 +18,7 @@ import tb.common.item.ItemKnoseSeeds;
 import tb.common.item.ItemMortarAndPestle;
 import tb.common.item.ItemNodeFoci;
 import tb.common.item.ItemPyrofluidBucket;
+import tb.common.item.ItemRevolver;
 import tb.common.item.ItemRosehipSyrup;
 import tb.common.item.ItemSmokingPipe;
 import tb.common.item.ItemThauminiteArmor;
@@ -99,6 +100,8 @@ public class TBItems {
 		ItemRegistry.registerItem(voidShears, "voidShears",core);
 		ItemRegistry.registerItem(voidFAS, "voidFAS",core);
 		
+		ItemRegistry.registerItem(revolver, "revolver",core);
+		
 		OreDictionary.registerOre("ingotThauminite", new ItemStack(resource,1,1));
 		
 		WAND_CAP_THAUMINITE = new WandCap("thauminite",0.85F,new ItemStack(resource,1,2),6);
@@ -162,6 +165,8 @@ public class TBItems {
 	
 	public static Item voidShears = new ItemVoidShears().setTextureName("thaumicbases:shears").setUnlocalizedName("tb.voidShears").setFull3D().setMaxDamage(184).setFull3D().setMaxStackSize(1);
 	public static Item voidFAS = new ItemVoidFlintAndSteel().setTextureName("thaumicbases:flint_and_steel").setUnlocalizedName("tb.voidFAS").setFull3D().setMaxDamage(184).setFull3D().setMaxStackSize(1);
+	
+	public static Item revolver = new ItemRevolver().setMaxDamage(1561).setMaxStackSize(1).setFull3D().setUnlocalizedName("tb.revolver");
 	
 	public static WandCap WAND_CAP_THAUMINITE;
 	
