@@ -43,6 +43,7 @@ public class TileEntityDeconstructor extends TileEntity{
         hasEarth = tag.getBoolean("b3");
         hasOrdo = tag.getBoolean("b4");
         hasEntropy = tag.getBoolean("b5");
+        placerName = tag.getString("placer");
     }
     
     public void writeToNBT(NBTTagCompound tag)
@@ -55,6 +56,7 @@ public class TileEntityDeconstructor extends TileEntity{
         tag.setBoolean("b3", hasEarth);
         tag.setBoolean("b4", hasOrdo);
         tag.setBoolean("b5", hasEntropy);
+        tag.setString("placer", placerName);
     }
 	
 	@Override
