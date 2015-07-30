@@ -1,14 +1,12 @@
 #Traslated by PatchouliHina From InfinityStudio
 
 tc.research_category.THAUMICBASES=神秘基础学
-
 #enchantments
 enchantment.tainted=污染
 enchantment.elderKnowledge=睿智
 enchantment.eldritchBane=异域杀手
 enchantment.magicTouch=魔法之触
 enchantment.vaporising=蒸发
-
 #blocks
 tile.quicksilverBlock.name=水银块
 tile.quicksilverBrick.name=水银砖块
@@ -93,7 +91,6 @@ tile.peacefullTreeLeaves.name=和平树叶
 tile.netherTreeLeaves.name=地狱树叶
 tile.enderTreeLeaves.name=末影树叶
 tile.enderPlanks.name=末影树木板
-
 #items
 item.resourcenuggetthauminite.name=秘晶粒
 item.resourcethauminite.thauminite_ingot.name=秘晶锭
@@ -170,7 +167,6 @@ item.nodeFoci.taint.name=§e节点调节核心:污染
 item.herobrinesScythe.name=白瞳者之镰
 item.tb.voidShears.name=虚空剪刀
 item.tb.voidFAS.name=虚空打火石
-
 #Researchs
 tc.research_name.TB.CRUCIBLE=基础炼金术
 tc.research_text.TB.CRUCIBLE=沸腾并且冒着泡
@@ -398,7 +394,6 @@ tb.rec.enchantments.page.2=使用异域杀手附魔的武器在面对末影人�
 tb.rec.enchantments.page.3=使用魔法之触附魔的武器在击杀了它的敌人之后会掉落更多的原始要素球.
 tb.rec.enchantments.page.4=使用蒸发附魔的武器在击杀了它的敌人之后会有一定概率掉落对应类型的晶化源质.
 tb.rec.enchantments.page.5=使用污染附魔的武器攻击敌人时会造成额外的咒波伤害.也会对敌人造成污染中毒的效果.但是面对污染生物时这个附魔效果会降低.如果要给一个武器进行污染附魔,你需要将武器扔进一个污染节点让武器被污染节点的魔力所辐射.这个附魔的附魔等级是完全随机的,但是你能达到的最高等级为3.
-
 #1.1 Researches
 tc.research_name.TB.EntityDecAdv=高级解构工作台
 tc.research_text.TB.EntityDecAdv=更好的分解!
@@ -427,7 +422,6 @@ tb.rec.netherTree.page.0=你成功的将地狱门的知识与神秘树结合在�
 tc.research_name.TB.PeacefulSapling=和平树
 tc.research_text.TB.PeacefulSapling=更多生命
 tb.rec.peacefulTree.page.0=你发现所有的动物都会被光明所吸引.您也注意到它们可以从不同的地方冒出来.你研究了这个现象,然后成功创造了一种树,它能吸引所有种类的动物朝它走来.基于它生长的生物群系,不同的动物会随机出现在它的树叶之下.你需要将它们的数量控制一下,因为它们会远远不断的出现!
-
 #Research from TC4
 tc.research_name.TB.INFUSIONENCHANTMENT=注魔法附魔
 tc.research_text.TB.INFUSIONENCHANTMENT=用要素源质附魔
@@ -459,7 +453,6 @@ tc.research_name.TB.PRIMPEARL=原始珍珠
 tc.research_text.TB.PRIMPEARL=开端之前
 tc.research_name.TB.LEVITATOR=奥术悬浮台
 tc.research_text.TB.LEVITATOR=下面该研究怎么飞了
-
 #Enchantment researches
 tc.research_name.TB.ElderKnowledge=附魔:睿智
 tc.research_text.TB.ElderKnowledge=长者的知识
@@ -471,14 +464,12 @@ tc.research_name.TB.Vaporising=附魔:蒸发
 tc.research_text.TB.Vaporising=便携式晶化器
 tc.research_name.TB.Tainted=附魔:污染
 tc.research_text.TB.Tainted=毁灭大地!
-
 #Messages
 tb.txt.knoseFragment=右击以获得知识
 tb.txt.howlBelow=有什么东西在世界深处的咆哮...
 tb.txt.howlDeeper=你听见了基岩之下的咆哮,你想要更加深入...
 tb.txt.taintDevelop=那是什么?你想回忆起刚刚发生了什么!
 tb.txt.spawnSet=出生点已设置!
-
 #Foci enchantments
 tb.foci.aquatic.name=晶化
 tb.foci.aquatic.desc=摧毁水方块时可能会将水结晶为源质
@@ -494,36 +485,32 @@ tb.foci.crystalization.name=结晶
 tb.foci.crystalization.desc=咒波会掉落Potentia晶化源质.等级II时掉了随机种类的晶化源质
 tb.foci.calming.name=平静
 tb.foci.calming.desc=抵消扭曲升级的效果.清除咒波时可以移除使用者的临时扭曲与常规扭曲
-
 #1.2
 
 #Blocks
-tile.nodeLinker.name=Node Linking Device
-
+tile.nodeLinker.name=节点链接器
 #Items
-item.tb.revolver.name=Thaumaturge's Revolver
-
+item.tb.revolver.name=奥术左轮枪
 #Enchantments for the revolver
-revolverUpgrade.ACCURACY.name=Accuracy
-revolverUpgrade.POWER.name=Power
-revolverUpgrade.SILVER.name=Silver
-revolverUpgrade.POISONED.name=Poisoned
-revolverUpgrade.BANE_OF_ATROPODS.name=Bane of Atropods
-revolverUpgrade.BANE_OF_ELDRITCH.name=Bane of Eldritch
-revolverUpgrade.PIERCING.name=Piercing
-revolverUpgrade.DUELING.name=Dueling
-revolverUpgrade.TAINTED.name=Tainted
-revolverUpgrade.PRIMAL.name=Primal
-revolverUpgrade.SPEED.name=Speed
-revolverUpgrade.EFFICIENCY.name=Efficiency
-revolverUpgrade.ELDRITCH.name=Eldritch
-revolverUpgrade.VOID.name=Void
-revolverUpgrade.KNOWLEDGE.name=Knowledge
-revolverUpgrade.HEAVY.name=Heavy
-
+revolverUpgrade.ACCURACY.name=精准
+revolverUpgrade.POWER.name=威力
+revolverUpgrade.SILVER.name=银弹
+revolverUpgrade.POISONED.name=猛毒
+revolverUpgrade.BANE_OF_ATROPODS.name=节肢杀手
+revolverUpgrade.BANE_OF_ELDRITCH.name=异域杀手
+revolverUpgrade.PIERCING.name=穿刺
+revolverUpgrade.DUELING.name=决斗
+revolverUpgrade.TAINTED.name=污染
+revolverUpgrade.PRIMAL.name=始源
+revolverUpgrade.SPEED.name=速度
+revolverUpgrade.EFFICIENCY.name=效率
+revolverUpgrade.ELDRITCH.name=异域
+revolverUpgrade.VOID.name=虚空
+revolverUpgrade.KNOWLEDGE.name=睿智
+revolverUpgrade.HEAVY.name=重装
 #Researches
-tc.research_name.TB.Revolver=Thaumaturge's Arsenal
-tc.research_text.TB.Revolver=Sir, it is time to hunt!
+tc.research_name.TB.Revolver=奥术军械库
+tc.research_text.TB.Revolver=是时候疼爱它们了!
 tb.rec.revolver.page.0=Thaumic weapons are good. Especially those where you do not have to get close to your enemies. Thaumaturgy however does not seem to offer much of those. Sure, there is a bow of bone, but... it is a bow. Even though it is enhanced with magic it still requires the wielder to pull the string. One might say - there are wand focis! Sure there are, and they are all great... But are they really weapons? They are put on top of wands and they use the enerhy of the wand. Well what if the Thaumaturge prefers his scepters over wands? He... needs to craft another wand, just for those foci? Really? Some foci are also known for not working under certain conditions... Better to say in certain places...
 tb.rec.revolver.page.1=You have been engineering for a while now - this is what you have came with. A pretty strange contraption that is not all that big and is comfort to hold in hand. You have named your contraption "The Revolver". No, you have no idea why.<BR>The device is able to shoot very small yet extremely fast projectiles which deal devastating damage to anything they come in contact with. Due to your weapon having a magical nature those projectiles are also magical - they are created out of raw Telum essentia, stored in a jar inside of the revolver. One point of aspect is enough for just two shots. To open the revolver sneak and left-click anywhere. Sneaking also allows you to aim more precise. Right-click to shoot of course, that should be obvious.
 tb.rec.revolver.page.2=The revolver is also much more potent than it looks - you are sure, that there are TONS of ways to improve it's construction by performing further infusions over it. You still need to discover them though. Some of the improvements might conflict with eachother and therefore can't be installed together. It is also worth noticing that most improvements can be applied over and over again, but the stability of the infusion will suffer great penalties for each new level. The aspect cost will also increase for each level of improvement by the amount it originally cost.
@@ -532,7 +519,6 @@ tc.research_text.TB.NodeLinker=From one source to another!
 tb.rec.nodeLink.page.0=Nodes. The things that link your world to the world of magic. They are heavily used in thaumaturgy - some devices use them to function, you need them to recharge your wands. However there is a small problem - a node can always store that much of vis and if it has, for example, no terra it it - this is it, it has no terra, and that aspect can't be gained from the node. There sure is a so called 'node bullying' - one node eating other, smaller nodes. With the discovery of the Advanced node stabilizer that can be worked with, but it takes a ridiculous amount of time and also is unreliable.
 tb.rec.nodeLink.page.1=You have discovered a device that might get the job done. The node Linking Device creates a mysterious link between 2 nodes and will move aspects from the linked one to the linker. You need 2 of this devices placed on top of nodes. Then just take your wand and right click on the reciever. After that click on the transmitter - and the link will be estabilished. The link will firstly drain all aspects out of the transmitting node's pull, then it will draw the node's capacity and will increase the reciever's capacity based on that. Lastly the node without any capacity left will fade away. The chance of the reciever node to increase it's aspect capacity is around 70% for each capacity decrease on the transmitting node.
 tb.rec.nodeLink.page.2=The transmission however is pretty unstable - both nodes will react to the link. This will result in a so called instability. The more time the device functions - the more instability it will have. Based on the amount of instability different things may happen - from the aspects escaping out of nodes on both ends into air in form of flux, to the complete transmitting node destruction with the explosion. The recieving node however will never get harmed in any way.
-
 tc.research_name.TB.Revolver.Accuracy=Revolver Upgrade: Accuracy
 tc.research_text.TB.Revolver.Accuracy=Sniping from miles away
 tb.rec.revolver.acc.page.0=You have found a way to give your revolver more sniping potential. With this upgrade your eyes will become more focused on the target while you are aming, allowing you to aim more precise.<BR>Max Level: §6§l3 §r§0<BR>Conflicts with: §nSpeed§r, §0§nEfficiency§r
@@ -578,7 +564,6 @@ tb.rec.revolver.tai.page.0=Imbuing your weapon with taint might not be that good
 tc.research_name.TB.Revolver.Void=Revolver Upgrade: Void
 tc.research_text.TB.Revolver.Void=Merging with the bullets
 tb.rec.revolver.void.page.0=Infusing the revolver with some void metal gives the gun the primal ability of the void metal - self-repairing. Warning - seeing the gun metal changing shape due to the void metal might not be a pleasant experience and may cause hallucinations and nightmares!<BR>Max Level: §6§l 3 §r§0<BR>Conflicts with: §nNone§r
-
 #Chat notifications
 tb.txt.linkStarted=Link Started
 tb.txt.linkEstabilished=Link Estabilished
