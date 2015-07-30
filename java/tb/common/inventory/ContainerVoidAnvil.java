@@ -55,6 +55,11 @@ public class ContainerVoidAnvil extends ContainerRepair{
 		this.y = y;
 		this.z = z;
 		
+		final World wrld = w;
+		final int ax = x;
+		final int ay = y;
+		final int az = z;
+		
         this.addSlotToContainer(new Slot(this.inputSlots, 0, 27, 47));
         this.addSlotToContainer(new Slot(this.inputSlots, 1, 76, 47));
         this.addSlotToContainer(new Slot(this.outputSlot, 2, 134, 47)
@@ -100,27 +105,27 @@ public class ContainerVoidAnvil extends ContainerRepair{
 
                 ContainerVoidAnvil.this.maximumCost = 0;
 
-                if (!p_82870_1_.capabilities.isCreativeMode && !w.isRemote && w.getBlock(x, y, z) == TBBlocks.thaumicAnvil && p_82870_1_.getRNG().nextFloat() < breakChance)
+                if (!p_82870_1_.capabilities.isCreativeMode && !wrld.isRemote && wrld.getBlock(ax, ay, az) == TBBlocks.thaumicAnvil && p_82870_1_.getRNG().nextFloat() < breakChance)
                 {
-                    int i1 = w.getBlockMetadata(x, y, z);
+                    int i1 = wrld.getBlockMetadata(ax, ay, az);
                     int k = i1 & 3;
                     int l = i1 >> 2;
                     ++l;
 
                     if (l > 2)
                     {
-                        w.setBlockToAir(x, y, z);
-                        w.playAuxSFX(1020, x, y, z, 0);
+                    	wrld.setBlockToAir(ax, ay, az);
+                    	wrld.playAuxSFX(1020, ax, ay, az, 0);
                     }
                     else
                     {
-                        w.setBlockMetadataWithNotify(x, y, z, k | l << 2, 2);
-                        w.playAuxSFX(1021, x, y, z, 0);
+                    	wrld.setBlockMetadataWithNotify(ax, ay, az, k | l << 2, 2);
+                    	wrld.playAuxSFX(1021, ax, ay, az, 0);
                     }
                 }
-                else if (!w.isRemote)
+                else if (!wrld.isRemote)
                 {
-                    w.playAuxSFX(1021, x, y, z, 0);
+                	wrld.playAuxSFX(1021, ax, ay, az, 0);
                 }
             }
         });

@@ -8,6 +8,7 @@ import tb.common.block.BlockHalfSlab;
 import tb.common.block.BlockTBPlant;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
+import thaumcraft.common.lib.utils.CropUtils;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -131,6 +132,18 @@ public class TBRecipes {
 		BlockTBPlant.class.cast(TBBlocks.voidPlant).dropSeed = new ItemStack(TBItems.voidSeed,1,0);
 		
 		EntityEnderman.setCarriable(TBBlocks.genLogs, true);
+		
+		CropUtils.addStandardCrop(new ItemStack(TBBlocks.aureliaPetal), 0);
+		CropUtils.addStandardCrop(new ItemStack(TBBlocks.briar), 7);
+		CropUtils.addStandardCrop(new ItemStack(TBBlocks.glieonia), 3);
+		CropUtils.addStandardCrop(new ItemStack(TBBlocks.knose), 3);
+		CropUtils.addStandardCrop(new ItemStack(TBBlocks.lazullia), 7);
+		CropUtils.addStandardCrop(new ItemStack(TBBlocks.lucrite), 7);
+		CropUtils.addStandardCrop(new ItemStack(TBBlocks.metalleat), 7);
+		CropUtils.addStandardCrop(new ItemStack(TBBlocks.plax), 7);
+		CropUtils.addStandardCrop(new ItemStack(TBBlocks.sweed), 3);
+		CropUtils.addStandardCrop(new ItemStack(TBBlocks.tobacco), 7);
+		CropUtils.addStandardCrop(new ItemStack(TBBlocks.voidPlant), 7);
 	}
 	
 	public static final Hashtable<String, IRecipe> recipes = new Hashtable<String, IRecipe>();

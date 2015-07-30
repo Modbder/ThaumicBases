@@ -5,8 +5,7 @@ import java.util.Random;
 
 import DummyCore.Utils.MathUtils;
 import tb.common.tile.TileRelocator;
-import thaumcraft.client.fx.ParticleEngine;
-import thaumcraft.client.fx.particles.FXSparkle;
+import tb.core.TBCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
@@ -114,57 +113,46 @@ public class BlockRelocator extends BlockContainer{
     	{
     		if(meta == 0)
     		{
+    			
     			double dx = x+0.5D+MathUtils.randomDouble(r)/2;
     			double dy = y;
     			double dz = z+0.5D+MathUtils.randomDouble(r)/2;
-    			FXSparkle fx = new FXSparkle(w,dx,doColor ? dy-3 : dy,dz,dx,doColor ? dy : dy - 3,dz,1,doColor ? 2 : 1,1);
-    			fx.noClip = true;
-    			ParticleEngine.instance.addEffect(w, fx);
+    			TBCore.proxy.sparkle(w,dx,doColor ? dy-3 : dy,dz,dx,doColor ? dy : dy - 3,dz,doColor ? 2 : 1, 1F);
     		}
     		if(meta == 1)
     		{
     			double dx = x+0.5D+MathUtils.randomDouble(r)/2;
     			double dy = y+1;
     			double dz = z+0.5D+MathUtils.randomDouble(r)/2;
-    			FXSparkle fx = new FXSparkle(w,dx,doColor ? dy+3 : dy,dz,dx,doColor ? dy : dy+3,dz,1,doColor ? 2 : 1,1);
-    			fx.noClip = true;
-    			ParticleEngine.instance.addEffect(w, fx);
+    			TBCore.proxy.sparkle(w,dx,doColor ? dy+3 : dy,dz,dx,doColor ? dy : dy+3,dz,doColor ? 2 : 1,1);
     		}
     		if(meta == 2)
     		{
     			double dx = x+0.5D+MathUtils.randomDouble(r)/2;
     			double dy = y+0.5D+MathUtils.randomDouble(r)/2;
     			double dz = z;
-    			FXSparkle fx = new FXSparkle(w,dx,dy,doColor ? dz-3 : dz,dx,dy,doColor ? dz : dz-3,1,doColor ? 2 : 1,1);
-    			fx.noClip = true;
-    			ParticleEngine.instance.addEffect(w, fx);
+    			TBCore.proxy.sparkle(w,dx,dy,doColor ? dz-3 : dz,dx,dy,doColor ? dz : dz-3,doColor ? 2 : 1,1);
     		}
     		if(meta == 3)
     		{
     			double dx = x+0.5D+MathUtils.randomDouble(r)/2;
     			double dy = y+0.5D+MathUtils.randomDouble(r)/2;
     			double dz = z+1;
-    			FXSparkle fx = new FXSparkle(w,dx,dy,doColor ? dz+3 : dz,dx,dy,doColor ? dz : dz+3,1,doColor ? 2 : 1,1);
-    			fx.noClip = true;
-    			ParticleEngine.instance.addEffect(w, fx);
+    			TBCore.proxy.sparkle(w,dx,dy,doColor ? dz+3 : dz,dx,dy,doColor ? dz : dz+3,doColor ? 2 : 1,1);
     		}
     		if(meta == 4)
     		{
     			double dx = x;
     			double dy = y+0.5D+MathUtils.randomDouble(r)/2;
     			double dz = z+0.5D+MathUtils.randomDouble(r)/2;
-    			FXSparkle fx = new FXSparkle(w,doColor ? dx-3 : dx,dy,dz,doColor ? dx : dx-3,dy,dz,1,doColor ? 2 : 1,1);
-    			fx.noClip = true;
-    			ParticleEngine.instance.addEffect(w, fx);
+    			TBCore.proxy.sparkle(w,doColor ? dx-3 : dx,dy,dz,doColor ? dx : dx-3,dy,dz,doColor ? 2 : 1,1);
     		}
     		if(meta == 5)
     		{
     			double dx = x+1;
     			double dy = y+0.5D+MathUtils.randomDouble(r)/2;
     			double dz = z+0.5D+MathUtils.randomDouble(r)/2;
-    			FXSparkle fx = new FXSparkle(w,doColor ? dx+3 : dx,dy,dz,doColor ? dx : dx+3,dy,dz,1,doColor ? 2 : 1,1);
-    			fx.noClip = true;
-    			ParticleEngine.instance.addEffect(w, fx);
+    			TBCore.proxy.sparkle(w,doColor ? dx+3 : dx,dy,dz,doColor ? dx : dx+3,dy,dz,doColor ? 2 : 1,1);
     		}
     	}
     }

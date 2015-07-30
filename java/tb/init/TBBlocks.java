@@ -14,6 +14,7 @@ import tb.common.block.BlockFlaxium;
 import tb.common.block.BlockHalfSlab;
 import tb.common.block.BlockKnose;
 import tb.common.block.BlockLucritePlant;
+import tb.common.block.BlockNodeLinker;
 import tb.common.block.BlockNodeManipulator;
 import tb.common.block.BlockOverchanter;
 import tb.common.block.BlockPyrofluid;
@@ -135,6 +136,7 @@ public class TBBlocks {
 		BlocksRegistry.registerBlock(voidAnvil, "voidAnvil",core,ItemAnvilBlock.class);
 		BlocksRegistry.registerBlock(enderPlanks, "enderPlanks",core,ItemBlock.class);
 		OreDictionary.registerOre("plankWood", enderPlanks);
+		BlocksRegistry.registerBlock(nodeLinker, "nodeLinker",core,ItemBlock.class);
 		
 		Blocks.fire.setFireInfo(genLogs, 5, 5);
 		Blocks.fire.setFireInfo(genLeaves, 30, 60);
@@ -191,7 +193,7 @@ public class TBBlocks {
 	public static Block thaumicAnvil = new BlockThaumicAnvil().setBlockName("thaumicAnvil").setBlockTextureName("thaumicbases:thaumiumAnvil/").setHardness(6).setResistance(16).setStepSound(Block.soundTypeAnvil);
 	public static Block voidAnvil = new BlockVoidAnvil().setBlockName("voidAnvil").setBlockTextureName("thaumicbases:voidAnvil/");
 	public static Block enderPlanks = new TBBlock(Material.wood, false).setBlockName("enderPlanks").setBlockTextureName("thaumicbases:enderTree/planks").setHardness(2).setResistance(45).setStepSound(Block.soundTypeWood);
-			
+	public static Block nodeLinker = new BlockNodeLinker().setBlockName("nodeLinker").setHardness(1);
 	
 	public static final Class<TBCore> core = TBCore.class;
 }

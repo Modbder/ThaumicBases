@@ -1,11 +1,13 @@
 tc.research_category.THAUMICBASES=Thaumic Bases
 
+#enchantments
 enchantment.elderKnowledge=Elder Wisdom
 enchantment.eldritchBane=Eldritch Bane
 enchantment.magicTouch=Magic Touched
 enchantment.tainted=Tainted
 enchantment.vaporising=Vaporising
 
+#blocks
 tile.quicksilverBlock.name=Block of Quicksilver
 tile.quicksilverBrick.name=Quicksilver Brick
 tile.crystalBlockfire.name=Fire Crystal Block
@@ -90,6 +92,7 @@ tile.netherTreeLeaves.name=Nether Leaves
 tile.enderTreeLeaves.name=Ender Leaves
 tile.enderPlanks.name=Ender Wood Planks
 
+#items
 item.resourcenuggetthauminite.name=Thauminite Nugget
 item.resourcethauminite.thauminite_ingot.name=Thauminite Ingot
 item.resourcethaumium_wand_core.name=Thaumium Wand Core
@@ -166,6 +169,7 @@ item.herobrinesScythe.name=Scythe Of The White-Eyed One
 item.tb.voidShears.name=Void Shears
 item.tb.voidFAS.name=Void Flint and Steel
 
+#Researchs
 tc.research_name.TB.CRUCIBLE=Basic Alchemy
 tc.research_text.TB.CRUCIBLE=Bubble and Boil
 tc.research_name.TB.AdvancedEntropy=Advanced Entropy Manufacturing
@@ -354,7 +358,6 @@ tb.rec.nodeMan.page.0=You have discovered a way to support nodes by using stabil
 tb.rec.nodeMan.page.1=Well, so far nothing really happened. Nothing came to stop you. Nothing killed you, nothing corrupted your mind - nothing! You do not understand the others not going this way. You have discovered a way to create the device that will combine the power of the Stabilizer to make the node stand and the ability of the Tranducer to move node fibres, tearing it apart. Well, it is not that simple - you also need to constantly move Vis back and forth - some mirrors are required, and some flux formes, which is critical, so Flux scrubbers must be used too. And, for this construction to be stable some Salis Mundus is alse required. And here it is - the device, that can manipulate the node itself!
 tb.rec.nodeMan.page.2=It is not really that simple, actually. Your device can only work with regular nodes, energized are too powerfull to work with. It also can only operate with the node from the top due to Vis flowing downwards, so it is impossible to have both the tranducer and this device. It also turned out very... mundane. It is unable to operate with the node at all, as you though it would. It has the ability to do so, but the fibres of the node are not that simple to move - a Foci is required, and you do not know how to make one. You've tried regular wand focis - not much luck, just a bunch of angry wisps. However, the focis must work the same way - harnessing the raw power of the device to work with the node. 
 tb.rec.nodeMan.page.3=The device itself is pretty stable, and, in fact, it does not require anything to work, which is comical due to the power of the device. The focis, should you obtain one must be simply placed in the bottom of the device, harnessing the raw power. Just click the device with the foci to put it in. Click with an empty hand to remove the foci. Click with another foci to swap between to - it is even possible to actually save the progress that way! It may require more or less time based on the action it is doing too!
-
 tc.research_name.TB.NodeFoci.Speed=Manipulator Foci: Speed
 tc.research_text.TB.NodeFoci.Speed=Restoration is a key to success
 tb.rec.foci.speed.page.0=Speed foci increases the speed at which node restores it's aspects 5 times. It may be hard for a thaumaturge to see this in action, but should he use his wand, or any of his vis using devices it will become obvious.
@@ -385,7 +388,6 @@ tb.rec.foci.stability.page.0=Stability foci will make the Manipulator slowly res
 tc.research_name.TB.NodeFoci.Taint=Manipulator Foci: Taint
 tc.research_text.TB.NodeFoci.Taint=Why make everything worse?
 tb.rec.foci.taint.page.0=Taint foci will make the Manipulator slowly turn the node into a Tainted Node. Will only work with Normal nodes. Takes 6 minutes to finish. Note, that the node will not recieve aspects that tainted nodes usually have in them, but will still turn the biome around to Tainted Lands.
-
 tc.research_name.TB.Enchantments=New Enchantments!
 tc.research_text.TB.Enchantments=Magic reborn!
 tb.rec.enchantments.page.0=Any thaumaturge may have already came across some new formation of magic on their tools, should they use their own life energy to infuse them. Those new enchantments can provide the thaumaturge with things they desire.
@@ -395,6 +397,7 @@ tb.rec.enchantments.page.3=Weapons, enchanted with Magic Touched will provide th
 tb.rec.enchantments.page.4=Weapons, enchanted with Vaporising enchantment will have a chance to provide the thaumaturge using them with some crystallized life essentia of creatures he slays.
 tb.rec.enchantments.page.5=Weapons, infused with Taint will deal additional tainted damage upon hit. They will also apply Taint Poison to their target. They will be weaker against tainted creatures. To infuse a weapon with taint a thaumaturge should drop the weapon into a center of a tainted node and wait for the node to radiate the weapon with taint. Level of the enchantment is completely random, and can get up to 3.
 
+#1.1 researches
 tc.research_name.TB.EntityDecAdv=Entity Deconstructor Improvements
 tc.research_text.TB.EntityDecAdv=Even better decomposing!
 tb.rec.eDeca.page.0=You have managed to advance in your researches of the entity deconstruction. You have discovered, that the basic deconstructor is way too unstable and chaotic to use. It will occasionally destroy the knowledge, bringing only warp back. You have found a way to fight that. You have discovered, that you can insert Crystal Blocks into the deconstructor by simply clicking the device with those blocks in your hand. It will then get stabilized by the crystals. All primal aspects can be used.
@@ -423,6 +426,7 @@ tc.research_name.TB.PeacefulSapling=Peaceful Tree
 tc.research_text.TB.PeacefulSapling=More life
 tb.rec.peacefulTree.page.0=You have noticed that the animals of all kind are attracted to the light. You have also noticed that they can appear in different places out of nowhere. You have studied that effect, and have managed to create a tree that will attract animals of all kind towards itself. The animals, corresponding to the biome the tree grows in will randomly appear beneath it's leaves. You should however keep control over the population, since animals will come endlessly!
 
+#Research from TC4
 tc.research_name.TB.INFUSIONENCHANTMENT=Infusion Enchantment
 tc.research_text.TB.INFUSIONENCHANTMENT=Enchanting with Essentia
 tc.research_name.TB.THAUMIUM=Magical Metallurgy
@@ -454,6 +458,7 @@ tc.research_text.TB.PRIMPEARL=What came before
 tc.research_name.TB.LEVITATOR=Arcane Levitator
 tc.research_text.TB.LEVITATOR=Next best thing to flying
 
+#Enchantment researches
 tc.research_name.TB.ElderKnowledge=Elder Knowledge
 tc.research_text.TB.ElderKnowledge=Knowledge of the old ones
 tc.research_name.TB.EldritchBane=Eldritch Bane
@@ -465,12 +470,14 @@ tc.research_text.TB.Vaporising=Portable Crystalliser
 tc.research_name.TB.Tainted=Tainted
 tc.research_text.TB.Tainted=Blight on thee lands!
 
+#Messages
 tb.txt.knoseFragment=Right-click to gain knowledge
 tb.txt.howlBelow=Something howls in the depths of the world...
 tb.txt.howlDeeper=You hear a howl from below the bedrock, you might want to go deeper...
 tb.txt.taintDevelop=What was that? You need to remember what just happened!
 tb.txt.spawnSet=Spawn point set!
 
+#Foci enchantments
 tb.foci.aquatic.name=Aquatic
 tb.foci.aquatic.desc=Water might get crystallized into essentia upon draining
 tb.foci.netheric.name=Netheric
@@ -485,3 +492,91 @@ tb.foci.crystalization.name=Crystallization
 tb.foci.crystalization.desc=Flux blocks can drop Potentia essence. On level II drops random essence
 tb.foci.calming.name=Calming
 tb.foci.calming.desc=Negates the Warping effect. Removed flux blocks can remove temporary and regular warp from the remover
+
+#1.2
+
+#Blocks
+tile.nodeLinker.name=Node Linking Device
+
+#Items
+item.tb.revolver.name=Thaumaturge's Revolver
+
+#Enchantments for the revolver
+revolverUpgrade.ACCURACY.name=Accuracy
+revolverUpgrade.POWER.name=Power
+revolverUpgrade.SILVER.name=Silver
+revolverUpgrade.POISONED.name=Poisoned
+revolverUpgrade.BANE_OF_ATROPODS.name=Bane of Atropods
+revolverUpgrade.BANE_OF_ELDRITCH.name=Bane of Eldritch
+revolverUpgrade.PIERCING.name=Piercing
+revolverUpgrade.DUELING.name=Dueling
+revolverUpgrade.TAINTED.name=Tainted
+revolverUpgrade.PRIMAL.name=Primal
+revolverUpgrade.SPEED.name=Speed
+revolverUpgrade.EFFICIENCY.name=Efficiency
+revolverUpgrade.ELDRITCH.name=Eldritch
+revolverUpgrade.VOID.name=Void
+revolverUpgrade.KNOWLEDGE.name=Knowledge
+revolverUpgrade.HEAVY.name=Heavy
+
+#Researches
+tc.research_name.TB.Revolver=Thaumaturge's Arsenal
+tc.research_text.TB.Revolver=Sir, it is time to hunt!
+tb.rec.revolver.page.0=Thaumic weapons are good. Especially those where you do not have to get close to your enemies. Thaumaturgy however does not seem to offer much of those. Sure, there is a bow of bone, but... it is a bow. Even though it is enhanced with magic it still requires the wielder to pull the string. One might say - there are wand focis! Sure there are, and they are all great... But are they really weapons? They are put on top of wands and they use the enerhy of the wand. Well what if the Thaumaturge prefers his scepters over wands? He... needs to craft another wand, just for those foci? Really? Some foci are also known for not working under certain conditions... Better to say in certain places...
+tb.rec.revolver.page.1=You have been engineering for a while now - this is what you have came with. A pretty strange contraption that is not all that big and is comfort to hold in hand. You have named your contraption "The Revolver". No, you have no idea why.<BR>The device is able to shoot very small yet extremely fast projectiles which deal devastating damage to anything they come in contact with. Due to your weapon having a magical nature those projectiles are also magical - they are created out of raw Telum essentia, stored in a jar inside of the revolver. One point of aspect is enough for just two shots. To open the revolver sneak and left-click anywhere. Sneaking also allows you to aim more precise. Right-click to shoot of course, that should be obvious.
+tb.rec.revolver.page.2=The revolver is also much more potent than it looks - you are sure, that there are TONS of ways to improve it's construction by performing further infusions over it. You still need to discover them though. Some of the improvements might conflict with eachother and therefore can't be installed together. It is also worth noticing that most improvements can be applied over and over again, but the stability of the infusion will suffer great penalties for each new level. The aspect cost will also increase for each level of improvement by the amount it originally cost.
+tc.research_name.TB.NodeLinker=Node Linking
+tc.research_text.TB.NodeLinker=From one source to another!
+tb.rec.nodeLink.page.0=Nodes. The things that link your world to the world of magic. They are heavily used in thaumaturgy - some devices use them to function, you need them to recharge your wands. However there is a small problem - a node can always store that much of vis and if it has, for example, no terra it it - this is it, it has no terra, and that aspect can't be gained from the node. There sure is a so called 'node bullying' - one node eating other, smaller nodes. With the discovery of the Advanced node stabilizer that can be worked with, but it takes a ridiculous amount of time and also is unreliable.
+tb.rec.nodeLink.page.1=You have discovered a device that might get the job done. The node Linking Device creates a mysterious link between 2 nodes and will move aspects from the linked one to the linker. You need 2 of this devices placed on top of nodes. Then just take your wand and right click on the reciever. After that click on the transmitter - and the link will be estabilished. The link will firstly drain all aspects out of the transmitting node's pull, then it will draw the node's capacity and will increase the reciever's capacity based on that. Lastly the node without any capacity left will fade away. The chance of the reciever node to increase it's aspect capacity is around 70% for each capacity decrease on the transmitting node.
+tb.rec.nodeLink.page.2=The transmission however is pretty unstable - both nodes will react to the link. This will result in a so called instability. The more time the device functions - the more instability it will have. Based on the amount of instability different things may happen - from the aspects escaping out of nodes on both ends into air in form of flux, to the complete transmitting node destruction with the explosion. The recieving node however will never get harmed in any way.
+
+tc.research_name.TB.Revolver.Accuracy=Revolver Upgrade: Accuracy
+tc.research_text.TB.Revolver.Accuracy=Sniping from miles away
+tb.rec.revolver.acc.page.0=You have found a way to give your revolver more sniping potential. With this upgrade your eyes will become more focused on the target while you are aming, allowing you to aim more precise.<BR>Max Level: §6§l3 §r§0<BR>Conflicts with: §nSpeed§r, §0§nEfficiency§r
+tc.research_name.TB.Revolver.Atropods=Revolver Upgrade: Bane Of Atropods
+tc.research_text.TB.Revolver.Atropods=Pached with neurotoxins
+tb.rec.revolver.atr.page.0=You have found a way to improve your revolver against spiders and silverfish. This upgrade will make the revolver much more effective against those creatures, and will not affect the effectiveness against others.<BR>Max Level: §6§l 5 §r§0<BR>Conflicts with: §nPower§r, §0§nSilver§r, §0§nBane Of Eldritch§r, §0§nDueling§r, §0§nEldritch§r
+tc.research_name.TB.Revolver.EldritchBane=Revolver Upgrade: Bane Of Eldritch
+tc.research_text.TB.Revolver.EldritchBane=Eldritch creatures outlawed
+tb.rec.revolver.elb.page.0=You have found a way to improve your revolver against eldritch creatures. This upgrade will make the revolver much more effective against those creatures, and will not affect the effectiveness against others.<BR>Max Level: §6§l 5 §r§0<BR>Conflicts with: §nPower§r, §0§nSilver§r, §0§nBane Of Atropods§r, §0§nDueling§r, §0§nEldritch§r
+tc.research_name.TB.Revolver.Dueling=Revolver Upgrade: Dueling
+tc.research_text.TB.Revolver.Dueling=Sir, I duel you!
+tb.rec.revolver.duel.page.0=Sometimes the simple words are not enough, and a Thaumaurge needs to physically prove himself. Prior to the revolver discovery that could only be done via mundane swords and bows. Now a Thaumaturge and his offender can resolve their issue like two gentlemen - with their guns! This upgrade will make the revolver much more potent against other players, and will not affect the effectiveness against others.<BR>Max Level: §6§l 5 §r§0<BR>Conflicts with: §nPower§r, §0§nSilver§r, §0§nBane Of Atropods§r, §0§nBane Of Eldritch§r, §0§nEldritch§r
+tc.research_name.TB.Revolver.Efficiency=Revolver Upgrade: Efficiency
+tc.research_text.TB.Revolver.Efficiency=Waste nothing, multiply existing
+tb.rec.revolver.eff.page.0=You have found a way to decrease the Telum consumption of the revolver. Each level of this upgrade will decrease the consumption by 1 unit of essentia.<BR>Max Level: §6§l5 §r§0<BR>Conflicts with: §nSpeed§r, §0§nAccuracy§r
+tc.research_name.TB.Revolver.Eldritch=Revolver Upgrade: Eldritch
+tc.research_text.TB.Revolver.Eldritch=Speaks the words backwards!
+tb.rec.revolver.eld.page.0=Imbuing the revolver with the energy of the eldrich certainly does something... You have discovered what exactly.  This upgrade will make the revolver much more potent against very strong creatures, aka bosses, but will decrease the effectiveness against others.<BR>Max Level: §6§l 2 §r§0<BR>Conflicts with: §nPower§r, §0§nSilver§r, §0§nBane Of Atropods§r, §0§nBane Of Eldritch§r, §0§nDueling§r
+tc.research_name.TB.Revolver.Heavy=Revolver Upgrade: Heavy
+tc.research_text.TB.Revolver.Heavy=Melee is still an option
+tb.rec.revolver.hev.page.0=Sometimes a thaumaturge is just out of essentia that the revolver uses... But everything is not lost, the revolver itself is a decent melee weapon! Sure there can be an improvement... Each level of this upgrade will increase the damage the revolver does in melee by 2.<BR>Max Level: §6§l5 §r§0<BR>Conflicts with: §nNone§r
+tc.research_name.TB.Revolver.Knowledge=Revolver Upgrade: Knowledge
+tc.research_text.TB.Revolver.Knowledge=Drain their bra... Knowledge.
+tb.rec.revolver.kno.page.0=You have found a way to mentaly bind the bullets to your mind. The result is interesing - every slain creature might give you a sudden inspiration, or simply a knowledge point. No risk of warping your mind exists. <BR>Max Level: §6§l 5 §r§0<BR>Conflicts with: §nPrimal§r, §0§nTainted§r
+tc.research_name.TB.Revolver.Piercing=Revolver Upgrade: Piercing
+tc.research_text.TB.Revolver.Piercing=.65 caliber!
+tb.rec.revolver.pir.page.0=You have found a way to make your revolver much more devastating. This upgrade will make the bullets pierce through anyone they strike, dealing more damage than usual and continuing on traveling forward.<BR>Max Level: §6§l1 §r§0<BR>Conflicts with: §nNone§r
+tc.research_name.TB.Revolver.Power=Revolver Upgrade: Power
+tc.research_text.TB.Revolver.Power=More gunpowder to the damn thing!
+tb.rec.revolver.pow.page.0=You have discovered a way to improve the potency of your revolver. This upgrade will increase the damage the revolver does to any creatue. No exceptions. However the damage increase is worse, than with the creature-specific upgrades.<BR>Max Level: §6§l 5 §r§0<BR>Conflicts with: §nEldritch§r, §0§nSilver§r, §0§nBane Of Atropods§r, §0§nBane Of Eldritch§r, §0§nDueling§r
+tc.research_name.TB.Revolver.Primal=Revolver Upgrade: Primal
+tc.research_text.TB.Revolver.Primal=What lies beyond the lightspeed...
+tb.rec.revolver.primal.page.0=The primal energies pulse... What if you would imbue the revolver with them? The results are... interesting. Your revolver seems to have become a 'hit-scan' rather than 'shoot' type of weapon - it means that the bullets travel to their targets §oinstantly§r§0. The bullets have also gained the ability to pierce walls. They also are much more dangerous now. However the cost for using the revolver is also now much higher - 2 essentia per shot!<BR>Max Level: §6§l 1 §r§0<BR>Conflicts with: §nKnowledge§r, §0§nTainted§r
+tc.research_name.TB.Revolver.Silver=Revolver Upgrade: Silver
+tc.research_text.TB.Revolver.Silver=Just a casual werewolf killer.
+tb.rec.revolver.sil.page.0=You have discovered a way to improve the potency of your weapon against unholy creatures. This upgrade will make the revolver much more potent against undead creatures, demons and werewolves, and will not decrease the effectiveness against others.<BR>Max Level: §6§l 5 §r§0<BR>Conflicts with: §nPower§r, §0§nEldritch§r, §0§nBane Of Atropods§r, §0§nBane Of Eldritch§r, §0§nDueling§r
+tc.research_name.TB.Revolver.Speed=Revolver Upgrade: Speed
+tc.research_text.TB.Revolver.Speed=It shoots 10 000 bullets per minute!
+tb.rec.revolver.spe.page.0=You have found a way to increase the speed at which your bullets travel. Each level of this upgrade will increase the speed of the bullets by... some amount, how can you tell? You clearly do not have any device or whatever to measure such fast movement!.<BR>Max Level: §6§l5 §r§0<BR>Conflicts with: §nEfficiency§r, §0§nAccuracy§r
+tc.research_name.TB.Revolver.Tainted=Revolver Upgrade: Tainted
+tc.research_text.TB.Revolver.Tainted=It's ALIVE! Kinda.
+tb.rec.revolver.tai.page.0=Imbuing your weapon with taint might not be that good of an idea, but you've tried anyways. Anyway, here are the results - this upgrade will increase the raw damage of the revolver against every creature, except for the tainted ones - for them the damage will be decreased! The bullets also will have a chance to inflict the victim with Taint Poison!<BR>Max Level: §6§l 3 §r§0<BR>Conflicts with: §nPrimal§r, §0§nKnowledge§r
+tc.research_name.TB.Revolver.Void=Revolver Upgrade: Void
+tc.research_text.TB.Revolver.Void=Merging with the bullets
+tb.rec.revolver.void.page.0=Infusing the revolver with some void metal gives the gun the primal ability of the void metal - self-repairing. Warning - seeing the gun metal changing shape due to the void metal might not be a pleasant experience and may cause hallucinations and nightmares!<BR>Max Level: §6§l 3 §r§0<BR>Conflicts with: §nNone§r
+
+#Chat notifications
+tb.txt.linkStarted=Link Started
+tb.txt.linkEstabilished=Link Estabilished

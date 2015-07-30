@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import net.minecraftforge.common.MinecraftForge;
 import DummyCore.Core.Core;
+import tb.api.RevolverUpgrade;
 import tb.common.enchantment.EnchantmentHandler;
+import tb.common.entity.EntityRevolverBullet;
 import tb.common.event.TBEventHandler;
 import tb.init.TBBlocks;
 import tb.init.TBEnchant;
@@ -14,6 +16,8 @@ import tb.init.TBItems;
 import tb.init.TBRecipes;
 import tb.init.TBThaumonomicon;
 import tb.init.TBTiles;
+import tb.network.proxy.PacketTB;
+import tb.network.proxy.TBNetworkManager;
 import tb.network.proxy.TBServer;
 import tb.utils.TBConfig;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -25,13 +29,16 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.relauncher.Side;
 import static tb.core.TBCore.*;
 
 @Mod(modid = modid, version = version, name = name,dependencies=dependencies)
 public class TBCore {
 
 	public static final String modid = "thaumicbases";
-	public static final String version = "1.1.1710.15";
+	public static final String version = "1.2.1710.3";
 	public static final String name = "Thaumic Bases";
 	public static final String serverProxy = "tb.network.proxy.TBServer";
 	public static final String clientProxy = "tb.network.proxy.TBClient";
@@ -41,6 +48,7 @@ public class TBCore {
 	
 	@SidedProxy(serverSide = serverProxy,clientSide = clientProxy)
 	public static TBServer proxy;
+	public static SimpleNetworkWrapper network;
 	
 	public static TBCore instance;
 	
@@ -70,8 +78,16 @@ public class TBCore {
 		MinecraftForge.EVENT_BUS.register(new EnchantmentHandler());
 		MinecraftForge.EVENT_BUS.register(new TBEventHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
+		
+		EntityRegistry.registerModEntity(EntityRevolverBullet.class, "revolverBullet", 0, this, 32, 1, true);
+		
 		TBFociUpgrades.init();
 		proxy.registerRenderInformation();
+		RevolverUpgrade.initConflictingMappings();
+		
+		network = NetworkRegistry.INSTANCE.newSimpleChannel("thaumbases");
+		network.registerMessage(TBNetworkManager.class, PacketTB.class, 0, Side.SERVER);
+		network.registerMessage(TBNetworkManager.class, PacketTB.class, 0, Side.CLIENT);
 	}
 	
 	@EventHandler
