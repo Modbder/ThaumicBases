@@ -14,7 +14,7 @@ public class ItemBlockTBLogs extends ItemBlock{
 	
     public String getUnlocalizedName(ItemStack stk)
     {
-    	return "tile."+BlockTBLog.names[stk.getItemDamage()%4];
+    	return "tile."+BlockTBLog.names[Math.max(BlockTBLog.names.length,stk.getItemDamage()%4)];
     }
     
     public int getMetadata(int meta)
