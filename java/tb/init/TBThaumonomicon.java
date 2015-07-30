@@ -764,7 +764,7 @@ public class TBThaumonomicon {
 			new ItemStack(ConfigItems.itemResource,1,14),
 		});
 		
-		ItemStack silver = OreDictionary.doesOreNameExist("ingotSilver") ? OreDictionary.getOres("ingotSilver").get(0) : new ItemStack(ConfigItems.itemResource,1,15);
+		ItemStack silver = OreDictionary.doesOreNameExist("ingotSilver") && OreDictionary.getOres("ingotSilver") != null && OreDictionary.getOres("ingotSilver").size() > 0? OreDictionary.getOres("ingotSilver").get(0) : new ItemStack(ConfigItems.itemResource,1,15);
 		
 		RevolverInfusionRecipe silverRec = new RevolverInfusionRecipe("TB.Revolver.Silver", RevolverUpgrade.silver, 0, new AspectList().add(Aspect.DEATH, 8).add(Aspect.BEAST, 8).add(Aspect.UNDEAD, 8), new ItemStack[]{
 			new ItemStack(ConfigItems.itemResource,1,14),
