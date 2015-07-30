@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import cpw.mods.fml.common.FMLLog;
@@ -34,6 +35,11 @@ public class RevolverUpgrade {
 	public final int id;
 	public final String text_id;
 	public int instability;
+	
+	public static final ResourceLocation eldritchTextures = new ResourceLocation("thaumicbases","textures/items/revolver/revolverDarkMetalEldritch.png");
+	public static final ResourceLocation primalTextures = new ResourceLocation("thaumicbases","textures/items/revolver/revolverGunPrimalUV.png");
+	public static final ResourceLocation taintedTextures = new ResourceLocation("thaumicbases","textures/items/revolver/revolverGunTaintedUV.png");
+	public static final ResourceLocation voidTextures = new ResourceLocation("thaumicbases","textures/items/revolver/revolverHandleVoidUV.png");
 	
 	public final ArrayList<RevolverUpgrade> conflicts = new ArrayList<RevolverUpgrade>();
 	
@@ -270,6 +276,30 @@ public class RevolverUpgrade {
 		if(this == speed)
 			return (float)origSpeed*Math.pow(1.09F, modLevel);
 		return origSpeed;
+	}
+	
+	/**
+	 * Used for rendering to override the texture for a specific part of the weapon. If 2 or more upgrades override the same part texture the latest in the list will get rendered.
+	 * @param revolver the revolver
+	 * @param part The actual part.<BR>0 = Handle<BR>1 = Cylinder<BR>2 = generic metal texture<BR>3 = Barrel<BR>4 = Trigger
+	 * @param level The level of this upgrade
+	 * @return null if the texture is not overriden, your texture otherwise.
+	 */
+	public ResourceLocation getOverridePartTexture(ItemStack revolver, int part, int level)
+	{
+		if(this == eldritch && part == 2) 
+			return eldritchTextures;
+		
+		if(this == primal && part == 3) 
+			return primalTextures;
+		
+		if(this == tainted && part == 3) 
+			return taintedTextures;
+		
+		if(this == uvoid && part == 0) 
+			return voidTextures;
+		
+		return null;
 	}
 	
 	public boolean isBMEntity(EntityLivingBase base)
