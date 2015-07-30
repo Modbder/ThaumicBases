@@ -1,0 +1,5 @@
+{
+    "revolver.shot": {"category": "master","sounds":[{"name": "revolver_shot","stream": false}]},
+	"revolver.click": {"category": "master","sounds":[{"name": "revolver_no_ammo","stream": false}]},
+	"revolver.reload": {"category": "master","sounds":[{"name": "revolver_reload","stream": false}]}
+}
