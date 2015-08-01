@@ -17,7 +17,7 @@ public class ItemBlockTBSapling extends ItemBlock{
 	
     public String getUnlocalizedName(ItemStack stk)
     {
-    	return "tile."+BlockTBSapling.names[stk.getItemDamage()%8];
+    	return "tile."+BlockTBSapling.names[Math.min(BlockTBSapling.names.length,stk.getItemDamage()%8)];
     }
     
     public int getMetadata(int meta)

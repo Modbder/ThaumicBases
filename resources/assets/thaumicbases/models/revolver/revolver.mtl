@@ -2,71 +2,71 @@
 # Material Count: 7
 
 newmtl Material.001
-Ns 92.156863
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.512000 0.512000 0.512000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /home/modbder/revolverHandleUV.png
+map_Kd revolverHandleUV.png
 
 newmtl Material.003
-Ns 92.156863
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.512000 0.512000 0.512000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /home/modbder/revolverDarkMetal.png
+map_Kd revolverBarrelUV.png
+
+newmtl Material.003_revolverDarkMetal.png
+Ns 90.196078
+Ka 0.000000 0.000000 0.000000
+Kd 0.409600 0.409600 0.409600
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd revolverDarkMetal.png
 
 newmtl Material.004
-Ns 92.156863
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.512000 0.512000 0.512000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /home/modbder/revolverDarkMetal.png
+map_Kd revolverDarkMetal.png
 
 newmtl Material.005
-Ns 92.156863
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.512000 0.512000 0.512000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /home/modbder/revolverDarkMetal.png
+map_Kd revolverDarkMetal.png
 
 newmtl Material.006
-Ns 92.156863
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.512000 0.512000 0.512000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /home/modbder/revolverGunUV.png
+map_Kd revolverGunUV.png
 
 newmtl Material.008
-Ns 92.156863
+Ns 90.196078
 Ka 0.000000 0.000000 0.000000
-Kd 0.512000 0.512000 0.512000
+Kd 0.409600 0.409600 0.409600
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /home/modbder/revolverPressUV.png
-
-newmtl Material.009
-Ns 96.078431
-Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd /home/modbder/revolverBarrelUV.png
+map_Kd revolverPressUV.png

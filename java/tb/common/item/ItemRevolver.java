@@ -131,7 +131,9 @@ public class ItemRevolver extends Item implements IRepairable,IWarpingGear
 			if(stk == null || stk.getItemDamage() > stk.getMaxDamage())
 				return null;
 			
-			TBNetworkManager.playSoundOnServer(w, "fireworks.blast_far", user.posX, user.posY, user.posZ, 3, 0.1F);
+			TBNetworkManager.playSoundOnServer(w, "thaumicbases:revolver.shot", user.posX, user.posY, user.posZ, 3, 1F);
+			
+			stk.getTagCompound().setDouble("barrelRotation", stk.getTagCompound().getDouble("barrelRotation")+45);
 			
 			stk.getTagCompound().setInteger("shots", stk.getTagCompound().getInteger("shots")-1);
 		}
@@ -142,7 +144,12 @@ public class ItemRevolver extends Item implements IRepairable,IWarpingGear
 				ItemStack jar = ItemStack.loadItemStackFromNBT(stk.stackTagCompound.getCompoundTag("jar"));
 				
 				if(jar == null)
+				{
+					TBNetworkManager.playSoundOnServer(w, "thaumicbases:revolver.click", user.posX, user.posY, user.posZ, 3, 2F);
+					stk.getTagCompound().setDouble("barrelRotation", stk.getTagCompound().getDouble("barrelRotation")+45);
+					
 					return super.onItemRightClick(stk, w, user);
+				}
 				
 				ArrayList<Pair<RevolverUpgrade,Integer>> upgrades = getAllUpgradesFor(stk);
 				boolean hasPrimal = false;
@@ -187,7 +194,7 @@ public class ItemRevolver extends Item implements IRepairable,IWarpingGear
 				if(addShots)
 				{
 					stk.getTagCompound().setInteger("shots", addedShots);
-					TBNetworkManager.playSoundOnServer(w, "thaumcraft:runicShieldCharge", user.posX, user.posY, user.posZ, 3, 1F);
+					TBNetworkManager.playSoundOnServer(w, "thaumicbases:revolver.reload", user.posX, user.posY, user.posZ, 3, 2F);
 				}
 				
 				if(aspects.visSize() > 0)
@@ -203,6 +210,9 @@ public class ItemRevolver extends Item implements IRepairable,IWarpingGear
 					emptyJar.writeToNBT(tag);
 					stk.setTagInfo("jar", tag);
 				}
+			}else
+			{
+				TBNetworkManager.playSoundOnServer(w, "thaumicbases:revolver.click", user.posX, user.posY, user.posZ, 3, 2F);
 			}
 		}
 		return super.onItemRightClick(stk, w, user);
@@ -283,6 +293,27 @@ public class ItemRevolver extends Item implements IRepairable,IWarpingGear
 		if(u > 0)
 			if ((stk.isItemDamaged()) && (entity != null) && (entity.ticksExisted % 100/u == 0) && ((entity instanceof EntityLivingBase)))
 				stk.damageItem(-1, (EntityLivingBase)entity);
+		
+		if(stk.getTagCompound() != null)
+		{
+			double rotation = stk.getTagCompound().getDouble("barrelRotation");
+			double renderedRotation = stk.getTagCompound().getDouble("renderedRotation");
+			
+			if(rotation >= 3600000)
+				rotation -= 3600000;
+			
+			if(renderedRotation >= 3600000)
+				renderedRotation -= 3600000;
+			
+			if(renderedRotation < rotation)
+				renderedRotation += 10;
+			
+			renderedRotation = Math.min(rotation, renderedRotation);
+			
+			stk.getTagCompound().setDouble("barrelRotation", rotation);
+			stk.getTagCompound().setDouble("renderedRotation", renderedRotation);
+			
+		}
 	}
     
 	@Override
