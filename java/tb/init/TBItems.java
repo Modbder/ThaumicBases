@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import tb.common.item.ItemBloodyArmor;
+import tb.common.item.ItemCastingBracelet;
 import tb.common.item.ItemConcentratedTaint;
 import tb.common.item.ItemHerobrinesScythe;
 import tb.common.item.ItemKnoseFragment;
@@ -101,6 +102,7 @@ public class TBItems {
 		ItemRegistry.registerItem(voidFAS, "voidFAS",core);
 		
 		ItemRegistry.registerItem(revolver, "revolver",core);
+		ItemRegistry.registerItem(castingBracelet, "castingBracelet",core);
 		
 		OreDictionary.registerOre("ingotThauminite", new ItemStack(resource,1,1));
 		
@@ -167,6 +169,7 @@ public class TBItems {
 	public static Item voidFAS = new ItemVoidFlintAndSteel().setTextureName("thaumicbases:flint_and_steel").setUnlocalizedName("tb.voidFAS").setFull3D().setMaxDamage(184).setFull3D().setMaxStackSize(1);
 	
 	public static Item revolver = new ItemRevolver().setMaxDamage(1561).setMaxStackSize(1).setFull3D().setUnlocalizedName("tb.revolver");
+	public static Item castingBracelet = new ItemCastingBracelet().setUnlocalizedName("tb.bracelet");
 	
 	public static WandCap WAND_CAP_THAUMINITE;
 	
