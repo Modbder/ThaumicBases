@@ -193,7 +193,7 @@ public class ItemRevolver extends Item implements IRepairable,IWarpingGear
 				
 				if(addShots)
 				{
-					stk.getTagCompound().setInteger("shots", addedShots);
+					stk.getTagCompound().setInteger("shots", addedShots < 0 ? 1 : addedShots);
 					TBNetworkManager.playSoundOnServer(w, "thaumicbases:revolver.reload", user.posX, user.posY, user.posZ, 3, 2F);
 				}
 				
