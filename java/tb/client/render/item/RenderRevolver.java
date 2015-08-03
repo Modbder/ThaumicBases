@@ -55,7 +55,7 @@ public class RenderRevolver implements IItemRenderer
 			{
 				GL11.glScaled(0.4D, 0.4D, 0.4D);
 				GL11.glRotated(-45, 0, 1, 0);
-				GL11.glTranslated(3, 0, 1);
+				GL11.glTranslated(4, -1, 1);
 			}
 		}
 		
