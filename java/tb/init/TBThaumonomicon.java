@@ -74,6 +74,7 @@ public class TBThaumonomicon {
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.sapling,1,1), new int[]{1,9}, new AspectList().add(Aspect.PLANT, 3).add(Aspect.LIFE, 1));
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.sapling,1,2), new int[]{2,10}, new AspectList().add(Aspect.PLANT, 3).add(nether, 1));
 		ThaumcraftApi.registerObjectTag(new ItemStack(TBBlocks.sapling,1,3), new int[]{3,11}, new AspectList().add(Aspect.PLANT, 3).add(Aspect.ELDRITCH, 1));
+		ThaumcraftApi.registerObjectTag(new ItemStack(TBItems.fociExperience,1,0), new AspectList().add(Aspect.METAL, 24).add(Aspect.GREED, 17).add(Aspect.CRYSTAL, 12).add(Aspect.EARTH, 7).add(Aspect.VOID, 5).add(Aspect.HUNGER, 5));
 		
 		ResearchCategories.registerCategory(catName, icon, back);
 			
@@ -807,11 +808,138 @@ public class TBThaumonomicon {
 			'N',new ItemStack(ConfigItems.itemResource,1,0)
 		});
 		
+		ShapedArcaneRecipe campfireRec = new ShapedArcaneRecipe("TB.Campfire",new ItemStack(TBBlocks.campfire),new AspectList().add(Aspect.FIRE, 5).add(Aspect.ENTROPY, 3),new Object[]{
+			"SSS",
+			"COC",
+			"GGG",
+			'S',"stickWood",
+			'C',"cobblestone",
+			'O',new ItemStack(Items.coal,1,OreDictionary.WILDCARD_VALUE),
+			'G',Blocks.gravel
+		});
+		
+		ShapedArcaneRecipe brazierRec = new ShapedArcaneRecipe("TB.Brazier",new ItemStack(TBBlocks.braizer),new AspectList().add(Aspect.FIRE, 5).add(Aspect.ENTROPY, 3),new Object[]{
+			"SCS",
+			" V ",
+			"SSS",
+			'S',new ItemStack(ConfigBlocks.blockSlabStone,1,0),
+			'C',new ItemStack(Items.coal,1,OreDictionary.WILDCARD_VALUE),
+			'V',new ItemStack(ConfigBlocks.blockCosmeticSolid,1,6)
+		});
+		
+		ShapedArcaneRecipe ironBraceletRec = new ShapedArcaneRecipe("TB.Bracelet.Iron",new ItemStack(TBItems.castingBracelet,1,0),primals(1),new Object[]{
+			"CIC",
+			"N N",
+			'C',new ItemStack(ConfigItems.itemWandCap,1,0),
+			'I',"ingotIron",
+			'N',"nuggetIron"
+		});
+		
+		ShapedArcaneRecipe goldBraceletRec = new ShapedArcaneRecipe("TB.Bracelet.Gold",new ItemStack(TBItems.castingBracelet,1,1),primals(5),new Object[]{
+			"CIC",
+			"N N",
+			'C',new ItemStack(ConfigItems.itemWandCap,1,1),
+			'I',"ingotGold",
+			'N',"nuggetGold"
+		});
+		
+		ShapedArcaneRecipe greatwoodBraceletRec = new ShapedArcaneRecipe("TB.Bracelet.Greatwood",new ItemStack(TBItems.castingBracelet,1,2),primals(25),new Object[]{
+			"CIC",
+			"I I",
+			'C',new ItemStack(ConfigItems.itemWandCap,1,1),
+			'I',new ItemStack(ConfigBlocks.blockMagicalLog,1,0)
+		});
+		
+		ShapedArcaneRecipe thaumiumBraceletRec = new ShapedArcaneRecipe("TB.Bracelet.Thaumium",new ItemStack(TBItems.castingBracelet,1,3),primals(25),new Object[]{
+			"CIC",
+			"INI",
+			"N N",
+			'C',new ItemStack(TBItems.resource,1,2),
+			'I',new ItemStack(ConfigItems.itemResource,1,2),
+			'N',new ItemStack(ConfigItems.itemResource,1,14)
+		});
+		
+		InfusionRecipe silverwoodBraceletRec = new InfusionRecipe("TB.Bracelet.Silverwood",new ItemStack(TBItems.castingBracelet,1,4),5,primals(17).add(Aspect.MAGIC, 17),new ItemStack(ConfigItems.itemWandRod,1,2),new ItemStack[]{
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,6),
+			new ItemStack(ConfigBlocks.blockMagicalLog,1,1),
+			new ItemStack(ConfigBlocks.blockCrystal,1,6),
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,6),
+			new ItemStack(ConfigBlocks.blockMagicalLog,1,1),
+			new ItemStack(ConfigBlocks.blockCrystal,1,6)
+		});
+		
+		InfusionRecipe voidBraceletRec = new InfusionRecipe("TB.Bracelet.Void",new ItemStack(TBItems.castingBracelet,1,11),8,new AspectList().add(Aspect.ELDRITCH, 64).add(Aspect.VOID, 64).add(Aspect.MAGIC, 64).add(Aspect.AURA, 24).add(Aspect.ENERGY, 24),new ItemStack(TBItems.resource,1,4),new ItemStack[]{
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(TBBlocks.dustBlock,1,0),
+			new ItemStack(ConfigItems.itemResource,1,16),
+			new ItemStack(TBBlocks.crystalBlock,1,6),
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(TBBlocks.dustBlock,1,0),
+			new ItemStack(ConfigItems.itemResource,1,16),
+			new ItemStack(TBBlocks.crystalBlock,1,6)
+		});
+		
+		InfusionRecipe reedBraceletRec = new InfusionRecipe("TB.Bracelet.Reed",new ItemStack(TBItems.castingBracelet,1,5),2,new AspectList().add(Aspect.AIR, 24).add(Aspect.MOTION, 12).add(Aspect.MAGIC,8),new ItemStack(ConfigItems.itemWandRod,1,5),new ItemStack[]{
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,0),
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,0)
+		});
+		
+		InfusionRecipe boneBraceletRec = new InfusionRecipe("TB.Bracelet.Bone",new ItemStack(TBItems.castingBracelet,1,6),2,new AspectList().add(Aspect.ENTROPY, 24).add(Aspect.UNDEAD, 12).add(Aspect.MAGIC,8),new ItemStack(ConfigItems.itemWandRod,1,7),new ItemStack[]{
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,5),
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,5)
+		});
+		
+		InfusionRecipe obsidianBraceletRec = new InfusionRecipe("TB.Bracelet.Obsidian",new ItemStack(TBItems.castingBracelet,1,7),2,new AspectList().add(Aspect.EARTH, 24).add(Aspect.DARKNESS, 12).add(Aspect.MAGIC,8),new ItemStack(ConfigItems.itemWandRod,1,1),new ItemStack[]{
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,3),
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,3)
+		});
+		
+		InfusionRecipe blazeBraceletRec = new InfusionRecipe("TB.Bracelet.Blaze",new ItemStack(TBItems.castingBracelet,1,8),2,new AspectList().add(Aspect.FIRE, 24).add(Aspect.BEAST, 12).add(Aspect.MAGIC,8),new ItemStack(ConfigItems.itemWandRod,1,6),new ItemStack[]{
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,1),
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,1)
+		});
+		
+		InfusionRecipe iceBraceletRec = new InfusionRecipe("TB.Bracelet.Ice",new ItemStack(TBItems.castingBracelet,1,9),2,new AspectList().add(Aspect.WATER, 24).add(Aspect.COLD, 12).add(Aspect.MAGIC,8),new ItemStack(ConfigItems.itemWandRod,1,3),new ItemStack[]{
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,2),
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,2)
+		});
+		
+		InfusionRecipe quartzBraceletRec = new InfusionRecipe("TB.Bracelet.Quartz",new ItemStack(TBItems.castingBracelet,1,10),2,new AspectList().add(Aspect.ORDER, 24).add(Aspect.ENERGY, 12).add(Aspect.MAGIC,8),new ItemStack(ConfigItems.itemWandRod,1,4),new ItemStack[]{
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,4),
+			new ItemStack(ConfigItems.itemWandCap,1,2),
+			new ItemStack(ConfigItems.itemShard,1,4)
+		});
+		
+		InfusionRecipe primalBraceletRec = new InfusionRecipe("TB.Bracelet.Primal",new ItemStack(TBItems.castingBracelet,1,12),7,primals(48).add(Aspect.MAGIC,96),new ItemStack(ConfigItems.itemResource,1,15),new ItemStack[]{
+			new ItemStack(ConfigItems.itemWandCap,1,7),
+			new ItemStack(TBItems.castingBracelet,1,5),
+			new ItemStack(TBItems.castingBracelet,1,6),
+			new ItemStack(TBItems.castingBracelet,1,7),
+			new ItemStack(ConfigItems.itemWandCap,1,7),
+			new ItemStack(TBItems.castingBracelet,1,8),
+			new ItemStack(TBItems.castingBracelet,1,9),
+			new ItemStack(TBItems.castingBracelet,1,10)
+		});
+		
 		//TODO recipes
 		
 		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.tobacco,1,1), 1);
 		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.nodeFoci,1,1), 1);
 		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.nodeFoci,1,9), 2);
+		ThaumcraftApi.addWarpToItem(new ItemStack(TBItems.castingBracelet,1,12), 3);
 		
 		ResearchCategoryList ALCHEMY = ResearchCategories.getResearchList("ALCHEMY");
 		ResearchItem crucRes = ALCHEMY.research.get("CRUCIBLE");
@@ -1657,6 +1785,148 @@ public class TBThaumonomicon {
 			new ResearchPage(nodeLinkRec)
 			).registerResearchItem();
 		
+		new ResearchItem("TB.Campfire",catName,new AspectList().add(Aspect.FIRE, 3).add(Aspect.MIND, 3).add(Aspect.ENTROPY, 3),3,6,1,new ItemStack(TBBlocks.campfire,1,0))
+		.setRound()
+		.setPages(
+			new ResearchPage("tb.rec.campfire.page.0"),
+			new ResearchPage(campfireRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Brazier",catName,new AspectList().add(Aspect.FIRE, 3).add(Aspect.MIND, 3).add(Aspect.ENTROPY, 3).add(Aspect.MAGIC, 3).add(Aspect.MOTION, 3),3,8,0,new ItemStack(TBBlocks.braizer,1,0))
+		.setParents("TB.Campfire")
+		.setSecondary()
+		.setPages(
+			new ResearchPage("tb.rec.brazier.page.0"),
+			new ResearchPage(brazierRec)
+			).registerResearchItem();
+		
+		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("CAP_gold"),"TB.CAP_gold",catName,-8,-3).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("ROD_greatwood"),"TB.ROD_greatwood",catName,-11,-3).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("ROD_silverwood"),"TB.ROD_silverwood",catName,-12,-5).setConcealed().setHidden().registerResearchItem();
+		
+		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("ROD_reed"),"TB.ROD_reed",catName,-17,-7).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("ROD_blaze"),"TB.ROD_blaze",catName,-15,-6).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("ROD_obsidian"),"TB.ROD_obsidian",catName,-16,-4).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("ROD_ice"),"TB.ROD_ice",catName,-15,-2).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("ROD_quartz"),"TB.ROD_quartz",catName,-18,0).setConcealed().setHidden().registerResearchItem();
+		copy(ResearchCategories.getResearchList("THAUMATURGY").research.get("ROD_bone"),"TB.ROD_bone",catName,-16,1).setConcealed().setHidden().registerResearchItem();
+		
+		copy(ResearchCategories.getResearchList("ELDRITCH").research.get("ROD_primal_staff"),"TB.ROD_primal_staff",catName,-19,-6).setConcealed().setHidden().registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Iron",catName,new AspectList().add(Aspect.METAL, 3).add(Aspect.MAGIC, 3),-5,0,0,new ItemStack(TBItems.castingBracelet,1,0))
+		.setRound()
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.iron.page.0"),
+			new ResearchPage("tb.rec.bracelet.iron.page.1"),
+			new ResearchPage("tb.rec.bracelet.iron.page.2"),
+			new ResearchPage(ironBraceletRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Gold",catName,new AspectList().add(Aspect.METAL, 3).add(Aspect.MAGIC, 3).add(Aspect.GREED, 3),-8,-1,0,new ItemStack(TBItems.castingBracelet,1,1))
+		.setParents("TB.Bracelet.Iron","TB.CAP_gold")
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.gold.page.0"),
+			new ResearchPage(goldBraceletRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Greatwood",catName,new AspectList().add(Aspect.TREE, 3).add(Aspect.MAGIC, 3).add(Aspect.ENERGY, 3),-11,-1,0,new ItemStack(TBItems.castingBracelet,1,2))
+		.setConcealed()
+		.setParents("TB.Bracelet.Gold","TB.ROD_greatwood")
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.greatwood.page.0"),
+			new ResearchPage(greatwoodBraceletRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Thaumium",catName,new AspectList().add(Aspect.METAL, 3).add(Aspect.MAGIC, 3).add(Aspect.ENERGY, 3).add(Aspect.AURA, 3),-11,2,0,new ItemStack(TBItems.castingBracelet,1,3))
+		.setConcealed()
+		.setParents("TB.Bracelet.Greatwood")
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.thaumium.page.0"),
+			new ResearchPage(thaumiumBraceletRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Silverwood",catName,new AspectList().add(Aspect.ORDER, 3).add(Aspect.MAGIC, 3).add(Aspect.TREE, 3).add(Aspect.AURA, 3).add(Aspect.EXCHANGE, 3),-13,-3,1,new ItemStack(TBItems.castingBracelet,1,4))
+		.setConcealed()
+		.setParents("TB.Bracelet.Greatwood","TB.ROD_silverwood")
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.silverwood.page.0"),
+			new ResearchPage(silverwoodBraceletRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Void",catName,new AspectList().add(Aspect.VOID, 3).add(Aspect.MAGIC, 3).add(Aspect.ELDRITCH, 3).add(Aspect.AURA, 3).add(Aspect.EXCHANGE, 3),-13,0,3,new ItemStack(TBItems.castingBracelet,1,11))
+		.setConcealed()
+		.setParents("TB.Bracelet.Silverwood")
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.void.page.0"),
+			new ResearchPage(voidBraceletRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Reed",catName,new AspectList().add(Aspect.AIR, 3).add(Aspect.MAGIC, 3).add(Aspect.CRAFT, 3).add(Aspect.AURA, 3).add(Aspect.EXCHANGE, 3),-17,-6,2,new ItemStack(TBItems.castingBracelet,1,5))
+		.setConcealed()
+		.setParents("TB.ROD_reed")
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.reed.page.0"),
+			new ResearchPage(reedBraceletRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Blaze",catName,new AspectList().add(Aspect.FIRE, 3).add(Aspect.MAGIC, 3).add(Aspect.CRAFT, 3).add(Aspect.AURA, 3).add(Aspect.EXCHANGE, 3),-15,-5,2,new ItemStack(TBItems.castingBracelet,1,8))
+		.setConcealed()
+		.setParents("TB.ROD_blaze")
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.blaze.page.0"),
+			new ResearchPage(blazeBraceletRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Obsidian",catName,new AspectList().add(Aspect.EARTH, 3).add(Aspect.MAGIC, 3).add(Aspect.CRAFT, 3).add(Aspect.AURA, 3).add(Aspect.EXCHANGE, 3),-17,-4,2,new ItemStack(TBItems.castingBracelet,1,7))
+		.setConcealed()
+		.setParents("TB.ROD_obsidian")
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.obsidian.page.0"),
+			new ResearchPage(obsidianBraceletRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Ice",catName,new AspectList().add(Aspect.WATER, 3).add(Aspect.MAGIC, 3).add(Aspect.CRAFT, 3).add(Aspect.AURA, 3).add(Aspect.EXCHANGE, 3),-16,-2,2,new ItemStack(TBItems.castingBracelet,1,9))
+		.setConcealed()
+		.setParents("TB.ROD_ice")
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.ice.page.0"),
+			new ResearchPage(iceBraceletRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Quartz",catName,new AspectList().add(Aspect.ORDER, 3).add(Aspect.MAGIC, 3).add(Aspect.CRAFT, 3).add(Aspect.AURA, 3).add(Aspect.EXCHANGE, 3),-18,-1,2,new ItemStack(TBItems.castingBracelet,1,10))
+		.setConcealed()
+		.setParents("TB.ROD_quartz")
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.quartz.page.0"),
+			new ResearchPage(quartzBraceletRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Bone",catName,new AspectList().add(Aspect.ENTROPY, 3).add(Aspect.MAGIC, 3).add(Aspect.CRAFT, 3).add(Aspect.AURA, 3).add(Aspect.EXCHANGE, 3),-16,0,2,new ItemStack(TBItems.castingBracelet,1,6))
+		.setConcealed()
+		.setParents("TB.ROD_bone")
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.bone.page.0"),
+			new ResearchPage(boneBraceletRec)
+			).registerResearchItem();
+		
+		new ResearchItem("TB.Bracelet.Primal",catName,primals(6).add(Aspect.MAGIC, 12).add(Aspect.ELDRITCH, 12),-19,-4,4,new ItemStack(TBItems.castingBracelet,1,12))
+		.setConcealed()
+		.setSpecial()
+		.setParents(
+			"TB.ROD_primal_staff",
+			"TB.Bracelet.Bone",
+			"TB.Bracelet.Quartz",
+			"TB.Bracelet.Ice",
+			"TB.Bracelet.Obsidian",
+			"TB.Bracelet.Blaze",
+			"TB.Bracelet.Reed",
+			"TB.Bracelet.Silverwood"
+		)
+		.setPages(
+			new ResearchPage("tb.rec.bracelet.primal.page.0"),
+			new ResearchPage(primalBraceletRec)
+			).registerResearchItem();
+		
 		//TODO last recipes
 		//-4,-14
 		
@@ -1681,6 +1951,9 @@ public class TBThaumonomicon {
 		ThaumcraftApi.addWarpToResearch("TB.Revolver.Primal", 4);
 		ThaumcraftApi.addWarpToResearch("TB.Revolver.Tainted", 3);
 		ThaumcraftApi.addWarpToResearch("TB.Revolver.Void", 2);
+		ThaumcraftApi.addWarpToResearch("TB.Bracelet.Void", 2);
+		ThaumcraftApi.addWarpToResearch("TB.Bracelet.Bone", 1);
+		ThaumcraftApi.addWarpToResearch("TB.Bracelet.Primal", 4);
 		
 		ThaumcraftApi.getCraftingRecipes().add(wool3Rec);
 		ThaumcraftApi.getCraftingRecipes().add(sandstone3Rec);
@@ -1784,7 +2057,7 @@ public class TBThaumonomicon {
 			CrucibleRecipe miningTobaccoRec = new CrucibleRecipe("TB.Tobacco.Mining",new ItemStack(TBItems.tobacco,1,5),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.MINE, 4).add(Aspect.MOTION, 4));
 			CrucibleRecipe wisdomTobaccoRec = new CrucibleRecipe("TB.Tobacco.Wisdom",new ItemStack(TBItems.tobacco,1,4),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.MIND, 4).add(Aspect.AIR, 4));
 			CrucibleRecipe taintTobaccoRec = new CrucibleRecipe("TB.Tobacco.Tainted",new ItemStack(TBItems.tobacco,1,7),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.TAINT, 4).add(Aspect.MIND, 4));
-			ShapelessArcaneRecipe sanityTobaccoRec = new ShapelessArcaneRecipe("TB.Tobacco.Knowledge",new ItemStack(TBItems.tobacco,1,6),new AspectList().add(Aspect.ORDER, 10).add(Aspect.AIR, 10).add(Aspect.ENTROPY, 10),new Object[]{new ItemStack(TBItems.tobacco,1,0)});
+			ShapelessArcaneRecipe sanityTobaccoRec = new ShapelessArcaneRecipe("TB.Tobacco.Sanity",new ItemStack(TBItems.tobacco,1,6),new AspectList().add(Aspect.ORDER, 10).add(Aspect.AIR, 10).add(Aspect.ENTROPY, 10),new Object[]{new ItemStack(TBItems.tobacco,1,0)});
 			
 			new ResearchItem("TB.Tobacco",catName,new AspectList().add(Aspect.CROP, 4).add(Aspect.HARVEST, 4).add(Aspect.MAN, 4).add(Aspect.MIND, 4),1,-13,3,new ItemStack(TBItems.greatwoodPipe,1,0))
 			.setParents("TB.Plax")
@@ -1955,6 +2228,23 @@ public class TBThaumonomicon {
 		ThaumcraftApi.getCraftingRecipes().add(voidRec);
 		
 		ThaumcraftApi.getCraftingRecipes().add(nodeLinkRec);
+		ThaumcraftApi.getCraftingRecipes().add(campfireRec);
+		ThaumcraftApi.getCraftingRecipes().add(brazierRec);
+		
+		ThaumcraftApi.getCraftingRecipes().add(ironBraceletRec);
+		ThaumcraftApi.getCraftingRecipes().add(goldBraceletRec);
+		ThaumcraftApi.getCraftingRecipes().add(greatwoodBraceletRec);
+		ThaumcraftApi.getCraftingRecipes().add(thaumiumBraceletRec);
+		ThaumcraftApi.getCraftingRecipes().add(silverwoodBraceletRec);
+		ThaumcraftApi.getCraftingRecipes().add(voidBraceletRec);
+		ThaumcraftApi.getCraftingRecipes().add(reedBraceletRec);
+		ThaumcraftApi.getCraftingRecipes().add(boneBraceletRec);
+		ThaumcraftApi.getCraftingRecipes().add(obsidianBraceletRec);
+		ThaumcraftApi.getCraftingRecipes().add(blazeBraceletRec);
+		ThaumcraftApi.getCraftingRecipes().add(iceBraceletRec);
+		ThaumcraftApi.getCraftingRecipes().add(quartzBraceletRec);
+		ThaumcraftApi.getCraftingRecipes().add(primalBraceletRec);
+		
 		//TODO actual recipes
 		
 		for(int i = 0; i < 6; ++i)
