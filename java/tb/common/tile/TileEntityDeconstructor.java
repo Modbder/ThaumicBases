@@ -29,7 +29,7 @@ import net.minecraft.util.DamageSource;
 public class TileEntityDeconstructor extends TileEntity{
 	
 	public int tickTime;
-	public String placerName;
+	public String placerName = "no placer";
 	
 	public boolean hasAir, hasFire, hasWater, hasEarth, hasOrdo, hasEntropy;
 
@@ -96,7 +96,7 @@ public class TileEntityDeconstructor extends TileEntity{
 		if(hasEntropy)
 			++additionalStability;
 		
-		if(placerName == null || placerName.isEmpty())
+		if(placerName == null || placerName.isEmpty() || placerName.contains("no placer"))
 			return;
 		
 		List<Entity> entities = this.worldObj.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord+1, yCoord+1, zCoord+1));

@@ -140,7 +140,7 @@ public class FociExperience extends ItemFocusBasic
 			
 			MovingObjectPosition pos = movingobjectposition;
 			
-			if(b.getBlockHardness(world, pos.blockX, pos.blockY, pos.blockZ) == -1)
+			if(b.getBlockHardness(world, pos.blockX, pos.blockY, pos.blockZ) <= 0)
 				return wandstack;
 			
 			if(!WandManager.consumeVisFromInventory(player, TBThaumonomicon.primals(MathHelper.floor_double(b.getBlockHardness(world, pos.blockX, pos.blockY, pos.blockZ)*100))))

@@ -497,9 +497,23 @@ tb.foci.calming.desc=Negates the Warping effect. Removed flux blocks can remove 
 
 #Blocks
 tile.nodeLinker.name=Node Linking Device
+tile.tb.campfire.name=Thaumaturge's Campfire
+tile.tb.brazier.name=Thaumaturge's Brazier
 
 #Items
 item.tb.revolver.name=Thaumaturge's Revolver
+item.tb.bracelet.iron=Iron Bracelet
+item.tb.bracelet.gold=Gold Bracelet
+item.tb.bracelet.greatwood=Greatwood Bracelet
+item.tb.bracelet.thaumium=Thaumium Bracelet
+item.tb.bracelet.silverwood=Silverwood Bracelet
+item.tb.bracelet.reed=Reed Bracelet
+item.tb.bracelet.bone=Bone Bracelet
+item.tb.bracelet.obsidian=Obsidian Bracelet
+item.tb.bracelet.blaze=Blaze Bracelet
+item.tb.bracelet.quartz=Quartz Bracelet
+item.tb.bracelet.void=Void Bracelet
+item.tb.bracelet.primal=Primal Bracelet
 
 #Enchantments for the revolver
 revolverUpgrade.ACCURACY.name=Accuracy
@@ -576,6 +590,77 @@ tb.rec.revolver.tai.page.0=Imbuing your weapon with taint might not be that good
 tc.research_name.TB.Revolver.Void=Revolver Upgrade: Void
 tc.research_text.TB.Revolver.Void=Merging with the bullets
 tb.rec.revolver.void.page.0=Infusing the revolver with some void metal gives the gun the primal ability of the void metal - self-repairing. Warning - seeing the gun metal changing shape due to the void metal might not be a pleasant experience and may cause hallucinations and nightmares!<BR>Max Level: §6§l 3 §r§0<BR>Conflicts with: §nNone§r
+
+tc.research_name.TB.Campfire=Thaumaturge's Campfire
+tc.research_text.TB.Campfire=Camping with thaumaturgy!
+tb.rec.campfire.page.0=If a person wanders around for example in the forest when it is getting dark and he is too far away from home to go to his bed he is probably stuck there in the darkness with all those monsters around. You are a thaumaturge, sure you can solve that problem! You have discovered a way to make a campfire! To light it up you first need to right-click it with a log - magical logs may be more long-lasting. Next just insert any fuel in it. Your campfire is made with magic, so monsters around it will get scared and run away, just as creepers run away from cats! However, sometimes a hunger will make the monster ignore the campfire to a certain extend - it is not 100% safe.
+tc.research_name.TB.Brazier=Thaumaturge's Brazier
+tc.research_text.TB.Brazier=Improvements everywhere
+tb.rec.brazier.page.0=Well, the campfire is well and good, but there is a problem - it requires way too much manual control over itself. You need to toss in logs, you need to toss in fuel. Maybe thaumaturgy can help you with this? And it sure can! You have improved the construction of the campfire. The brazier will do exactly the same, but it does not require manual fuel/logs insertion - it will instead drain ignis essentia from nearby jars and mirrors.
+
+tc.research_name.TB.Bracelet.Iron=Thaumic Bracelets
+tc.research_text.TB.Bracelet.Iron=Elegant foci solution
+tb.rec.bracelet.iron.page.0=Since the discovery of wands you have been thinking of alternating the way vis channels through the wand. The wand on it's own has a very basic system of vis chanelling - it uses the Vis from the core and exports it into the world using the caps. Well, that makes the wand a universal device it can use vis offensively, defensively and for crafts. But it both lacks the power for offensive usage and the efficiency for crafts. Sure there are staffs and scepters. The scepters are fine, but you think that the staffs can be made... differently.
+tb.rec.bracelet.iron.page.1=By completely removing the core from the construction, adding some mundane parts to hold it all together and making a 'zone of potency' with the caps you have discovered the Bracelets. They are your alternative to the staffs. Due to their construction they do not come in thousands of variants - there are some though. You are also sure, that you can't combine different caps to create a bracelet - it will be unstable and will not work. Only the regular caps discovered by thaumaturges can be used to create the bracelets too... The bracelet works just as your regular wand would - it can drain vis from nodes, it can be charged in a wand recharging pedestal, it can harvest the aspect orbs from mobs. 
+tb.rec.bracelet.iron.page.2=The bracelets also work with foci - it is what they were made for. However since the bracelet has no core it is very limited in the amount of vis it can store - the most basic one - the iron can only store 10! Due to the bracelets having no core thay can't be used for crafts. However what they shine at is the usage of foci. First of all they have an amazing vis discount for doing so. Any foci in the bracelet will have it's cooldown greatly reduced. The foci are also MUCH faster and potent than in wands. Lastly since the bracelets are extremely small they also will get affected by the invisibility potion if their carrier is.
+tc.research_name.TB.Bracelet.Gold=Gold Bracelet
+tc.research_text.TB.Bracelet.Gold=Gold is a great conductor
+tb.rec.bracelet.gold.page.0=Since iron is much more mundane than gold you might want to use that instead. The golden bracelet simply holds more vis than the iron one and also gives more vis discount.
+tc.research_name.TB.Bracelet.Greatwood=Greatwood Bracelets
+tc.research_text.TB.Bracelet.Greatwood=It's a stub
+tb.rec.bracelet.greatwood.page.0=Similar to how wands can be made out of greatwood bracelets can too. It simply holds more vis than the golden one, yet keeping the same vis discount.
+tc.research_name.TB.Bracelet.Thaumium=Thaumium Bracelets
+tc.research_text.TB.Bracelet.Thaumium=Chanelling magic
+tb.rec.bracelet.thaumium.page.0=Since you have discovered a way to make wands out on thaumium you have applied the same to the bracelets. This one holds more vis than the greatwood one and has a better vis discount too
+tc.research_name.TB.Bracelet.Silverwood=Silverwood Bracelets
+tc.research_text.TB.Bracelet.Silverwood=Magical and pure
+tb.rec.bracelet.silverwood.page.0=The greatwood bracelet is great, but there always is a room for improvement. Using silverwood instead of greatwood allows the creation of a better bracelet. It also has a pretty good vis discount
+tc.research_name.TB.Bracelet.Void=Void Bracelets
+tc.research_text.TB.Bracelet.Void=With the void energies
+tb.rec.bracelet.void.page.0=You have applied your discovery of the void wand creation to the bracelet. This new bracelet shares the same functionality - it will slowly regenerate aspects and has a pretty good vis discount.
+tc.research_name.TB.Bracelet.Reed=Reed Bracelets
+tc.research_text.TB.Bracelet.Reed=Light as the sky itself
+tb.rec.bracelet.reed.page.0=You have created a bracelet that shares the same functionality as the reed wand core - it will slowly regenerate aer vis inside it.
+tc.research_name.TB.Bracelet.Blaze=Blaze Bracelets
+tc.research_text.TB.Bracelet.Blaze=With an infernal touch
+tb.rec.bracelet.blaze.page.0=You have created a bracelet that shares the same functionality as the blaze wand core - it will slowly regenerate ignis vis inside it.
+tc.research_name.TB.Bracelet.Obsidian=Obsidian Bracelets
+tc.research_text.TB.Bracelet.Obsidian=From the depths of the world
+tb.rec.bracelet.obsidian.page.0=You have created a bracelet that shares the same functionality as the obsidian wand core - it will slowly regenerate terra vis inside it.
+tc.research_name.TB.Bracelet.Ice=Ice Bracelets
+tc.research_text.TB.Bracelet.Ice=Cold to the touch
+tb.rec.bracelet.ice.page.0=You have created a bracelet that shares the same functionality as the ice wand core - it will slowly regenerate aqua vis inside it.
+tc.research_name.TB.Bracelet.Quartz=Quartz Bracelets
+tc.research_text.TB.Bracelet.Quartz=Just what you've ordered
+tb.rec.bracelet.quartz.page.0=You have created a bracelet that shares the same functionality as the quartz wand core - it will slowly regenerate ordo vis inside it.
+tc.research_name.TB.Bracelet.Bone=Bone Bracelets
+tc.research_text.TB.Bracelet.Bone=The undead bracelet!
+tb.rec.bracelet.bone.page.0=You have created a bracelet that shares the same functionality as the bone wand core - it will slowly regenerate perdidio vis inside it.
+tc.research_name.TB.Bracelet.Primal=Primal Bracelets
+tc.research_text.TB.Bracelet.Primal=The ultimate way
+tb.rec.bracelet.primal.page.0=Using your knowledge of the Staff core of the Primal you have created a bracelet that shares the same functionality. It will slowly regenerate all aspects within itself up to 10%. It also holds the most vis out of all bracelets and offers the best discount. Lastly, similar to the primal staff core it will automatically add 1 level of Potency to any foci used with it.
+
+#vanilla tc researches
+tc.research_name.TB.CAP_gold=Gold Wand Caps
+tc.research_text.TB.CAP_gold=Capping things off with style
+tc.research_name.TB.ROD_greatwood=Greatwood Wand Core
+tc.research_text.TB.ROD_greatwood=Repository of magical energy
+tc.research_name.TB.ROD_silverwood=Silverwood Wand Core
+tc.research_text.TB.ROD_silverwood=Magical to the core
+tc.research_name.TB.ROD_obsidian=Obsidian Wand Core
+tc.research_text.TB.ROD_obsidian=Earthen vis storage
+tc.research_name.TB.ROD_bone=Bone Wand Core
+tc.research_text.TB.ROD_bone=Entropic vis storage
+tc.research_name.TB.ROD_blaze=Blaze Rod Wand Core
+tc.research_text.TB.ROD_blaze=Fiery vis storage
+tc.research_name.TB.ROD_ice=Icy Wand Core
+tc.research_text.TB.ROD_ice=Icy vis storage
+tc.research_name.TB.ROD_quartz=Quartz Wand Core
+tc.research_text.TB.ROD_quartz=Ordered vis storage
+tc.research_name.TB.ROD_reed=Reed Wand Core
+tc.research_text.TB.ROD_reed=Airy vis storage
+tc.research_name.TB.ROD_primal_staff=Staff Core of the Primal
+tc.research_text.TB.ROD_primal_staff=Elemental power combined
 
 #Chat notifications
 tb.txt.linkStarted=Link Started

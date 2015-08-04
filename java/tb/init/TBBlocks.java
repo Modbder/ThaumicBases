@@ -5,7 +5,9 @@ import tb.common.block.BlockAdvAlchemicalFurnace;
 import tb.common.block.BlockAshroom;
 import tb.common.block.BlockAureliaLeaf;
 import tb.common.block.BlockAureliaPlant;
+import tb.common.block.BlockBraizer;
 import tb.common.block.BlockBriar;
+import tb.common.block.BlockCampfire;
 import tb.common.block.BlockCryingObelisk;
 import tb.common.block.BlockCrystalBlock;
 import tb.common.block.BlockCrystalSlab;
@@ -137,14 +139,16 @@ public class TBBlocks {
 		BlocksRegistry.registerBlock(enderPlanks, "enderPlanks",core,ItemBlock.class);
 		OreDictionary.registerOre("plankWood", enderPlanks);
 		BlocksRegistry.registerBlock(nodeLinker, "nodeLinker",core,ItemBlock.class);
+		BlocksRegistry.registerBlock(campfire, "campfire",core,ItemBlock.class);
+		BlocksRegistry.registerBlock(braizer, "brazier",core,ItemBlock.class);
 		
 		Blocks.fire.setFireInfo(genLogs, 5, 5);
 		Blocks.fire.setFireInfo(genLeaves, 30, 60);
 		Blocks.fire.setFireInfo(enderPlanks, 5, 20);
 	}
 	
-	public static Block quicksilverBlock = new TBBlock(Material.rock,false).setBlockName("quicksilverBlock").setBlockTextureName("thaumicbases:quicksilverBlock").setHardness(0.5F);
-	public static Block quicksilverBrick = new TBBlock(Material.rock,true).setBlockName("quicksilverBrick").setBlockTextureName("thaumicbases:quicksilverBrick").setHardness(0.5F);
+	public static Block quicksilverBlock = new TBBlock(Material.rock,false).stabilise().setBlockName("quicksilverBlock").setBlockTextureName("thaumicbases:quicksilverBlock").setHardness(0.5F);
+	public static Block quicksilverBrick = new TBBlock(Material.rock,true).stabilise().setBlockName("quicksilverBrick").setBlockTextureName("thaumicbases:quicksilverBrick").setHardness(0.5F);
 	public static Block crystalBlock = new BlockCrystalBlock().setBlockName("crystalBlock").setBlockTextureName("thaumicbases:crystal/mixed");
 	public static Block dustBlock = new TBBlock(Material.sand,false).stabilise().setStepSound(Block.soundTypeSand).setBlockName("salisMundusBlock").setBlockTextureName("thaumicbases:dust_block").setHardness(1);
 	public static Block pyrofluid = new BlockPyrofluid().setBlockName("pyrofluid").setLightLevel(1);
@@ -194,6 +198,7 @@ public class TBBlocks {
 	public static Block voidAnvil = new BlockVoidAnvil().setBlockName("voidAnvil").setBlockTextureName("thaumicbases:voidAnvil/");
 	public static Block enderPlanks = new TBBlock(Material.wood, false).setBlockName("enderPlanks").setBlockTextureName("thaumicbases:enderTree/planks").setHardness(2).setResistance(45).setStepSound(Block.soundTypeWood);
 	public static Block nodeLinker = new BlockNodeLinker().setBlockName("nodeLinker").setHardness(1);
-	
+	public static Block campfire = new BlockCampfire().setBlockName("tb.campfire").setBlockTextureName("thaumicbases:campfire").setLightLevel(1);
+	public static Block braizer = new BlockBraizer().setBlockName("tb.brazier").setBlockTextureName("cobblestone").setLightLevel(1);
 	public static final Class<TBCore> core = TBCore.class;
 }
