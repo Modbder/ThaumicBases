@@ -7,6 +7,7 @@ enchantment.elderKnowledge=睿智
 enchantment.eldritchBane=异域杀手
 enchantment.magicTouch=魔法之触
 enchantment.vaporising=蒸发
+
 #blocks
 tile.quicksilverBlock.name=水银块
 tile.quicksilverBrick.name=水银砖块
@@ -91,6 +92,7 @@ tile.peacefullTreeLeaves.name=和平树叶
 tile.netherTreeLeaves.name=地狱树叶
 tile.enderTreeLeaves.name=末影树叶
 tile.enderPlanks.name=末影树木板
+
 #items
 item.resourcenuggetthauminite.name=秘晶粒
 item.resourcethauminite.thauminite_ingot.name=秘晶锭
@@ -167,6 +169,7 @@ item.nodeFoci.taint.name=§e节点调节核心:污染
 item.herobrinesScythe.name=白瞳者之镰
 item.tb.voidShears.name=虚空剪刀
 item.tb.voidFAS.name=虚空打火石
+
 #Researchs
 tc.research_name.TB.CRUCIBLE=基础炼金术
 tc.research_text.TB.CRUCIBLE=沸腾并且冒着泡
@@ -394,6 +397,7 @@ tb.rec.enchantments.page.2=使用异域杀手附魔的武器在面对末影人�
 tb.rec.enchantments.page.3=使用魔法之触附魔的武器在击杀了它的敌人之后会掉落更多的原始要素球.
 tb.rec.enchantments.page.4=使用蒸发附魔的武器在击杀了它的敌人之后会有一定概率掉落对应类型的晶化源质.
 tb.rec.enchantments.page.5=使用污染附魔的武器攻击敌人时会造成额外的咒波伤害.也会对敌人造成污染中毒的效果.但是面对污染生物时这个附魔效果会降低.如果要给一个武器进行污染附魔,你需要将武器扔进一个污染节点让武器被污染节点的魔力所辐射.这个附魔的附魔等级是完全随机的,但是你能达到的最高等级为3.
+
 #1.1 Researches
 tc.research_name.TB.EntityDecAdv=高级解构工作台
 tc.research_text.TB.EntityDecAdv=更好的分解!
@@ -422,6 +426,7 @@ tb.rec.netherTree.page.0=你成功的将地狱门的知识与神秘树结合在�
 tc.research_name.TB.PeacefulSapling=和平树
 tc.research_text.TB.PeacefulSapling=更多生命
 tb.rec.peacefulTree.page.0=你发现所有的动物都会被光明所吸引.您也注意到它们可以从不同的地方冒出来.你研究了这个现象,然后成功创造了一种树,它能吸引所有种类的动物朝它走来.基于它生长的生物群系,不同的动物会随机出现在它的树叶之下.你需要将它们的数量控制一下,因为它们会远远不断的出现!
+
 #Research from TC4
 tc.research_name.TB.INFUSIONENCHANTMENT=注魔法附魔
 tc.research_text.TB.INFUSIONENCHANTMENT=用要素源质附魔
@@ -453,6 +458,7 @@ tc.research_name.TB.PRIMPEARL=原始珍珠
 tc.research_text.TB.PRIMPEARL=开端之前
 tc.research_name.TB.LEVITATOR=奥术悬浮台
 tc.research_text.TB.LEVITATOR=下面该研究怎么飞了
+
 #Enchantment researches
 tc.research_name.TB.ElderKnowledge=附魔:睿智
 tc.research_text.TB.ElderKnowledge=长者的知识
@@ -464,12 +470,14 @@ tc.research_name.TB.Vaporising=附魔:蒸发
 tc.research_text.TB.Vaporising=便携式晶化器
 tc.research_name.TB.Tainted=附魔:污染
 tc.research_text.TB.Tainted=毁灭大地!
+
 #Messages
 tb.txt.knoseFragment=右击以获得知识
 tb.txt.howlBelow=有什么东西在世界深处的咆哮...
 tb.txt.howlDeeper=你听见了基岩之下的咆哮,你想要更加深入...
 tb.txt.taintDevelop=那是什么?你想回忆起刚刚发生了什么!
 tb.txt.spawnSet=出生点已设置!
+
 #Foci enchantments
 tb.foci.aquatic.name=晶化
 tb.foci.aquatic.desc=摧毁水方块时可能会将水结晶为源质
@@ -485,12 +493,29 @@ tb.foci.crystalization.name=结晶
 tb.foci.crystalization.desc=咒波会掉落Potentia晶化源质.等级II时掉了随机种类的晶化源质
 tb.foci.calming.name=平静
 tb.foci.calming.desc=抵消扭曲升级的效果.清除咒波时可以移除使用者的临时扭曲与常规扭曲
+
 #1.2
 
 #Blocks
 tile.nodeLinker.name=节点链接器
+tile.tb.campfire.name=奥术营火
+tile.tb.brazier.name=奥术火盆
+
 #Items
 item.tb.revolver.name=奥术左轮枪
+item.tb.bracelet.iron=铁手镯
+item.tb.bracelet.gold=金手镯
+item.tb.bracelet.greatwood=宏伟之木手镯
+item.tb.bracelet.thaumium=神秘手镯
+item.tb.bracelet.silverwood=银树手镯
+item.tb.bracelet.reed=甘蔗手镯
+item.tb.bracelet.bone=白骨手镯
+item.tb.bracelet.obsidian=黑曜石手镯
+item.tb.bracelet.blaze=烈焰手镯
+item.tb.bracelet.quartz=石英手镯
+item.tb.bracelet.void=虚空手镯
+item.tb.bracelet.primal=始源手镯
+
 #Enchantments for the revolver
 revolverUpgrade.ACCURACY.name=精准
 revolverUpgrade.POWER.name=威力
@@ -504,66 +529,140 @@ revolverUpgrade.TAINTED.name=污染
 revolverUpgrade.PRIMAL.name=始源
 revolverUpgrade.SPEED.name=速度
 revolverUpgrade.EFFICIENCY.name=效率
-revolverUpgrade.ELDRITCH.name=异域
+revolverUpgrade.ELDRITCH.name=颠覆
 revolverUpgrade.VOID.name=虚空
 revolverUpgrade.KNOWLEDGE.name=睿智
 revolverUpgrade.HEAVY.name=重装
+
 #Researches
 tc.research_name.TB.Revolver=奥术军械库
 tc.research_text.TB.Revolver=是时候疼爱它们了!
-tb.rec.revolver.page.0=Thaumic weapons are good. Especially those where you do not have to get close to your enemies. Thaumaturgy however does not seem to offer much of those. Sure, there is a bow of bone, but... it is a bow. Even though it is enhanced with magic it still requires the wielder to pull the string. One might say - there are wand focis! Sure there are, and they are all great... But are they really weapons? They are put on top of wands and they use the enerhy of the wand. Well what if the Thaumaturge prefers his scepters over wands? He... needs to craft another wand, just for those foci? Really? Some foci are also known for not working under certain conditions... Better to say in certain places...
-tb.rec.revolver.page.1=You have been engineering for a while now - this is what you have came with. A pretty strange contraption that is not all that big and is comfort to hold in hand. You have named your contraption "The Revolver". No, you have no idea why.<BR>The device is able to shoot very small yet extremely fast projectiles which deal devastating damage to anything they come in contact with. Due to your weapon having a magical nature those projectiles are also magical - they are created out of raw Telum essentia, stored in a jar inside of the revolver. One point of aspect is enough for just two shots. To open the revolver sneak and left-click anywhere. Sneaking also allows you to aim more precise. Right-click to shoot of course, that should be obvious.
-tb.rec.revolver.page.2=The revolver is also much more potent than it looks - you are sure, that there are TONS of ways to improve it's construction by performing further infusions over it. You still need to discover them though. Some of the improvements might conflict with eachother and therefore can't be installed together. It is also worth noticing that most improvements can be applied over and over again, but the stability of the infusion will suffer great penalties for each new level. The aspect cost will also increase for each level of improvement by the amount it originally cost.
-tc.research_name.TB.NodeLinker=Node Linking
-tc.research_text.TB.NodeLinker=From one source to another!
-tb.rec.nodeLink.page.0=Nodes. The things that link your world to the world of magic. They are heavily used in thaumaturgy - some devices use them to function, you need them to recharge your wands. However there is a small problem - a node can always store that much of vis and if it has, for example, no terra it it - this is it, it has no terra, and that aspect can't be gained from the node. There sure is a so called 'node bullying' - one node eating other, smaller nodes. With the discovery of the Advanced node stabilizer that can be worked with, but it takes a ridiculous amount of time and also is unreliable.
-tb.rec.nodeLink.page.1=You have discovered a device that might get the job done. The node Linking Device creates a mysterious link between 2 nodes and will move aspects from the linked one to the linker. You need 2 of this devices placed on top of nodes. Then just take your wand and right click on the reciever. After that click on the transmitter - and the link will be estabilished. The link will firstly drain all aspects out of the transmitting node's pull, then it will draw the node's capacity and will increase the reciever's capacity based on that. Lastly the node without any capacity left will fade away. The chance of the reciever node to increase it's aspect capacity is around 70% for each capacity decrease on the transmitting node.
-tb.rec.nodeLink.page.2=The transmission however is pretty unstable - both nodes will react to the link. This will result in a so called instability. The more time the device functions - the more instability it will have. Based on the amount of instability different things may happen - from the aspects escaping out of nodes on both ends into air in form of flux, to the complete transmitting node destruction with the explosion. The recieving node however will never get harmed in any way.
-tc.research_name.TB.Revolver.Accuracy=Revolver Upgrade: Accuracy
-tc.research_text.TB.Revolver.Accuracy=Sniping from miles away
-tb.rec.revolver.acc.page.0=You have found a way to give your revolver more sniping potential. With this upgrade your eyes will become more focused on the target while you are aming, allowing you to aim more precise.<BR>Max Level: §6§l3 §r§0<BR>Conflicts with: §nSpeed§r, §0§nEfficiency§r
-tc.research_name.TB.Revolver.Atropods=Revolver Upgrade: Bane Of Atropods
-tc.research_text.TB.Revolver.Atropods=Pached with neurotoxins
-tb.rec.revolver.atr.page.0=You have found a way to improve your revolver against spiders and silverfish. This upgrade will make the revolver much more effective against those creatures, and will not affect the effectiveness against others.<BR>Max Level: §6§l 5 §r§0<BR>Conflicts with: §nPower§r, §0§nSilver§r, §0§nBane Of Eldritch§r, §0§nDueling§r, §0§nEldritch§r
-tc.research_name.TB.Revolver.EldritchBane=Revolver Upgrade: Bane Of Eldritch
-tc.research_text.TB.Revolver.EldritchBane=Eldritch creatures outlawed
-tb.rec.revolver.elb.page.0=You have found a way to improve your revolver against eldritch creatures. This upgrade will make the revolver much more effective against those creatures, and will not affect the effectiveness against others.<BR>Max Level: §6§l 5 §r§0<BR>Conflicts with: §nPower§r, §0§nSilver§r, §0§nBane Of Atropods§r, §0§nDueling§r, §0§nEldritch§r
-tc.research_name.TB.Revolver.Dueling=Revolver Upgrade: Dueling
-tc.research_text.TB.Revolver.Dueling=Sir, I duel you!
-tb.rec.revolver.duel.page.0=Sometimes the simple words are not enough, and a Thaumaurge needs to physically prove himself. Prior to the revolver discovery that could only be done via mundane swords and bows. Now a Thaumaturge and his offender can resolve their issue like two gentlemen - with their guns! This upgrade will make the revolver much more potent against other players, and will not affect the effectiveness against others.<BR>Max Level: §6§l 5 §r§0<BR>Conflicts with: §nPower§r, §0§nSilver§r, §0§nBane Of Atropods§r, §0§nBane Of Eldritch§r, §0§nEldritch§r
-tc.research_name.TB.Revolver.Efficiency=Revolver Upgrade: Efficiency
-tc.research_text.TB.Revolver.Efficiency=Waste nothing, multiply existing
-tb.rec.revolver.eff.page.0=You have found a way to decrease the Telum consumption of the revolver. Each level of this upgrade will decrease the consumption by 1 unit of essentia.<BR>Max Level: §6§l5 §r§0<BR>Conflicts with: §nSpeed§r, §0§nAccuracy§r
-tc.research_name.TB.Revolver.Eldritch=Revolver Upgrade: Eldritch
-tc.research_text.TB.Revolver.Eldritch=Speaks the words backwards!
-tb.rec.revolver.eld.page.0=Imbuing the revolver with the energy of the eldrich certainly does something... You have discovered what exactly.  This upgrade will make the revolver much more potent against very strong creatures, aka bosses, but will decrease the effectiveness against others.<BR>Max Level: §6§l 2 §r§0<BR>Conflicts with: §nPower§r, §0§nSilver§r, §0§nBane Of Atropods§r, §0§nBane Of Eldritch§r, §0§nDueling§r
-tc.research_name.TB.Revolver.Heavy=Revolver Upgrade: Heavy
-tc.research_text.TB.Revolver.Heavy=Melee is still an option
-tb.rec.revolver.hev.page.0=Sometimes a thaumaturge is just out of essentia that the revolver uses... But everything is not lost, the revolver itself is a decent melee weapon! Sure there can be an improvement... Each level of this upgrade will increase the damage the revolver does in melee by 2.<BR>Max Level: §6§l5 §r§0<BR>Conflicts with: §nNone§r
-tc.research_name.TB.Revolver.Knowledge=Revolver Upgrade: Knowledge
-tc.research_text.TB.Revolver.Knowledge=Drain their bra... Knowledge.
-tb.rec.revolver.kno.page.0=You have found a way to mentaly bind the bullets to your mind. The result is interesing - every slain creature might give you a sudden inspiration, or simply a knowledge point. No risk of warping your mind exists. <BR>Max Level: §6§l 5 §r§0<BR>Conflicts with: §nPrimal§r, §0§nTainted§r
-tc.research_name.TB.Revolver.Piercing=Revolver Upgrade: Piercing
-tc.research_text.TB.Revolver.Piercing=.65 caliber!
-tb.rec.revolver.pir.page.0=You have found a way to make your revolver much more devastating. This upgrade will make the bullets pierce through anyone they strike, dealing more damage than usual and continuing on traveling forward.<BR>Max Level: §6§l1 §r§0<BR>Conflicts with: §nNone§r
-tc.research_name.TB.Revolver.Power=Revolver Upgrade: Power
-tc.research_text.TB.Revolver.Power=More gunpowder to the damn thing!
-tb.rec.revolver.pow.page.0=You have discovered a way to improve the potency of your revolver. This upgrade will increase the damage the revolver does to any creatue. No exceptions. However the damage increase is worse, than with the creature-specific upgrades.<BR>Max Level: §6§l 5 §r§0<BR>Conflicts with: §nEldritch§r, §0§nSilver§r, §0§nBane Of Atropods§r, §0§nBane Of Eldritch§r, §0§nDueling§r
-tc.research_name.TB.Revolver.Primal=Revolver Upgrade: Primal
-tc.research_text.TB.Revolver.Primal=What lies beyond the lightspeed...
-tb.rec.revolver.primal.page.0=The primal energies pulse... What if you would imbue the revolver with them? The results are... interesting. Your revolver seems to have become a 'hit-scan' rather than 'shoot' type of weapon - it means that the bullets travel to their targets §oinstantly§r§0. The bullets have also gained the ability to pierce walls. They also are much more dangerous now. However the cost for using the revolver is also now much higher - 2 essentia per shot!<BR>Max Level: §6§l 1 §r§0<BR>Conflicts with: §nKnowledge§r, §0§nTainted§r
-tc.research_name.TB.Revolver.Silver=Revolver Upgrade: Silver
-tc.research_text.TB.Revolver.Silver=Just a casual werewolf killer.
-tb.rec.revolver.sil.page.0=You have discovered a way to improve the potency of your weapon against unholy creatures. This upgrade will make the revolver much more potent against undead creatures, demons and werewolves, and will not decrease the effectiveness against others.<BR>Max Level: §6§l 5 §r§0<BR>Conflicts with: §nPower§r, §0§nEldritch§r, §0§nBane Of Atropods§r, §0§nBane Of Eldritch§r, §0§nDueling§r
-tc.research_name.TB.Revolver.Speed=Revolver Upgrade: Speed
-tc.research_text.TB.Revolver.Speed=It shoots 10 000 bullets per minute!
-tb.rec.revolver.spe.page.0=You have found a way to increase the speed at which your bullets travel. Each level of this upgrade will increase the speed of the bullets by... some amount, how can you tell? You clearly do not have any device or whatever to measure such fast movement!.<BR>Max Level: §6§l5 §r§0<BR>Conflicts with: §nEfficiency§r, §0§nAccuracy§r
-tc.research_name.TB.Revolver.Tainted=Revolver Upgrade: Tainted
-tc.research_text.TB.Revolver.Tainted=It's ALIVE! Kinda.
-tb.rec.revolver.tai.page.0=Imbuing your weapon with taint might not be that good of an idea, but you've tried anyways. Anyway, here are the results - this upgrade will increase the raw damage of the revolver against every creature, except for the tainted ones - for them the damage will be decreased! The bullets also will have a chance to inflict the victim with Taint Poison!<BR>Max Level: §6§l 3 §r§0<BR>Conflicts with: §nPrimal§r, §0§nKnowledge§r
-tc.research_name.TB.Revolver.Void=Revolver Upgrade: Void
-tc.research_text.TB.Revolver.Void=Merging with the bullets
-tb.rec.revolver.void.page.0=Infusing the revolver with some void metal gives the gun the primal ability of the void metal - self-repairing. Warning - seeing the gun metal changing shape due to the void metal might not be a pleasant experience and may cause hallucinations and nightmares!<BR>Max Level: §6§l 3 §r§0<BR>Conflicts with: §nNone§r
+tb.rec.revolver.page.0=奥术武器十分优秀,尤其是那些不用近身攻击的.但是神秘术并没给我们太多选择.当然,我们有骨弓,但是...它毕竟是一把弓.尽管注入了魔法的力量,但是你仍然需要去拉动弓弦.有人会说不是还有法杖核心吗!的确是这样,而且它们也非常棒...但是它们真的是武器吗?它们被放在法杖的顶端然后使用法杖的魔力来驱动.好吧,如果神秘使更喜欢他们的权杖呢?难道要专门为了使用法杖核心而制作第二柄法杖吗?真的吗?而且有些核心并不能在一些特定条件下生效...换句话说是特定地点...
+tb.rec.revolver.page.1=你已经研究了很久了,这就是你的成果.它是一个精妙的装置,它不是特别巨大并且很合适握在手中.你给它起了一个名字"左轮枪".但是你并不知道为什么.<BR>这个设备可以以极快的速度射出小的物体,对任何接触到它的物体造成毁灭性的破坏.由于你的武器具有魔法的本质,射出的物体也是魔法构成的,它们由储存在左轮枪中的Telum源质生成的.1点源质足够生成2发子弹.要打开左轮枪只需要潜行左击.潜行时可以让你的瞄准更加准确.右击很明显,就是开火了.
+tb.rec.revolver.page.2=你很确定,你所制作的这把左轮枪具有很大的潜力,通过注魔你有成吨的方法可以改进它的结构来得到更好的特性.虽然你还需要进一步研究,并且有一些改进会和另一些冲突因此不能同时应用,但是你确信这是值得的.值得注意的是虽然大部分改进都可以应用多次来达到更好的效果,但是每次注魔的风险都会提升,并且每次注魔都会花费比原来更多的源质.
+tc.research_name.TB.NodeLinker=节点连接
+tc.research_text.TB.NodeLinker=从一个源头到另一个!
+tb.rec.nodeLink.page.0=节点是连接你与魔法世界的纽带,并且在神秘术中也有重要的应用,许多设备需要它们来驱动,你需要它们来给你的法杖充能.然而有一个问题,一个节点能够储存很多的魔力,但是如果其中没有,例如Terra属性的魔力,那么你就不能够从中获得Terra属性的魔力.有一种现象称为"节点欺凌",一个节点会吃掉其他较小的节点.但是使用高级节点稳定器可以解决这个问题,但是它需要的时间是不确定的并且并不是十分可靠.
+tb.rec.nodeLink.page.1=你发现了一种设备可以完美解决这个问题.节点连接器可以在两个节点之间创造一条秘密的连接并且可以将连接中的节点的魔力移动到另一个之中.你需要2个这样的设备分别放在2个节点的上方.然后使用你的法杖右击接收魔力的那一个,之后再点击传送魔力的连接器,然后连接就会建立.这个连接会先将传送魔力的节点中的魔力抽干,然后它会抽取魔力容限并且增加接收节点相应的魔力容限.最终传送节点会被抽干然后消失.接收节点增加魔力容限的概率为70%.
+tb.rec.nodeLink.page.2=这个魔力传送十分不稳定,每个节点都会对连接产生反应.这个设备运行的时间越长,不稳定性就会越高.基于不稳定性的高地会产生不同的现象:从魔力流失进入空气产生咒波到完成传输后节点爆炸都有可能发生.但是接收节点不会受到任何影响.
+
+tc.research_name.TB.Revolver.Accuracy=左轮枪升级:精准
+tc.research_text.TB.Revolver.Accuracy=遥远的狙击
+tb.rec.revolver.acc.page.0=你已经找到一种方法让你的左轮枪更狙击的潜力.使用这个升级会让你的眼睛在瞄准目标时更加集中,可以让你瞄准时更为精确.<BR>最高等级: §6§l3§r§0<BR>不兼容附魔:§n速度§r,§0§n效率§r
+tc.research_name.TB.Revolver.Atropods=左轮枪升级:节肢杀手
+tc.research_text.TB.Revolver.Atropods=神经毒素的冲击
+tb.rec.revolver.atr.page.0=你已经找到一种方法来让你的左轮枪对蜘蛛和蠹虫更具威胁.这个升级可以让你的左轮枪对抗这些生物时更加有效,但是不会影响对抗其他生物的效果.<BR>最高等级:§6§l5§r§0<BR>不兼容附魔:§n威力§r,§0§n银弹§r,§0§n异域杀手§r,§0§n决斗§r,§0§n颠覆§r
+tc.research_name.TB.Revolver.EldritchBane=左轮枪升级:异域杀手
+tc.research_text.TB.Revolver.EldritchBane=异界生物是不合法的
+tb.rec.revolver.elb.page.0=你已经找到一种方法让你的左轮枪在对异域生物时更加有效.这个升级可以让你的左轮枪对抗这些生物时更加有效,但是不会影响对抗其他生物的效果.<BR>最高等级:§6§l5§r§0<BR>不兼容附魔:§n威力§r,§0§n银弹§r,§0§n节肢杀手§r,§0§n决斗§r,§0§n颠覆§r
+tc.research_name.TB.Revolver.Dueling=左轮枪升级:决斗
+tc.research_text.TB.Revolver.Dueling=我要和你决斗!
+tb.rec.revolver.duel.page.0=有时候仅仅语言是不够的,神秘使还需要使用身体来证明自己.在左轮枪被发明之前只有剑和弓是可选的,但是现在神秘使和他的冒犯者可以很绅士的解决这个问题,用枪!这个升级可以让你的左轮枪对抗其他玩家时更加有效,但是不会影响对抗其他生物的效果.<BR>最高等级:§6§l5§r§0<BR>不兼容附魔:§n威力§r,§0§n银弹§r,§0§n节肢杀手§r,§0§n异域杀手§r,§0§n颠覆§r
+tc.research_name.TB.Revolver.Efficiency=左轮枪升级:效率
+tc.research_text.TB.Revolver.Efficiency=什么都不浪费
+tb.rec.revolver.eff.page.0=你找到了一种方法来减少左轮枪对Telum源质的消耗.每等级可以使1点Telum源质多生成一发子弹.<BR>最高等级:§6§l5§r§0<BR>不兼容附魔:§n速度§r,§0§n精准§r
+tc.research_name.TB.Revolver.Eldritch=左轮枪升级:颠覆
+tc.research_text.TB.Revolver.Eldritch=你需要反过来!
+tb.rec.revolver.eld.page.0=向左轮枪灌入一些异域元素确实有一些改善...你从中发现了什么.这个升级可以让左轮枪对抗强力的生物时变得更强,但是对抗其他生物时会降低它的威力.<BR>最高等级:§6§l2§r§0<BR>不兼容附魔:§n威力§r,§0§n银弹§r,§0§n节肢杀手§r,§0§n异域杀手§r,§0§n决斗§r
+tc.research_name.TB.Revolver.Heavy=左轮枪升级:重装
+tc.research_text.TB.Revolver.Heavy=肉搏也是一种选择
+tb.rec.revolver.hev.page.0=有时候神秘使会发现他的左轮枪消耗完了源质...但是这并不是问题,左轮枪自身也可以作为一个肉搏武器!当然,这一点也可以进行改进...这个升级的每个等级都会提升左轮枪2点肉搏伤害.<BR>最高等级:§6§l5§r§0<BR>不兼容附魔:§n无§r
+tc.research_name.TB.Revolver.Knowledge=左轮枪升级:睿智
+tc.research_text.TB.Revolver.Knowledge=吸收它们的脑...智慧.
+tb.rec.revolver.kno.page.0=你找到了一种方法将子弹与你的思想绑在一起.结果十分有趣...每一个被杀死的生物可能会让你灵感一现或者仅仅给你一个知识点.并且这不会让你的思想受到扭曲.<BR>最高等级:§6§l5§r§0<BR>不兼容附魔:§n始源§r,§0§n污染§r
+tc.research_name.TB.Revolver.Piercing=左轮枪升级:穿刺
+tc.research_text.TB.Revolver.Piercing=.65口径!
+tb.rec.revolver.pir.page.0=你已经找到一种方法让你的左轮枪更具毁灭性.这个升级可以让你的子弹穿刺任何被射击的目标,造成比平常更大的伤害并且继续攻击目标身后的生物.<BR>最高等级:§6§l1§r§0<BR>不兼容附魔:§n无§r
+tc.research_name.TB.Revolver.Power=左轮枪升级:威力
+tc.research_text.TB.Revolver.Power=给我更多的火药!
+tb.rec.revolver.pow.page.0=你已经发现了一种方法来改善你的左轮枪的威力.这个升级会提升左轮枪对任何生物的伤害,没有例外.但是这个伤害提升的效果没有对生物专精的改进好.<BR>最高等级:§6§l5§r§0<BR>不兼容附魔:§n颠覆§r,§0§n银弹§r,§0§n节肢杀手§r,§0§n异域杀手§r,§0§n决斗§r
+tc.research_name.TB.Revolver.Primal=左轮枪升级:始源
+tc.research_text.TB.Revolver.Primal=什么是超越光速...
+tb.rec.revolver.primal.page.0=始源能量脉冲...如果将它与左轮枪融合起来会怎样呢?这个结果...十分有趣.你的左轮枪似乎从"射击"模式变成了"击中-扫描"模式.也就是说子弹会§o立即§r§0到达目标面前.子弹甚至得到了穿墙的能力,并且变得更加危险.但是每次射击需要的源质量也大大上升了,现在每次射击需要2点源质!<BR>最高等级:§6§l1§r§0<BR>不兼容附魔:§n睿智§r,§0§n污染§r
+tc.research_name.TB.Revolver.Silver=左轮枪升级:银弹
+tc.research_text.TB.Revolver.Silver=只是一个狼人杀手.
+tb.rec.revolver.sil.page.0=你已经发现了一种方法来改善你的左轮枪对抗不死生物的效果.这个升级可以让你的左轮枪对抗不死生物,恶魔和狼人时更加有效,但是不会影响对抗其他生物的效果.<BR>最高等级:§6§l5§r§0<BR>不兼容附魔:§n威力§r,§0§n颠覆§r,§0§n节肢杀手§r,§0§n异域杀手§r,§0§n决斗§r
+tc.research_name.TB.Revolver.Speed=左轮枪升级:速度
+tc.research_text.TB.Revolver.Speed=它的射速为每分钟1000发!
+tb.rec.revolver.spe.page.0=你已经找到一种方法来增加子弹的飞行速度.这个升级每等级会提升一定量的子弹飞行速度.一定量是多少?怎么说明呢?你肯定没有一种可以测量子弹飞行速度的设备!<BR>最高等级:§6§l5§r§0<BR>不兼容附魔:§n效率§r,§0§n精准§r
+tc.research_name.TB.Revolver.Tainted=左轮枪升级:污染
+tc.research_text.TB.Revolver.Tainted=它还活着!
+tb.rec.revolver.tai.page.0=将污染注入你的武器似乎不是一个好主意,但是你也尝试了.不论如何,这就是结果:这个升级会增加对所有除了污染生物的伤害,对污染生物的伤害会下降!子弹有一定概率会对击中的对象造成咒波毒性伤害!<BR>最高等级:§6§l3§r§0<BR>不兼容附魔:§n始源§r,§0§n睿智§r
+tc.research_name.TB.Revolver.Void=左轮枪升级:虚空
+tc.research_text.TB.Revolver.Void=融合的子弹
+tb.rec.revolver.void.page.0=将虚空金属注入左轮枪会给予它虚空金属的主要能力:自我修复.警告:看见被虚空金属改变形状的左轮枪不是一个令人愉快的体验并且可能造成幻觉和噩梦甚至是心理阴影!<BR>最高等级:§6§l3§r§0<BR>不兼容附魔:§n无§r
+
+tc.research_name.TB.Campfire=奥术营火
+tc.research_text.TB.Campfire=与神秘术扎营!
+tb.rec.campfire.page.0=如果一个人在森林中闲逛,天黑了了之后他离家太远而不能使用自己的床,他很可能被周围黑暗中的怪物困住.但是你是一个神秘使,你相信你能解决这个问题!最终你发现了它:营火!点燃它你首先需要使用一个原木右击,带有魔法力量的原木会使营火更加持久.然后你需要向其中添加燃料.你的营火是由魔法制作的,因此你周围的怪物会退避三舍,就像库里啪遇到猫那样!然而有时候饥饿会让怪物无视篝火,它也不是100%的安全.
+tc.research_name.TB.Brazier=奥术火盆
+tc.research_text.TB.Brazier=改进无处不在
+tb.rec.brazier.page.0=奥术营火已经十分好了,但是还有一个问题:它需要太多的人为控制了.你需要添加原木,你需要添加燃料.也许神秘术会帮助你做一些事情?当然可以!你改进了营火的结构.火盆可以达到和营火相同的效果并且它不需要人为添加原木和燃料,它只会从旁边的罐子或者源质之镜中吸收Ignis源质.
+
+tc.research_name.TB.Bracelet.Iron=奥术手镯
+tc.research_text.TB.Bracelet.Iron=优雅的核心解决方案
+tb.rec.bracelet.iron.page.0=自从发现了魔杖,你一直在思索一种另外的从魔杖中传输魔力的方法.魔杖自身具有一个十分基础的传输魔力的系统:它将杖芯中的魔力通过杖端释放到世界之中.这使得魔杖作为一种可以用来进攻,防御和制作的通用设备.但是一柄魔杖并不能同时达到进攻和制作的最佳效率.当然,权杖对于制作物品来说已经十分优秀了,但是你觉得还能制作出不一样的东西.
+tb.rec.bracelet.iron.page.1=通过完全移除结构中的杖芯,加入一些寻常的结构来支持,使用杖端来制作一个"能量域",你终于发明了手镯.它们是你工作中的替代品.基于它们的结构,它们没有很多可以替换的部件.你十分确信如果使用两个不同种类的杖端来制作一个手镯,它会变得不稳定并且根本不能工作.并且只有神秘使发现的寻常杖端才能用来制作手镯...手镯就像平常的法杖一样工作,它们可以从节点吸收魔力,可以被法杖充能基座充能,能够吸收生物掉落的要素球.
+tb.rec.bracelet.iron.page.2=手镯也可以运作法杖核心,这就是制作它们的原因.由于手镯并不具有杖芯,因此它的魔力储量非常小.最基础的铁手镯,他的魔力容限仅仅有10点!由于手镯并没有杖芯因此它们不能用于合成物品.然而它的闪光点在于使用核心.首先它具有一个令人惊讶的魔力减免.手镯上的核心的冷却时间也会大大减少.并且核心可以更快运作并且能激发出更大的潜能.最后,由于手镯十分小,因此在使用隐身药水之后持有手镯也不会被看见.
+tc.research_name.TB.Bracelet.Gold=金手镯
+tc.research_text.TB.Bracelet.Gold=金是伟大的指挥家
+tb.rec.bracelet.gold.page.0=由于获得铁比金容易得多,因此你可能会使用铁.但是金手镯具有比铁手镯更高的魔力容限并且具有更高的灵气减免.
+tc.research_name.TB.Bracelet.Greatwood=宏伟之木手镯
+tc.research_text.TB.Bracelet.Greatwood=这是一个存根
+tb.rec.bracelet.greatwood.page.0=就像可以做成一根魔杖一样,宏伟之木也可以用来制作手镯.它可以轻易的得到比金手镯更高的魔力容限并且具有和金手镯相同的灵气减免.
+tc.research_name.TB.Bracelet.Thaumium=神秘手镯
+tc.research_text.TB.Bracelet.Thaumium=香奈儿的魔法
+tb.rec.bracelet.thaumium.page.0=就像可以做成一根魔杖一样,神秘金属也可以用来制作手镯.并且神秘手镯具有比金手镯更高的魔力容限并且具有更高的灵气减免.
+tc.research_name.TB.Bracelet.Silverwood=银树手镯
+tc.research_text.TB.Bracelet.Silverwood=神奇而且纯净
+tb.rec.bracelet.silverwood.page.0=宏伟之木手镯十分优秀,但是总是有改进的空间.使用银树代替宏伟之木可以制作出一个更好的手镯.它具有一个非常可观的灵气减免.
+tc.research_name.TB.Bracelet.Void=虚空手镯
+tc.research_text.TB.Bracelet.Void=空虚的能量
+tb.rec.bracelet.void.page.0=你已经将你发现的虚空法杖知识用来制作手镯.这个新的手镯具有相同的功效,它能缓慢回复魔力并且具有一个非常可观的灵气减免.
+tc.research_name.TB.Bracelet.Reed=甘蔗手镯
+tc.research_text.TB.Bracelet.Reed=像天空一样轻
+tb.rec.bracelet.reed.page.0=你制作出了一个和甘蔗杖芯相同特性的手镯,它能缓慢回复风属性的魔力.
+tc.research_name.TB.Bracelet.Blaze=烈焰手镯
+tc.research_text.TB.Bracelet.Blaze=地狱的触碰
+tb.rec.bracelet.blaze.page.0=你制作出了一个和烈焰杖芯相同特性的手镯,它能缓慢回复火属性的魔力.
+tc.research_name.TB.Bracelet.Obsidian=黑曜石手镯
+tc.research_text.TB.Bracelet.Obsidian=来自深渊
+tb.rec.bracelet.obsidian.page.0=你制作出了一个和黑曜石杖芯相同特性的手镯,它能缓慢回复地属性的魔力.
+tc.research_name.TB.Bracelet.Ice=寒冰手镯
+tc.research_text.TB.Bracelet.Ice=寒冷的抚摸
+tb.rec.bracelet.ice.page.0=你制作出了一个和寒冰杖芯相同特性的手镯,它能缓慢回复水属性的魔力.
+tc.research_name.TB.Bracelet.Quartz=石英手镯
+tc.research_text.TB.Bracelet.Quartz=这正是你的预定
+tb.rec.bracelet.quartz.page.0=你制作出了一个和石英杖芯相同特性的手镯,它能缓慢回复秩序属性的魔力.
+tc.research_name.TB.Bracelet.Bone=白骨手镯
+tc.research_text.TB.Bracelet.Bone=不死的手镯!
+tb.rec.bracelet.bone.page.0=你制作出了一个和白骨杖芯相同特性的手镯,它能缓慢回复混沌属性的魔力.
+tc.research_name.TB.Bracelet.Primal=始源手镯
+tc.research_text.TB.Bracelet.Primal=终极方案
+tb.rec.bracelet.primal.page.0=使用始源杖芯的知识你制作出了一个与其相同特性的手镯.它会缓慢回复所有属性的魔力直到达到它魔力容限的10%.它具有所有手镯中最高的魔力容限和最高的灵气减免.最后就像始源杖芯一样,它也会对使用的法杖核心增加一个等级的潜能.
+
+#vanilla tc researches
+tc.research_name.TB.CAP_gold=金杖端
+tc.research_text.TB.CAP_gold=高调做事
+tc.research_name.TB.ROD_greatwood=宏伟之木杖柄
+tc.research_text.TB.ROD_greatwood=魔力存储库
+tc.research_name.TB.ROD_silverwood=银树杖柄
+tc.research_text.TB.ROD_silverwood=神秘核心
+tc.research_name.TB.ROD_obsidian=黑曜石杖柄
+tc.research_text.TB.ROD_obsidian=地之魔力容器
+tc.research_name.TB.ROD_bone=白骨杖柄
+tc.research_text.TB.ROD_bone=混沌魔力容器
+tc.research_name.TB.ROD_blaze=烈焰杖柄
+tc.research_text.TB.ROD_blaze=火之魔力容器
+tc.research_name.TB.ROD_ice=寒霜杖柄
+tc.research_text.TB.ROD_ice=冰之魔力容器
+tc.research_name.TB.ROD_quartz=石英杖柄
+tc.research_text.TB.ROD_quartz=秩序魔力容器
+tc.research_name.TB.ROD_reed=甘蔗杖柄
+tc.research_text.TB.ROD_reed=风之魔力容器
+tc.research_name.TB.ROD_primal_staff=元始杖芯
+tc.research_text.TB.ROD_primal_staff=融合的元素能量
+
 #Chat notifications
-tb.txt.linkStarted=Link Started
-tb.txt.linkEstabilished=Link Estabilished
+tb.txt.linkStarted=连接开始
+tb.txt.linkEstabilished=连接已建立
