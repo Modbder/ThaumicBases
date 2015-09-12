@@ -76,7 +76,7 @@ public class CastingBraceletRenderer implements IItemRenderer{
 		return true;
 	}
 	
-	public Timer getMCTimer()
+	public static Timer getMCTimer()
 	{
 		try
 		{
@@ -155,9 +155,7 @@ public class CastingBraceletRenderer implements IItemRenderer{
 		}
 		
 		if(type == ItemRenderType.ENTITY)
-		{
 			GL11.glScaled(0.5D, 0.5D, 0.5D);
-		}
 		
 		double ds = 0.2D;
 		GL11.glScaled(ds, ds, ds);
@@ -186,7 +184,7 @@ public class CastingBraceletRenderer implements IItemRenderer{
 				float minV = icon.getMinV();
 				float maxU = icon.getMaxU();
 				float maxV = icon.getMaxV();
-				RenderManager.instance.renderEngine.bindTexture(TextureMap.locationItemsTexture);
+				Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationItemsTexture);
 				GL11.glPushMatrix();
 				GL11.glTranslatef(-0.25F, -0.1F, 0.0275F);
 				GL11.glScaled(0.5D, 0.5D, 0.5D);
