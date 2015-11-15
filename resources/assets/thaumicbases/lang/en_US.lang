@@ -264,7 +264,7 @@ tc.research_text.TB.Flaxium=So much pollution!
 tb.rec.flaxium.page.0=This plant looks funny. You had no intentions on constructing something like that, but - oh well, you are here, with this thing in your hands, it is a little too late to worry about things. You have created a flower that activly absorbs flux from nearby air - however, it instantly builds up again - and once it has collected enough flux it releases it in a form of Flux Gas above itself. You are not sure about the uses of this plant, but it's ability to absorb aspects from surroundings seems interesting, maybe it can be used as a base for something bigger?..
 tc.research_name.TB.Glieonia=Glieonia
 tc.research_text.TB.Glieonia=How do you even pronounce that
-tb.rec.glieonia.page.0=What's the most awesome thing about thaumaturgy? Flight! Well, what is the next best thing? Warding foci? Well, what is the thrid best thing... Digging foci, really? We are talking about Nitor, okay?! Jees. Anyway, Nitor is pretty amazing - it shines brightly, creates fancy particles, all that fancy stuff! Well, there is one thing - it requires glowstone to make... A wise thaumaturge can solve this nuance! You have managed to create a plant, that once fully grown will drop 2 Glowstone dust. interestingly enough the flower does not emmit any light whatsoever, even when fully grown... Why could that be?..
+tb.rec.glieonia.page.0=What's the most awesome thing about thaumaturgy? Flight! Well, what is the next best thing? Warding focus? Well, what is the thrid best thing... Digging focus, really? We are talking about Nitor, okay?! Jees. Anyway, Nitor is pretty amazing - it shines brightly, creates fancy particles, all that fancy stuff! Well, there is one thing - it requires glowstone to make... A wise thaumaturge can solve this nuance! You have managed to create a plant, that once fully grown will drop 2 Glowstone dust. interestingly enough the flower does not emmit any light whatsoever, even when fully grown... Why could that be?..
 tc.research_name.TB.Briar=Briar
 tc.research_text.TB.Briar=A natural apothecary
 tb.rec.briar.page.0=Plants are known for their medicinal uses. However, thaumaturges often do not care about this side of nature. You do care. You have managed to bring the Rose bush back to it's wild state, thus creating a Briar plant. Briar is a 2 block tall plant that will grow pretty fast. Once grown it's seed bags can be collected for a later usage. They can be combined with sugar in your Arcane Workbench to create a Rosehip Syrup. This item acts just like a better milk - it stacks up to 16, and it is known for helping thaumaturges with some warp effects. It will not work with some purely mental effects though...
@@ -354,38 +354,38 @@ tc.research_text.TB.GoldenOak=Gnawing the bark of knowledge
 tb.rec.goldenOak.page.0=Not only weeds and flowers can be magically processed to create something new! Trees have that potential too! However, they are too strong on their own, and therefore they resist any simple magical additions. Infusion should do the job just fine! You have managed to create a Golden Oak tree, just as an example. This tree works just as regular Oak does, however, should it drop an apple - and that apple will be covered in gold! It, however, is impossible to get the mythical Enchanted Golden Apple. Due to being infused with Greed essentia tree will drop much less sapligns, since it wants to be the only one absorbing the sunlight and water.
 tc.research_name.TB.NodeMan=Node Manipulation
 tc.research_text.TB.NodeMan=Full control!
-tb.rec.nodeMan.page.0=You have discovered a way to support nodes by using stabilizers. You have discovered a way to tear the node apart, opening a small rift to whereever. Is this it for the nodes? It seems unfair, there are so many types of them - tainted, pures, hungry, they can be bright or fading... But all thaumaturges stop here, without attempting to go further. You can manipulate the very fabrics of the node, making it stable. You can tear it apart, energizing it. Why not use those powers in combination to change the smallest fibres of the node? Why not study this? Is there something, that stops everyone from going this way, or are they just too blind, thinking they are the masters of thaumaturgy?
-tb.rec.nodeMan.page.1=Well, so far nothing really happened. Nothing came to stop you. Nothing killed you, nothing corrupted your mind - nothing! You do not understand the others not going this way. You have discovered a way to create the device that will combine the power of the Stabilizer to make the node stand and the ability of the Tranducer to move node fibres, tearing it apart. Well, it is not that simple - you also need to constantly move Vis back and forth - some mirrors are required, and some flux formes, which is critical, so Flux scrubbers must be used too. And, for this construction to be stable some Salis Mundus is alse required. And here it is - the device, that can manipulate the node itself!
-tb.rec.nodeMan.page.2=It is not really that simple, actually. Your device can only work with regular nodes, energized are too powerfull to work with. It also can only operate with the node from the top due to Vis flowing downwards, so it is impossible to have both the tranducer and this device. It also turned out very... mundane. It is unable to operate with the node at all, as you though it would. It has the ability to do so, but the fibres of the node are not that simple to move - a Foci is required, and you do not know how to make one. You've tried regular wand focis - not much luck, just a bunch of angry wisps. However, the focis must work the same way - harnessing the raw power of the device to work with the node. 
-tb.rec.nodeMan.page.3=The device itself is pretty stable, and, in fact, it does not require anything to work, which is comical due to the power of the device. The focis, should you obtain one must be simply placed in the bottom of the device, harnessing the raw power. Just click the device with the foci to put it in. Click with an empty hand to remove the foci. Click with another foci to swap between to - it is even possible to actually save the progress that way! It may require more or less time based on the action it is doing too!
-tc.research_name.TB.NodeFoci.Speed=Manipulator Foci: Speed
+tb.rec.nodeMan.page.0=The nodes. Can they be controlled? There are so many of them, but you need to count on your... luck? To find different types of them. Really? You can do better.
+tb.rec.nodeMan.page.1=You have created a device that can do exactly that! It sure has some limitations but it will work for sure. You have created a device, that is able to change the very fabric of a node and transform it into something else.
+tb.rec.nodeMan.page.2=It is not really that simple, actually. Your device can only work with regular nodes. It also can only operate with the node on a very limited range of 3 blocks. It also turned out very... mundane. It is unable to operate with the node at all, as you though it would. It has the ability to do so, but the fibres of the node are not that simple to move - a focus is required, and you do not know how to make one. You've tried regular wand focus - not much luck, just a bunch of angry wisps. However, the focus must work the same way - harnessing the raw power of the device to work with the node. 
+tb.rec.nodeMan.page.3=The device itself is pretty stable, and, in fact, it does not require anything to work, which is comical due to the power of the device. The focus, should you obtain one must be simply placed in the bottom of the device, harnessing the raw power. Just click the device with the focus to put it in. Click with an empty hand to remove the focus. Click with another focus to swap between to - it is even possible to actually save the progress that way! It may require more or less time based on the action it is doing too!
+tc.research_name.TB.NodeFoci.Speed=Manipulator Focus: Speed
 tc.research_text.TB.NodeFoci.Speed=Restoration is a key to success
-tb.rec.foci.speed.page.0=Speed foci increases the speed at which node restores it's aspects 5 times. It may be hard for a thaumaturge to see this in action, but should he use his wand, or any of his vis using devices it will become obvious.
-tc.research_name.TB.NodeFoci.Sinister=Manipulator Foci: Sinister
+tb.rec.foci.speed.page.0=Speed Focus increases the speed at which node operates 5 times. It may be hard for a thaumaturge to see this in action, but should he use his wand, or any of his vis using devices it will become obvious.
+tc.research_name.TB.NodeFoci.Sinister=Manipulator Focus: Darkness
 tc.research_text.TB.NodeFoci.Sinister=A tiny mob spawner
-tb.rec.foci.sinister.page.0=Sinister foci will make the Manipulator slowly turn the node into a Sinister Node. Will only work with Normal nodes. Takes 6 minutes to finish.
-tc.research_name.TB.NodeFoci.Unstable=Manipulator Foci: Instability
+tb.rec.foci.sinister.page.0=Darkness Focus will make the Manipulator slowly turn the node into a Dark Node. Will only work with Normal nodes. Takes 6 minutes to finish.
+tc.research_name.TB.NodeFoci.Unstable=Manipulator Focus: Instability
 tc.research_text.TB.NodeFoci.Unstable=Shaterring the node
-tb.rec.foci.unstable.page.0=Instability foci will make the Manipulator slowly turn the node into an Unstable Node. Will only work with Normal nodes. Takes 7 minutes to finish.
-tc.research_name.TB.NodeFoci.Efficiency=Manipulator Foci: Efficiency
+tb.rec.foci.unstable.page.0=Instability Focus will make the Manipulator slowly turn the node into an Unstable Node. Will only work with Normal nodes. Takes 7 minutes to finish.
+tc.research_name.TB.NodeFoci.Efficiency=Manipulator Focus: Efficiency
 tc.research_text.TB.NodeFoci.Efficiency=Waste nothing
-tb.rec.foci.efficiency.page.0=Efficiency foci will affect the node in a very spectacular way. If any aspect is drained from the node affected with this foci there is a 50% chance that the aspect will be used, but will not be drained. Works with everything - wands, recharge pedestals, different constructs...
-tc.research_name.TB.NodeFoci.Bright=Manipulator Foci: Brightness
+tb.rec.foci.efficiency.page.0=Efficiency Focus will affect the node in a very spectacular way. It makes it extremely efficient at refilling the local vis in the aura, but only with the aspect the node is 'attached' to.
+tc.research_name.TB.NodeFoci.Bright=Manipulator Focus: Brightness
 tc.research_text.TB.NodeFoci.Bright=Making things brigher
-tb.rec.foci.bright.page.0=Brightness foci will make the Manipulator extremely slowly turn the node into a Bright Node. Will only work with Normal nodes. Takes 20 minutes to finish.
-tc.research_name.TB.NodeFoci.Destr=Manipulator Foci: Destruction
+tb.rec.foci.bright.page.0=Brightness Focus will make the Manipulator extremely slowly turn the node into an Astral Node. Will only work with Normal nodes. Takes 20 minutes to finish.
+tc.research_name.TB.NodeFoci.Destr=Manipulator Focus: Destruction
 tc.research_text.TB.NodeFoci.Destr=Making the node weaker
-tb.rec.foci.destr.page.0=Destruction foci will slowly destroy the node it is attached to. It will turn bright nodes into normal, normal into pales, pales into fading and will completely destroy fading nodes. On the other hand Vis from the node being destroyed will escape into surroundings in the form of Aspect Orbs, which can be absorbed by any wand. Vis escapes much faster than regulary.
-tc.research_name.TB.NodeFoci.Hunger=Manipulator Foci: Hunger
-tc.research_text.TB.NodeFoci.Hunger=It is pretty obvious what this foci does
-tb.rec.foci.hunger.page.0=Hunger foci will make the Manipulator slowly turn the node into a Hungry Node. Will only work with Normal nodes. Note, that the manipulator can freely be eaten by the hunger node, if it chooses to do so. Takes 5 minutes to finish. Authors are in no way responsible for the possible damage done to you, your house, your world, other worlds, your pets, animals, monsters, nodes and items. By crafting the foci you agree to being fully responsible to anything, that may happen with the foci, manipulator, node and everything surrounding the node.
-tc.research_name.TB.NodeFoci.Purity=Manipulator Foci: Purity
+tb.rec.foci.destr.page.0=Destruction Focus will slowly destroy the node it is attached to. On the other hand Vis from the node being destroyed will escape into surroundings in the form of Aspect Orbs, which can be absorbed by any wand. Vis escapes much faster than regulary.
+tc.research_name.TB.NodeFoci.Hunger=Manipulator Focus: Hunger
+tc.research_text.TB.NodeFoci.Hunger=It is pretty obvious what this Focus does
+tb.rec.foci.hunger.page.0=Hunger Focus will make the Manipulator slowly turn the node into a Hungry Node. Will only work with Normal nodes. 
+tc.research_name.TB.NodeFoci.Purity=Manipulator Focus: Purity
 tc.research_text.TB.NodeFoci.Purity=Node purification
-tb.rec.foci.pure.page.0=Purity foci will make the Manipulator slowly turn the node into a Pure Node. Will only work with Normal nodes. Takes 3 minutes to finish. Note, that the node will not recieve aspects that pure nodes usually have in them, but will still turn the biome around to Magical Forest.
-tc.research_name.TB.NodeFoci.Stability=Manipulator Foci: Stability
+tb.rec.foci.pure.page.0=Purity Focus will make the Manipulator slowly turn the node into a Pure Node. Will only work with Normal nodes. Takes 3 minutes to finish.
+tc.research_name.TB.NodeFoci.Stability=Manipulator Focus: Stability
 tc.research_text.TB.NodeFoci.Stability=Saving the dying nodes
-tb.rec.foci.stability.page.0=Stability foci will make the Manipulator slowly restore nodes. It will convert nodes into different types, using time. Converting a Fading node into Pale takes 5 minutes. Converting a Pale node into Normal takes 10 minutes. Removing the Sinister modifier takes 2 minutes. Removing the Unstable modifier takes 7 minutes. Removing the Hunger modifier takes 30 seconds.
-tc.research_name.TB.NodeFoci.Taint=Manipulator Foci: Taint
+tb.rec.foci.stability.page.0=Stability Focus will make the Manipulator slowly restore nodes. It will convert any node into normal using time. 
+tc.research_name.TB.NodeFoci.Taint=Manipulator Focus: Taint
 tc.research_text.TB.NodeFoci.Taint=Why make everything worse?
 tb.rec.foci.taint.page.0=Taint foci will make the Manipulator slowly turn the node into a Tainted Node. Will only work with Normal nodes. Takes 6 minutes to finish. Note, that the node will not recieve aspects that tainted nodes usually have in them, but will still turn the biome around to Tainted Lands.
 tc.research_name.TB.Enchantments=New Enchantments!
@@ -496,7 +496,7 @@ tb.foci.calming.desc=Negates the Warping effect. Removed flux blocks can remove 
 #1.2
 
 #Blocks
-tile.nodeLinker.name=Node Linking Device
+tile.nodeLinker.name=Aura Linking Device
 tile.tb.campfire.name=Thaumaturge's Campfire
 tile.tb.brazier.name=Thaumaturge's Brazier
 
@@ -540,11 +540,11 @@ tc.research_text.TB.Revolver=Sir, it is time to hunt!
 tb.rec.revolver.page.0=Thaumic weapons are good. Especially those where you do not have to get close to your enemies. Thaumaturgy however does not seem to offer much of those. Sure, there is a bow of bone, but... it is a bow. Even though it is enhanced with magic it still requires the wielder to pull the string. One might say - there are wand focis! Sure there are, and they are all great... But are they really weapons? They are put on top of wands and they use the enerhy of the wand. Well what if the Thaumaturge prefers his scepters over wands? He... needs to craft another wand, just for those foci? Really? Some foci are also known for not working under certain conditions... Better to say in certain places...
 tb.rec.revolver.page.1=You have been engineering for a while now - this is what you have came with. A pretty strange contraption that is not all that big and is comfort to hold in hand. You have named your contraption "The Revolver". No, you have no idea why.<BR>The device is able to shoot very small yet extremely fast projectiles which deal devastating damage to anything they come in contact with. Due to your weapon having a magical nature those projectiles are also magical - they are created out of raw Telum essentia, stored in a jar inside of the revolver. One point of aspect is enough for just two shots. To open the revolver sneak and left-click anywhere. Sneaking also allows you to aim more precise. Right-click to shoot of course, that should be obvious.
 tb.rec.revolver.page.2=The revolver is also much more potent than it looks - you are sure, that there are TONS of ways to improve it's construction by performing further infusions over it. You still need to discover them though. Some of the improvements might conflict with eachother and therefore can't be installed together. It is also worth noticing that most improvements can be applied over and over again, but the stability of the infusion will suffer great penalties for each new level. The aspect cost will also increase for each level of improvement by the amount it originally cost.
-tc.research_name.TB.NodeLinker=Node Linking
+tc.research_name.TB.NodeLinker=Aura Linking
 tc.research_text.TB.NodeLinker=From one source to another!
-tb.rec.nodeLink.page.0=Nodes. The things that link your world to the world of magic. They are heavily used in thaumaturgy - some devices use them to function, you need them to recharge your wands. However there is a small problem - a node can always store that much of vis and if it has, for example, no terra it it - this is it, it has no terra, and that aspect can't be gained from the node. There sure is a so called 'node bullying' - one node eating other, smaller nodes. With the discovery of the Advanced node stabilizer that can be worked with, but it takes a ridiculous amount of time and also is unreliable.
-tb.rec.nodeLink.page.1=You have discovered a device that might get the job done. The node Linking Device creates a mysterious link between 2 nodes and will move aspects from the linked one to the linker. You need 2 of this devices placed on top of nodes. Then just take your wand and right click on the reciever. After that click on the transmitter - and the link will be estabilished. The link will firstly drain all aspects out of the transmitting node's pull, then it will draw the node's capacity and will increase the reciever's capacity based on that. Lastly the node without any capacity left will fade away. The chance of the reciever node to increase it's aspect capacity is around 70% for each capacity decrease on the transmitting node.
-tb.rec.nodeLink.page.2=The transmission however is pretty unstable - both nodes will react to the link. This will result in a so called instability. The more time the device functions - the more instability it will have. Based on the amount of instability different things may happen - from the aspects escaping out of nodes on both ends into air in form of flux, to the complete transmitting node destruction with the explosion. The recieving node however will never get harmed in any way.
+tb.rec.nodeLink.page.0=Aura and vis. It flows like the water, refilling the area if it gets too low. Maybe it can be forced to move? Indeed it can - you have already researched totems, which can control the aura... kinda. Theremus be something more efficient, controllable.
+tb.rec.nodeLink.page.1=You have discovered a device that might get the job done. The Aura Linking Device will transfer vis from one aura into another. You need to have two of those placed in different places - if they are too close to eachother the link will glow red then. After that just use your wand. Click on the reciever and then on the transmitter(you choose them on your own!) One reciever can have up to infinite transmitters. If any of the devices gets powered by a redstone signal they both will get disabled.
+tb.rec.nodeLink.page.2=The transmission however is pretty unstable - both auras will react to the link. This will result in a so called instability. The more time the device functions - the more instability it will have. Based on the amount of instability different things may happen - from the aspects escaping out of auras on both ends into air in form of flux, to the complete transmitter destruction with the explosion!
 
 tc.research_name.TB.Revolver.Accuracy=Revolver Upgrade: Accuracy
 tc.research_text.TB.Revolver.Accuracy=Sniping from miles away
@@ -666,3 +666,95 @@ tc.research_text.TB.ROD_primal_staff=Elemental power combined
 #Chat notifications
 tb.txt.linkStarted=Link Started
 tb.txt.linkEstabilished=Link Estabilished
+
+#1.4
+#Blocks
+tile.goldenTreeLog.name=Golden Oak Wood
+tile.enderTreePlanks.name=Ender Wood Planks
+tile.goldenOakPlanks.name=Golden Oak Wood Planks
+tile.peacefullTreePlanks.name=Peacefull Wood Planks
+tile.netherTreePlanks.name=Nether Wood Planks
+tile.tb.woodSlab.enderTreePlanks.name=Ender Wood Slab
+tile.tb.woodSlab.goldenOakPlanks.name=Golden Oak Wood Slab
+tile.tb.woodSlab.peacefullTreePlanks.name=Peacefull Wood Slab
+tile.tb.woodSlab.netherTreePlanks.name=Nether Wood Slab
+
+#Items
+item.tb.spawnerCompass.name=Thauminite Compass
+item.tb.ukulele.0.name=Magical Ukulele
+item.tb.ukulele.1.name=Old Magical Ukulele
+item.tb.ukulele.2.name=Trusty Magical Ukulele
+item.tb.ukulele.3.name=Electro-Magical Ukulele
+item.tb.ukulele.4.name=Magical Ukulele of Invincibility
+item.tb.ukulele.5.name=Bard's Magical Ukulele
+item.tb.ukulele.6.name=Demonic Magical Ukulele
+item.tb.ukulele.7.name=Fairytale Ukulele
+item.tb.ukulele.8.name=Comfortable Magical Ukulele
+tb.ukulele.type.simple=Sometimes the simplest one is enough
+tb.ukulele.type.knowledge=Classical music with a bit of knowledge
+tb.ukulele.type.calming=Heard the best near the bath
+tb.ukulele.type.electric=...And his music was electric!
+tb.ukulele.type.resistance=Nothing can harm me!
+tb.ukulele.type.buffing=A cool party addition
+tb.ukulele.type.confusion=Something you might not want to hear
+tb.ukulele.type.growth=Plants love music too!
+tb.ukulele.type.love=Animals are all getting 'in the mood'
+
+item.tb.shardCluster.fire.name=Fire Crystal Cluster
+item.tb.shardCluster.water.name=Water Crystal Cluster
+item.tb.shardCluster.earth.name=Earth Crystal Cluster
+item.tb.shardCluster.air.name=Air Crystal Cluster
+item.tb.shardCluster.order.name=Order Crystal Cluster
+item.tb.shardCluster.entropy.name=Entropy Crystal Cluster
+item.tb.shardCluster.mixed.name=Mixed Crystal Cluster
+item.tb.shardCluster.tainted.name=Tainted Crystal Cluster
+
+#research
+tc.research_name.TB.SpawnerCompass=Thauminite Compass
+tc.research_text.TB.SpawnerCompass=A guide to the danger
+tb.rec.sc.page.0=You have been studying the properties of that Sinister Lodestone. To be more specific - it's ability to 'guide' you towards sinister nodes. Maybe it can be slightly modified to make it show you the way to something else? By adding some thauminite to it's construction you were able to create a very interesting device, that if held in your hand will show you the way to the nearest monster spawner! Sure, it's 'guide' might not be the most convinient, but it is much better than nothing. Keep in mind, that it will only detect 'loaded' spawners - this item might be useless if you are playing on a < 2 render distance. Or it might not be.
+
+tc.research_name.TB.Clusters=Crystal Clusters
+tc.research_text.TB.Clusters=Insert your complains for no fanciness here
+tb.rec.clusters.page.0=Those crystal shards you have found... They seem more potent than they first look like. Maybe they can be combined into something... bigger? You have managed to create a 'cluster' of crystals. These are fine on their own, but they do have a very interesting property - they can be broken in hand(via right-clicking) and then they will instantly restore some vis in the local aura. It might not be wise to break a tainted crystal like that though...
+tc.research_name.TB.Bracelet.Brass=Brass Bracelet
+tc.research_text.TB.Bracelet.Brass=Stylish magic!
+tb.rec.bracelet.brass.page.0=These bracelets might not be the best one, but they have something special about them on their own - they seem to be better on sucking vis from the aura!
+
+tc.research_name.TB.Ukulele=Magical Ukulele
+tc.research_name.TB.Ukulele.Confusion=Magical Ukulele Buff: Confusion
+tc.research_name.TB.Ukulele.Buffs=Magical Ukulele Buff: Bard's
+tc.research_name.TB.Ukulele.Sanity=Magical Ukulele Buff: Sanitizing
+tc.research_name.TB.Ukulele.Love=Magical Ukulele Buff: Love
+tc.research_name.TB.Ukulele.Electric=Magical Ukulele Buff: Electric
+tc.research_name.TB.Ukulele.Resistance=Magical Ukulele Buff: Resistance
+tc.research_name.TB.Ukulele.Growth=Magical Ukulele Buff: Growth
+tc.research_name.TB.Ukulele.Knowledge=Magical Ukulele Buff: Knowledge
+tc.research_text.TB.Ukulele=Magical music!
+tc.research_text.TB.Ukulele.Confusion=Something you might not want to hear...
+tc.research_text.TB.Ukulele.Buffs=A great party addition
+tc.research_text.TB.Ukulele.Sanity=Calm down, chill!
+tc.research_text.TB.Ukulele.Love=A song of love
+tc.research_text.TB.Ukulele.Electric=And his music was electric!
+tc.research_text.TB.Ukulele.Resistance=Invulnerability at it's micrest!
+tc.research_text.TB.Ukulele.Growth=Plants do like music too!
+tc.research_text.TB.Ukulele.Knowledge=A 'thinking' music
+
+tb.rec.ukulele.base.page.0=Thaumaturgy and music. Music and thaumaturgy. Sure, you can listen to your 'cat' music record all days while researching, but... Is that it? There is an arcane ear, which can sence the most pale nodes and interact with then... Once you caught yourself standing near your research table and... singing a very simple song. This gave you an idea though.
+tb.rec.ukulele.base.page.1=You have been experimenting for a while now and this is what you have came up with. The guitar, you are choosing to call 'ukulele', even though it is not one. This is a very interesting construction - created both  from resources and magic. It is very resistant to damage and thus can't break. It also seems to be vis attractive, just as a wand. You can finally make your music now! You are sure that the most simple one can be 'enchanted' to make use of vis stored in it..
+tb.rec.ukulele.confusion.page.0=By infusing the ukulele with all sorts of dark twisted things you have managed to alter the music it plays. It will temporary warp the minds of anyone hearingthe music, causing them to randomly change target of their attacks, panic or even loose consciousness!
+tb.rec.ukulele.buffing.page.0=By infusing the ukulele with all sorts of potions you have managed to create a very interesting effect. Whoever hears the song you play will get buffed by those potions!
+tb.rec.ukulele.sanity.page.0=This infusion of the ukulele calms the mids of everyone hearing it, therefore reducing their warp level and giving them a long lasting warp ward effect.
+tb.rec.ukulele.live.page.0=This infusion makes a very interesting effect on the animals - they will start falling in love with eachother while they are hearing the song of this ukulele.
+tb.rec.ukulele.electric.page.0=You have infused your guitar with all sorts of 'electric' things. The effect isvery interesting - while you are playing this guitar it shoots rapid lightnings at the entity you are looking at. Also it sounds cool.
+tb.rec.ukulele.resistance.page.0=This infusion seems to be the best you have achieved so far. It is very... micromanagement requiring though. As you start playing it your health seems to freeze in place - it will not go down as long as you keep playing the ukulele. Neither will it go up though...
+tb.rec.ukulele.growth.page.0=This infusion causes plants in a huge range around you to hear you playing and start growing faster, similar to lamp of growth.
+tb.rec.ukulele.knowledge.page.0=This infusion makes everyone hearing the ukulele to start thinking.You are sure that it can help you with your researches.
+
+#original TC research
+tc.research_name.TB.SINSTONE=Sinister Lodestone 
+tc.research_text.TB.SINSTONE=Do you dare follow it?
+tc.research_name.TB.METALLURGY=Magical Metallurgy
+tc.research_text.TB.METALLURGY=Where metals meet magic
+tc.research_name.TB.ARCANEEAR=Arcane Ear
+tc.research_text.TB.ARCANEEAR=Shhh, do you hear something?

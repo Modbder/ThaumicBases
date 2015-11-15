@@ -1,6 +1,15 @@
 {
     "revolver.shot": {"category": "master","sounds":[{"name": "revolver_shot","stream": false}]},
-	"revolver.click": {"category": "master","sounds":[{"name": "revolver_no_ammo","stream": false}]},
-	"revolver.reload": {"category": "master","sounds":[{"name": "revolver_reload","stream": false}]},
-	"fire.loop": {"category": "master","sounds":[{"name": "fire_loop","stream": false}]}
+    "revolver.click": {"category": "master","sounds":[{"name": "revolver_no_ammo","stream": false}]},
+    "revolver.reload": {"category": "master","sounds":[{"name": "revolver_reload","stream": false}]},
+    "fire.loop": {"category": "master","sounds":[{"name": "fire_loop","stream": false}]},
+    "guitar.simple" : {"category": "record","sounds":[{"name": "simple","stream": false}]},
+    "guitar.knowledge" : {"category": "record","sounds":[{"name": "knowledge","stream": false}]},
+    "guitar.calming" : {"category": "record","sounds":[{"name": "calming","stream": false}]},
+    "guitar.electric" : {"category": "record","sounds":[{"name": "electric","stream": false}]},
+    "guitar.resistance" : {"category": "record","sounds":[{"name": "resistance","stream": false}]},
+    "guitar.buffing" : {"category": "record","sounds":[{"name": "buffing","stream": false}]},
+    "guitar.confusion" : {"category": "record","sounds":[{"name": "confusion","stream": false}]},
+    "guitar.growth" : {"category": "record","sounds":[{"name": "growth","stream": false}]},
+    "guitar.love" : {"category": "record","sounds":[{"name": "love","stream": false}]}
 }
