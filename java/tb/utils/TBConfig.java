@@ -1,19 +1,21 @@
 package tb.utils;
 
+import DummyCore.Utils.IDummyConfig;
+import DummyCore.Utils.MiscUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.common.config.Configuration;
-import DummyCore.Utils.IDummyConfig;
 
 public class TBConfig implements IDummyConfig{
 
 	@Override
 	public void load(Configuration config) {
 		cfg = config;
-		elderKnowledgeID = cfg.getInt("elderKnowledgeEnchantmentID", "Enchantments", 98, 0, Enchantment.enchantmentsList.length, "");
-		eldritchBaneID = cfg.getInt("eldritchBaneEnchantmentID", "Enchantments", 99, 0, Enchantment.enchantmentsList.length, "");
-		magicTouchID = cfg.getInt("magicTouchEnchantmentID", "Enchantments", 100, 0, Enchantment.enchantmentsList.length, "");
-		taintedID = cfg.getInt("taintedEnchantmentID", "Enchantments", 101, 0, Enchantment.enchantmentsList.length, "");
-		vaporisingID = cfg.getInt("vaporisingEnchantmentID", "Enchantments", 102, 0, Enchantment.enchantmentsList.length, "");
+		Enchantment[] eArray = MiscUtils.enchantmentList();
+		elderKnowledgeID = cfg.getInt("elderKnowledgeEnchantmentID", "Enchantments", 98, 0, eArray.length, "");
+		eldritchBaneID = cfg.getInt("eldritchBaneEnchantmentID", "Enchantments", 99, 0, eArray.length, "");
+		magicTouchID = cfg.getInt("magicTouchEnchantmentID", "Enchantments", 100, 0, eArray.length, "");
+		taintedID = cfg.getInt("taintedEnchantmentID", "Enchantments", 101, 0, eArray.length, "");
+		vaporisingID = cfg.getInt("vaporisingEnchantmentID", "Enchantments", 102, 0, eArray.length, "");
 	
 		aquaticFociUID = cfg.getInt("aquaticFociUID", "Foci", 42, 0, Integer.MAX_VALUE, "");
 		nethericFociUID = cfg.getInt("nethericFociUID", "Foci", 43, 0, Integer.MAX_VALUE, "");
@@ -34,6 +36,8 @@ public class TBConfig implements IDummyConfig{
 		brightFociRequiresPrimordialPearl = cfg.getBoolean("brightFociRequiresPrimordialPearl", "General", true, "Does the Brightness Foci for the Node Manipulator requires a Primordial Pearl");
 	
 		enableTTCompathability = cfg.getBoolean("enableTTCompathability", "General", true, "Allow the mod to register it's enchantments in the Thaumic Tinkerer's enchanter? Set to false if Thaumic Tinkerer is crashing you.");
+	
+		allowHSNicknameChange = cfg.getBoolean("allowHerobrinesScytheNicknameChange", "General", true, "Will the Scythe of the white eyed one change the player's nickname to Herobrine while he is holding it.");
 	}
 	
 	static Configuration cfg;
@@ -63,5 +67,7 @@ public class TBConfig implements IDummyConfig{
 	
 	public static int shardsFromOre;
 	public static boolean brightFociRequiresPrimordialPearl;
+	
+	public static boolean allowHSNicknameChange;
 
 }

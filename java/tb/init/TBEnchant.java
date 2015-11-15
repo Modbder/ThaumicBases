@@ -2,7 +2,8 @@ package tb.init;
 
 import java.lang.reflect.Method;
 
-import cpw.mods.fml.common.Loader;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraftforge.fml.common.Loader;
 import tb.common.enchantment.EnchantmentElderKnowledge;
 import tb.common.enchantment.EnchantmentEldritchBane;
 import tb.common.enchantment.EnchantmentMagicTouch;
@@ -11,19 +12,23 @@ import tb.common.enchantment.EnchantmentVaporising;
 import tb.utils.TBConfig;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnumEnchantmentType;
 
 public class TBEnchant {
 	
 	public static void setup()
 	{
-		elderKnowledge = new EnchantmentElderKnowledge(TBConfig.elderKnowledgeID,12,EnumEnchantmentType.weapon).setName("elderKnowledge");
-		eldritchBane = new EnchantmentEldritchBane(TBConfig.eldritchBaneID,7,EnumEnchantmentType.weapon).setName("eldritchBane");
-		magicTouch = new EnchantmentMagicTouch(TBConfig.magicTouchID,11,EnumEnchantmentType.weapon).setName("magicTouch");
-		tainted = new EnchantmentTainted(TBConfig.taintedID,9,EnumEnchantmentType.weapon).setName("tainted");
-		vaporising = new EnchantmentVaporising(TBConfig.vaporisingID,6,EnumEnchantmentType.weapon).setName("vaporising");
+		elderKnowledge = new EnchantmentElderKnowledge(TBConfig.elderKnowledgeID,12).setName("elderKnowledge");
+		eldritchBane = new EnchantmentEldritchBane(TBConfig.eldritchBaneID,7).setName("eldritchBane");
+		magicTouch = new EnchantmentMagicTouch(TBConfig.magicTouchID,11).setName("magicTouch");
+		tainted = new EnchantmentTainted(TBConfig.taintedID,9).setName("tainted");
+		vaporising = new EnchantmentVaporising(TBConfig.vaporisingID,6).setName("vaporising");
 
+		Enchantment.addToBookList(elderKnowledge);
+		Enchantment.addToBookList(eldritchBane);
+		Enchantment.addToBookList(magicTouch);
+		Enchantment.addToBookList(vaporising);
+		Enchantment.addToBookList(tainted);
+		
 		if(Loader.isModLoaded("ThaumicTinkerer") && TBConfig.enableTTCompathability)
 		{
 			try

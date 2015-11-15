@@ -1,21 +1,52 @@
 package tb.utils;
 
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.common.Thaumcraft;
-import thaumcraft.common.lib.network.PacketHandler;
-import thaumcraft.common.lib.network.playerdata.PacketAspectPool;
-import thaumcraft.common.lib.research.ResearchManager;
+import java.util.ArrayList;
+
+import DummyCore.Utils.Coord3D;
+import DummyCore.Utils.Pair;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.common.util.FakePlayer;
+import thaumcraft.api.internal.EnumWarpType;
+import thaumcraft.api.research.ResearchHelper;
 
 public class TBUtils {
 	
-	public static void addAspectToKnowledgePool(EntityPlayer addedTo, Aspect added, short amount)
+	public static ArrayList<Pair<Integer,Coord3D>> loadedClientSpawners = new ArrayList<Pair<Integer,Coord3D>>();
+	
+	public static Coord3D getClosestLoadedClientSpawner(EntityPlayer player)
 	{
-		 Thaumcraft.proxy.playerKnowledge.addAspectPool(addedTo.getCommandSenderName(), added, amount);
-		 ResearchManager.scheduleSave(addedTo);
-		 if(addedTo instanceof EntityPlayerMP)
-			 PacketHandler.INSTANCE.sendTo(new PacketAspectPool(added.getTag(), Short.valueOf(amount), Short.valueOf(Thaumcraft.proxy.playerKnowledge.getAspectPoolFor(addedTo.getCommandSenderName(), added))), (EntityPlayerMP)addedTo);
+		if(player == null)
+			return null;
+		
+		if(player instanceof FakePlayer)
+			return null;
+		
+		if(player.worldObj == null)
+			return null;
+		
+		if(!player.worldObj.isRemote)
+			return null;
+		
+		double closestDistance = Short.MAX_VALUE;
+		int index = -1;
+		
+		for(Pair<Integer,Coord3D> p : loadedClientSpawners)
+		{
+			if(p.getFirst() != player.dimension)
+				continue;
+			
+			double distance = Math.sqrt(player.getDistance(p.getSecond().x, p.getSecond().y, p.getSecond().z));
+			if(distance < closestDistance)
+			{
+				closestDistance = distance;
+				index = loadedClientSpawners.indexOf(p);
+			}
+		}
+		
+		if(index != -1)
+			return loadedClientSpawners.get(index).getSecond();
+		
+		return null;
 	}
 	
 	/**
@@ -27,22 +58,22 @@ public class TBUtils {
 		{
 			case 2:
 			{
-				Thaumcraft.addWarpToPlayer(addTo, amount, false);
+				ResearchHelper.addWarpToPlayer(addTo, amount, EnumWarpType.PERMANENT);
 				return;
 			}
 			case 1:
 			{
-				Thaumcraft.addStickyWarpToPlayer(addTo, amount);
+				ResearchHelper.addWarpToPlayer(addTo, amount, EnumWarpType.NORMAL);
 				return;
 			}
 			case 0:
 			{
-				Thaumcraft.addWarpToPlayer(addTo, amount, true);
+				ResearchHelper.addWarpToPlayer(addTo, amount, EnumWarpType.TEMPORARY);
 				return;
 			}
 			default:
 			{
-				Thaumcraft.addWarpToPlayer(addTo, amount, false);
+				ResearchHelper.addWarpToPlayer(addTo, amount, EnumWarpType.NORMAL);
 				return;
 			}
 		}
