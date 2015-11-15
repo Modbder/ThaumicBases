@@ -2,18 +2,22 @@ package tb.common.item;
 
 import java.util.List;
 
-import thaumcraft.api.IRepairable;
-import thaumcraft.api.IRunicArmor;
-import thaumcraft.api.IVisDiscountGear;
-import thaumcraft.api.aspects.Aspect;
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Utils.IOldItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.items.IRepairable;
+import thaumcraft.api.items.IRunicArmor;
+import thaumcraft.api.items.IVisDiscountGear;
 
-public class ItemThauminiteArmor extends ItemArmor implements IRepairable, IVisDiscountGear, IRunicArmor{
+public class ItemThauminiteArmor extends ItemArmor implements IRepairable, IVisDiscountGear, IRunicArmor, IOldItem{
 
 	int aType;
 	
@@ -45,5 +49,51 @@ public class ItemThauminiteArmor extends ItemArmor implements IRepairable, IVisD
 	{
 		list.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("tc.visdiscount") + ": " + getVisDiscount(stack, player, null) + "%");
 		super.addInformation(stack, player, list, par4);
+	}
+	
+
+
+    Icon icon;
+    String textureName;
+    
+	public Item setTextureName(String s)
+	{
+		textureName = s;
+		return this;
+	}
+
+	@Override
+	public Icon getIconFromDamage(int meta) {
+		return icon;
+	}
+
+	@Override
+	public Icon getIconFromItemStack(ItemStack stk) {
+		return getIconFromDamage(stk.getMetadata());
+	}
+
+	@Override
+	public void registerIcons(IconRegister reg) {
+		icon = reg.registerItemIcon(textureName);
+	}
+
+	@Override
+	public int getRenderPasses(ItemStack stk) {
+		return 0;
+	}
+
+	@Override
+	public Icon getIconFromItemStackAndRenderPass(ItemStack stk, int pass) {
+		return getIconFromItemStack(stk);
+	}
+
+	@Override
+	public boolean recreateIcon(ItemStack stk) {
+		return false;
+	}
+
+	@Override
+	public boolean render3D(ItemStack stk) {
+		return false;
 	}
 }

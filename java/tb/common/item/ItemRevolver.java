@@ -7,18 +7,6 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 import DummyCore.Utils.Pair;
-import tb.api.RevolverUpgrade;
-import tb.common.entity.EntityRevolverBullet;
-import tb.core.TBCore;
-import tb.network.proxy.TBNetworkManager;
-import thaumcraft.api.IRepairable;
-import thaumcraft.api.IWarpingGear;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
-import thaumcraft.codechicken.lib.math.MathHelper;
-import thaumcraft.common.Thaumcraft;
-import thaumcraft.common.blocks.ItemJarFilled;
-import thaumcraft.common.config.ConfigBlocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -32,6 +20,17 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import tb.api.RevolverUpgrade;
+import tb.common.entity.EntityRevolverBullet;
+import tb.core.TBCore;
+import tb.network.proxy.TBNetworkManager;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.blocks.BlocksTC;
+import thaumcraft.api.items.IRepairable;
+import thaumcraft.api.items.IWarpingGear;
+import thaumcraft.codechicken.lib.math.MathHelper;
+import thaumcraft.common.blocks.devices.BlockJarItem;
 
 public class ItemRevolver extends Item implements IRepairable,IWarpingGear
 {
@@ -141,7 +140,7 @@ public class ItemRevolver extends Item implements IRepairable,IWarpingGear
 		{
 			if (stk.hasTagCompound() && stk.getTagCompound().hasKey("jar"))
 			{
-				ItemStack jar = ItemStack.loadItemStackFromNBT(stk.stackTagCompound.getCompoundTag("jar"));
+				ItemStack jar = ItemStack.loadItemStackFromNBT(stk.getTagCompound().getCompoundTag("jar"));
 				
 				if(jar == null)
 				{
@@ -170,15 +169,15 @@ public class ItemRevolver extends Item implements IRepairable,IWarpingGear
 				
 				boolean addShots = false;
 				
-				if(!(jar.getItem() instanceof ItemJarFilled))
+				if(!(jar.getItem() instanceof BlockJarItem))
 					return super.onItemRightClick(stk, w, user);
 				
-				AspectList aspects = ((ItemJarFilled)jar.getItem()).getAspects(jar);
+				AspectList aspects = ((BlockJarItem)jar.getItem()).getAspects(jar);
 				if (aspects != null && aspects.size() > 0)
 				{
-					for (Aspect tag : aspects.getAspectsSorted())
+					for (Aspect tag : aspects.getAspectsSortedByName())
 					{
-						if(tag == Aspect.WEAPON)
+						if(tag == Aspect.AVERSION)
 						{
 							int required = addedShots < 0 ? 2 : 1;
 							if(aspects.getAmount(tag) >= required)
@@ -197,15 +196,15 @@ public class ItemRevolver extends Item implements IRepairable,IWarpingGear
 					TBNetworkManager.playSoundOnServer(w, "thaumicbases:revolver.reload", user.posX, user.posY, user.posZ, 3, 2F);
 				}
 				
-				if(aspects.visSize() > 0)
+				if(aspects != null && aspects.visSize() > 0)
 				{
-					((ItemJarFilled)jar.getItem()).setAspects(jar, aspects);
+					((BlockJarItem)jar.getItem()).setAspects(jar, aspects);
 					NBTTagCompound tag = new NBTTagCompound();
 					jar.writeToNBT(tag);
 					stk.setTagInfo("jar", tag);
 				}else
 				{
-					ItemStack emptyJar = new ItemStack(ConfigBlocks.blockJar,1,0);
+					ItemStack emptyJar = new ItemStack(BlocksTC.jar,1,0);
 					NBTTagCompound tag = new NBTTagCompound();
 					emptyJar.writeToNBT(tag);
 					stk.setTagInfo("jar", tag);
@@ -239,21 +238,18 @@ public class ItemRevolver extends Item implements IRepairable,IWarpingGear
 		super.addInformation(stk, p, lst, isCurrentItem);
 		iLabel:if (stk.hasTagCompound() && stk.getTagCompound().hasKey("jar"))
 		{
-			ItemStack jar = ItemStack.loadItemStackFromNBT(stk.stackTagCompound.getCompoundTag("jar"));
+			ItemStack jar = ItemStack.loadItemStackFromNBT(stk.getTagCompound().getCompoundTag("jar"));
 			
 			try 
 			{
-				if(!(jar.getItem() instanceof ItemJarFilled))
+				if(!(jar.getItem() instanceof BlockJarItem))
 					break iLabel;
 				
-				AspectList aspects = ((ItemJarFilled)jar.getItem()).getAspects(jar);
+				AspectList aspects = ((BlockJarItem)jar.getItem()).getAspects(jar);
 				
 				if (aspects != null && aspects.size() > 0)
-					for (Aspect tag : aspects.getAspectsSorted())
-						if (Thaumcraft.proxy.playerKnowledge.hasDiscoveredAspect(p.getCommandSenderName(), tag))
-							lst.add(tag.getName() + " x " + aspects.getAmount(tag));
-						else
-							lst.add(StatCollector.translateToLocal("tc.aspect.unknown"));
+					for (Aspect tag : aspects.getAspects())
+						lst.add(tag.getName() + " x " + aspects.getAmount(tag));
 			}
 			catch (Exception e)
 			{
@@ -272,7 +268,7 @@ public class ItemRevolver extends Item implements IRepairable,IWarpingGear
 	
     public EnumRarity getRarity(ItemStack stk)
     {
-        return EnumRarity.rare;
+        return EnumRarity.RARE;
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -281,7 +277,7 @@ public class ItemRevolver extends Item implements IRepairable,IWarpingGear
     {
     	HashMultimap retMap = HashMultimap.create();
     	
-    	retMap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", 5.0F+(getUpgradeLevel(stack, RevolverUpgrade.heavy)*2), 0));
+    	retMap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Weapon modifier", 5.0F+(getUpgradeLevel(stack, RevolverUpgrade.heavy)*2), 0));
     	
     	return retMap;
     }

@@ -1,16 +1,22 @@
 package tb.common.item;
 
 import tb.api.ITobacco;
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Utils.IOldItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class ItemSmokingPipe extends Item
+public class ItemSmokingPipe extends Item implements IOldItem
 {
 	public boolean isSilverwood;
+	public Icon texture;
+	public String textureName;
 	
 	public ItemSmokingPipe(boolean silverwood)
 	{
@@ -18,6 +24,12 @@ public class ItemSmokingPipe extends Item
 		isSilverwood = silverwood;
 		this.setFull3D();
 		this.setMaxStackSize(1);
+	}
+	
+	public ItemSmokingPipe setTextureName(String s)
+	{
+		textureName = s;
+		return this;
 	}
 	
 	public ItemStack getTobacco(EntityPlayer p)
@@ -40,7 +52,7 @@ public class ItemSmokingPipe extends Item
 	    
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
-	    return EnumAction.bow;
+	    return EnumAction.BOW;
 	}
 
 	public int getMaxItemUseDuration(ItemStack stack)
@@ -55,10 +67,11 @@ public class ItemSmokingPipe extends Item
     	double y = player.posY+player.getEyeHeight()+look.yCoord/5;
     	double z = player.posZ+look.zCoord/5;
     	if(count < 32)
-    		player.worldObj.spawnParticle(isSilverwood ? "explode" : "smoke", x, y, z, look.xCoord/10, look.yCoord/10, look.zCoord/10);
+    		player.worldObj.spawnParticle(isSilverwood ? EnumParticleTypes.EXPLOSION_NORMAL : EnumParticleTypes.SMOKE_NORMAL, x, y, z, look.xCoord/10, look.yCoord/10, look.zCoord/10);
     }
-	    
-	public ItemStack onEaten(ItemStack stack, World w, EntityPlayer player)
+	 
+    @Override
+	public ItemStack onItemUseFinish(ItemStack stack, World w, EntityPlayer player)
 	{
 		ItemStack tobacco = getTobacco(player);
 		ITobacco t = ITobacco.class.cast(tobacco.getItem());
@@ -79,10 +92,45 @@ public class ItemSmokingPipe extends Item
 	    	double y = player.posY+player.getEyeHeight()+look.yCoord/5;
 	    	double z = player.posZ+look.zCoord/5;
 	    	
-	    	player.worldObj.spawnParticle(isSilverwood ? "explode" : "smoke", x, y, z, look.xCoord/10, look.yCoord/10, look.zCoord/10);
+	    	player.worldObj.spawnParticle(isSilverwood ? EnumParticleTypes.EXPLOSION_NORMAL : EnumParticleTypes.SMOKE_NORMAL, x, y, z, look.xCoord/10, look.yCoord/10, look.zCoord/10);
 		}
 		
 		return stack;
+	}
+
+	@Override
+	public Icon getIconFromDamage(int meta) {
+		return texture;
+	}
+
+	@Override
+	public Icon getIconFromItemStack(ItemStack stk) {
+		return getIconFromDamage(stk.getMetadata());
+	}
+
+	@Override
+	public void registerIcons(IconRegister reg) {
+		texture = reg.registerItemIcon(textureName);
+	}
+
+	@Override
+	public int getRenderPasses(ItemStack stk) {
+		return 0;
+	}
+
+	@Override
+	public Icon getIconFromItemStackAndRenderPass(ItemStack stk, int pass) {
+		return getIconFromItemStack(stk);
+	}
+
+	@Override
+	public boolean recreateIcon(ItemStack stk) {
+		return false;
+	}
+
+	@Override
+	public boolean render3D(ItemStack stk) {
+		return false;
 	}
 	
 

@@ -2,24 +2,26 @@ package tb.common.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import tb.utils.TBUtils;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Utils.IOldItem;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import tb.utils.TBUtils;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
 
-public class ItemKnoseFragment extends Item
+public class ItemKnoseFragment extends Item implements IOldItem
 {
-	
+	String iconString;
 	public static final String names[] = new String[]{
 		"air",
 		"fire",
@@ -41,11 +43,17 @@ public class ItemKnoseFragment extends Item
 		lst(2,Aspect.FIRE,Aspect.WATER,Aspect.EARTH,Aspect.AIR,Aspect.ORDER,Aspect.ENTROPY)
 	};
 	
-	public static IIcon[] icons = new IIcon[names.length];
+	public static Icon[] icons = new Icon[names.length];
 
 	public ItemKnoseFragment()
 	{
 		this.setHasSubtypes(true);
+	}
+	
+	public ItemKnoseFragment setTextureName(String s)
+	{
+		iconString = s;
+		return this;
 	}
 	
 	public static final AspectList lst(int num,Aspect... aspect)
@@ -59,7 +67,7 @@ public class ItemKnoseFragment extends Item
 	}
 	
     @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int meta)
+    public Icon getIconFromDamage(int meta)
     {
     	return icons[meta];
     }
@@ -75,10 +83,10 @@ public class ItemKnoseFragment extends Item
     }
     
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister reg)
+    public void registerIcons(IconRegister reg)
     {
     	for(int i = 0; i < names.length; ++i)
-    		icons[i] = reg.registerIcon(iconString+names[i]+"Fragment");
+    		icons[i] = reg.registerItemIcon(iconString+names[i]+"Fragment");
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -96,7 +104,10 @@ public class ItemKnoseFragment extends Item
 	    	if(meta < 7)
 	    	{
 	    		for(int i = 0; i < addedAspects[meta].size(); ++i)
-	    			TBUtils.addAspectToKnowledgePool(player, addedAspects[meta].getAspects()[i], (short) addedAspects[meta].getAmount(addedAspects[meta].getAspects()[i]));
+	    		{
+	    			EntityXPOrb xp = new EntityXPOrb(w,player.posX,player.posY,player.posZ,2);
+	    			w.spawnEntityInWorld(xp);
+	    		}
 	    	}else
 	    	{
 	    		//if(!ResearchManager.isResearchComplete(player.getCommandSenderName(), "TB.TaintMinor"))
@@ -105,16 +116,18 @@ public class ItemKnoseFragment extends Item
 	    		for(int i = 0; i < Aspect.getCompoundAspects().size(); ++i)
 	    		{
 	    			Aspect a = Aspect.getCompoundAspects().get(i);
-	    			if(a == Aspect.TAINT)
+	    			if(a == Aspect.FLUX)
 	    			{
-	    				TBUtils.addAspectToKnowledgePool(player, a, (short) 8);
+		    			EntityXPOrb xp = new EntityXPOrb(w,player.posX,player.posY,player.posZ,16);
+		    			w.spawnEntityInWorld(xp);
 	    				TBUtils.addWarpToPlayer(player, 2, 0);
 	    				++overhaulAddedAspects;
 	    			}else
 	    			{
 	    				if(player.worldObj.rand.nextBoolean())
 	    				{
-	    					TBUtils.addAspectToKnowledgePool(player, a, (short) 1);
+	    	    			EntityXPOrb xp = new EntityXPOrb(w,player.posX,player.posY,player.posZ,1);
+	    	    			w.spawnEntityInWorld(xp);
 	    					++overhaulAddedAspects;
 	    				}
 	    				if(player.worldObj.rand.nextInt(24) == 0)
@@ -137,4 +150,29 @@ public class ItemKnoseFragment extends Item
     {
     	lst.add(EnumChatFormatting.AQUA+StatCollector.translateToLocal("tb.txt.knoseFragment"));
     }
+
+	@Override
+	public Icon getIconFromItemStack(ItemStack stk) {
+		return getIconFromDamage(stk.getMetadata());
+	}
+
+	@Override
+	public int getRenderPasses(ItemStack stk) {
+		return 0;
+	}
+
+	@Override
+	public Icon getIconFromItemStackAndRenderPass(ItemStack stk, int pass) {
+		return getIconFromItemStack(stk);
+	}
+
+	@Override
+	public boolean recreateIcon(ItemStack stk) {
+		return false;
+	}
+
+	@Override
+	public boolean render3D(ItemStack stk) {
+		return false;
+	}
 }

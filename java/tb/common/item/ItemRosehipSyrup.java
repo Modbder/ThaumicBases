@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import thaumcraft.common.config.Config;
-import thaumcraft.common.config.ConfigItems;
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Utils.IOldItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
@@ -13,8 +14,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import thaumcraft.api.items.ItemsTC;
+import thaumcraft.common.config.Config;
 
-public class ItemRosehipSyrup extends Item{
+public class ItemRosehipSyrup extends Item implements IOldItem{
 
     public ItemStack onItemRightClick(ItemStack stack, World w, EntityPlayer player)
     {
@@ -24,7 +27,7 @@ public class ItemRosehipSyrup extends Item{
     
     public EnumAction getItemUseAction(ItemStack stack)
     {
-        return EnumAction.drink;
+        return EnumAction.DRINK;
     }
 
     public int getMaxItemUseDuration(ItemStack stack)
@@ -33,15 +36,15 @@ public class ItemRosehipSyrup extends Item{
     }
     
     @SuppressWarnings("unchecked")
-	public ItemStack onEaten(ItemStack stack, World w, EntityPlayer player)
+	public ItemStack onItemUseFinish(ItemStack stack, World w, EntityPlayer player)
     {
         if (!player.capabilities.isCreativeMode)
         {
             --stack.stackSize;
             if(stack.stackSize > 0)
             {
-            	if(!player.inventory.addItemStackToInventory(new ItemStack(ConfigItems.itemEssence,1,0)))
-            		player.dropPlayerItemWithRandomChoice(new ItemStack(ConfigItems.itemEssence,1,0), false);
+            	if(!player.inventory.addItemStackToInventory(new ItemStack(ItemsTC.phial,1,0)))
+            		player.dropPlayerItemWithRandomChoice(new ItemStack(ItemsTC.phial,1,0), false);
             }
         }
 
@@ -71,7 +74,7 @@ public class ItemRosehipSyrup extends Item{
         	}
         }
 
-        return stack.stackSize <= 0 ? new ItemStack(ConfigItems.itemEssence,1,0) : stack;
+        return stack.stackSize <= 0 ? new ItemStack(ItemsTC.phial,1,0) : stack;
     }
     
     public static int processPotion(EntityPlayer p, PotionEffect effect)
@@ -85,11 +88,8 @@ public class ItemRosehipSyrup extends Item{
     		{
     			if(effect.getAmplifier() == 0)
     				return effect.getPotionID();
-    			else
-    			{
-    				reflectPotionEffect(p,effect);
-    				return -1;
-    			}
+				reflectPotionEffect(p,effect);
+				return -1;
     		}
     	}
     		
@@ -113,7 +113,53 @@ public class ItemRosehipSyrup extends Item{
     	int id = effect.getPotionID();
     	int dur = effect.getDuration();
     	boolean transparent = effect.getIsAmbient();
+    	boolean parts = effect.getIsShowParticles();
     	p.removePotionEffect(effect.getPotionID());
-    	p.addPotionEffect(new PotionEffect(id,dur,amp,transparent));
+    	p.addPotionEffect(new PotionEffect(id,dur,amp,transparent,parts));
     }
+    
+
+    Icon icon;
+    String textureName;
+    
+	public Item setTextureName(String s)
+	{
+		textureName = s;
+		return this;
+	}
+
+	@Override
+	public Icon getIconFromDamage(int meta) {
+		return icon;
+	}
+
+	@Override
+	public Icon getIconFromItemStack(ItemStack stk) {
+		return getIconFromDamage(stk.getMetadata());
+	}
+
+	@Override
+	public void registerIcons(IconRegister reg) {
+		icon = reg.registerItemIcon(textureName);
+	}
+
+	@Override
+	public int getRenderPasses(ItemStack stk) {
+		return 0;
+	}
+
+	@Override
+	public Icon getIconFromItemStackAndRenderPass(ItemStack stk, int pass) {
+		return getIconFromItemStack(stk);
+	}
+
+	@Override
+	public boolean recreateIcon(ItemStack stk) {
+		return false;
+	}
+
+	@Override
+	public boolean render3D(ItemStack stk) {
+		return false;
+	}
 }

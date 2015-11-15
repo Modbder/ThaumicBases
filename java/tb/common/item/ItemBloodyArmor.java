@@ -6,10 +6,9 @@ import java.util.UUID;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
-import thaumcraft.api.IRepairable;
-import thaumcraft.api.IRunicArmor;
-import thaumcraft.api.IVisDiscountGear;
-import thaumcraft.api.aspects.Aspect;
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Utils.IOldItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -18,14 +17,26 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.items.IRepairable;
+import thaumcraft.api.items.IRunicArmor;
+import thaumcraft.api.items.IVisDiscountGear;
 
-public class ItemBloodyArmor extends ItemArmor implements IRepairable, IVisDiscountGear, IRunicArmor{
+public class ItemBloodyArmor extends ItemArmor implements IRepairable, IVisDiscountGear, IRunicArmor, IOldItem{
 
 	int aType;
+	Icon icon;
+	String textureName;
 	
 	public ItemBloodyArmor(ArmorMaterial mat,int aType) {
 		super(mat, 0, aType);
 		this.aType = aType;
+	}
+	
+	public ItemBloodyArmor setTextureName(String s)
+	{
+		textureName = s;
+		return this;
 	}
 	
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
@@ -79,5 +90,40 @@ public class ItemBloodyArmor extends ItemArmor implements IRepairable, IVisDisco
     	
     	return map;
     }
+
+	@Override
+	public Icon getIconFromDamage(int meta) {
+		return icon;
+	}
+
+	@Override
+	public Icon getIconFromItemStack(ItemStack stk) {
+		return getIconFromDamage(stk.getMetadata());
+	}
+
+	@Override
+	public void registerIcons(IconRegister reg) {
+		icon = reg.registerItemIcon(textureName);
+	}
+
+	@Override
+	public int getRenderPasses(ItemStack stk) {
+		return 0;
+	}
+
+	@Override
+	public Icon getIconFromItemStackAndRenderPass(ItemStack stk, int pass) {
+		return getIconFromItemStack(stk);
+	}
+
+	@Override
+	public boolean recreateIcon(ItemStack stk) {
+		return false;
+	}
+
+	@Override
+	public boolean render3D(ItemStack stk) {
+		return false;
+	}
 	
 }

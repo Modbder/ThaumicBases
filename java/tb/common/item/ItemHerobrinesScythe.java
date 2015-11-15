@@ -5,18 +5,16 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import tb.core.TBCore;
-import thaumcraft.api.IRepairable;
-import thaumcraft.api.IWarpingGear;
-
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Utils.IOldItem;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityMultiPart;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -36,8 +34,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import tb.core.TBCore;
+import thaumcraft.api.items.IRepairable;
+import thaumcraft.api.items.IWarpingGear;
 
-public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarpingGear{
+public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarpingGear,IOldItem{
 
 	public ItemHerobrinesScythe()
 	{
@@ -46,7 +49,7 @@ public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarp
 	
 	public EnumRarity getRarity(ItemStack itemstack)
 	{
-		return EnumRarity.uncommon;
+		return EnumRarity.UNCOMMON;
 	}
 	
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -66,7 +69,7 @@ public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarp
 	@SuppressWarnings("unchecked")
 	public static void attack(EntityPlayer attacker, List<EntityLivingBase> doNotAttack, EntityLivingBase attacked)
 	{
-		AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(attacked.posX-1, attacked.posY-1, attacked.posZ-1, attacked.posX+1, attacked.posY+1, attacked.posZ+1).expand(6, 6, 6);
+		AxisAlignedBB aabb = AxisAlignedBB.fromBounds(attacked.posX-1, attacked.posY-1, attacked.posZ-1, attacked.posX+1, attacked.posY+1, attacked.posZ+1).expand(6, 6, 6);
 		
 		List<EntityLivingBase> mobs = attacked.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, aabb);
 		
@@ -92,11 +95,9 @@ public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarp
 					
 					break;
 					
-				}else
-				{
-					mobs.remove(index);
-					continue;
 				}
+				mobs.remove(index);
+				continue;
 			}
 		}
 		
@@ -135,8 +136,11 @@ public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarp
 
                 if (p_71059_1_ instanceof EntityLivingBase)
                 {
-                    f1 = EnchantmentHelper.getEnchantmentModifierLiving(p, (EntityLivingBase)p_71059_1_);
-                    i += EnchantmentHelper.getKnockbackModifier(p, (EntityLivingBase)p_71059_1_);
+                    f1 = EnchantmentHelper.func_152377_a(p.getHeldItem(), ((EntityLivingBase)p_71059_1_).getCreatureAttribute());
+                }
+                else
+                {
+                    f1 = EnchantmentHelper.func_152377_a(p.getHeldItem(), EnumCreatureAttribute.UNDEFINED);
                 }
 
                 if (p.isSprinting())
@@ -169,7 +173,7 @@ public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarp
                     {
                         if (i > 0)
                         {
-                            p_71059_1_.addVelocity((double)(-MathHelper.sin(p.rotationYaw * (float)Math.PI / 180.0F) * (float)i * 0.5F), 0.1D, (double)(MathHelper.cos(p.rotationYaw * (float)Math.PI / 180.0F) * (float)i * 0.5F));
+                            p_71059_1_.addVelocity(-MathHelper.sin(p.rotationYaw * (float)Math.PI / 180.0F) * i * 0.5F, 0.1D, MathHelper.cos(p.rotationYaw * (float)Math.PI / 180.0F) * i * 0.5F);
                             p.motionX *= 0.6D;
                             p.motionZ *= 0.6D;
                             p.setSprinting(false);
@@ -207,7 +211,7 @@ public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarp
 
                             if (ientitymultipart != null && ientitymultipart instanceof EntityLivingBase)
                             {
-                                object = (EntityLivingBase)ientitymultipart;
+                                object = ientitymultipart;
                             }
                         }
 
@@ -258,9 +262,54 @@ public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarp
     	return attribs;
     }
     
+    Icon icon;
+    String textureName;
+    
+    public ItemHerobrinesScythe setTextureName(String s)
+    {
+    	textureName = s;
+    	return this;
+    }
+    
     public boolean isItemTool(ItemStack stk)
     {
     	return true;
     }
+
+	@Override
+	public Icon getIconFromDamage(int meta) {
+		return icon;
+	}
+
+	@Override
+	public Icon getIconFromItemStack(ItemStack stk) {
+		return getIconFromDamage(stk.getMetadata());
+	}
+
+	@Override
+	public void registerIcons(IconRegister reg) {
+		icon = reg.registerItemIcon(textureName);
+		
+	}
+
+	@Override
+	public int getRenderPasses(ItemStack stk) {
+		return 0;
+	}
+
+	@Override
+	public Icon getIconFromItemStackAndRenderPass(ItemStack stk, int pass) {
+		return getIconFromItemStack(stk);
+	}
+
+	@Override
+	public boolean recreateIcon(ItemStack stk) {
+		return false;
+	}
+
+	@Override
+	public boolean render3D(ItemStack stk) {
+		return true;
+	}
 
 }
