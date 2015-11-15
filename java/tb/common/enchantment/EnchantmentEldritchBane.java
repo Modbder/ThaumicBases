@@ -3,14 +3,15 @@ package tb.common.enchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentDamage;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.util.ResourceLocation;
 
 public class EnchantmentEldritchBane extends Enchantment{
 
-	public EnchantmentEldritchBane(int id, int weight,	EnumEnchantmentType type) 
+	public EnchantmentEldritchBane(int id, int weight) 
 	{
-		super(id, weight, type);
+		super(id, new ResourceLocation("tb.eldritchBane"), weight,EnumEnchantmentType.WEAPON);
 	}
-    
+
     public int getMaxLevel()
     {
         return 5;

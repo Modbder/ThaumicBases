@@ -3,41 +3,35 @@ package tb.common.enchantment;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
-import tb.init.TBEnchant;
-import tb.utils.TBUtils;
-import thaumcraft.api.ThaumcraftApi;
-import thaumcraft.api.ThaumcraftApi.EntityTags;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
-import thaumcraft.api.entities.IEldritchMob;
-import thaumcraft.api.entities.ITaintedMob;
-import thaumcraft.api.nodes.NodeType;
-import thaumcraft.codechicken.lib.math.MathHelper;
-import thaumcraft.common.blocks.BlockAiry;
-import thaumcraft.common.config.Config;
-import thaumcraft.common.config.ConfigItems;
-import thaumcraft.common.entities.EntityAspectOrb;
-import thaumcraft.common.items.ItemCrystalEssence;
-import thaumcraft.common.lib.research.ResearchManager;
-import thaumcraft.common.lib.research.ScanManager;
-import thaumcraft.common.tiles.TileNode;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.block.Block;
+import DummyCore.Utils.MiscUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import tb.common.entity.EntityAspectOrb;
+import tb.init.TBEnchant;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectHelper;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.entities.IEldritchMob;
+import thaumcraft.api.entities.ITaintedMob;
+import thaumcraft.api.items.ItemGenericEssentiaContainer;
+import thaumcraft.api.items.ItemsTC;
+import thaumcraft.common.config.Config;
+import thaumcraft.common.lib.aura.EntityAuraNode;
 
 public class EnchantmentHandler {
 	
@@ -52,44 +46,38 @@ public class EnchantmentHandler {
 			int z = MathHelper.floor_double(event.entityItem.posZ);
 			World w = event.entityItem.worldObj;
 			ItemStack is = event.entityItem.getEntityItem();
-			Block b = w.getBlock(x, y, z);
-			if(b != null && b instanceof BlockAiry)
+			
+			EntityAuraNode node = (EntityAuraNode) MiscUtils.getClosestEntity(event.entityItem.worldObj.getEntitiesWithinAABB(EntityAuraNode.class, AxisAlignedBB.fromBounds(x, y, z, x, y, z).expand(8, 8, 8)),x,y,z);
+			if(node != null && node.getNodeType() == 4)
 			{
-				TileEntity t = w.getTileEntity(x, y, z);
-				if(t != null && t instanceof TileNode)
+				if(is.getItem() instanceof ItemSword)
 				{
-					if(TileNode.class.cast(t).getNodeType() == NodeType.TAINTED)
+					if(EnchantmentHelper.getEnchantmentLevel(TBEnchant.tainted.effectId, is) <= 0)
 					{
-						if(is.getItem() instanceof ItemSword)
+						LinkedHashMap<Integer,Integer> lhm = (LinkedHashMap<Integer,Integer>)EnchantmentHelper.getEnchantments(is);
+						boolean canApply = true;
+						if(!lhm.isEmpty())
 						{
-							if(EnchantmentHelper.getEnchantmentLevel(TBEnchant.tainted.effectId, is) <= 0)
+							Iterator<Integer> $i = lhm.keySet().iterator();
+							while($i.hasNext())
 							{
-								LinkedHashMap<Integer,Integer> lhm = (LinkedHashMap<Integer,Integer>)EnchantmentHelper.getEnchantments(is);
-								boolean canApply = true;
-								if(!lhm.isEmpty())
+								int i = $i.next();
+								if(i < MiscUtils.enchantmentList().length && MiscUtils.enchantmentList()[i] != null)
 								{
-									Iterator<Integer> $i = lhm.keySet().iterator();
-									while($i.hasNext())
+									Enchantment ench = MiscUtils.enchantmentList()[i];
+									if(!ench.canApplyTogether(TBEnchant.tainted))
 									{
-										int i = $i.next();
-										if(i < Enchantment.enchantmentsList.length && Enchantment.enchantmentsList[i] != null)
-										{
-											Enchantment ench = Enchantment.enchantmentsList[i];
-											if(!ench.canApplyTogether(TBEnchant.tainted))
-											{
-												canApply = false;
-												break;
-											}
-										}
+										canApply = false;
+										break;
 									}
 								}
-								if(canApply)
-								{
-									is.addEnchantment(TBEnchant.tainted, 1+w.rand.nextInt(3));
-									event.extraLife = 1000;
-									event.setCanceled(true);
-								}
 							}
+						}
+						if(canApply)
+						{
+							is.addEnchantment(TBEnchant.tainted, 1+w.rand.nextInt(3));
+							event.extraLife = 1000;
+							event.setCanceled(true);
 						}
 					}
 				}
@@ -112,35 +100,25 @@ public class EnchantmentHandler {
 					int enchLevel = EnchantmentHelper.getEnchantmentLevel(TBEnchant.elderKnowledge.effectId, currentItem);
 					if(player.worldObj.rand.nextInt(Math.max(1, 7-enchLevel)) == 0)
 					{
-						EntityTags eTags = null;
-						for(int i = 0; i < ThaumcraftApi.scanEntities.size(); ++i)
-						{
-							EntityTags tags = ThaumcraftApi.scanEntities.get(i);
-							if(tags != null && EntityList.getEntityString(dyingMob) != null && EntityList.getEntityString(dyingMob).equalsIgnoreCase(tags.entityName))
-							{
-								eTags = tags;
-								break;
-							}
-						}
-						if(eTags != null)
-						{
-							AspectList al = eTags.aspects;
+						AspectList al = AspectHelper.getEntityAspects(dyingMob);
+						if(al != null)
 							for(int i = 0; i < al.size(); ++i)
 							{
-								TBUtils.addAspectToKnowledgePool(player, al.getAspects()[i], (short) 1);
+								EntityXPOrb xp = new EntityXPOrb(player.worldObj,player.posX,player.posY,player.posZ,3+player.worldObj.rand.nextInt(2+enchLevel*2));
+								if(!player.worldObj.isRemote)
+									player.worldObj.spawnEntityInWorld(xp);
 								if(player.worldObj.rand.nextBoolean())
 									break;
 							}
-						}
 					}
 				}
 				if(EnchantmentHelper.getEnchantmentLevel(TBEnchant.magicTouch.effectId, currentItem) > 0)
 				{
 					int enchLevel = EnchantmentHelper.getEnchantmentLevel(TBEnchant.magicTouch.effectId, currentItem);
-					AspectList aspectsCompound = ScanManager.generateEntityAspects(dyingMob);
+					AspectList aspectsCompound = AspectHelper.getEntityAspects(dyingMob);
 					if ((aspectsCompound != null) && (aspectsCompound.size() > 0)) 
 					{
-						AspectList aspects = ResearchManager.reduceToPrimals(aspectsCompound);
+						AspectList aspects = AspectHelper.reduceToPrimals(aspectsCompound);
 						for(int i = 0; i < enchLevel; ++i)
 						{
 							for (Aspect aspect : aspects.getAspects())
@@ -160,7 +138,7 @@ public class EnchantmentHandler {
 					int enchLevel = EnchantmentHelper.getEnchantmentLevel(TBEnchant.vaporising.effectId, currentItem);
 					if(event.entity.worldObj.rand.nextInt(Math.max(1, 5 - enchLevel)) == 0)
 					{
-						AspectList aspects = ScanManager.generateEntityAspects(event.entityLiving);
+						AspectList aspects = AspectHelper.getEntityAspects(event.entityLiving);
 						if ((aspects != null) && (aspects.size() > 0))
 							for (Aspect aspect : aspects.getAspects())
 							{
@@ -168,8 +146,8 @@ public class EnchantmentHandler {
 								{
 									int size = 1 + event.entity.worldObj.rand.nextInt(aspects.getAmount(aspect));
 									size = Math.max(1, size / 2);
-									ItemStack stack = new ItemStack(ConfigItems.itemCrystalEssence, size, 0);
-									((ItemCrystalEssence)stack.getItem()).setAspects(stack, new AspectList().add(aspect, 1));
+									ItemStack stack = new ItemStack(ItemsTC.crystalEssence, size, 0);
+									((ItemGenericEssentiaContainer)stack.getItem()).setAspects(stack, new AspectList().add(aspect, 1));
 									EntityItem cEs = new EntityItem(event.entity.worldObj, event.entityLiving.posX, event.entityLiving.posY + event.entityLiving.getEyeHeight(), event.entityLiving.posZ, stack);
 									event.entity.worldObj.spawnEntityInWorld(cEs);
 								}
@@ -208,12 +186,11 @@ public class EnchantmentHandler {
 						event.ammount += enchLevel*3F;
 						if(player.worldObj.rand.nextInt(Math.max(1,4-enchLevel)) == 0)
 						{
-							mob.addPotionEffect(new PotionEffect(Config.potionTaintPoisonID,200,enchLevel-1,true));
+							mob.addPotionEffect(new PotionEffect(Config.potionTaintPoisonID,200,enchLevel-1,true,false));
 						}
 					}
 				}
 			}
 		}
 	}
-
 }

@@ -2,12 +2,13 @@ package tb.common.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.util.ResourceLocation;
 
 public class EnchantmentElderKnowledge extends Enchantment{
 
-	public EnchantmentElderKnowledge(int id, int weight,	EnumEnchantmentType type) 
+	public EnchantmentElderKnowledge(int id, int weight) 
 	{
-		super(id, weight, type);
+		super(id, new ResourceLocation("tb.elderKnowledge"), weight,EnumEnchantmentType.WEAPON);
 	}
 
     public int getMinEnchantability(int lvl)

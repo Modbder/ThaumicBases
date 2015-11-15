@@ -40,7 +40,7 @@ public class EntityAIAvoidCampfire extends EntityAIBase
 	{
 		if(isScared)
 		{
-			Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.entityObj, 16, 10, Vec3.createVectorHelper(campfireX+0.5D, campfireY, campfireZ+0.5D));
+			Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.entityObj, 16, 10, new Vec3(campfireX+0.5D, campfireY+0.0D, campfireZ+0.5D));
 			
 			if(vec3 == null)
 				return false;

@@ -3,12 +3,13 @@ package tb.common.enchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class EnchantmentTainted extends Enchantment{
 
-	public EnchantmentTainted(int id, int weight,	EnumEnchantmentType type) 
+	public EnchantmentTainted(int id, int weight) 
 	{
-		super(id, weight, type);
+		super(id, new ResourceLocation("tb.tainted"), weight,EnumEnchantmentType.WEAPON);
 	}
 
     public int getMaxLevel()
@@ -25,4 +26,5 @@ public class EnchantmentTainted extends Enchantment{
     {
     	return false;
     }
+
 }

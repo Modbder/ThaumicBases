@@ -2,12 +2,13 @@ package tb.common.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.util.ResourceLocation;
 
 public class EnchantmentMagicTouch extends Enchantment{
 
-	public EnchantmentMagicTouch(int id, int weight,	EnumEnchantmentType type) 
+	public EnchantmentMagicTouch(int id, int weight) 
 	{
-		super(id, weight, type);
+		super(id, new ResourceLocation("tb.magicTouch"), weight,EnumEnchantmentType.WEAPON);
 	}
 	
     public int getMaxLevel()
@@ -19,4 +20,5 @@ public class EnchantmentMagicTouch extends Enchantment{
     {
     	return !(ench instanceof EnchantmentElderKnowledge) && !(ench instanceof EnchantmentMagicTouch) && !(ench instanceof EnchantmentTainted) && !(ench instanceof EnchantmentVaporising);
     }
+	
 }

@@ -2,14 +2,15 @@ package tb.common.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.util.ResourceLocation;
 
 public class EnchantmentVaporising extends Enchantment{
 
-	public EnchantmentVaporising(int id, int weight,	EnumEnchantmentType type) 
+	public EnchantmentVaporising(int id, int weight) 
 	{
-		super(id, weight, type);
+		super(id, new ResourceLocation("tb.elderKnowledge"), weight,EnumEnchantmentType.WEAPON);
 	}
-    
+
     public int getMaxLevel()
     {
         return 3;
