@@ -1,12 +1,14 @@
 package tb.common.inventory;
 
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
-import thaumcraft.common.blocks.ItemJarFilled;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.common.blocks.devices.BlockJarItem;
 
 public class InventoryRevolver implements IInventory
 {
@@ -83,10 +85,10 @@ public class InventoryRevolver implements IInventory
 	
 	public boolean isItemValidForSlot(int slot, ItemStack jar)
 	{
-		if (jar != null && jar.getItem() instanceof ItemJarFilled && jar.hasTagCompound()) 
+		if (jar != null && jar.getItem() instanceof BlockJarItem && jar.hasTagCompound()) 
 		{
-			AspectList aspects = ((ItemJarFilled)jar.getItem()).getAspects(jar);
-			if (aspects != null && aspects.size() > 0 && aspects.getAmount(Aspect.WEAPON) > 0) 
+			AspectList aspects = ((BlockJarItem)jar.getItem()).getAspects(jar);
+			if (aspects != null && aspects.size() > 0 && aspects.getAmount(Aspect.AVERSION) > 0) 
 				return true;
 		}
 		return false;
@@ -108,5 +110,49 @@ public class InventoryRevolver implements IInventory
 
 	@Override
 	public void markDirty(){}
+
+	@Override
+	public String getName() {
+		return getInventoryName();
+	}
+
+	@Override
+	public boolean hasCustomName() {
+		return false;
+	}
+
+	@Override
+	public IChatComponent getDisplayName() {
+		return new ChatComponentText(getName());
+	}
+
+	@Override
+	public void openInventory(EntityPlayer player) {
+		
+	}
+
+	@Override
+	public void closeInventory(EntityPlayer player) {
+		
+	}
+
+	@Override
+	public int getField(int id) {
+		return 0;
+	}
+
+	@Override
+	public void setField(int id, int value) {
+	}
+
+	@Override
+	public int getFieldCount() {
+		return 0;
+	}
+
+	@Override
+	public void clear() {
+		inventory = new ItemStack[1];
+	}
 	
 }

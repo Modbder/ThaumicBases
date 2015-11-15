@@ -2,12 +2,13 @@ package tb.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import tb.common.inventory.ContainerRevolver;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import tb.common.inventory.ContainerRevolver;
 
 public class GuiRevolver extends GuiContainer
 {
@@ -29,14 +30,14 @@ public class GuiRevolver extends GuiContainer
 		
 		this.zLevel = 200;
 		
-		GL11.glDisable(GL11.GL_ALPHA_TEST);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.disableAlpha();
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
 		drawTexturedModalRect(8 + blockedSlot * 18, 142, 240, 0, 16, 16);
 		
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GlStateManager.disableBlend();
+		GlStateManager.enableAlpha();
 		
 		this.zLevel = storedZLevel;
 	}
@@ -47,7 +48,7 @@ public class GuiRevolver extends GuiContainer
 			 Minecraft.getMinecraft().thePlayer.closeScreen();
 		 
 		 Minecraft.getMinecraft().renderEngine.bindTexture(revolverTextures);
-		 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		 
 		 int k = (this.width - this.xSize) / 2;
 		 int l = (this.height - this.ySize) / 2;
