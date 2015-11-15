@@ -44,7 +44,7 @@ public class ContainerRevolver extends Container
  		{
 	 		try 
 	 		{
-	 			ItemStack jar = ItemStack.loadItemStackFromNBT(stack.stackTagCompound.getCompoundTag("jar"));  
+	 			ItemStack jar = ItemStack.loadItemStackFromNBT(stack.getTagCompound().getCompoundTag("jar"));  
 	 			this.input.setInventorySlotContents(0, jar);
 	 		} 
  			catch (Exception e)

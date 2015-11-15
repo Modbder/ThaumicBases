@@ -5,9 +5,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import tb.init.TBBlocks;
+import DummyCore.Utils.BlockStateMetadata;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,13 +18,17 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import tb.init.TBBlocks;
 
 public class ContainerThaumicAnvil extends ContainerRepair{
 
 	private IInventory outputSlot = new InventoryCraftResult();
-    private IInventory inputSlots = new InventoryBasic("Repair", true, 2)
+    IInventory inputSlots = new InventoryBasic("Repair", true, 2)
     {
         public void markDirty()
         {
@@ -41,9 +43,9 @@ public class ContainerThaumicAnvil extends ContainerRepair{
     private int y;
     private int z;
     
-	public ContainerThaumicAnvil(InventoryPlayer inv, World w,int x, int y, int z,EntityPlayer p)
+	public ContainerThaumicAnvil(InventoryPlayer inv, final World w, final BlockPos pos, EntityPlayer p)
 	{
-		super(inv, w, x, y, z, p);
+		super(inv, w, pos, p);
 		thePlayer = p;
 		
 		this.crafters.clear();
@@ -51,9 +53,9 @@ public class ContainerThaumicAnvil extends ContainerRepair{
 		this.inventorySlots.clear();
 		
 		this.w = w;
-		this.x = x;
-		this.y = y;
-		this.z = z;
+		this.x = pos.getX();
+		this.y = pos.getY();
+		this.z = pos.getZ();
 		
 		final World fw = w;
 		final int fx = x;
@@ -84,13 +86,13 @@ public class ContainerThaumicAnvil extends ContainerRepair{
 
                 ContainerThaumicAnvil.this.inputSlots.setInventorySlotContents(0, (ItemStack)null);
 
-                if (ContainerThaumicAnvil.this.stackSizeToBeUsedInRepair > 0)
+                if (ContainerThaumicAnvil.this.materialCost > 0)
                 {
                     ItemStack itemstack1 = ContainerThaumicAnvil.this.inputSlots.getStackInSlot(1);
 
-                    if (itemstack1 != null && itemstack1.stackSize > ContainerThaumicAnvil.this.stackSizeToBeUsedInRepair)
+                    if (itemstack1 != null && itemstack1.stackSize > ContainerThaumicAnvil.this.materialCost)
                     {
-                        itemstack1.stackSize -= ContainerThaumicAnvil.this.stackSizeToBeUsedInRepair;
+                        itemstack1.stackSize -= ContainerThaumicAnvil.this.materialCost;
                         ContainerThaumicAnvil.this.inputSlots.setInventorySlotContents(1, itemstack1);
                     }
                     else
@@ -105,27 +107,26 @@ public class ContainerThaumicAnvil extends ContainerRepair{
 
                 ContainerThaumicAnvil.this.maximumCost = 0;
 
-                if (!p_82870_1_.capabilities.isCreativeMode && !fw.isRemote && fw.getBlock(fx, fy, fz) == TBBlocks.thaumicAnvil && p_82870_1_.getRNG().nextFloat() < breakChance)
+                if (!p_82870_1_.capabilities.isCreativeMode && !fw.isRemote && fw.getBlockState(new BlockPos(fx, fy, fz)).getBlock() == TBBlocks.thaumicAnvil && p_82870_1_.getRNG().nextFloat() < breakChance)
                 {
-                    int i1 = fw.getBlockMetadata(fx, fy, fz);
-                    int k = i1 & 3;
-                    int l = i1 >> 2;
+                    int i1 = BlockStateMetadata.getBlockMetadata(fw, fx, fy, fz);
+                    int l = i1 % 3;
                     ++l;
 
                     if (l > 2)
                     {
-                        fw.setBlockToAir(fx, fy, fz);
-                        fw.playAuxSFX(1020, fx, fy, fz, 0);
+                        fw.setBlockToAir(new BlockPos(fx,fy,fz));
+                        fw.playAuxSFX(1020, new BlockPos(fx,fy,fz), 0);
                     }
                     else
                     {
-                        fw.setBlockMetadataWithNotify(fx, fy, fz, k | l << 2, 2);
-                        fw.playAuxSFX(1021, fx, fy, fz, 0);
+                        fw.setBlockState(new BlockPos(fx,fy,fz), fw.getBlockState(new BlockPos(fx, fy, fz)).getBlock().getStateFromMeta(i1-1));
+                        fw.playAuxSFX(1021, new BlockPos(fx,fy,fz), 0);
                     }
                 }
                 else if (!fw.isRemote)
                 {
-                    fw.playAuxSFX(1021, fx, fy, fz, 0);
+                	fw.playAuxSFX(1021, new BlockPos(fx,fy,fz), 0);
                 }
             }
         });
@@ -177,7 +178,7 @@ public class ContainerThaumicAnvil extends ContainerRepair{
             Map map = EnchantmentHelper.getEnchantments(itemstack1);
             boolean flag = false;
             int k2 = b0 + itemstack.getRepairCost() + (itemstack2 == null ? 0 : itemstack2.getRepairCost());
-            this.stackSizeToBeUsedInRepair = 0;
+            this.materialCost = 0;
             int k;
             int l;
             int i1;
@@ -189,11 +190,11 @@ public class ContainerThaumicAnvil extends ContainerRepair{
             if (itemstack2 != null)
             {
                 if (!ForgeHooks.onAnvilChange(this, itemstack, itemstack2, outputSlot, repairedItemName, k2)) return;
-                flag = itemstack2.getItem() == Items.enchanted_book && Items.enchanted_book.func_92110_g(itemstack2).tagCount() > 0;
+                flag = itemstack2.getItem() == Items.enchanted_book && Items.enchanted_book.getEnchantments(itemstack2).tagCount() > 0;
 
                 if (itemstack1.isItemStackDamageable() && itemstack1.getItem().getIsRepairable(itemstack, itemstack2))
                 {
-                    k = Math.min(itemstack1.getItemDamageForDisplay(), itemstack1.getMaxDamage() / 4);
+                    k = Math.min(itemstack1.getItemDamage(), itemstack1.getMaxDamage() / 4);
 
                     if (k <= 0)
                     {
@@ -204,13 +205,13 @@ public class ContainerThaumicAnvil extends ContainerRepair{
 
                     for (l = 0; k > 0 && l < itemstack2.stackSize; ++l)
                     {
-                        i1 = itemstack1.getItemDamageForDisplay() - k;
+                        i1 = itemstack1.getItemDamage() - k;
                         itemstack1.setItemDamage(i1);
                         i += Math.max(1, k / 100) + map.size();
-                        k = Math.min(itemstack1.getItemDamageForDisplay(), itemstack1.getMaxDamage() / 4);
+                        k = Math.min(itemstack1.getItemDamage(), itemstack1.getMaxDamage() / 4);
                     }
 
-                    this.stackSizeToBeUsedInRepair = l;
+                    this.materialCost = l;
                 }
                 else
                 {
@@ -223,8 +224,8 @@ public class ContainerThaumicAnvil extends ContainerRepair{
 
                     if (itemstack1.isItemStackDamageable() && !flag)
                     {
-                        k = itemstack.getMaxDamage() - itemstack.getItemDamageForDisplay();
-                        l = itemstack2.getMaxDamage() - itemstack2.getItemDamageForDisplay();
+                        k = itemstack.getMaxDamage() - itemstack.getItemDamage();
+                        l = itemstack2.getMaxDamage() - itemstack2.getItemDamage();
                         i1 = l + itemstack1.getMaxDamage() * 12 / 100;
                         int j1 = k + i1;
                         k1 = itemstack1.getMaxDamage() - j1;
@@ -247,7 +248,7 @@ public class ContainerThaumicAnvil extends ContainerRepair{
                     while (iterator1.hasNext())
                     {
                         i1 = ((Integer)iterator1.next()).intValue();
-                        enchantment = Enchantment.enchantmentsList[i1];
+                        enchantment = Enchantment.getEnchantmentById(i1);
                         k1 = map.containsKey(Integer.valueOf(i1)) ? ((Integer)map.get(Integer.valueOf(i1))).intValue() : 0;
                         l1 = ((Integer)map1.get(Integer.valueOf(i1))).intValue();
                         int i3;
@@ -277,7 +278,7 @@ public class ContainerThaumicAnvil extends ContainerRepair{
                         {
                             int j2 = ((Integer)iterator.next()).intValue();
 
-                            Enchantment e2 = Enchantment.enchantmentsList[j2];
+                            Enchantment e2 = Enchantment.getEnchantmentById(j2);
                             if (j2 != i1 && !(enchantment.canApplyTogether(e2) && e2.canApplyTogether(enchantment))) //Forge BugFix: Let Both enchantments veto being together
                             {
                                 flag1 = false;
@@ -302,7 +303,8 @@ public class ContainerThaumicAnvil extends ContainerRepair{
                                     break;
                                 case 2:
                                     l2 = 4;
-                                case 3:
+                                //$FALL-THROUGH$
+							case 3:
                                 case 4:
                                 case 6:
                                 case 7:
@@ -334,7 +336,7 @@ public class ContainerThaumicAnvil extends ContainerRepair{
                 {
                     j = itemstack.isItemStackDamageable() ? 7 : itemstack.stackSize * 5;
                     i += j;
-                    itemstack1.func_135074_t();
+                    itemstack1.clearCustomName();
                 }
             }
             else if (!this.repairedItemName.equals(itemstack.getDisplayName()))
@@ -355,7 +357,7 @@ public class ContainerThaumicAnvil extends ContainerRepair{
             for (iterator1 = map.keySet().iterator(); iterator1.hasNext(); k2 += k + k1 * l1)
             {
                 i1 = ((Integer)iterator1.next()).intValue();
-                enchantment = Enchantment.enchantmentsList[i1];
+                enchantment = Enchantment.getEnchantmentById(i1);
                 k1 = ((Integer)map.get(Integer.valueOf(i1))).intValue();
                 l1 = 0;
                 ++k;
@@ -367,7 +369,8 @@ public class ContainerThaumicAnvil extends ContainerRepair{
                         break;
                     case 2:
                         l1 = 4;
-                    case 3:
+                    //$FALL-THROUGH$
+				case 3:
                     case 4:
                     case 6:
                     case 7:
@@ -474,9 +477,9 @@ public class ContainerThaumicAnvil extends ContainerRepair{
         }
     }
     
-    public boolean canInteractWith(EntityPlayer p_75145_1_)
+    public boolean canInteractWith(EntityPlayer playerIn)
     {
-        return this.w.getBlock(this.x, this.y, this.z) != TBBlocks.thaumicAnvil ? false : p_75145_1_.getDistanceSq((double)this.x + 0.5D, (double)this.y + 0.5D, (double)this.z + 0.5D) <= 64.0D;
+        return this.w.getBlockState(new BlockPos(x,y,z)).getBlock() != TBBlocks.thaumicAnvil ? false : playerIn.getDistanceSq(x + 0.5D, y + 0.5D, z + 0.5D) <= 64.0D;
     }
 
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int p_82846_2_)
@@ -540,7 +543,7 @@ public class ContainerThaumicAnvil extends ContainerRepair{
 
             if (StringUtils.isBlank(p_82850_1_))
             {
-                itemstack.func_135074_t();
+                itemstack.clearCustomName();
             }
             else
             {
