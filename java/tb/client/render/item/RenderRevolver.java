@@ -2,90 +2,63 @@ package tb.client.render.item;
 
 import java.util.ArrayList;
 
+import javax.vecmath.Matrix4f;
+import javax.vecmath.Vector3f;
+
 import org.lwjgl.opengl.GL11;
 
-import tb.api.RevolverUpgrade;
-import tb.common.item.ItemRevolver;
+import DummyCore.Client.AdvancedModelLoader;
+import DummyCore.Client.IItemRenderer;
+import DummyCore.Client.IModelCustom;
 import DummyCore.Utils.Pair;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
+import net.minecraft.client.renderer.block.model.ItemTransformVec3f;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.model.AdvancedModelLoader;
-import net.minecraftforge.client.model.IModelCustom;
+import net.minecraftforge.client.ForgeHooksClient;
+import tb.api.RevolverUpgrade;
+import tb.common.item.ItemRevolver;
 
-public class RenderRevolver implements IItemRenderer
-{
-
+@SuppressWarnings("deprecation")
+public class RenderRevolver implements IItemRenderer{
+	
 	public static final IModelCustom model = AdvancedModelLoader.loadModel(new ResourceLocation("thaumicbases","models/revolver/revolver.obj"));
 	public static final ResourceLocation handle = new ResourceLocation("thaumicbases","textures/items/revolver/revolverHandleUV.png");
 	public static final ResourceLocation barrel = new ResourceLocation("thaumicbases","textures/items/revolver/revolverBarrelUV.png");
 	public static final ResourceLocation metal = new ResourceLocation("thaumicbases","textures/items/revolver/revolverDarkMetal.png");
 	public static final ResourceLocation gun = new ResourceLocation("thaumicbases","textures/items/revolver/revolverGunUV.png");
 	public static final ResourceLocation press = new ResourceLocation("thaumicbases","textures/items/revolver/revolverPressUV.png");
-	
 	@Override
-	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
+	public boolean handleRenderType(ItemStack item, TransformType type) {
 		return true;
 	}
-
 	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,ItemRendererHelper helper) {
-		return true;
-	}
-
-	@Override
-	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+	public void renderItem(TransformType type, ItemStack item) {
 		
-		GL11.glPushMatrix();
+		GlStateManager.pushMatrix();
 		
-		GL11.glDisable(GL11.GL_ALPHA_TEST);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.disableAlpha();
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
-		if(type == ItemRenderType.EQUIPPED_FIRST_PERSON)
+		double scale = 0.2D;
+		GlStateManager.scale(scale, scale, scale);
+		GlStateManager.translate(5, -1, 5);
+		
+		if(type == TransformType.FIRST_PERSON)
 		{
+			GlStateManager.rotate(135, 0, 1, 0);
+			GlStateManager.rotate(2, 1, 0, 0);
+			GlStateManager.translate(4, 9, 2);
+			GlStateManager.scale(1.2, 1.2, 1.2);
+			
 			if(Minecraft.getMinecraft().thePlayer.isSneaking())
 			{
-				GL11.glScaled(0.4D, 0.4D, 0.4D);
-				GL11.glRotated(-45, 0, 1, 0);
-				GL11.glTranslated(-1.73D, 0D, 4D);
-			}else
-			{
-				GL11.glScaled(0.4D, 0.4D, 0.4D);
-				GL11.glRotated(-45, 0, 1, 0);
-				GL11.glTranslated(4, -1, 1);
+				GlStateManager.rotate(0, 0, 1, 0);
+				GlStateManager.translate(-6.2, 2, 3);
 			}
-		}
-		
-		if(type == ItemRenderType.INVENTORY)
-		{
-			GL11.glScaled(0.2D, 0.2D, 0.2D);
-			GL11.glTranslated(-5, -5, 0);
-		}
-		
-		if(type == ItemRenderType.EQUIPPED)
-		{
-			Entity e = (Entity) data[1];
-			if(e.isSneaking())
-			{
-				GL11.glScaled(0.2D, 0.2D, 0.2D);
-				GL11.glRotated(45, 0, 1, 0);
-				GL11.glRotated(25, 1, 0, 0);
-				GL11.glTranslated(0, 4, 6);
-			}else
-			{
-				GL11.glScaled(0.2D, 0.2D, 0.2D);
-				GL11.glRotated(45, 0, 1, 0);
-				GL11.glTranslated(0, 2, 6);
-			}
-		}
-		
-		if(type == ItemRenderType.ENTITY)
-		{
-			GL11.glScaled(0.2D, 0.2D, 0.2D);
-			GL11.glTranslated(0, 0, 5);
 		}
 		
 		ResourceLocation handle = RenderRevolver.handle;
@@ -111,17 +84,15 @@ public class RenderRevolver implements IItemRenderer
 		
 		double rotation = item.hasTagCompound() ? item.getTagCompound().getDouble("renderedRotation") : 0;
 		
-		GL11.glPushMatrix();
-		GL11.glTranslated(0, 2.9D, 0);
-		GL11.glTranslated(0, -Math.cos(Math.toRadians(rotation))*2.8D, 0);
-		GL11.glTranslated(Math.sin(Math.toRadians(rotation))*2.8D, 0, 0);
-		GL11.glRotated(rotation, 0, 0, 1);
-		
+		GlStateManager.pushMatrix();
+		GlStateManager.translate(0, 2.9D, 0);
+		GlStateManager.translate(0, -Math.cos(Math.toRadians(rotation))*2.8D, 0);
+		GlStateManager.translate(Math.sin(Math.toRadians(rotation))*2.8D, 0, 0);
+		GlStateManager.rotate((float) rotation, 0, 0, 1);
 		
 		Minecraft.getMinecraft().renderEngine.bindTexture(barrel);
 		model.renderPart("rBarrel_Cube.001");
-		GL11.glPopMatrix();
-		//GL11.glRotated(-rotation, 0, 0, 1);
+		GlStateManager.popMatrix();
 		
 		Minecraft.getMinecraft().renderEngine.bindTexture(metal);
 		model.renderPart("Cube.003_Cube.004");
@@ -133,29 +104,20 @@ public class RenderRevolver implements IItemRenderer
 		Minecraft.getMinecraft().renderEngine.bindTexture(press);
 		model.renderPart("Cube.001_Cube.005");
 		
-		if(type == ItemRenderType.EQUIPPED_FIRST_PERSON && item.getTagCompound() != null && item.getTagCompound().getBoolean("hasJar"))
-		{
-			GL11.glPushMatrix();
-			
-				GL11.glScaled(1.1, 1.1, 1.1);
-				GL11.glTranslated(-0.11D, -0.25D, 1);
-				
-				double tickIndex = (double)Minecraft.getMinecraft().thePlayer.ticksExisted % 40 / 20;
-				if(tickIndex > 1)
-					tickIndex = -tickIndex+2;
-				
-				GL11.glColor4d(1, 0, 0, tickIndex);
-				
-				Minecraft.getMinecraft().renderEngine.bindTexture(metal);
-				model.renderPart("Cube_Cube.001");
-				
-			GL11.glPopMatrix();
-		}
+		GlStateManager.enableAlpha();
+		GlStateManager.disableBlend();
+		GlStateManager.popMatrix();
 		
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glEnable(GL11.GL_ALPHA_TEST);
-		
-		GL11.glPopMatrix();
 	}
-
+	
+	public static final Matrix4f THIRD_PERSON_FIX = ForgeHooksClient.getMatrix(new ItemTransformVec3f(new Vector3f(3.3F,0,0),new Vector3f(0.07F,0,-0.16F),new Vector3f(0.3F,0.3F,0.3F)));
+	
+	@Override
+	public Matrix4f handleTransformsFor(ItemStack item, TransformType type) {
+		if(type == TransformType.THIRD_PERSON)
+			return THIRD_PERSON_FIX;
+		
+		return null;
+	}
+	
 }

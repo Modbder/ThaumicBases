@@ -3,10 +3,6 @@ package tb.common.entity;
 import java.util.ArrayList;
 
 import DummyCore.Utils.Pair;
-import tb.api.RevolverUpgrade;
-import tb.common.item.ItemRevolver;
-import thaumcraft.common.Thaumcraft;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +13,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
+import tb.api.RevolverUpgrade;
+import tb.common.item.ItemRevolver;
+import thaumcraft.common.Thaumcraft;
 
 public class EntityRevolverBullet extends EntityThrowable
 {
@@ -66,10 +65,10 @@ public class EntityRevolverBullet extends EntityThrowable
     public void onUpdate()
     {
     	if(this.worldObj.isRemote)
-    		Thaumcraft.proxy.sparkle((float)posX, (float)posY, (float)posZ, 4);
+    		Thaumcraft.proxy.getFX().sparkle((float)posX, (float)posY, (float)posZ, 4);
     	
     	if(this.worldObj.isRemote)
-    		Thaumcraft.proxy.sparkle((float)(posX-motionX/20), (float)(posY-motionY/20), (float)(posZ-motionZ/20), 4);
+    		Thaumcraft.proxy.getFX().sparkle((float)(posX-motionX/20), (float)(posY-motionY/20), (float)(posZ-motionZ/20), 4);
     	
     	if(this.ticksExisted >= 200) //<- loop exit for primal
     		this.setDead();
@@ -98,20 +97,8 @@ public class EntityRevolverBullet extends EntityThrowable
 		{
 			if(noClip)
 				return;
-			if(this.worldObj.isBlockNormalCubeDefault(object.blockX, object.blockY, object.blockZ, true))
+			if(this.worldObj.isBlockNormalCube(object.getBlockPos(), true))
 				this.setDead();
-			else
-			{
-				Block b = this.worldObj.getBlock(object.blockX, object.blockY, object.blockZ);
-				int meta = this.worldObj.getBlockMetadata(object.blockX, object.blockY, object.blockZ);
-				
-				for(int i = 0; i < 100; ++i)
-					this.worldObj.spawnParticle("blockcrack_"+Block.getIdFromBlock(b)+"_"+meta, object.blockX+worldObj.rand.nextDouble(), object.blockY+worldObj.rand.nextDouble(), object.blockZ+worldObj.rand.nextDouble(), 0, 0, 0);
-				
-				worldObj.playSound(object.blockX+0.5D, object.blockY+0.5D, object.blockZ+0.5D, b.stepSound.getBreakSound(), 1, 1, false);
-				
-				this.worldObj.setBlockToAir(object.blockX, object.blockY, object.blockZ);
-			}
 		}
 		if(object.typeOfHit == MovingObjectType.ENTITY)
 		{

@@ -1,10 +1,15 @@
 package tb.client.render.entity;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderBullet extends Render{
+
+	public RenderBullet() {
+		super(Minecraft.getMinecraft().getRenderManager());
+	}
 
 	@Override
 	public void doRender(Entity p_76986_1_, double p_76986_2_,

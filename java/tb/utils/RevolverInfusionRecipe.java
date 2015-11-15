@@ -13,15 +13,21 @@ import tb.init.TBItems;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.crafting.InfusionRecipe;
+import thaumcraft.api.research.ResearchHelper;
 
 public class RevolverInfusionRecipe extends InfusionRecipe{
 
 	RevolverUpgrade upgrade;
+	ItemStack revolverBase;
+	ItemStack revolverUpgraded;
 	
 	public RevolverInfusionRecipe(String research, RevolverUpgrade output, int inst,AspectList aspects2, ItemStack[] recipe)
 	{
 		super(research, new ItemStack(TBItems.revolver,1,OreDictionary.WILDCARD_VALUE), inst, aspects2, new ItemStack(TBItems.revolver,1,OreDictionary.WILDCARD_VALUE), recipe);
+		revolverBase = new ItemStack(TBItems.revolver,1,OreDictionary.WILDCARD_VALUE);
+		revolverUpgraded = revolverBase.copy();
 		upgrade = output;
+		ItemRevolver.addUpgrade(revolverUpgraded, upgrade, ItemRevolver.getUpgradeLevel(revolverUpgraded, upgrade)+1);
 	}
 
 	@Override
@@ -41,30 +47,35 @@ public class RevolverInfusionRecipe extends InfusionRecipe{
 		if (getRecipeInput() == null) 
 			return false;
 		
-		if(this.research.length() <= 0)
+		if(this.research.length <= 0)
 			return false;
 		
-		if (this.research.length() > 0 && !ThaumcraftApiHelper.isResearchComplete(player.getCommandSenderName(), this.research)) 
+		if (this.research.length > 0 && !ResearchHelper.isResearchComplete(player.getName(), this.research)) 
 			return false;
 		
 		ItemStack i2 = central.copy();
-		if (getRecipeInput().getItemDamage() == OreDictionary.WILDCARD_VALUE)
+		if (getRecipeInput() instanceof ItemStack && ItemStack.class.cast(getRecipeInput()).getMetadata() == OreDictionary.WILDCARD_VALUE)
 			i2.setItemDamage(OreDictionary.WILDCARD_VALUE);
 		
 		ArrayList<ItemStack> ii = new ArrayList<ItemStack>();
 		for (ItemStack is : input)
 			ii.add(is.copy());
 		
-		for (ItemStack comp : getComponents()) 
+		for (Object o : getComponents()) 
 		{
+			if(!(o instanceof ItemStack))
+				continue;
+			
+			ItemStack comp = (ItemStack) o;
+			
 			boolean b = false;
 			for (int a = 0; a < ii.size(); a++) 
 			{
-				i2 = ((ItemStack)ii.get(a)).copy();
+				i2 = ii.get(a).copy();
 				if (comp.getItemDamage() == OreDictionary.WILDCARD_VALUE)
 					i2.setItemDamage(OreDictionary.WILDCARD_VALUE);
 				
-				if (areItemStacksEqual(i2, comp, true)) 
+				if (ThaumcraftApiHelper.areItemStacksEqualForCrafting(i2, comp)) 
 				{
 					ii.remove(a);
 					b = true;
@@ -78,8 +89,12 @@ public class RevolverInfusionRecipe extends InfusionRecipe{
 		return ii.size() == 0;
 	}
 	
+	public Object getRecipeOutput() {
+		return revolverUpgraded;
+	}
+	
 	@Override
-	public Object getRecipeOutput(ItemStack input) 
+	public Object getRecipeOutput(EntityPlayer player, ItemStack input, ArrayList<ItemStack> comps)
 	{
 		ItemStack istk = input.copy();
 		ItemRevolver.addUpgrade(istk, upgrade, ItemRevolver.getUpgradeLevel(istk, upgrade)+1);
@@ -87,7 +102,7 @@ public class RevolverInfusionRecipe extends InfusionRecipe{
 	}
 	
 	@Override
-	public AspectList getAspects(ItemStack input) 
+	public AspectList getAspects(EntityPlayer player, ItemStack input, ArrayList<ItemStack> comps)
 	{
 		AspectList retAsp = this.aspects.copy();
 		
@@ -99,8 +114,8 @@ public class RevolverInfusionRecipe extends InfusionRecipe{
 	}
 	
 	@Override
-	public int getInstability(ItemStack input) 
+	public int getInstability(EntityPlayer player, ItemStack input, ArrayList<ItemStack> comps)
 	{
-		return super.getInstability(input)+upgrade.getInstabilityForLevel(ItemRevolver.getUpgradeLevel(input, upgrade));
+		return super.getInstability(player,input,comps)+upgrade.getInstabilityForLevel(ItemRevolver.getUpgradeLevel(input, upgrade));
 	}
 }

@@ -3,16 +3,10 @@ package tb.api;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import tb.utils.TBUtils;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
-import thaumcraft.api.entities.IEldritchMob;
-import thaumcraft.api.entities.ITaintedMob;
-import thaumcraft.common.config.Config;
-import thaumcraft.common.lib.research.ScanManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -22,8 +16,14 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.Loader;
+import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.common.Loader;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectHelper;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.entities.IEldritchMob;
+import thaumcraft.api.entities.ITaintedMob;
+import thaumcraft.common.config.Config;
 
 public class RevolverUpgrade {
 	
@@ -151,8 +151,7 @@ public class RevolverUpgrade {
 			{
 				if(base instanceof IBossDisplayData)
 					return (float) (currentModification*(Math.pow(1.3F, modLevel)));
-				else
-					return currentModification / 1.2F;
+				return currentModification / 1.2F;
 			}
 			
 			if(this == piercig)
@@ -162,8 +161,7 @@ public class RevolverUpgrade {
 			{
 				if(base instanceof ITaintedMob)
 					return currentModification / 1.6F;
-				else
-					return (float) (currentModification*(Math.pow(1.2F, modLevel)));
+				return (float) (currentModification*(Math.pow(1.2F, modLevel)));
 			}
 		}
 		return currentModification;
@@ -198,22 +196,25 @@ public class RevolverUpgrade {
 	{
 		if(this == tainted)
 			if(base.worldObj.rand.nextDouble() <= 0.1D)
-				base.addPotionEffect(new PotionEffect(Config.potionTaintPoisonID,200,1,true));
+				base.addPotionEffect(new PotionEffect(Config.potionTaintPoisonID,200,1,true,false));
 		
 		if(this == poisoned)
-			base.addPotionEffect(new PotionEffect(Potion.poison.id,200,1,true));
+			base.addPotionEffect(new PotionEffect(Potion.poison.id,200,1,true,false));
 		
 		if(this == knowledge && base.getHealth() <= 0 && user != null)
 		{
 			if(user.worldObj.rand.nextInt(Math.max(1, 7-modLevel)) == 0)
 			{
-				AspectList aspectsCompound = ScanManager.generateEntityAspects(base);
+				AspectList aspectsCompound = AspectHelper.getEntityAspects(base);
 				if(aspectsCompound != null && aspectsCompound.size() > 0)
 				{
+					aspectsCompound = AspectHelper.reduceToPrimals(aspectsCompound);
 					Aspect[] al = aspectsCompound.getAspects();
 					for(int i = 0; i < al.length; ++i)
 					{
-						TBUtils.addAspectToKnowledgePool(user, al[i], (short) 1);
+						EntityXPOrb xp = new EntityXPOrb(user.worldObj,user.posX,user.posY,user.posZ,aspectsCompound.getAmount(al[i]));
+						if(!user.worldObj.isRemote)
+							user.worldObj.spawnEntityInWorld(xp);
 						if(user.worldObj.rand.nextBoolean())
 							break;
 					}
@@ -274,7 +275,7 @@ public class RevolverUpgrade {
 	public double modifySpeed(EntityPlayer user, ItemStack revolver, float origSpeed, int modLevel)
 	{
 		if(this == speed)
-			return (float)origSpeed*Math.pow(1.09F, modLevel);
+			return origSpeed*Math.pow(1.09F, modLevel);
 		return origSpeed;
 	}
 	

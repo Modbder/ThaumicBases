@@ -2,31 +2,30 @@ package tb.client.render.block;
 
 import java.util.Random;
 
-import thaumcraft.common.config.ConfigBlocks;
+import DummyCore.Client.DynamicModelBakery;
+import DummyCore.Client.ISimpleBlockRenderingHandler;
+import DummyCore.Client.Icon;
+import DummyCore.Client.SBRHAwareModel;
+import DummyCore.Utils.BlockStateMetadata;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import tb.common.tile.TileCampfire;
+import thaumcraft.api.blocks.BlocksTC;
 
-public class CampfireRenderer implements ISimpleBlockRenderingHandler{
-
-	@Override
-	public void renderInventoryBlock(Block block, int metadata, int modelId,
-			RenderBlocks renderer) {
-		// TODO Auto-generated method stub
-		
-	}
+public class CampfireRenderer implements ISimpleBlockRenderingHandler {
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,Block block, int modelId, RenderBlocks renderer) 
-	{
-		renderer.renderAllFaces = true;
+	public void renderWorldBlock(IBlockAccess world, Block b, BlockPos pos, DynamicModelBakery bakery,
+			SBRHAwareModel model) {
+
+		bakery.forceRenderAllFaces();
 		
-		renderer.setOverrideBlockTexture(Blocks.cobblestone.getIcon(0, 0));
+		bakery.setOverrideBlockTexture(Icon.fromBlock(Blocks.cobblestone));
 		
-		Random rand = new Random(x+y+z);
+		Random rand = new Random(pos.getX()+pos.getY()+pos.getZ());
 		
 		for(int i = 0; i < 6+rand.nextInt(5); ++i)
 		{
@@ -34,59 +33,68 @@ public class CampfireRenderer implements ISimpleBlockRenderingHandler{
 			double dy = 0;
 			double dz = rand.nextDouble();
 			
-			renderer.setRenderBounds(dx, dy, dz, dx+0.1D, dy+0.1D, dz+0.1D);
-			renderer.renderStandardBlock(Blocks.stone, x, y, z);
+			bakery.setRenderBounds(dx, dy, dz, dx+0.1D, dy+0.1D, dz+0.1D);
+			bakery.addCube();
 		}
 		
-		renderer.setOverrideBlockTexture(Blocks.coal_block.getIcon(0, 0));
+		bakery.setOverrideBlockTexture(Icon.fromBlock(Blocks.coal_block));
 		
-		renderer.setRenderBounds(0.25D, 0, 0.25D, 0.75D, 0.06D, 0.75D);
-		renderer.renderStandardBlock(Blocks.stone, x, y, z);
+		bakery.setRenderBounds(0.25D, 0, 0.25D, 0.75D, 0.06D, 0.75D);
+		bakery.addCube();
 		
-		renderer.setOverrideBlockTexture(ConfigBlocks.blockMagicalLog.getIcon(2, 0));
+		TileCampfire tc = (TileCampfire) world.getTileEntity(pos);
+		if(tc.tainted)
+			bakery.setOverrideBlockTexture(Icon.fromBlock(BlocksTC.taintLog, 0));
+		else
+			bakery.setOverrideBlockTexture(Icon.fromBlock(BlocksTC.log, 0));
 		double yIndex = 0;
-		if(world.getBlockMetadata(x, y, z) > 0)
+		if(BlockStateMetadata.getBlockMetadata(world, pos) > 0)
 			for(int i = 0; i < 2; ++i)
 			{
-				renderer.setRenderBounds(0.2D, 0+yIndex+(0.1D*i), 0.1D, 0.3D, 0.11D+yIndex+(0.1D*i), 0.9D);
-				renderer.renderStandardBlock(Blocks.stone, x, y, z);
-				renderer.setRenderBounds(0.7D, 0+yIndex+(0.1D*i), 0.1D, 0.8D, 0.11D+yIndex+(0.1D*i), 0.9D);
-				renderer.renderStandardBlock(Blocks.stone, x, y, z);
+				bakery.setRenderBounds(0.2D, 0+yIndex+(0.1D*i), 0.1D, 0.3D, 0.11D+yIndex+(0.1D*i), 0.9D);
+				bakery.addCube();
+				bakery.setRenderBounds(0.7D, 0+yIndex+(0.1D*i), 0.1D, 0.8D, 0.11D+yIndex+(0.1D*i), 0.9D);
+				bakery.addCube();
 				
-				renderer.setRenderBounds(0.1D, 0.1D+yIndex+(0.1D*i), 0.2D, 0.9D, 0.21D+yIndex+(0.1D*i), 0.3D);
-				renderer.renderStandardBlock(Blocks.stone, x, y, z);
-				renderer.setRenderBounds(0.1D, 0.1D+yIndex+(0.1D*i), 0.7D, 0.9D, 0.21D+yIndex+(0.1D*i), 0.8D);
-				renderer.renderStandardBlock(Blocks.stone, x, y, z);
+				bakery.setRenderBounds(0.1D, 0.1D+yIndex+(0.1D*i), 0.2D, 0.9D, 0.21D+yIndex+(0.1D*i), 0.3D);
+				bakery.addCube();
+				bakery.setRenderBounds(0.1D, 0.1D+yIndex+(0.1D*i), 0.7D, 0.9D, 0.21D+yIndex+(0.1D*i), 0.8D);
+				bakery.addCube();
 				yIndex += 0.1D;
 			}
 		
-		renderer.setOverrideBlockTexture(Blocks.gravel.getIcon(0, 0));
-		renderer.setRenderBounds(0.05D, 0, 0.05D, 0.95D, 0.03D, 0.95D);
-		renderer.renderStandardBlock(Blocks.stone, x, y, z);
+		bakery.setOverrideBlockTexture(Icon.fromBlock(Blocks.gravel));
+		bakery.setRenderBounds(0.05D, 0, 0.05D, 0.95D, 0.03D, 0.95D);
+		bakery.addCube();
 		
-		if(world.getBlockMetadata(x, y, z) > 1)
+		if(BlockStateMetadata.getBlockMetadata(world, pos) > 1)
 		{
-			renderer.setOverrideBlockTexture(Blocks.fire.getIcon(2, 0));
-			Tessellator.instance.setBrightness(247);
-			Tessellator.instance.setColorOpaque_I(0xffffff);
-			renderer.drawCrossedSquares(Blocks.fire.getIcon(2, 0), x, y, z, 0.75F);
+			bakery.setRenderBounds(0.2D, 0, 0.2D, 0.8D, 0.7D, 0.8D);
+			if(tc.tainted)
+				bakery.setOverrideBlockColor(0xffff0044);
+			bakery.setOverrideBlockTexture(Icon.fromBlock(Blocks.fire));
+			bakery.addCrossedSquares();
 		}
 		
-		renderer.renderAllFaces = false;
-		renderer.clearOverrideBlockTexture();
-		return true;
+		bakery.clearOverrideBlockColor();
+		bakery.disableRenderAllFaces();
+		bakery.clearOverrideBlockTexture();
+		bakery.clearRenderBounds();
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory(int modelId) {
-		// TODO Auto-generated method stub
-		return false;
+	public void renderInventoryBlock(ItemStack stack, DynamicModelBakery bakery, SBRHAwareModel model) {
+		bakery.addCrossedSquares();
 	}
 
 	@Override
-	public int getRenderId() 
-	{
+	public int getRenderID() {
 		return 0x1242fe;
+	}
+
+	@Override
+	public boolean render3DInInventory() {
+		return false;
 	}
 
 }
