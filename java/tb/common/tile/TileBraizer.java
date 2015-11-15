@@ -3,22 +3,31 @@ package tb.common.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import tb.common.entity.EntityAIAvoidCampfire;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.common.lib.events.EssentiaHandler;
+import DummyCore.Utils.BlockStateMetadata;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
+import tb.common.entity.EntityAIAvoidCampfire;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.common.lib.events.EssentiaHandler;
 
-public class TileBraizer extends TileEntity
+public class TileBraizer extends TileEntity implements IUpdatePlayerListBox
 {
 	public int burnTime;
 	public int uptime;
+	
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate)
+    {
+    	return oldState.getBlock() == newSate.getBlock() ? false : super.shouldRefresh(world, pos, oldState, newSate);
+    }
 	
     public void readFromNBT(NBTTagCompound tag)
     {
@@ -33,7 +42,7 @@ public class TileBraizer extends TileEntity
     }
     
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void updateEntity() 
+	public void update() 
 	{
 		++uptime;
 		
@@ -42,10 +51,10 @@ public class TileBraizer extends TileEntity
 			--burnTime;
 		}else
 		{
-			if(EssentiaHandler.drainEssentia(this, Aspect.FIRE, ForgeDirection.UNKNOWN, 6, false))
+			if(EssentiaHandler.drainEssentia(this, Aspect.FIRE, null, 6, false))
 			{
 				burnTime = 1600;
-				this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 3);
+				this.worldObj.setBlockState(getPos(), worldObj.getBlockState(getPos()).getBlock().getStateFromMeta(1));
 			}
 		}
 		
@@ -53,9 +62,9 @@ public class TileBraizer extends TileEntity
 		{
 			if(burnTime <= 0)
 			{
-				int metadata = this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+				int metadata = BlockStateMetadata.getBlockMetadata(worldObj, pos);
 				if(metadata == 1)
-					this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 3);
+					this.worldObj.setBlockState(getPos(), worldObj.getBlockState(getPos()).getBlock().getStateFromMeta(0));
 				
 				return;
 			}
@@ -64,7 +73,7 @@ public class TileBraizer extends TileEntity
 		
 		if(!this.worldObj.isRemote)
 		{
-			List<EntityCreature> creatures = this.worldObj.getEntitiesWithinAABB(EntityCreature.class, AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord+1, yCoord+1, zCoord+1).expand(12, 6, 12));
+			List<EntityCreature> creatures = this.worldObj.getEntitiesWithinAABB(EntityCreature.class, AxisAlignedBB.fromBounds(pos.getX(), pos.getY(), pos.getZ(), pos.getX()+1, pos.getY()+1, pos.getZ()+1).expand(12, 6, 12));
 			
 			for(EntityCreature c : creatures)
 			{
@@ -91,9 +100,9 @@ public class TileBraizer extends TileEntity
 			      
 			      campfireAviodable.isScared = true;
 			      campfireAviodable.scareTimer = 100;
-			      campfireAviodable.campfireX = xCoord;
-			      campfireAviodable.campfireY = yCoord;
-			      campfireAviodable.campfireZ = zCoord;
+			      campfireAviodable.campfireX = pos.getX();
+			      campfireAviodable.campfireY = pos.getY();
+			      campfireAviodable.campfireZ = pos.getZ();
 			      
 			      if(!hasTask)
 			    	  c.tasks.addTask(1, campfireAviodable);

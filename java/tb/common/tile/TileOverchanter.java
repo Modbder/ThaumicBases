@@ -5,9 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.wands.IWandable;
-import thaumcraft.common.lib.events.EssentiaHandler;
 import DummyCore.Utils.Coord3D;
 import DummyCore.Utils.Lightning;
 import DummyCore.Utils.MathUtils;
@@ -20,13 +17,20 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.wands.IWandable;
+import thaumcraft.common.lib.events.EssentiaHandler;
 
-public class TileOverchanter extends TileEntity implements IInventory, IWandable{
+public class TileOverchanter extends TileEntity implements IInventory, IWandable,IUpdatePlayerListBox{
 
 	public ItemStack inventory;
 	
@@ -34,6 +38,7 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
 	public boolean xpAbsorbed;
 	public boolean isEnchantingStarted;
 	public int syncTimer;
+	int ticksExisted;
 	
 	public Lightning renderedLightning;
 	
@@ -43,8 +48,9 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void updateEntity() 
+	public void update() 
 	{
+		++ticksExisted;
 		if(syncTimer <= 0)
 		{
 			syncTimer = 100;
@@ -52,9 +58,9 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
 			tg.setInteger("0", enchantingTime);
 			tg.setBoolean("1", xpAbsorbed);
 			tg.setBoolean("2", isEnchantingStarted);
-			tg.setInteger("x", xCoord);
-			tg.setInteger("y", yCoord);
-			tg.setInteger("z", zCoord);
+			tg.setInteger("x", this.pos.getX());
+			tg.setInteger("y", this.pos.getY());
+			tg.setInteger("z", this.pos.getZ());
 			MiscUtils.syncTileEntity(tg, 0);
 		}else
 			--syncTimer;
@@ -69,16 +75,16 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
         {
         	if(this.isEnchantingStarted)
         	{
-        		if(this.worldObj.getWorldTime() % 20 == 0)
+        		if(ticksExisted % 20 == 0)
         		{
         			renderedLightning = new Lightning(this.worldObj.rand, new Coord3D(0,0,0), new Coord3D(MathUtils.randomDouble(this.worldObj.rand)/50,MathUtils.randomDouble(this.worldObj.rand)/50,MathUtils.randomDouble(this.worldObj.rand)/50), 0.3F, 1,0,1);
-        			this.worldObj.playSoundEffect(this.xCoord, this.yCoord, this.zCoord, "thaumcraft:infuserstart", 1F, 1.0F);
-	        		if(EssentiaHandler.drainEssentia(this, Aspect.MAGIC, ForgeDirection.UNKNOWN, 8, false))
+        			this.worldObj.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), "thaumcraft:infuserstart", 1F, 1.0F);
+	        		if(EssentiaHandler.drainEssentia(this, Aspect.AURA, null, 8, false))
 	        		{
 	        			++enchantingTime;
 	        			if(enchantingTime >= 16 && !this.xpAbsorbed)
 	        			{
-	        				List<EntityPlayer> players = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord+1, yCoord+1, zCoord+1).expand(6, 3, 6));
+	        				List<EntityPlayer> players = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.fromBounds(pos.getX(), pos.getY(), pos.getZ(), pos.getX()+1, pos.getY()+1, pos.getZ()+1).expand(6, 3, 6));
 	        				if(!players.isEmpty())
 	        				{
 	        					for(int i = 0; i < players.size(); ++i)
@@ -129,7 +135,7 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
 	        				xpAbsorbed = false;
 	        				enchantingTime = 0;
 	        				renderedLightning = null;
-	        				this.worldObj.playSoundEffect(this.xCoord, this.yCoord, this.zCoord, "thaumcraft:wand", 1F, 1F);
+	        				this.worldObj.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), "thaumcraft:wand", 1F, 1F);
 	        			}
 	        			
 	        		}else
@@ -171,14 +177,12 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
 			if(!stackTag.hasKey("overchants"))
 			{
 				return i;
-			}else
-			{
-				int[] overchants = stackTag.getIntArray("overchants");
-				if(MathUtils.arrayContains(overchants, i))
-					continue;
-				
-				return i;
 			}
+			int[] overchants = stackTag.getIntArray("overchants");
+			if(MathUtils.arrayContains(overchants, i))
+				continue;
+			
+			return i;
 		}
 		
 		return -1;
@@ -186,9 +190,9 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
 	
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
-    	enchantingTime = pkt.func_148857_g().getInteger("0");
-    	xpAbsorbed = pkt.func_148857_g().getBoolean("1");
-    	isEnchantingStarted = pkt.func_148857_g().getBoolean("2");
+    	enchantingTime = pkt.getNbtCompound().getInteger("0");
+    	xpAbsorbed = pkt.getNbtCompound().getBoolean("1");
+    	isEnchantingStarted = pkt.getNbtCompound().getBoolean("2");
     }
 
 	@Override
@@ -209,23 +213,17 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
                 this.markDirty();
                 return itemstack;
             }
-            else
-            {
-                itemstack = this.inventory.splitStack(num);
+			itemstack = this.inventory.splitStack(num);
 
-                if (this.inventory.stackSize == 0)
-                {
-                    this.inventory = null;
-                }
+			if (this.inventory.stackSize == 0)
+			{
+			    this.inventory = null;
+			}
 
-                this.markDirty();
-                return itemstack;
-            }
+			this.markDirty();
+			return itemstack;
         }
-        else
-        {
-            return null;
-        }
+		return null;
 	}
 
 	@Override
@@ -239,32 +237,13 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
 	}
 
 	@Override
-	public String getInventoryName() {
-		return "tb.overchanter";
-	}
-
-	@Override
-	public boolean hasCustomInventoryName() {
-		return false;
-	}
-
-	@Override
 	public int getInventoryStackLimit() {
 		return 1;
 	}
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		return player.dimension == this.worldObj.provider.dimensionId && this.worldObj.blockExists(xCoord, yCoord, zCoord);
-	}
-
-	@Override
-	public void openInventory() {
-	}
-
-	@Override
-	public void closeInventory() {
-		
+		return player.dimension == this.worldObj.provider.getDimensionId() && !this.worldObj.isAirBlock(pos);
 	}
 
 	@Override
@@ -302,23 +281,17 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
     
 
 	@Override
-	public int onWandRightClick(World world, ItemStack wandstack,EntityPlayer player, int x, int y, int z, int side, int md) 
+	public boolean onWandRightClick(World paramWorld, ItemStack paramItemStack, EntityPlayer paramEntityPlayer, BlockPos paramBlockPos, EnumFacing paramEnumFacing)
 	{
 		if(canStartEnchanting())
 		{
 			isEnchantingStarted = true;
-			player.swingItem();
+			paramEntityPlayer.swingItem();
 			syncTimer = 0;
-			this.worldObj.playSoundEffect(this.xCoord, this.yCoord, this.zCoord, "thaumcraft:craftstart", 0.5F, 1.0F);
-			return 1;
+			this.worldObj.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), "thaumcraft:craftstart", 0.5F, 1.0F);
+			return true;
 		}
-		return -1;
-	}
-
-	@Override
-	public ItemStack onWandRightClick(World world, ItemStack wandstack,EntityPlayer player)
-	{
-		return wandstack;
+		return false;
 	}
 
 	@Override
@@ -329,6 +302,51 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
 	@Override
 	public void onWandStoppedUsing(ItemStack wandstack, World world,
 			EntityPlayer player, int count) {
+	}
+
+	@Override
+	public String getName() {
+		return "tb.overchanter";
+	}
+
+	@Override
+	public boolean hasCustomName() {
+		return false;
+	}
+
+	@Override
+	public IChatComponent getDisplayName() {
+		return new ChatComponentText(getName());
+	}
+
+	@Override
+	public void openInventory(EntityPlayer player) {
+		
+	}
+
+	@Override
+	public void closeInventory(EntityPlayer player) {
+		
+	}
+
+	@Override
+	public int getField(int id) {
+		return 0;
+	}
+
+	@Override
+	public void setField(int id, int value) {
+		
+	}
+
+	@Override
+	public int getFieldCount() {
+		return 0;
+	}
+
+	@Override
+	public void clear() {
+		inventory = null;
 	}
 
 
