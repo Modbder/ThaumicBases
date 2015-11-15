@@ -1,46 +1,46 @@
 package tb.client.render.item;
 
-import org.lwjgl.opengl.GL11;
+import javax.vecmath.Matrix4f;
 
+import DummyCore.Client.AdvancedModelLoader;
+import DummyCore.Client.IItemRenderer;
+import DummyCore.Client.IModelCustom;
+import DummyCore.Client.RPAwareModel;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.model.AdvancedModelLoader;
-import net.minecraftforge.client.model.IModelCustom;
 
-public class NodeManipulatorItemRenderer implements IItemRenderer{
+@SuppressWarnings("deprecation")
+public class NodeManipulatorItemRenderer implements IItemRenderer {
 	
 	public static final IModelCustom model = AdvancedModelLoader.loadModel(new ResourceLocation("thaumicbases","models/nodeManipulator/nodeManipulator.obj"));
 	public static final ResourceLocation genIcon = new ResourceLocation("thaumicbases","textures/blocks/nodeManipulator/baseUVMap.png");
 
 	@Override
-	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
+	public boolean handleRenderType(ItemStack item, TransformType type) {
 		return true;
 	}
 
 	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,
-			ItemRendererHelper helper) {
-		return true;
-	}
-
-	@Override
-	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-		GL11.glPushMatrix();
+	public void renderItem(TransformType type, ItemStack item) {
+		GlStateManager.pushMatrix();
 		
-		GL11.glRotated(180, 1, 0, 0);
-		GL11.glScaled(0.5D, 0.5D, 0.5D);
-		GL11.glTranslated(0, -0.5D, 0);
-		
+		GlStateManager.scale(0.5, 0.5, 0.5);
+		GlStateManager.translate(1, 0.5, 1);
 		Minecraft.getMinecraft().renderEngine.bindTexture(genIcon);
-		model.renderPart("base_Cube.001");
-		model.renderPart("handle_0_Cube.002");
-		model.renderPart("handle_1_Cube.002");
-		model.renderPart("handle_2_Cube.002");
-		model.renderPart("handle_3_Cube.002");
+		model.renderAll();
 		
-		GL11.glPopMatrix();
+		GlStateManager.popMatrix();
+	}
+
+	@Override
+	public Matrix4f handleTransformsFor(ItemStack item, TransformType type) {
+		if(type == TransformType.THIRD_PERSON)
+			return RPAwareModel.THIRD_PERSON_2D;
+		
+		return null;
 	}
 
 }

@@ -1,344 +1,39 @@
 package tb.common.tile;
 
-import java.util.Hashtable;
+import java.util.List;
 
+import DummyCore.Utils.BlockStateMetadata;
 import DummyCore.Utils.MiscUtils;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.nodes.INode;
-import thaumcraft.api.nodes.NodeModifier;
-import thaumcraft.api.nodes.NodeType;
-import thaumcraft.api.wands.IWandable;
-import thaumcraft.common.Thaumcraft;
-import thaumcraft.common.entities.EntityAspectOrb;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tb.common.entity.EntityAspectOrb;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectHelper;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.aura.AuraHelper;
+import thaumcraft.common.Thaumcraft;
+import thaumcraft.common.lib.aura.EntityAuraNode;
+import thaumcraft.common.lib.aura.NTAstral;
+import thaumcraft.common.lib.aura.NTDark;
+import thaumcraft.common.lib.aura.NTHungry;
+import thaumcraft.common.lib.aura.NTNormal;
+import thaumcraft.common.lib.aura.NTTaint;
+import thaumcraft.common.lib.aura.NTUnstable;
+import thaumcraft.common.lib.aura.NodeType;
 
-public class TileNodeManipulator extends TileEntity implements IWandable
-{
+public class TileNodeManipulator extends TileEntity implements IUpdatePlayerListBox{
 	public int workTime = 0;
-	public Hashtable<String,Integer> nodeAspects = new Hashtable<String,Integer>();
-	public Hashtable<String,Integer> newNodeAspects = new Hashtable<String,Integer>();
+	public EntityAuraNode node = null;
 	public boolean firstTick = true;
-	
-	public void updateEntity() 
-	{
-		INode node = getNode();
-		
-		if(node == null)
-			return;
-		
-		newNodeAspects.clear();
-		for(int i = 0; i < node.getAspects().size(); ++i)
-		{
-			newNodeAspects.put(node.getAspects().getAspects()[i].getTag(), node.getAspects().getAmount(node.getAspects().getAspects()[i]));
-		}
-		
-		if(this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 0 || getNode() == null)
-			workTime = 0;
-		
-		if(this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != 0 && getNode() != null)
-		{
-			int color = 0xffffff;
-			int effect = this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord)-1;
-			
-			switch(this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord)-1)
-			{
-				case 0:
-				{
-					color = 0xffffff;
-					break;
-				}
-				case 1:
-				{
-					color = 0x4e4756;
-					break;
-				}
-				case 2:
-				{
-					color = 0xd2d200;
-					break;
-				}
-				case 3:
-				{
-					color = 0xaf7c23;
-					break;
-				}
-				case 4:
-				{
-					color = 0x0b4d42;
-					break;
-				}
-				case 5:
-				{
-					color = 0xccc8f7;
-					break;
-				}
-				case 6:
-				{
-					color = 0x643c5b;
-					break;
-				}
-				case 7:
-				{
-					color = 0xeaeaea;
-					break;
-				}
-				case 8:
-				{
-					color = 0xd0e0f8;
-					break;
-				}
-				case 9:
-				{
-					color = 0x713496;
-					break;
-				}
-			}
-			if(!firstTick && this.worldObj.isRemote)
-				Thaumcraft.proxy.beam(this.worldObj, xCoord+0.5D, yCoord+0.5D, zCoord+0.5D, xCoord+0.5D, yCoord-0.5D, zCoord+0.5D, 2, color, false, 0.5F, 2);
-		
-			if(!firstTick)
-			{
-				if(effect == 7)
-				{
-					if(!this.worldObj.isRemote)
-					{
-						boolean isNodeChanged = false;
-						for(int i = 0; i < node.getAspects().size(); ++i)
-						{
-							Aspect a = node.getAspects().getAspects()[i];
-							int max = node.getNodeVisBase(a);
-							int current = node.getAspects().getAmount(a);
-							
-							if(current < max && this.worldObj.rand.nextFloat() < 0.01F)
-							{
-								node.getAspects().add(a, 1);
-								isNodeChanged = true;
-							}
-						}
-						if(isNodeChanged)
-						{
-							MiscUtils.sendPacketToAllAround(worldObj, this.worldObj.getTileEntity(xCoord, yCoord-1, zCoord).getDescriptionPacket(), xCoord, yCoord, zCoord, this.worldObj.provider.dimensionId, 6);
-						}
-					}
-				}
-				if(effect == 1)
-				{
-					int maxTimeRequired = node.getNodeModifier() == NodeModifier.BRIGHT ? 1*60*20 : node.getNodeModifier() == NodeModifier.PALE ? 3*60*20 : node.getNodeModifier() == NodeModifier.FADING ? 6*60*20 : 2*60*20;
-					if(workTime >= maxTimeRequired)
-					{
-						workTime = 0;
-						if(node.getNodeModifier() == NodeModifier.FADING)
-						{
-							this.worldObj.setBlockToAir(xCoord, yCoord, zCoord);
-							return;
-						}
-						node.setNodeModifier(node.getNodeModifier() == NodeModifier.BRIGHT ? null : node.getNodeModifier() == NodeModifier.PALE ? NodeModifier.FADING : node.getNodeModifier() == NodeModifier.FADING ? NodeModifier.FADING : NodeModifier.PALE);
-						
-					}else
-					{
-						++workTime;
-						if(this.worldObj.getWorldTime() % 10 == 0)
-						{
-							Aspect a = node.getAspects().getAspects()[this.worldObj.rand.nextInt(node.getAspects().getAspects().length)];
-							EntityAspectOrb aspect = new EntityAspectOrb(worldObj, xCoord+0.5D, yCoord-0.5D, zCoord+0.5D, a, 1);
-							if(!this.worldObj.isRemote)
-							{
-								this.worldObj.spawnEntityInWorld(aspect);
-							}
-						}
-					}
-				}
-				if(effect == 2)
-				{
-					for(int i = 0; i < node.getAspects().size(); ++i)
-					{
-						Aspect a = node.getAspects().getAspects()[i];
-						int current = node.getAspects().getAmount(a);
-						if(nodeAspects.containsKey(a.getTag()))
-						{
-							int prev = nodeAspects.get(a.getTag());
-								
-							if(current < prev && this.worldObj.rand.nextFloat() < 0.5F)
-							{
-								node.getAspects().add(a, 1);
-							}
-						}
-					}
-				}
-				if(effect == 3)
-				{
-					if(node.getNodeType() == NodeType.NORMAL)
-					{
-						if(workTime > 5*60*20)
-						{
-							workTime = 0;
-							node.setNodeType(NodeType.HUNGRY);
-						}else
-						{
-							++workTime;
-						}
-					}
-				}
-				if(effect == 4)
-				{
-					if(node.getNodeType() == NodeType.NORMAL)
-					{
-						if(workTime > 7*60*20)
-						{
-							workTime = 0;
-							node.setNodeType(NodeType.UNSTABLE);
-						}else
-						{
-							++workTime;
-						}
-					}
-				}
-				if(effect == 5)
-				{
-					if(node.getNodeType() == NodeType.NORMAL)
-					{
-						if(workTime > 3*60*20)
-						{
-							workTime = 0;
-							node.setNodeType(NodeType.PURE);
-						}else
-						{
-							++workTime;
-						}
-					}
-				}
-				if(effect == 6)
-				{
-					if(node.getNodeType() == NodeType.NORMAL)
-					{
-						if(workTime > 6*60*20)
-						{
-							workTime = 0;
-							node.setNodeType(NodeType.DARK);
-						}else
-						{
-							++workTime;
-						}
-					}
-				}
-				if(effect == 8)
-				{
-					int maxTimeRequired = 0;
-					
-					if(node.getNodeModifier() == NodeModifier.FADING)
-					{
-						maxTimeRequired = 5*60*20;
-					}
-					
-					if(node.getNodeModifier() == NodeModifier.PALE)
-					{
-						maxTimeRequired = 10*60*20;
-					}
-					
-					if(node.getNodeType() == NodeType.DARK)
-					{
-						maxTimeRequired = 2*60*20;
-					}
-					
-					if(node.getNodeType() == NodeType.HUNGRY)
-					{
-						maxTimeRequired = 30*20;
-					}
-					
-					if(node.getNodeType() == NodeType.UNSTABLE)
-					{
-						maxTimeRequired = 7*60*20;
-					}
-					
-					if(workTime >= maxTimeRequired)
-					{
-						workTime = 0;
-						if(node.getNodeModifier() == NodeModifier.FADING)
-						{
-							node.setNodeModifier(NodeModifier.PALE);
-							return;
-						}
-						
-						if(node.getNodeModifier() == NodeModifier.PALE)
-						{
-							node.setNodeModifier(null);
-							return;
-						}
-						
-						if(node.getNodeType() == NodeType.DARK)
-						{
-							node.setNodeType(NodeType.NORMAL);
-							return;
-						}
-						
-						if(node.getNodeType() == NodeType.HUNGRY)
-						{
-							node.setNodeType(NodeType.NORMAL);
-							return;
-						}
-						
-						if(node.getNodeType() == NodeType.UNSTABLE)
-						{
-							node.setNodeType(NodeType.NORMAL);
-							return;
-						}
-						
-					}else
-					{
-						++workTime;
-					}
-				}
-				if(effect == 0)
-				{
-					if(node.getNodeModifier() == null)
-					{
-						if(workTime > 20*60*20)
-						{
-							workTime = 0;
-							node.setNodeModifier(NodeModifier.BRIGHT);
-						}else
-						{
-							++workTime;
-						}
-					}
-				}
-				if(effect == 9)
-				{
-					if(node.getNodeType() == NodeType.NORMAL)
-					{
-						if(workTime > 6*60*20)
-						{
-							workTime = 0;
-							node.setNodeType(NodeType.TAINTED);
-						}else
-						{
-							++workTime;
-						}
-					}
-				}
-			}
-		}
-		
-		firstTick = false;
-		
-		nodeAspects.clear();
-		for(int i = 0; i < node.getAspects().size(); ++i)
-		{
-			nodeAspects.put(node.getAspects().getAspects()[i].getTag(), node.getAspects().getAmount(node.getAspects().getAspects()[i]));
-		}
-	}
-	
-	public INode getNode()
-	{
-		if(this.worldObj.getTileEntity(xCoord, yCoord-1, zCoord) instanceof INode)
-			return INode.class.cast(worldObj.getTileEntity(xCoord, yCoord-1, zCoord));
-		
-		return null;
-	}
+	public int ticksExisted;
+	Object beam;
 	
     public void readFromNBT(NBTTagCompound tag)
     {
@@ -351,23 +46,252 @@ public class TileNodeManipulator extends TileEntity implements IWandable
         super.writeToNBT(tag);
         tag.setInteger("workTime", workTime);
     }
-
+	
+	@SuppressWarnings("unchecked")
 	@Override
-	public int onWandRightClick(World world, ItemStack wandstack,EntityPlayer player, int x, int y, int z, int side, int md) {
-		return 0;
+	public void update(){
+		++ticksExisted;
+		if(ticksExisted % 20 == 0)
+			beam = null;
+		if((firstTick || ticksExisted % 20 == 0) && node == null)
+		{
+			List<Entity> nodes = this.worldObj.getEntitiesWithinAABB(EntityAuraNode.class, AxisAlignedBB.fromBounds(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ()).expand(3, 3, 3));
+			if(!nodes.isEmpty())
+				node = (EntityAuraNode) MiscUtils.getClosestEntity(nodes, pos.getX(), pos.getY(), pos.getZ());
+		}
+		
+		if(node != null && (node.isDead || MathHelper.sqrt_double(node.getDistanceSq(getPos())) > 3))
+			node = null;
+		
+		if(node != null)
+		{
+			int meta = BlockStateMetadata.getBlockMetadata(worldObj, getPos());
+			EnumEffect ee = EnumEffect.fromMetadata(meta);
+			NodeType nt = NodeType.nodeTypes[node.getNodeType()];
+			switch(ee)
+			{
+				case BRIGHTEN:
+				{
+					if(nt instanceof NTNormal)
+					{
+						if(workTime > 20*60*20)
+						{
+							workTime = 0;
+							node.setNodeType(6);
+						}else
+						{
+							++workTime;
+						}
+					}
+					break;
+				}
+				
+				case DESTRUCT:
+				{
+					int maxTimeRequired = nt instanceof NTAstral ? 1*60*20 : 2*60*20;
+					if(workTime >= maxTimeRequired)
+					{
+						workTime = 0;
+						if(!(nt instanceof NTAstral))
+						{
+							node.setDead();
+							node = null;
+							return;
+						}
+						node.setNodeType(0);
+						
+					}else
+					{
+						++workTime;
+						if(ticksExisted % 10 == 0)
+						{
+							Aspect asp = node.getAspect();
+							AspectList al = AspectHelper.reduceToPrimals(new AspectList().add(asp,1));
+							Aspect a = al.getAspects()[this.worldObj.rand.nextInt(al.size())];
+							EntityAspectOrb aspect = new EntityAspectOrb(worldObj, node.posX,node.posY,node.posZ, a, 1);
+							if(!this.worldObj.isRemote)
+								this.worldObj.spawnEntityInWorld(aspect);
+						}
+					}
+					break;
+				}
+				
+				case EFFICIENCY:
+				{
+					if(this.worldObj.rand.nextDouble() < 0.05D)
+					{
+						Aspect asp = node.getAspect();
+						AspectList al = AspectHelper.reduceToPrimals(new AspectList().add(asp,1));
+						Aspect a = al.getAspects()[this.worldObj.rand.nextInt(al.size())];
+						AuraHelper.addAura(getWorld(), node.getPosition(), a, 1+this.worldObj.rand.nextInt(5));
+					}
+					break;
+				}
+				
+				case HUNGER:
+				{
+					if(nt instanceof NTNormal)
+					{
+						if(workTime > 5*60*20)
+						{
+							workTime = 0;
+							node.setNodeType(2);
+						}else
+							++workTime;
+					}
+					break;
+				}
+				
+				case INSTABILITY:
+				{
+					if(nt instanceof NTNormal)
+					{
+						if(workTime > 7*60*20)
+						{
+							workTime = 0;
+							node.setNodeType(5);
+						}else
+							++workTime;
+					}
+					break;
+				}
+				
+				case PURITY:
+				{
+					if(nt instanceof NTNormal)
+					{
+						if(workTime > 3*60*20)
+						{
+							workTime = 0;
+							node.setNodeType(3);
+						}else
+							++workTime;
+					}
+					break;
+				}
+				
+				case SINISTER:
+				{
+					if(nt instanceof NTNormal)
+					{
+						if(workTime > 6*60*20)
+						{
+							workTime = 0;
+							node.setNodeType(1);
+						}else
+							++workTime;
+					}
+					break;
+				}
+				
+				case SPEED:
+				{
+					for(int i = 0; i < 4; ++i)
+						node.onEntityUpdate();
+					
+					break;
+				}
+				
+				case STABILITY:
+				{
+					int maxTimeRequired = 0;
+					
+					if(nt instanceof NTDark)
+						maxTimeRequired = 2*60*20;
+					
+					if(nt instanceof NTHungry)
+						maxTimeRequired = 30*20;
+					
+					if(nt instanceof NTUnstable)
+						maxTimeRequired = 7*60*20;
+					
+					if(nt instanceof NTTaint)
+						maxTimeRequired = 3*60*20;
+					
+					if(nt instanceof NTAstral)
+						maxTimeRequired = 60*20;
+					
+					if(workTime >= maxTimeRequired)
+					{
+						workTime = 0;
+						
+						if(nt instanceof NTDark || nt instanceof NTUnstable || nt instanceof NTHungry || nt instanceof NTTaint || nt instanceof NTAstral)
+							node.setNodeType(0);
+					}else
+						++workTime;
+					
+					break;
+				}
+				
+				case TAINT:
+				{
+					if(nt instanceof NTNormal)
+					{
+						if(workTime > 6*60*20)
+						{
+							workTime = 0;
+							node.setNodeType(4);
+						}else
+							++workTime;
+					}
+					break;
+				}
+			
+				case NONE:
+				default:
+					break;
+			}
+			
+			if(!firstTick && this.worldObj.isRemote && ee != EnumEffect.NONE)
+				beam = Thaumcraft.proxy.getFX().beamBore(node.posX, node.posY, node.posZ, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, 2, ee.getColor(), true, 0.5F, beam, 1);
+		
+		}
+		
+		if(firstTick)
+			firstTick = false;
 	}
-
-	@Override
-	public ItemStack onWandRightClick(World world, ItemStack wandstack,	EntityPlayer player) {
-		return wandstack;
-	}
-
-	@Override
-	public void onUsingWandTick(ItemStack wandstack, EntityPlayer player,int count) {
-	}
-
-	@Override
-	public void onWandStoppedUsing(ItemStack wandstack, World world,EntityPlayer player, int count) {
-	}
-
+	
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate)
+    {
+    	return oldState.getBlock() == newSate.getBlock() ? false : super.shouldRefresh(world, pos, oldState, newSate);
+    }
+	
+    public enum EnumEffect
+    {
+    	NONE, //Do nothing
+    	BRIGHTEN, //Turn into etherial
+    	DESTRUCT, //Destroy aspects and node, but create tons of aspect orbs
+    	EFFICIENCY, //Recharge aura with current aspect faster
+    	HUNGER, //Turn into Hungry
+    	INSTABILITY, //Turn into unstable
+    	PURITY, //Turn into pure
+    	SINISTER, //Turn into sinister
+    	SPEED, //+4 additional ticks each tick
+    	STABILITY, //Turn onto normal
+    	TAINT; //Turn into tainted
+    	
+    	public static EnumEffect fromMetadata(int meta)
+    	{
+    		return EnumEffect.values()[Math.min(EnumEffect.values().length-1, meta)];
+    	}
+    	
+    	public int getColor()
+    	{
+    		return colors[ordinal()];
+    	}
+    	
+    	private static final int[] colors = new int[]{
+    		0xffffff,
+    		0xffffff,
+    		0x4e4756,
+    		0xd2d200,
+    		0xaf7c23,
+    		0x0b4d42,
+    		0xccc8f7,
+    		0x643c5b,
+    		0xeaeaea,
+    		0xd0e0f8,
+    		0x713496
+    	};
+    }
 }
