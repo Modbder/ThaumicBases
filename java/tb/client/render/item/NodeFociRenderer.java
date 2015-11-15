@@ -1,44 +1,46 @@
 package tb.client.render.item;
 
-import org.lwjgl.opengl.GL11;
+import javax.vecmath.Matrix4f;
 
-import tb.common.item.ItemNodeFoci;
-import DummyCore.Utils.MiscUtils;
+import DummyCore.Client.AdvancedModelLoader;
+import DummyCore.Client.IItemRenderer;
+import DummyCore.Client.IModelCustom;
+import DummyCore.Client.RPAwareModel;
+import DummyCore.Utils.DrawUtils;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.model.AdvancedModelLoader;
-import net.minecraftforge.client.model.IModelCustom;
+import tb.common.item.ItemNodeFoci;
 
-public class NodeFociRenderer implements IItemRenderer{
-
+@SuppressWarnings("deprecation")
+public class NodeFociRenderer implements IItemRenderer {
+	
 	public static final IModelCustom model = AdvancedModelLoader.loadModel(new ResourceLocation("thaumicbases","models/nodeManipulator/foci.obj"));
 	
 	@Override
-	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
+	public boolean handleRenderType(ItemStack item, TransformType type) {
 		return true;
 	}
 
 	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,ItemRendererHelper helper) {
-		return true;
-	}
-
-	@Override
-	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+	public void renderItem(TransformType type, ItemStack item) {
 		
-		GL11.glPushMatrix();
+		GlStateManager.pushMatrix();
 		
-		GL11.glScalef(0.25F, 0.25F, 0.25F);
-		
-		if(type == ItemRenderType.INVENTORY)
-			GL11.glTranslated(0, -1, 0);
-		
-		MiscUtils.bindTexture("thaumicbases", "textures/blocks/nodeManipulator/foci_"+ItemNodeFoci.names[item.getItemDamage()]+".png");
+		GlStateManager.scale(0.25, 0.25, 0.25);
+		GlStateManager.translate(2, 1, 2);
+		DrawUtils.bindTexture("thaumicbases", "textures/blocks/nodeManipulator/foci_"+ItemNodeFoci.names[item.getItemDamage()]+".png");
 		model.renderAll();
 		
-		GL11.glPopMatrix();
-		
+		GlStateManager.popMatrix();
+	}
+
+	@Override
+	public Matrix4f handleTransformsFor(ItemStack item, TransformType type) {
+		if(type == TransformType.THIRD_PERSON)
+			return RPAwareModel.THIRD_PERSON_2D;
+		return null;
 	}
 
 }
