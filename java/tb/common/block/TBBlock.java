@@ -1,20 +1,27 @@
 package tb.common.block;
 
-import tb.init.TBBlocks;
-import thaumcraft.api.crafting.IInfusionStabiliser;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Arrays;
+import java.util.List;
+
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Client.RenderAccessLibrary;
+import DummyCore.Utils.IOldCubicBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import thaumcraft.api.crafting.IInfusionStabiliser;
 
-public class TBBlock extends Block implements IInfusionStabiliser{
+public class TBBlock extends Block implements IInfusionStabiliser,IOldCubicBlock{
 	
 	boolean isGlass;
 	boolean stabilise;
+	Icon blockIcon;
+	String iconName;
 	
 	public TBBlock(Material m,boolean b)
 	{
@@ -22,15 +29,18 @@ public class TBBlock extends Block implements IInfusionStabiliser{
 		isGlass = b;
 	}
 	
-    public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity)
-    {
-    	if(entity instanceof EntityDragon)
-    		return this != TBBlocks.enderPlanks;
-    	
-    	return super.canEntityDestroy(world, x, y, z, entity);
-    }
+	public String getTextureName()
+	{
+		return iconName;
+	}
+	
+	public TBBlock setBlockName(String name)
+	{
+		this.setUnlocalizedName(name);
+		return this;
+	}
 
-	public Block stabilise()
+	public TBBlock stabilise()
 	{
 		stabilise = true;
 		return this;
@@ -46,14 +56,49 @@ public class TBBlock extends Block implements IInfusionStabiliser{
         return isGlass ? 7 : 15;
     }
     
-    @SideOnly(Side.CLIENT)
     public int getRenderBlockPass()
     {
         return isGlass ? 1 : 0;
     }
+    
+    public EnumWorldBlockLayer getBlockLayer()
+    {
+    	return isGlass ? EnumWorldBlockLayer.TRANSLUCENT : EnumWorldBlockLayer.SOLID;
+    }
 
 	@Override
-	public boolean canStabaliseInfusion(World world, int x, int y, int z) {
+	public boolean canStabaliseInfusion(World world, BlockPos paramBlockPos) {
 		return stabilise;
+	}
+
+	@Override
+	public Icon getIcon(int side, int meta) {
+		return blockIcon;
+	}
+
+	@Override
+	public Icon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+		return getIcon(side,this.getMetaFromState(world.getBlockState(new BlockPos(x,y,z))));
+	}
+
+	@Override
+	public List<IBlockState> listPossibleStates(Block b) {
+		return Arrays.asList(this.getDefaultState());
+	}
+
+	@Override
+	public void registerBlockIcons(IconRegister ir) {
+		blockIcon = ir.registerBlockIcon(iconName);
+	}
+
+	@Override
+	public int getDCRenderID() {
+		return RenderAccessLibrary.RENDER_ID_CUBE;
+	}
+	
+	public TBBlock setBlockTextureName(String tex)
+	{
+		iconName = tex;
+		return this;
 	}
 }

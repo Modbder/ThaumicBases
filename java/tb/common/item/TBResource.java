@@ -2,16 +2,17 @@ package tb.common.item;
 
 import java.util.List;
 
-import tb.core.TBCore;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Utils.IOldItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import tb.core.TBCore;
 
-public class TBResource extends Item{
+public class TBResource extends Item implements IOldItem{
 	
 	public TBResource()
 	{
@@ -30,10 +31,9 @@ public class TBResource extends Item{
 		"bloodycloth"
 	};
 	
-	public static IIcon[] icons = new IIcon[names.length];
+	public static Icon[] icons = new Icon[names.length];
 	
-    @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int meta)
+    public Icon getIconFromDamage(int meta)
     {
     	return icons[meta];
     }
@@ -49,10 +49,10 @@ public class TBResource extends Item{
     }
     
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister reg)
+    public void registerIcons(IconRegister reg)
     {
     	for(int i = 0; i < names.length; ++i)
-    		icons[i] = reg.registerIcon(TBCore.modid+":"+names[i]);
+    		icons[i] = reg.registerItemIcon(TBCore.modid+":"+names[i]);
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -62,5 +62,30 @@ public class TBResource extends Item{
     	for(int i = 0; i < names.length; ++i)
     		lst.add(new ItemStack(itm,1,i));
     }
+
+	@Override
+	public Icon getIconFromItemStack(ItemStack stk) {
+		return getIconFromDamage(stk.getMetadata());
+	}
+
+	@Override
+	public int getRenderPasses(ItemStack stk) {
+		return 0;
+	}
+
+	@Override
+	public Icon getIconFromItemStackAndRenderPass(ItemStack stk, int pass) {
+		return getIconFromItemStack(stk);
+	}
+
+	@Override
+	public boolean recreateIcon(ItemStack stk) {
+		return false;
+	}
+
+	@Override
+	public boolean render3D(ItemStack stk) {
+		return false;
+	}
 
 }

@@ -1,13 +1,13 @@
 package tb.network.proxy;
 
-import tb.core.TBCore;
+import io.netty.channel.ChannelHandler;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import io.netty.channel.ChannelHandler;
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import tb.core.TBCore;
 
 @ChannelHandler.Sharable
 public class TBNetworkManager implements IMessageHandler<PacketTB,IMessage>
@@ -34,7 +34,7 @@ public class TBNetworkManager implements IMessageHandler<PacketTB,IMessage>
 		tg.setDouble("z", z);
 		tg.setFloat("v", volume);
 		tg.setFloat("p", pitch);
-		TBCore.network.sendToAllAround(new PacketTB(tg,0), new TargetPoint(w.provider.dimensionId,x,y,z,32));
+		TBCore.network.sendToAllAround(new PacketTB(tg,0), new TargetPoint(w.provider.getDimensionId(),x,y,z,32));
 	}
 
 }

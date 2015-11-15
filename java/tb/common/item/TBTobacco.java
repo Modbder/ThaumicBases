@@ -4,24 +4,26 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Utils.IOldItem;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import tb.api.ITobacco;
 import tb.core.TBCore;
 import tb.utils.TBUtils;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.common.config.Config;
 import thaumcraft.common.entities.monster.EntityWisp;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.IIcon;
 
-public class TBTobacco extends Item implements ITobacco{
+public class TBTobacco extends Item implements ITobacco, IOldItem{
 	
 	public TBTobacco()
 	{
@@ -59,7 +61,7 @@ public class TBTobacco extends Item implements ITobacco{
 			{
 				if(!smoker.worldObj.isRemote)
 				{
-					smoker.addPotionEffect(new PotionEffect(Config.potionDeathGazeID,2000,0,true));
+					smoker.addPotionEffect(new PotionEffect(Config.potionDeathGazeID,2000,0,true,false));
 					if(!isSilverwood)
 						TBUtils.addWarpToPlayer(smoker, 3, 0);
 				}
@@ -70,9 +72,9 @@ public class TBTobacco extends Item implements ITobacco{
 			{
 				if(!smoker.worldObj.isRemote)
 				{
-					smoker.addPotionEffect(new PotionEffect(Potion.damageBoost.id,8000,1,true));
+					smoker.addPotionEffect(new PotionEffect(Potion.damageBoost.id,8000,1,true,false));
 					if(isSilverwood && smoker.worldObj.rand.nextFloat() <= 0.1F)
-						smoker.addPotionEffect(new PotionEffect(Potion.resistance.id,8000,0,true));
+						smoker.addPotionEffect(new PotionEffect(Potion.resistance.id,8000,0,true,false));
 				}
 				break;
 			}
@@ -82,7 +84,7 @@ public class TBTobacco extends Item implements ITobacco{
 				{
 					smoker.getFoodStats().addStats(3, 3);
 					if(!isSilverwood && smoker.worldObj.rand.nextFloat() <= 0.4F)
-						smoker.addPotionEffect(new PotionEffect(Potion.confusion.id,200,0,true));
+						smoker.addPotionEffect(new PotionEffect(Potion.confusion.id,200,0,true,false));
 				}
 				break;
 			}
@@ -100,8 +102,9 @@ public class TBTobacco extends Item implements ITobacco{
 					for(int i = 0; i < (isSilverwood ? 20 : 10); ++i)
 					{
 						Aspect a = aspects.get(smoker.worldObj.rand.nextInt(aspects.size()));
-						TBUtils.addAspectToKnowledgePool(smoker, a, (short) (isSilverwood ? 2 : 1));
-						if(a == Aspect.TAINT && !isSilverwood)
+						EntityXPOrb xp = new EntityXPOrb(smoker.worldObj,smoker.posX,smoker.posY,smoker.posZ,a.isPrimal() ? 4 : a == Aspect.FLUX ? 8 : 2);
+						smoker.worldObj.spawnEntityInWorld(xp);
+						if(a == Aspect.FLUX && !isSilverwood)
 							TBUtils.addWarpToPlayer(smoker, 1, 0);
 					}
 				}
@@ -111,9 +114,9 @@ public class TBTobacco extends Item implements ITobacco{
 			{
 				if(!smoker.worldObj.isRemote)
 				{
-					smoker.addPotionEffect(new PotionEffect(Potion.digSpeed.id,8000,1,true));
+					smoker.addPotionEffect(new PotionEffect(Potion.digSpeed.id,8000,1,true,false));
 					if(isSilverwood && smoker.worldObj.rand.nextFloat() <= 0.3F)
-						smoker.addPotionEffect(new PotionEffect(Potion.nightVision.id,8000,0,true));
+						smoker.addPotionEffect(new PotionEffect(Potion.nightVision.id,8000,0,true,false));
 				}
 				break;
 			}
@@ -162,7 +165,7 @@ public class TBTobacco extends Item implements ITobacco{
 				}
 				
 				if(isSilverwood)
-					aspects.remove(Aspect.TAINT);
+					aspects.remove(Aspect.FLUX);
 				
 				EntityWisp wisp = new EntityWisp(smoker.worldObj);
 				wisp.setPositionAndRotation(smoker.posX, smoker.posY, smoker.posZ, 0, 0);
@@ -176,10 +179,9 @@ public class TBTobacco extends Item implements ITobacco{
 		}
 	}
 	
-	public static IIcon[] icons = new IIcon[names.length];
+	public static Icon[] icons = new Icon[names.length];
 	
-    @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int meta)
+    public Icon getIconFromDamage(int meta)
     {
     	return icons[meta];
     }
@@ -195,10 +197,10 @@ public class TBTobacco extends Item implements ITobacco{
     }
     
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister reg)
+    public void registerIcons(IconRegister reg)
     {
     	for(int i = 0; i < names.length; ++i)
-    		icons[i] = reg.registerIcon(TBCore.modid+":"+names[i]);
+    		icons[i] = reg.registerItemIcon(TBCore.modid+":"+names[i]);
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -208,5 +210,30 @@ public class TBTobacco extends Item implements ITobacco{
     	for(int i = 0; i < names.length; ++i)
     		lst.add(new ItemStack(itm,1,i));
     }
+
+	@Override
+	public Icon getIconFromItemStack(ItemStack stk) {
+		return getIconFromDamage(stk.getMetadata());
+	}
+
+	@Override
+	public int getRenderPasses(ItemStack stk) {
+		return 0;
+	}
+
+	@Override
+	public Icon getIconFromItemStackAndRenderPass(ItemStack stk, int pass) {
+		return getIconFromItemStack(stk);
+	}
+
+	@Override
+	public boolean recreateIcon(ItemStack stk) {
+		return false;
+	}
+
+	@Override
+	public boolean render3D(ItemStack stk) {
+		return false;
+	}
 
 }
