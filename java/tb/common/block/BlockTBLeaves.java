@@ -1,52 +1,66 @@
 package tb.common.block;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Client.RenderAccessLibrary;
+import DummyCore.Utils.BlockStateMetadata;
+import DummyCore.Utils.IOldCubicBlock;
 import DummyCore.Utils.MathUtils;
-import tb.core.TBCore;
-import tb.init.TBBlocks;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import DummyCore.Utils.MetadataBasedMethodsHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.block.BlockGravel;
 import net.minecraft.block.BlockNetherrack;
 import net.minecraft.block.BlockObsidian;
-import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.BlockSoulSand;
 import net.minecraft.block.BlockStone;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.stats.StatList;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.common.IShearable;
+import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+import tb.core.TBCore;
+import tb.init.TBBlocks;
 
-public class BlockTBLeaves extends BlockOldLeaf{
-	
+public class BlockTBLeaves extends Block implements IOldCubicBlock, IShearable{
+
 	public static final String[] names = new String[]{
 		"goldenOakLeaves",
 		"peacefullTreeLeaves",
 		"netherTreeLeaves",
 		"enderTreeLeaves"
 	};
-	
+		
 	public static final String[] textures = new String[]{
 		"goldenOak/leaves",
 		"peacefullTree/leaves",
@@ -54,122 +68,241 @@ public class BlockTBLeaves extends BlockOldLeaf{
 		"enderTree/leaves"
 	};
 	
-    public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity)
+	public static Icon[] icons = new Icon[names.length];
+	
+	public BlockTBLeaves() {
+		super(Material.leaves);
+		this.setLightOpacity(1);
+        this.setTickRandomly(true);
+        this.setHardness(0.2F);
+        this.setStepSound(soundTypeGrass);
+	}
+	
+    public boolean canEntityDestroy(IBlockAccess world, BlockPos pos, Entity entity)
     {
-	    if(world.getBlockMetadata(x, y, z)%8==3)
+	    if(BlockStateMetadata.getBlockMetadata(world, pos)%8==3)
 	    	if(entity instanceof EntityDragon)
 	    		return false;
     	
-    	return super.canEntityDestroy(world, x, y, z, entity);
+    	return super.canEntityDestroy(world, pos, entity);
     }
     
-    public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face)
+    public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face)
     {
-    	if(world.getBlockMetadata(x, y, z)%8==2)
+    	if(BlockStateMetadata.getBlockMetadata(world, pos)%8==2)
     		return true;
     	
-    	return super.isFlammable(world, x, y, z, face);
+    	return super.isFlammable(world, pos, face);
     }
     
-    public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face)
+    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)
     {
-    	if(world.getBlockMetadata(x, y, z)%8==2)
+    	if(BlockStateMetadata.getBlockMetadata(world, pos)%8==2)
     		return 0;
     	
-    	return super.getFlammability(world, x, y, z, face);
+    	return super.getFlammability(world, pos, face);
     }
     
-    public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face)
+    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face)
     {
-    	if(world.getBlockMetadata(x, y, z)%8==2)
+    	if(BlockStateMetadata.getBlockMetadata(world, pos)%8==2)
     		return 0;
     	
-    	return super.getFlammability(world, x, y, z, face);
+    	return super.getFlammability(world, pos, face);
     }
     
-    public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side)
+    public boolean isFireSource(World world, BlockPos pos, EnumFacing side)
     {
-    	if(world.getBlockMetadata(x, y, z)%8==2)
+    	if(BlockStateMetadata.getBlockMetadata(world, pos)%8==2)
     		return true;
     	
-    	return super.isFireSource(world, x, y, z, side);
+    	return super.isFireSource(world, pos, side);
     }
 	
-	public static IIcon[] icons = new IIcon[names.length];
-
-    @SideOnly(Side.CLIENT)
-    public int getBlockColor()
+    public boolean isFullCube()
     {
-    	return 0xffffff;
+        return false;
     }
     
-    @Override
     public boolean isOpaqueCube()
     {
         return false;
     }
+    
+    public EnumWorldBlockLayer getBlockLayer()
+    {
+    	return EnumWorldBlockLayer.CUTOUT_MIPPED;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    {
+    	return true;
+    }
 
-    public int getLightValue(IBlockAccess world, int x, int y, int z)
+	@Override
+	public Icon getIcon(int side, int meta) {
+		return icons[Math.min(icons.length-1, meta % 8)];
+	}
+	
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public void getSubBlocks(Item i, CreativeTabs p_149666_2_, List p_149666_3_)
     {
-    	if(world.getBlockMetadata(x, y, z)%8 != 3)
-    		return super.getLightValue(world, x, y, z);
-    	else
-    		return 11;
+    	for(int f = 0; f < names.length; ++f)
+    		p_149666_3_.add(new ItemStack(i,1,f));
     }
     
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess w, int x, int y, int z, int meta)
+	@Override
+	public Icon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+		return getIcon(side,BlockStateMetadata.getBlockMetadata(world, x, y, z));
+	}
+	
+	
+    public int damageDropped(IBlockState state)
     {
-        return true;
-    }
-    
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World w, int x, int y, int z, Random rnd)
-    {
-    	super.randomDisplayTick(w, x, y, z, rnd);
-    	
-    	if(w.getBlockMetadata(x, y, z)%8 == 0)
-    		w.spawnParticle("reddust", x+rnd.nextDouble(), y+rnd.nextDouble(), z+rnd.nextDouble(), 1, 1, 0);
-    	
-    	if(w.getBlockMetadata(x, y, z)%8 == 1 && rnd.nextFloat() <= 0.01F)
-    		w.spawnParticle("heart", x+rnd.nextDouble(), y+rnd.nextDouble(), z+rnd.nextDouble(), 0, 10, 0);
-    	
-    	if(w.getBlockMetadata(x, y, z)%8 == 2)
-    	{
-    		if(w.isAirBlock(x, y-1, z))
-    			w.spawnParticle("dripLava", x+rnd.nextDouble(), y, z+rnd.nextDouble(), 0, 0, 0);
-    	}
-    	
-    	if(w.getBlockMetadata(x, y, z)%8 == 3)
-    		w.spawnParticle("portal", x+rnd.nextDouble(), y+rnd.nextDouble(), z+rnd.nextDouble(), MathUtils.randomDouble(rnd), MathUtils.randomDouble(rnd), MathUtils.randomDouble(rnd));
-    }
-    
-    public Item getItemDropped(int meta, Random rnd, int fortune)
-    {
-        return Item.getItemFromBlock(TBBlocks.sapling);
+    	return BlockStateMetadata.getMetaFromState(state) % 8;
     }
 	
-    @SideOnly(Side.CLIENT)
-    public int getRenderColor(int p_149741_1_)
+    public IBlockState getStateFromMeta(int meta)
     {
-    	return 0xffffff;
+    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, BlockStateMetadata.MetadataValues.values()[meta]);
     }
     
-    public void updateTick(World w, int x, int y, int z, Random rnd)
+    public int getMetaFromState(IBlockState state)
     {
-    	super.updateTick(w, x, y, z, rnd);
-    	if(w.getBlockMetadata(x, y, z)%8 == 1)
+    	return BlockStateMetadata.getMetaFromState(state);
+    }
+
+    protected BlockState createBlockState()
+    {
+    	return new BlockState(this,BlockStateMetadata.METADATA);
+    }
+
+	@Override
+	public List<IBlockState> listPossibleStates(Block b) {
+		ArrayList<IBlockState> retLst = new ArrayList<IBlockState>();
+		for(int i = 0; i < names.length; ++i)
+		{
+			retLst.add(getStateFromMeta(i));
+			retLst.add(getStateFromMeta(i+8));
+		}
+		return retLst;
+	}
+
+	@Override
+	public void registerBlockIcons(IconRegister ir) {
+    	for(int i = 0; i < icons.length; ++i)
+    		icons[i] = ir.registerBlockIcon(TBCore.modid+":"+textures[i]);
+	}
+
+	@Override
+	public int getDCRenderID() {
+		return RenderAccessLibrary.RENDER_ID_CUBE_AND_CROSS;
+	}
+	
+    public void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
+    {
+        if (BlockStateMetadata.getMetaFromState(state) == 0 && worldIn.rand.nextInt(chance) == 0)
+            spawnAsEntity(worldIn, pos, new ItemStack(Items.golden_apple, 1, 0));
+    }
+    
+    public int getSaplingDropChance(IBlockState state)
+    {
+    	return BlockStateMetadata.getMetaFromState(state) == 0 ? 50 : 30;
+    }
+
+    public ItemStack createStackedBlock(IBlockState state)
+    {
+    	return new ItemStack(state.getBlock(),1,BlockStateMetadata.getMetaFromState(state)%8);
+    }
+    
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
+    {
+        if (!worldIn.isRemote && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.shears)
+            player.triggerAchievement(StatList.mineBlockStatArray[Block.getIdFromBlock(this)]);
+        else
+            super.harvestBlock(worldIn, player, pos, state, te);
+    }
+    
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+    public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
+    {
+        return new ArrayList(Arrays.asList(new ItemStack(this, 1, BlockStateMetadata.getBlockMetadata(world, pos) % 8)));
+    }
+
+	@Override
+	public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos) {
+		return true;
+	}
+	
+	@Override
+	public boolean isLeaves(IBlockAccess world, BlockPos pos)
+	{
+		return true; 
+	}
+	
+    @Override
+    public void beginLeavesDecay(World world, BlockPos pos)
+    {
+    	int meta = BlockStateMetadata.getBlockMetadata(world, pos) % 8;
+    	world.setBlockState(pos, getStateFromMeta(meta + 8));
+    }
+    
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+    {
+    	MetadataBasedMethodsHelper.breakLeaves(worldIn, pos, state);
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+        if (worldIn.canLightningStrike(pos.up()) && !World.doesBlockHaveSolidTopSurface(worldIn, pos.down()) && rand.nextInt(15) == 1)
+        {
+            double d0 = pos.getX() + rand.nextFloat();
+            double d1 = pos.getY() - 0.05D;
+            double d2 = pos.getZ() + rand.nextFloat();
+            worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
+        }
+        
+        World w = worldIn;
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+        Random rnd = rand;
+    	
+    	if(BlockStateMetadata.getBlockMetadata(worldIn, pos)%8 == 0)
+    		w.spawnParticle(EnumParticleTypes.REDSTONE, x+rnd.nextDouble(), y+rnd.nextDouble(), z+rnd.nextDouble(), 1, 1, 0);
+    	
+    	if(BlockStateMetadata.getBlockMetadata(worldIn, pos)%8 == 1 && rnd.nextFloat() <= 0.01F)
+    		w.spawnParticle(EnumParticleTypes.HEART, x+rnd.nextDouble(), y+rnd.nextDouble(), z+rnd.nextDouble(), 0, 10, 0);
+    	
+    	if(BlockStateMetadata.getBlockMetadata(worldIn, pos)%8 == 2)
+    	{
+    		if(w.isAirBlock(new BlockPos(x, y-1, z)))
+    			w.spawnParticle(EnumParticleTypes.DRIP_LAVA, x+rnd.nextDouble(), y, z+rnd.nextDouble(), 0, 0, 0);
+    	}
+    	
+    	if(BlockStateMetadata.getBlockMetadata(worldIn, pos)%8 == 3)
+    		w.spawnParticle(EnumParticleTypes.PORTAL, x+rnd.nextDouble(), y+rnd.nextDouble(), z+rnd.nextDouble(), MathUtils.randomDouble(rnd), MathUtils.randomDouble(rnd), MathUtils.randomDouble(rnd));
+    }
+    
+    public void spawnAction(World w, Random rnd, BlockPos pos)
+    {
+    	int x = pos.getX();
+    	int y = pos.getY();
+    	int z = pos.getZ();
+    	if(BlockStateMetadata.getBlockMetadata(w,pos)%8 == 1)
     	{
     		if(rnd.nextDouble() > 0.03D)
     			return;
     		
     		int dy = y;
-    		BiomeGenBase base = w.getBiomeGenForCoords(x, z);
+    		BiomeGenBase base = w.getBiomeGenForCoords(new BlockPos(x,0, z));
     		if(base != null)
     		{
     			@SuppressWarnings("unchecked")
-				List<SpawnListEntry> l = base.getSpawnableList(EnumCreatureType.creature);
+				List<SpawnListEntry> l = base.getSpawnableList(EnumCreatureType.CREATURE);
     			if(l != null && !l.isEmpty())
     			{
     				SpawnListEntry entry = l.get(rnd.nextInt(l.size()));
@@ -188,8 +321,8 @@ public class BlockTBLeaves extends BlockOldLeaf{
 	    			    			{
 	    			    				w.spawnEntityInWorld(el);
 	    			    				break;
-	    			    			}else
-	    			    				continue;
+	    			    			}
+									continue;
 	    			    		}
     						}catch(Exception e)
     						{
@@ -201,20 +334,20 @@ public class BlockTBLeaves extends BlockOldLeaf{
     			}
     		}
     	}
-    	if(w.getBlockMetadata(x, y, z)%8 == 2)
+    	if(BlockStateMetadata.getBlockMetadata(w,pos)%8 == 2)
     	{
     		int dy = y;
     		while(--y >= dy-8)
     		{
-    			Block b = w.getBlock(x, y, z);
-    			if(!b.isAir(w, x, y, z))
+    			Block b = w.getBlockState(new BlockPos(x,y,z)).getBlock();
+    			if(!b.isAir(w, new BlockPos(x, y, z)))
     			{
     				boolean netheric = b instanceof BlockNetherrack || b instanceof BlockSoulSand || b == Blocks.quartz_ore;
     				if(netheric && rnd.nextDouble() <= 0.05D)
     				{
     					BiomeGenBase hellBiome = BiomeGenBase.hell;
     	    			@SuppressWarnings("unchecked")
-    					List<SpawnListEntry> l = rnd.nextBoolean() ? hellBiome.getSpawnableList(EnumCreatureType.creature) : hellBiome.getSpawnableList(EnumCreatureType.monster);
+    					List<SpawnListEntry> l = rnd.nextBoolean() ? hellBiome.getSpawnableList(EnumCreatureType.CREATURE) : hellBiome.getSpawnableList(EnumCreatureType.MONSTER);
     	    			if(l != null && !l.isEmpty())
     	    			{
     	    				SpawnListEntry entry = l.get(rnd.nextInt(l.size()));
@@ -228,7 +361,7 @@ public class BlockTBLeaves extends BlockOldLeaf{
     		    						EntityLiving el = EntityLiving.class.cast(c.getConstructor(World.class).newInstance(w));
     		    						
     		    			    		el.setPositionAndRotation(x+0.5D, y+1, z+0.5D, 0, 0);
-    		    			    		el.onSpawnWithEgg(null);
+    		    			    		el.func_180482_a(w.getDifficultyForLocation(new BlockPos(el)), null);
     		    			    		
     		    			    		if(el.getCanSpawnHere())
     		    			    		{
@@ -247,55 +380,53 @@ public class BlockTBLeaves extends BlockOldLeaf{
     	    			
     					break;
     				}
-    				else
-    				{
-	    				boolean flag = b instanceof BlockDirt || b instanceof BlockGrass || b instanceof BlockGravel || b instanceof BlockSand || b instanceof BlockStone;
-	    				if(!flag)
-	    				{
-	    					ItemStack stk = new ItemStack(b,1,w.getBlockMetadata(x, y, z));
-	    					if(OreDictionary.getOreIDs(stk) != null && OreDictionary.getOreIDs(stk).length > 0)
-	    					{
-	    						OreDict:for(int i = 0; i < OreDictionary.getOreIDs(stk).length; ++i)
-	    						{
-	    							int id = OreDictionary.getOreIDs(stk)[i];
-	    							if(id != -1)
-	    							{
-	    								String ore = OreDictionary.getOreName(id);
-	    								if(ore != null && ! ore.isEmpty())
-	    								{
-	    									flag = ore.contains("dirt") || ore.contains("grass") || ore.contains("sand") || ore.contains("gravel") || ore.contains("stone");
-	    									if(flag)
-	    										break OreDict;
-	    								}
-	    							}
-	    						}
-	    					}
-	    				}
-	    				if(flag)
-	    				{
-	    					double random = rnd.nextDouble();
-	    					Block setTo = random <= 0.6D ? Blocks.netherrack : random <= 0.9D ? Blocks.soul_sand : Blocks.quartz_ore;
-	    					w.setBlock(x, y, z, setTo, 0, 3);
-	    					break;
-	    				}
-    				}
+					boolean flag = b instanceof BlockDirt || b instanceof BlockGrass || b instanceof BlockGravel || b instanceof BlockSand || b instanceof BlockStone;
+					if(!flag)
+					{
+						ItemStack stk = new ItemStack(b,1,BlockStateMetadata.getBlockMetadata(w,pos));
+						if(stk!=null&&stk.getItem()!=null)
+							if(OreDictionary.getOreIDs(stk) != null && OreDictionary.getOreIDs(stk).length > 0)
+							{
+								OreDict:for(int i = 0; i < OreDictionary.getOreIDs(stk).length; ++i)
+								{
+									int id = OreDictionary.getOreIDs(stk)[i];
+									if(id != -1)
+									{
+										String ore = OreDictionary.getOreName(id);
+										if(ore != null && ! ore.isEmpty())
+										{
+											flag = ore.contains("dirt") || ore.contains("grass") || ore.contains("sand") || ore.contains("gravel") || ore.contains("stone");
+											if(flag)
+												break OreDict;
+										}
+									}
+								}
+							}
+					}
+					if(flag)
+					{
+						double random = rnd.nextDouble();
+						Block setTo = random <= 0.6D ? Blocks.netherrack : random <= 0.9D ? Blocks.soul_sand : Blocks.quartz_ore;
+						w.setBlockState(new BlockPos(x, y, z), setTo.getDefaultState());
+						break;
+					}
     			}
     		}
     	}
-    	if(w.getBlockMetadata(x, y, z)%8 == 3)
+    	if(BlockStateMetadata.getBlockMetadata(w,pos)%8 == 3)
     	{
     		int dy = y;
     		while(--y >= dy-11)
     		{
-    			Block b = w.getBlock(x, y, z);
-    			if(!b.isAir(w, x, y, z))
+    			Block b = w.getBlockState(new BlockPos(x, y, z)).getBlock();
+    			if(!b.isAir(w, new BlockPos(x, y, z)))
     			{
     				boolean end = b == Blocks.end_stone || b instanceof BlockObsidian;
     				if(end && rnd.nextDouble() <= 0.02D)
     				{
     					BiomeGenBase hellBiome = BiomeGenBase.sky;
     	    			@SuppressWarnings("unchecked")
-    					List<SpawnListEntry> l = rnd.nextBoolean() ? hellBiome.getSpawnableList(EnumCreatureType.creature) : hellBiome.getSpawnableList(EnumCreatureType.monster);
+    					List<SpawnListEntry> l = rnd.nextBoolean() ? hellBiome.getSpawnableList(EnumCreatureType.CREATURE) : hellBiome.getSpawnableList(EnumCreatureType.MONSTER);
     					if(l != null && !l.isEmpty())
     	    			{
     	    				SpawnListEntry entry = l.get(rnd.nextInt(l.size()));
@@ -309,9 +440,9 @@ public class BlockTBLeaves extends BlockOldLeaf{
     		    						EntityLiving el = EntityLiving.class.cast(c.getConstructor(World.class).newInstance(w));
     		    						
     		    			    		el.setPositionAndRotation(x+0.5D, y+1, z+0.5D, 0, 0);
-    		    			    		el.onSpawnWithEgg(null);
+    		    			    		el.func_180482_a(w.getDifficultyForLocation(new BlockPos(el)), null);
     		    			    		
-    		    			    		if(w.isAirBlock(x, y+1, z))
+    		    			    		if(w.isAirBlock(new BlockPos(x, y+1, z)))
     		    			    		{
     		    			    			w.spawnEntityInWorld(el);
     		    			    			break;
@@ -328,94 +459,89 @@ public class BlockTBLeaves extends BlockOldLeaf{
     	    			
     					break;
     				}
-    				else
-    				{
-	    				boolean flag = b instanceof BlockDirt || b instanceof BlockGrass || b instanceof BlockGravel || b instanceof BlockSand || b instanceof BlockStone && !(b instanceof BlockObsidian) && !(b == Blocks.end_stone);
-	    				if(!flag)
-	    				{
-	    					ItemStack stk = new ItemStack(b,1,w.getBlockMetadata(x, y, z));
-	    					if(OreDictionary.getOreIDs(stk) != null && OreDictionary.getOreIDs(stk).length > 0)
-	    					{
-	    						OreDict:for(int i = 0; i < OreDictionary.getOreIDs(stk).length; ++i)
-	    						{
-	    							int id = OreDictionary.getOreIDs(stk)[i];
-	    							if(id != -1)
-	    							{
-	    								String ore = OreDictionary.getOreName(id);
-	    								if(ore != null && ! ore.isEmpty())
-	    								{
-	    									flag = ore.contains("dirt") || ore.contains("grass") || ore.contains("sand") || ore.contains("gravel") || ore.contains("stone");
-	    									if(flag)
-	    										break OreDict;
-	    								}
-	    							}
-	    						}
-	    					}
-	    				}
-	    				if(flag)
-	    				{
-	    					double random = rnd.nextDouble();
-	    					Block setTo = random <= 0.9D ? Blocks.end_stone : Blocks.obsidian;
-	    					w.setBlock(x, y, z, setTo, 0, 3);
-	    					break;
-	    				}
-    				}
+					boolean flag = b instanceof BlockDirt || b instanceof BlockGrass || b instanceof BlockGravel || b instanceof BlockSand || b instanceof BlockStone && !(b instanceof BlockObsidian) && !(b == Blocks.end_stone);
+					if(!flag)
+					{
+						ItemStack stk = new ItemStack(b,1,BlockStateMetadata.getBlockMetadata(w,pos));
+						if(stk!=null&&stk.getItem()!=null)
+							if(OreDictionary.getOreIDs(stk) != null && OreDictionary.getOreIDs(stk).length > 0)
+							{
+								OreDict:for(int i = 0; i < OreDictionary.getOreIDs(stk).length; ++i)
+								{
+									int id = OreDictionary.getOreIDs(stk)[i];
+									if(id != -1)
+									{
+										String ore = OreDictionary.getOreName(id);
+										if(ore != null && ! ore.isEmpty())
+										{
+											flag = ore.contains("dirt") || ore.contains("grass") || ore.contains("sand") || ore.contains("gravel") || ore.contains("stone");
+											if(flag)
+												break OreDict;
+										}
+									}
+								}
+							}
+					}
+					if(flag)
+					{
+						double random = rnd.nextDouble();
+						Block setTo = random <= 0.9D ? Blocks.end_stone : Blocks.obsidian;
+						w.setBlockState(new BlockPos(x, y, z), setTo.getDefaultState());
+						break;
+					}
     			}
     		}
     	}
     }
     
-    @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_)
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-    	return 0xffffff;
+    	MetadataBasedMethodsHelper.leavesDecayTick(worldIn, pos, state, rand);
+    	spawnAction(worldIn, rand, pos);
     }
     
-    //getSaplingDropRate
-    protected int func_150123_b(int meta)
+    public int quantityDropped(Random random)
     {
-        return meta == 0 ? 50 : 30;
+        return random.nextInt(20) == 0 ? 1 : 0;
     }
     
-    //dropRareItem
-    protected void func_150124_c(World w, int x, int y, int z, int meta, int chance)
+    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
     {
-        if (meta == 0 && w.rand.nextInt(chance) == 0)
-        {
-            this.dropBlockAsItem(w, x, y, z, new ItemStack(Items.golden_apple, 1, 0));
-        }
+        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
     }
     
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta)
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-    	return icons[meta % 8];
-    }
-    
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	@SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item i, CreativeTabs p_149666_2_, List p_149666_3_)
-    {
-    	for(int f = 0; f < names.length; ++f)
-    		p_149666_3_.add(new ItemStack(i,1,f));
-    }
-    
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister reg)
-    {
-    	for(int i = 0; i < icons.length; ++i)
-    		icons[i] = reg.registerIcon(TBCore.modid+":"+textures[i]);
-    	
-    	blockIcon = reg.registerIcon(getTextureName());
+        return Item.getItemFromBlock(TBBlocks.sapling);
     }
     
     @Override
-    public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune)
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-    	if(world.getBlockMetadata(x, y, z)%8 == 1)
-    		return new ArrayList<ItemStack>();
-    	else
-    		return super.onSheared(item, world, x, y, z, fortune);
+        List<ItemStack> ret = new ArrayList<ItemStack>();
+        Random rand = world instanceof World ? ((World)world).rand : new Random();
+        int chance = this.getSaplingDropChance(state);
+
+        if (fortune > 0)
+        {
+            chance -= 2 << fortune;
+            if (chance < 10) chance = 10;
+        }
+
+        if (rand.nextInt(chance) == 0)
+            ret.add(new ItemStack(getItemDropped(state, rand, fortune), 1, damageDropped(state)));
+
+        chance = 200;
+        if (fortune > 0)
+        {
+            chance -= 10 << fortune;
+            if (chance < 40) chance = 40;
+        }
+
+        this.captureDrops(true);
+        if (world instanceof World)
+            this.dropApple((World)world, pos, state, chance); // Dammet mojang
+        ret.addAll(this.captureDrops(false));
+        return ret;
     }
-    
 }

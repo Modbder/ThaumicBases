@@ -1,16 +1,27 @@
 package tb.common.block;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
-import thaumcraft.common.config.ConfigBlocks;
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Client.RenderAccessLibrary;
+import DummyCore.Utils.IOldCubicBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import thaumcraft.api.aura.AuraHelper;
 
-public class BlockFlaxium extends BlockBush{
+public class BlockFlaxium extends BlockBush implements IOldCubicBlock{
 
 	public BlockFlaxium() {
 		super(Material.plants);
@@ -18,22 +29,69 @@ public class BlockFlaxium extends BlockBush{
 		this.setBlockBounds(0.25F, 0, 0.25F, 0.75F, 0.85F, 0.75F);
 	}
 	
-	public void updateTick(World w, int x, int y, int z, Random rnd) 
+	Icon icon;
+	String texture;
+	
+	public BlockFlaxium setBlockName(String name)
 	{
-		if(w.isAirBlock(x, y+1, z))
-			w.setBlock(x, y+1, z, ConfigBlocks.blockFluxGas, 0, 3);
+		this.setUnlocalizedName(name);
+		return this;
+	}
+
+    public EnumWorldBlockLayer getBlockLayer()
+    {
+    	return EnumWorldBlockLayer.CUTOUT_MIPPED;
+    }
+    
+	public BlockFlaxium setBlockTextureName(String tex)
+	{
+		texture = tex;
+		return this;
+	}
+	
+	@Override
+	public Icon getIcon(int side, int meta) {
+		return icon;
+	}
+
+	@Override
+	public Icon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+		return getIcon(side,this.getMetaFromState(world.getBlockState(new BlockPos(x,y,z))));
+	}
+
+	@Override
+	public List<IBlockState> listPossibleStates(Block b) {
+		return Arrays.asList(this.getDefaultState());
+	}
+	
+	@Override
+	public void registerBlockIcons(IconRegister ir) {
+		icon = ir.registerBlockIcon(texture);
+	}
+
+	@Override
+	public int getDCRenderID() {
+		return RenderAccessLibrary.RENDER_ID_CROSSES;
+	}
+	
+	public void updateTick(World w, BlockPos pos, IBlockState state, Random rnd)
+	{
+		super.updateTick(w, pos, state, rnd);
+		if(w.isAirBlock(pos.up()))
+			AuraHelper.pollute(w, pos, 1, true);
 		
-		if(!canGrowOn(w,x,y-1,z))
-			w.setBlockToAir(x, y, z);
+		if(!canGrowOn(w,pos.down()))
+			w.setBlockToAir(pos);
 	}
 	
-	public void onNeighborBlockChange(World w, int x, int y, int z, Block updated) 
+	public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
 	{
-		if(!canGrowOn(w,x,y-1,z))
-			w.setBlockToAir(x, y, z);
+		if(!canGrowOn(worldIn,pos.down()))
+			worldIn.setBlockToAir(pos);
 	}
 	
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(World w, BlockPos pos,IBlockState state)
     {
         return null;
     }
@@ -42,20 +100,11 @@ public class BlockFlaxium extends BlockBush{
     {
         return false;
     }
-
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-
-    public int getRenderType()
-    {
-        return 1;
-    }
     
-	public static boolean canGrowOn(World w, int x, int y, int z)
+	@SuppressWarnings("unchecked")
+	public static boolean canGrowOn(World w, BlockPos pos)
 	{
-		return !w.isAirBlock(x, y, z) && (w.getBlock(x, y, z).isReplaceableOreGen(w, x, y, z, Blocks.grass) || w.getBlock(x, y, z).isReplaceableOreGen(w, x, y, z, Blocks.dirt));
+		return !w.isAirBlock(pos) && (w.getBlockState(pos).getBlock().isReplaceableOreGen(w, pos,BlockHelper.forBlock(Blocks.grass)) || w.getBlockState(pos).getBlock().isReplaceableOreGen(w, pos, BlockHelper.forBlock(Blocks.dirt)));
 	}
 
 }

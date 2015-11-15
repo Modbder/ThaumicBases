@@ -1,81 +1,117 @@
 package tb.common.block;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Client.RenderAccessLibrary;
+import DummyCore.Utils.IOldCubicBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCactus;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockRainbowCactus extends BlockCactus {
+public class BlockRainbowCactus extends BlockCactus implements IOldCubicBlock{
 
-    @SideOnly(Side.CLIENT)
-    private IIcon field_150041_a;
-    @SideOnly(Side.CLIENT)
-    private IIcon field_150040_b;
+    public Icon top;
+    public Icon bot;
+    public Icon side;
+    String texture;
 	
 	public BlockRainbowCactus()
 	{
 		super();
 	}
 	
-    public void onEntityCollidedWithBlock(World p_149670_1_, int p_149670_2_, int p_149670_3_, int p_149670_4_, Entity p_149670_5_)
+	public BlockRainbowCactus setBlockName(String name)
+	{
+		this.setUnlocalizedName(name);
+		return this;
+	}
+    
+	public BlockRainbowCactus setBlockTextureName(String tex)
+	{
+		texture = tex;
+		return this;
+	}
+	
+	public String getTextureName()
+	{
+		return texture;
+	}
+	
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
         
     }
     
     @Override
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+    public List<ItemStack> getDrops(IBlockAccess w, BlockPos pos, IBlockState state, int fortune)
     {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-    
-        if(world.getBlock(x, y-1, z) != this)
+        if(w instanceof World)
         {
-        	ret.add(new ItemStack(this,1,0));
-        	return ret;
+        	World world = World.class.cast(w);
+	        if(world.getBlockState(pos.down()).getBlock() != this)
+	        {
+	        	ret.add(new ItemStack(this,1,0));
+	        	return ret;
+	        }
+	        	
+	        for(int i = 0; i < 3+world.rand.nextInt(8); ++i)
+	        	ret.add(new ItemStack(Items.dye,1,allowedDyes[world.rand.nextInt(allowedDyes.length)]));
         }
-        	
-        for(int i = 0; i < 3+world.rand.nextInt(8); ++i)
-        	ret.add(new ItemStack(Items.dye,1,allowedDyes[world.rand.nextInt(allowedDyes.length)]));
-        
         return ret;
     }
     
     public static final int[] allowedDyes = new int[]{1,2,5,2,6,7,2,8,9,10,2,11,12,13,14,2};
     
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister p_149651_1_)
+    public void registerBlockIcons(IconRegister ir)
     {
-        this.blockIcon = p_149651_1_.registerIcon(this.getTextureName() + "side");
-        this.field_150041_a = p_149651_1_.registerIcon(this.getTextureName() + "top");
-        this.field_150040_b = p_149651_1_.registerIcon(this.getTextureName() + "bottom");
+        side = ir.registerBlockIcon(this.getTextureName() + "side");
+        top = ir.registerBlockIcon(this.getTextureName() + "top");
+        bot = ir.registerBlockIcon(this.getTextureName() + "bottom");
     }
 
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int p_149691_1_, int p_149691_2_)
+    public Icon getIcon(int side, int meta)
     {
-        return p_149691_1_ == 1 ? this.field_150041_a : (p_149691_1_ == 0 ? this.field_150040_b : this.blockIcon);
+        return side == 1 ? top : side == 0 ? bot : this.side;
     }
 	
     @Override
-    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable)
+    public boolean canSustainPlant(IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable)
     {
-        Block plant = plantable.getPlant(world, x, y + 1, z);
+        Block plant = plantable.getPlant(world, pos.up()).getBlock();
         
         if (plant == this)
-        {
             return true;
-        }
         
-        return super.canSustainPlant(world, x, y, z, direction, plantable);
+        return super.canSustainPlant(world, pos, direction, plantable);
     }
+
+	@Override
+	public Icon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+		return getIcon(side,this.getMetaFromState(world.getBlockState(new BlockPos(x,y,z))));
+	}
+
+	@Override
+	public List<IBlockState> listPossibleStates(Block b) {
+		ArrayList<IBlockState> ret = new ArrayList<IBlockState>();
+		for(int i = 0; i < 15; ++i)
+			ret.add(this.getStateFromMeta(i));
+		return ret;
+	}
+
+	@Override
+	public int getDCRenderID() {
+		return RenderAccessLibrary.RENDER_ID_FACES_WITH_HORIZONTAL_OFFSET;
+	}
 }

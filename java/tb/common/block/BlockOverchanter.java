@@ -1,22 +1,30 @@
 package tb.common.block;
 
-import tb.common.tile.TileOverchanter;
-import tb.core.TBCore;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Arrays;
+import java.util.List;
+
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Client.RenderAccessLibrary;
+import DummyCore.Utils.IOldCubicBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import tb.common.tile.TileOverchanter;
+import tb.core.TBCore;
 
-public class BlockOverchanter extends BlockContainer{
+public class BlockOverchanter extends BlockContainer implements IOldCubicBlock{
 	
-	public IIcon topIcon;
-	public IIcon botIcon;
-	public IIcon sideIcon;
+	public Icon topIcon;
+	public Icon botIcon;
+	public Icon sideIcon;
 
 	public BlockOverchanter() 
 	{
@@ -26,9 +34,9 @@ public class BlockOverchanter extends BlockContainer{
         this.setLightOpacity(0);
 	}
 	
-    public boolean renderAsNormalBlock()
+    public int getRenderType()
     {
-        return false;
+        return 3;
     }
     
     public boolean isOpaqueCube()
@@ -36,18 +44,16 @@ public class BlockOverchanter extends BlockContainer{
         return false;
     }
     
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta)
+    public Icon getIcon(int side, int meta)
     {
     	return side == 0 ? botIcon : side == 1 ? topIcon : sideIcon;
     }
     
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister reg)
+    public void registerBlockIcons(IconRegister reg)
     {
-    	topIcon = reg.registerIcon("thaumicbases:overchanter/top");
-    	botIcon = reg.registerIcon("thaumicbases:overchanter/bottom");
-    	sideIcon = reg.registerIcon("thaumicbases:overchanter/side");
+    	topIcon = reg.registerBlockIcon("thaumicbases:overchanter/top");
+    	botIcon = reg.registerBlockIcon("thaumicbases:overchanter/bottom");
+    	sideIcon = reg.registerBlockIcon("thaumicbases:overchanter/side");
     }
 
 	@Override
@@ -55,19 +61,32 @@ public class BlockOverchanter extends BlockContainer{
 		return new TileOverchanter();
 	}
 	
-    public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int side, float vecX, float vecY, float vecZ)
+    public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer p, EnumFacing side, float hitX, float hitY, float hitZ)
     {
     	if(!p.isSneaking())
     	{
     		if(!w.isRemote)
     		{
-    			p.openGui(TBCore.instance, 0x421922, w, x, y, z);
-    			return true;
-    		}else
-    		{
+    			p.openGui(TBCore.instance, 0x421922, w, pos.getX(),pos.getY(),pos.getZ());
     			return true;
     		}
+			return true;
     	}
     	return false;
     }
+
+	@Override
+	public Icon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+		return getIcon(side,0);
+	}
+
+	@Override
+	public List<IBlockState> listPossibleStates(Block b) {
+		return Arrays.asList(getDefaultState());
+	}
+
+	@Override
+	public int getDCRenderID() {
+		return RenderAccessLibrary.RENDER_ID_CUBE;
+	}
 }

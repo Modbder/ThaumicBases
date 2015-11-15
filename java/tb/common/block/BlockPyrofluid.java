@@ -4,25 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import tb.utils.TBConfig;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Client.RenderAccessLibrary;
+import DummyCore.Utils.BlockStateMetadata;
+import DummyCore.Utils.IOldCubicBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import tb.utils.TBConfig;
 
-public class BlockPyrofluid extends Block{
+public class BlockPyrofluid extends Block implements IOldCubicBlock{
 	
-	public static IIcon fluidIcon;
-	public static IIcon staticIcon;
+	public static Icon fluidIcon;
+	public static Icon staticIcon;
 
 	public BlockPyrofluid()
 	{
@@ -33,34 +41,70 @@ public class BlockPyrofluid extends Block{
         this.setTickRandomly(true);
 	}
 	
-    public boolean getBlocksMovement(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+	public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
+	{
+		int meta = BlockStateMetadata.getBlockMetadata(worldIn, pos);
+		double removed = 0;
+		if(meta == 15)
+			removed = 0.99D;
+		else
+			removed = 1-((8D - meta)/8D);
+		
+		if(removed < 0)
+			removed = 0.95D;
+		
+		this.setBlockBounds(0, 0, 0, 1, (float) (1-removed), 1);
+	}
+	
+    public IBlockState getStateFromMeta(int meta)
     {
-    	return false;
+    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, BlockStateMetadata.MetadataValues.values()[meta]);
     }
-
-    public boolean renderAsNormalBlock()
+    
+    public int getMetaFromState(IBlockState state)
     {
-        return false;
+    	return BlockStateMetadata.getMetaFromState(state);
     }
-
+    
+    protected BlockState createBlockState()
+    {
+    	return new BlockState(this,BlockStateMetadata.METADATA);
+    }
+	
+    @Override
+    public boolean isPassable(IBlockAccess world, BlockPos pos)
+    {
+        return true;
+    }
+    
     public boolean isOpaqueCube()
     {
         return false;
     }
     
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
     {
         return null;
     }
-
-    public int getRenderType()
+    
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return 4;
+        return null;
     }
     
-    public int idDropped(int par1, Random par2Random, int par3)
+    @Override
+    public boolean isFullCube()
     {
-        return 0;
+        return false;
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public EnumWorldBlockLayer getBlockLayer()
+    {
+        return EnumWorldBlockLayer.CUTOUT;
     }
 
     public int quantityDropped(Random par1Random)
@@ -73,53 +117,68 @@ public class BlockPyrofluid extends Block{
         return 5;
     }
     
-    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-        double d5;
-        double d6;
-        double d7;
-        d5 = (double)((float)par2 + par5Random.nextFloat());
-        d7 = (double)par3-0.5D + this.maxY;
-        d6 = (double)((float)par4 + par5Random.nextFloat());
-        if (this.blockMaterial == Material.lava && par1World.getBlock(par2, par3 + 1, par4).getMaterial() == Material.air && !par1World.getBlock(par2, par3 + 1, par4).isOpaqueCube())
+        double d0 = pos.getX();
+        double d1 = pos.getY();
+        double d2 = pos.getZ();
+
+        if (this.blockMaterial == Material.lava && worldIn.getBlockState(pos.up()).getBlock().getMaterial() == Material.air && !worldIn.getBlockState(pos.up()).getBlock().isOpaqueCube())
         {
-            if (par5Random.nextInt(100) == 0)
+            if (rand.nextInt(100) == 0)
             {
-                d5 = (double)((float)par2 + par5Random.nextFloat());
-                d7 = (double)par3 + this.maxY;
-                d6 = (double)((float)par4 + par5Random.nextFloat());
-                par1World.spawnParticle("lava", d5, d7, d6, 0.0D, 0.0D, 0.0D);
-                par1World.playSound(d5, d7, d6, "liquid.lavapop", 0.2F + par5Random.nextFloat() * 0.2F, 0.9F + par5Random.nextFloat() * 0.15F, false);
+                double d8 = d0 + rand.nextFloat();
+                double d4 = d1 + this.maxY;
+                double d6 = d2 + rand.nextFloat();
+                worldIn.spawnParticle(EnumParticleTypes.LAVA, d8, d4, d6, 0.0D, 0.0D, 0.0D, new int[0]);
+                worldIn.playSound(d8, d4, d6, "liquid.lavapop", 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
 
-            if (par5Random.nextInt(200) == 0)
+            if (rand.nextInt(200) == 0)
             {
-                par1World.playSound((double)par2, (double)par3, (double)par4, "liquid.lava", 0.2F + par5Random.nextFloat() * 0.2F, 0.9F + par5Random.nextFloat() * 0.15F, false);
+                worldIn.playSound(d0, d1, d2, "liquid.lava", 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
         }
 
-        if (par5Random.nextInt(10) == 0 && World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4) && !par1World.getBlock(par2, par3 - 2, par4).getBlocksMovement(par1World, par2, par3, par4))
+        if (rand.nextInt(10) == 0 && World.doesBlockHaveSolidTopSurface(worldIn, pos.down()))
         {
-            par1World.spawnParticle("dripLava", d5, d7, d6, 0.0D, 0.0D, 0.0D);
+            Material material = worldIn.getBlockState(pos.down(2)).getBlock().getMaterial();
+
+            if (!material.blocksMovement() && !material.isLiquid())
+            {
+                double d3 = d0 + rand.nextFloat();
+                double d5 = d1 - 1.05D;
+                double d7 = d2 + rand.nextFloat();
+
+                if (this.blockMaterial == Material.water)
+                {
+                    worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER, d3, d5, d7, 0.0D, 0.0D, 0.0D, new int[0]);
+                }
+                else
+                {
+                    worldIn.spawnParticle(EnumParticleTypes.DRIP_LAVA, d3, d5, d7, 0.0D, 0.0D, 0.0D, new int[0]);
+                }
+            }
         }
     }
     
-    public void updateTick(World w, int x, int y, int z, Random rnd)
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-    	int meta = w.getBlockMetadata(x, y, z) + 1;
+    	int meta = BlockStateMetadata.getMetaFromState(state) + 1;
     	if(meta > 15)
     		return;
     	
     	if(meta >= 8)
     		meta = 15;
     	
-    	w.setBlockMetadataWithNotify(x, y, z, meta, 3);
+    	worldIn.setBlockState(pos, this.getStateFromMeta(meta));
     }
     
-	public void registerBlockIcons(IIconRegister ir)
+	public void registerBlockIcons(IconRegister ir)
 	{
-		fluidIcon = ir.registerIcon("thaumicbases:blazingFluid/block");
-		staticIcon = ir.registerIcon("thaumicbases:blazingFluid/leftovers");
+		fluidIcon = ir.registerBlockIcon("thaumicbases:blazingFluid/block");
+		staticIcon = ir.registerBlockIcon("thaumicbases:blazingFluid/leftovers");
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -132,22 +191,44 @@ public class BlockPyrofluid extends Block{
 	}
 	
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta)
+    public Icon getIcon(int side, int meta)
     {
     	return meta == 15 ? staticIcon : fluidIcon;
     }
     
-    public float getBlockHardness(World w, int x, int y, int z)
+    @Override
+    public float getBlockHardness(World w, BlockPos pos)
     {
-    	return w.getBlockMetadata(x, y, z) == 15 ? 5 : -1;
+    	return BlockStateMetadata.getBlockMetadata(w, pos) == 15 ? 5 : -1;
     }
     
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+    public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
     	ArrayList<ItemStack> retLst = new ArrayList<ItemStack>();
     	
-    	retLst.add(new ItemStack(Items.blaze_powder,TBConfig.minBlazePowderFromPyrofluid+world.rand.nextInt(TBConfig.maxBlazePowderFromPyrofluid-TBConfig.minBlazePowderFromPyrofluid),0));
+    	retLst.add(new ItemStack(Items.blaze_powder,TBConfig.minBlazePowderFromPyrofluid+RANDOM.nextInt(TBConfig.maxBlazePowderFromPyrofluid-TBConfig.minBlazePowderFromPyrofluid),0));
     	
     	return retLst;
     }
+
+	@Override
+	public Icon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+		return this.getIcon(side, BlockStateMetadata.getBlockMetadata(world, x,y,z));
+	}
+
+	@Override
+	public List<IBlockState> listPossibleStates(Block b) {
+		ArrayList<IBlockState> retLst = new ArrayList<IBlockState>();
+		for(int i = 0; i < 9; ++i)
+			retLst.add(getStateFromMeta(i));
+		
+		retLst.add(getStateFromMeta(15));
+		
+		return retLst;
+	}
+
+	@Override
+	public int getDCRenderID() {
+		return RenderAccessLibrary.RENDER_ID_CUBE;
+	}
 }

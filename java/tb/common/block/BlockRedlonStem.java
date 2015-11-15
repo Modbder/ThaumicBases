@@ -1,240 +1,237 @@
 package tb.common.block;
 
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
-import tb.init.TBItems;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import DummyCore.Client.IBlockConnector;
+import DummyCore.Client.Icon;
+import DummyCore.Client.IconRegister;
+import DummyCore.Client.RenderAccessLibrary;
+import DummyCore.Utils.BlockStateMetadata;
+import DummyCore.Utils.MiscUtils;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockStem;
+import net.minecraft.block.BlockBush;
+import net.minecraft.block.IGrowable;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockRedlonStem extends BlockStem{
+public class BlockRedlonStem extends BlockBush implements IGrowable,IBlockConnector{
 
-	private Block field_149877_a;
+	public Icon connected;
+	public Icon disconnected;
+	String textureName;
+	public Block crop;
 	
-	public BlockRedlonStem(Block created)
-	{
-		super(created);
-		field_149877_a = created;
-	}
-	
-    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
+    public BlockRedlonStem(Block crop)
     {
-    	this.checkAndDropBlock(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
-
-        if (p_149674_1_.getBlockLightValue(p_149674_2_, p_149674_3_ + 1, p_149674_4_) >= 9)
+    	super();
+    	this.crop = crop;
+        this.setTickRandomly(true);
+        float f = 0.125F;
+        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
+    }
+    
+    protected boolean canPlaceBlockOn(Block ground)
+    {
+        return ground == Blocks.farmland;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+    	worldIn.spawnParticle(EnumParticleTypes.REDSTONE, pos.getX()+rand.nextDouble(), pos.getY()+rand.nextDouble(), pos.getZ()+rand.nextDouble(), 0, 0, 0);
+    }
+    
+    @SuppressWarnings("rawtypes")
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+        super.updateTick(worldIn, pos, state, rand);
+        if (worldIn.getLight(pos.up()) >= 9)
         {
-            float f = this.func_149875_n(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
-
-            if (p_149674_5_.nextInt((int)(25.0F / f) + 1) == 0)
+            float f = MiscUtils.getGrowthChance(this, worldIn, pos);
+            if (rand.nextInt((int)(25F / f) + 1) == 0)
             {
-                int l = p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_);
+                int i = BlockStateMetadata.getMetaFromState(state);
 
-                if (l < 7)
+                if (i < 7)
                 {
-                    ++l;
-                    p_149674_1_.setBlockMetadataWithNotify(p_149674_2_, p_149674_3_, p_149674_4_, l, 2);
+                    state = this.getStateFromMeta(i+1);
+                    worldIn.setBlockState(pos, state, 2);
                 }
                 else
                 {
-                    if (p_149674_1_.getBlock(p_149674_2_ - 1, p_149674_3_, p_149674_4_) == this.field_149877_a)
+                    Iterator iterator = EnumFacing.Plane.HORIZONTAL.iterator();
+
+                    while (iterator.hasNext())
                     {
-                        return;
+                        EnumFacing enumfacing = (EnumFacing)iterator.next();
+
+                        if (worldIn.getBlockState(pos.offset(enumfacing)).getBlock() == this.crop)
+                            return;
                     }
 
-                    if (p_149674_1_.getBlock(p_149674_2_ + 1, p_149674_3_, p_149674_4_) == this.field_149877_a)
-                    {
-                        return;
-                    }
+                    pos = pos.offset(EnumFacing.Plane.HORIZONTAL.random(rand));
 
-                    if (p_149674_1_.getBlock(p_149674_2_, p_149674_3_, p_149674_4_ - 1) == this.field_149877_a)
-                    {
-                        return;
-                    }
-
-                    if (p_149674_1_.getBlock(p_149674_2_, p_149674_3_, p_149674_4_ + 1) == this.field_149877_a)
-                    {
-                        return;
-                    }
-
-                    int i1 = p_149674_5_.nextInt(4);
-                    int j1 = p_149674_2_;
-                    int k1 = p_149674_4_;
-                    
-                    if(p_149674_5_.nextInt(4) != 0)
-                    	return;
-
-                    if (i1 == 0)
-                    {
-                        j1 = p_149674_2_ - 1;
-                    }
-
-                    if (i1 == 1)
-                    {
-                        ++j1;
-                    }
-
-                    if (i1 == 2)
-                    {
-                        k1 = p_149674_4_ - 1;
-                    }
-
-                    if (i1 == 3)
-                    {
-                        ++k1;
-                    }
-
-                    if (p_149674_1_.isAirBlock(j1, p_149674_3_, k1))
-                    {
-                        p_149674_1_.setBlock(j1, p_149674_3_, k1, this.field_149877_a);
-                    }
+                    if (worldIn.isAirBlock(pos))
+                        worldIn.setBlockState(pos, this.crop.getDefaultState());
                 }
             }
         }
     }
     
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_)
+    public void growStem(World worldIn, BlockPos pos, IBlockState state)
     {
-        this.func_150186_m(p_149734_1_, p_149734_2_, p_149734_3_, p_149734_4_);
-    }
-
-    private void func_150186_m(World p_150186_1_, int p_150186_2_, int p_150186_3_, int p_150186_4_)
-    {
-        Random random = p_150186_1_.rand;
-        double d0 = 0.0625D;
-
-        for (int l = 0; l < 6; ++l)
-        {
-            double d1 = (double)((float)p_150186_2_ + random.nextFloat());
-            double d2 = (double)((float)p_150186_3_ + random.nextFloat());
-            double d3 = (double)((float)p_150186_4_ + random.nextFloat());
-
-            if (l == 0 && !p_150186_1_.getBlock(p_150186_2_, p_150186_3_ + 1, p_150186_4_).isOpaqueCube())
-            {
-                d2 = (double)(p_150186_3_ + 1) + d0;
-            }
-
-            if (l == 1 && !p_150186_1_.getBlock(p_150186_2_, p_150186_3_ - 1, p_150186_4_).isOpaqueCube())
-            {
-                d2 = (double)(p_150186_3_ + 0) - d0;
-            }
-
-            if (l == 2 && !p_150186_1_.getBlock(p_150186_2_, p_150186_3_, p_150186_4_ + 1).isOpaqueCube())
-            {
-                d3 = (double)(p_150186_4_ + 1) + d0;
-            }
-
-            if (l == 3 && !p_150186_1_.getBlock(p_150186_2_, p_150186_3_, p_150186_4_ - 1).isOpaqueCube())
-            {
-                d3 = (double)(p_150186_4_ + 0) - d0;
-            }
-
-            if (l == 4 && !p_150186_1_.getBlock(p_150186_2_ + 1, p_150186_3_, p_150186_4_).isOpaqueCube())
-            {
-                d1 = (double)(p_150186_2_ + 1) + d0;
-            }
-
-            if (l == 5 && !p_150186_1_.getBlock(p_150186_2_ - 1, p_150186_3_, p_150186_4_).isOpaqueCube())
-            {
-                d1 = (double)(p_150186_2_ + 0) - d0;
-            }
-
-            if (d1 < (double)p_150186_2_ || d1 > (double)(p_150186_2_ + 1) || d2 < 0.0D || d2 > (double)(p_150186_3_ + 1) || d3 < (double)p_150186_4_ || d3 > (double)(p_150186_4_ + 1))
-            {
-                p_150186_1_.spawnParticle("reddust", d1, d2, d3, 0.0D, 0.0D, 0.0D);
-            }
-        }
+        int i = BlockStateMetadata.getMetaFromState(state) + MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
+        worldIn.setBlockState(pos, this.getStateFromMeta(Integer.valueOf(Math.min(7, i))), 2);
     }
     
-    private float func_149875_n(World p_149875_1_, int p_149875_2_, int p_149875_3_, int p_149875_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos)
     {
-        float f = 1.0F;
-        Block block = p_149875_1_.getBlock(p_149875_2_, p_149875_3_, p_149875_4_ - 1);
-        Block block1 = p_149875_1_.getBlock(p_149875_2_, p_149875_3_, p_149875_4_ + 1);
-        Block block2 = p_149875_1_.getBlock(p_149875_2_ - 1, p_149875_3_, p_149875_4_);
-        Block block3 = p_149875_1_.getBlock(p_149875_2_ + 1, p_149875_3_, p_149875_4_);
-        Block block4 = p_149875_1_.getBlock(p_149875_2_ - 1, p_149875_3_, p_149875_4_ - 1);
-        Block block5 = p_149875_1_.getBlock(p_149875_2_ + 1, p_149875_3_, p_149875_4_ - 1);
-        Block block6 = p_149875_1_.getBlock(p_149875_2_ + 1, p_149875_3_, p_149875_4_ + 1);
-        Block block7 = p_149875_1_.getBlock(p_149875_2_ - 1, p_149875_3_, p_149875_4_ + 1);
-        boolean flag = block2 == this || block3 == this;
-        boolean flag1 = block == this || block1 == this;
-        boolean flag2 = block4 == this || block5 == this || block6 == this || block7 == this;
-
-        for (int l = p_149875_2_ - 1; l <= p_149875_2_ + 1; ++l)
-        {
-            for (int i1 = p_149875_4_ - 1; i1 <= p_149875_4_ + 1; ++i1)
-            {
-                Block block8 = p_149875_1_.getBlock(l, p_149875_3_ - 1, i1);
-                float f1 = 0.0F;
-
-                if (block8.canSustainPlant(p_149875_1_, l, p_149875_3_ - 1, i1, UP, this))
-                {
-                    f1 = 1.0F;
-
-                    if (block8.isFertile(p_149875_1_, l, p_149875_3_ - 1, i1))
-                    {
-                        f1 = 3.0F;
-                    }
-                }
-
-                if (l != p_149875_2_ || i1 != p_149875_4_)
-                {
-                    f1 /= 4.0F;
-                }
-
-                f += f1;
-            }
-        }
-
-        if (flag2 || flag && flag1)
-        {
-            f /= 2.0F;
-        }
-
-        return f;
+        this.maxY = (BlockStateMetadata.getBlockMetadata(worldIn, pos) * 2 + 2) / 16.0F;
+        float f = 0.125F;
+        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, (float)this.maxY, 0.5F + f);
     }
-
+    
+    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    {
+        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
+    }
+    
+    protected Item getSeedItem()
+    {
+    	return Items.wheat_seeds;
+    }
+    
     @Override
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int meta, int fortune)
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-
-        Item item = TBItems.redlonSeeds;
-        for (int i = 0; item != null && i < 3; i++)
+        List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
         {
-            if (world.rand.nextInt(15) <= meta)
-                ret.add(new ItemStack(item));
-        }
+            Item item = this.getSeedItem();
 
+            if (item != null)
+            {
+                int j = BlockStateMetadata.getMetaFromState(state);
+
+                for (int k = 0; k < 3; ++k)
+                    if (RANDOM.nextInt(15) <= j)
+                        ret.add(new ItemStack(item));
+            }
+        }
         return ret;
     }
     
-    @SideOnly(Side.CLIENT)
-    public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-    	return TBItems.redlonSeeds;
+        return null;
+    }
+    
+    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
+    {
+        return BlockStateMetadata.getMetaFromState(state) < 7;
     }
     
     @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_, int p_149720_3_, int p_149720_4_)
+    public Item getItem(World worldIn, BlockPos pos)
     {
-    	return 0xffffff;
+        Item item = this.getSeedItem();
+        return item != null ? item : null;
     }
     
-    @SideOnly(Side.CLIENT)
-    public int getRenderColor(int p_149741_1_)
+    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
     {
-    	return 0xffffff;
+        this.growStem(worldIn, pos, state);
+    }
+
+    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
+    {
+        return true;
     }
     
+    public IBlockState getStateFromMeta(int meta)
+    {
+    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, BlockStateMetadata.MetadataValues.values()[meta]);
+    }
     
+    public int getMetaFromState(IBlockState state)
+    {
+    	return BlockStateMetadata.getMetaFromState(state);
+    }
+
+    protected BlockState createBlockState()
+    {
+    	return new BlockState(this,BlockStateMetadata.METADATA);
+    }
+
+	
+	public String getTextureName()
+	{
+		return textureName;
+	}
+	
+	public BlockRedlonStem setBlockName(String name)
+	{
+		this.setUnlocalizedName(name);
+		return this;
+	}
+	
+	public BlockRedlonStem setBlockTextureName(String tex)
+	{
+		textureName = tex;
+		return this;
+	}
+	
+	@Override
+	public Icon getIcon(int side, int meta) {
+		return disconnected;
+	}
+
+	@Override
+	public Icon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+		return disconnected;
+	}
+
+	@Override
+	public List<IBlockState> listPossibleStates(Block b) {
+		ArrayList<IBlockState> lst = new ArrayList<IBlockState>();
+		for(int i = 0; i < 8; ++i)
+			lst.add(this.getStateFromMeta(i));
+		return lst;
+	}
+
+	@Override
+	public void registerBlockIcons(IconRegister ir) {
+		disconnected = ir.registerBlockIcon(this.getTextureName()+"_disconnected");
+		connected = ir.registerBlockIcon(this.getTextureName()+"_connected");
+	}
+
+	@Override
+	public int getDCRenderID() {
+		return RenderAccessLibrary.RENDER_ID_CONNECTED_TO_BLOCK;
+	}
+
+	@Override
+	public boolean connectsTo(IBlockAccess world, BlockPos pos, BlockPos originalPos, EnumFacing face,IBlockState state) {
+		return world.getBlockState(pos).getBlock()==this.crop;
+	}
+
+	@Override
+	public Icon getConnectionIcon(IBlockAccess world, int x, int y, int z) {
+		return connected;
+	}
+	
 }
