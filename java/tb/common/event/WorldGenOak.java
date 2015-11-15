@@ -5,9 +5,10 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenTrees;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class WorldGenOak extends WorldGenTrees{
 	
@@ -26,8 +27,12 @@ public class WorldGenOak extends WorldGenTrees{
 		minTreeHeight = minHeight;
 	}
 	
-    public boolean generate(World w, Random rnd, int x, int y, int z)
+	@Override
+    public boolean generate(World w, Random rnd, BlockPos pos)
     {
+    	int x = pos.getX();
+    	int y = pos.getY();
+    	int z = pos.getZ();
     	int height = rnd.nextInt(3) + this.minTreeHeight;
     	boolean flag = true;
     	
@@ -57,9 +62,9 @@ public class WorldGenOak extends WorldGenTrees{
                     {
                         if (i1 >= 0 && i1 < 256)
                         {
-                            block = w.getBlock(j1, i1, k1);
+                            block = w.getBlockState(new BlockPos(j1, i1, k1)).getBlock();
                             
-                            if (!this.isReplaceable(w, j1, i1, k1))
+                            if (!this.isReplaceable(w, new BlockPos(j1, i1, k1)))
                             {
                                 flag = false;
                             }
@@ -77,62 +82,59 @@ public class WorldGenOak extends WorldGenTrees{
                 {
                     return false;
                 }
-                else
-                {
-                    Block block2 = w.getBlock(x, y - 1, z);
+				Block block2 = w.getBlockState(new BlockPos(x, y - 1, z)).getBlock();
 
-                    boolean isSoil = block2.canSustainPlant(w, x, y - 1, z, ForgeDirection.UP, (BlockSapling)Blocks.sapling);
-                    if (isSoil && y < 256 - height - 1)
-                    {
-                        block2.onPlantGrow(w, x, y - 1, z, x, y, z);
-                        b0 = 3;
-                        byte b1 = 0;
-                        int l1;
-                        int i2;
-                        int j2;
-                        int i3;
+				boolean isSoil = block2.canSustainPlant(w, new BlockPos(x, y - 1, z), EnumFacing.UP, (BlockSapling)Blocks.sapling);
+				if (isSoil && y < 256 - height - 1)
+				{
+				    block2.onPlantGrow(w, new BlockPos(x, y - 1, z), new BlockPos(x, y, z));
+				    b0 = 3;
+				    byte b1 = 0;
+				    int l1;
+				    int i2;
+				    int j2;
+				    int i3;
 
-                        for (k1 = y - b0 + height; k1 <= y + height; ++k1)
-                        {
-                            i3 = k1 - (y + height);
-                            l1 = b1 + 1 - i3 / 2;
+				    for (k1 = y - b0 + height; k1 <= y + height; ++k1)
+				    {
+				        i3 = k1 - (y + height);
+				        l1 = b1 + 1 - i3 / 2;
 
-                            for (i2 = x - l1; i2 <= x + l1; ++i2)
-                            {
-                                j2 = i2 - x;
+				        for (i2 = x - l1; i2 <= x + l1; ++i2)
+				        {
+				            j2 = i2 - x;
 
-                                for (int k2 = z - l1; k2 <= z + l1; ++k2)
-                                {
-                                    int l2 = k2 - z;
+				            for (int k2 = z - l1; k2 <= z + l1; ++k2)
+				            {
+				                int l2 = k2 - z;
 
-                                    if (Math.abs(j2) != l1 || Math.abs(l2) != l1 || rnd.nextInt(2) != 0 && i3 != 0)
-                                    {
-                                        Block block1 = w.getBlock(i2, k1, k2);
+				                if (Math.abs(j2) != l1 || Math.abs(l2) != l1 || rnd.nextInt(2) != 0 && i3 != 0)
+				                {
+				                    Block block1 = w.getBlockState(new BlockPos(i2, k1, k2)).getBlock();
 
-                                        if (block1.isAir(w, i2, k1, k2) || block1.isLeaves(w, i2, k1, k2))
-                                        {
-                                            this.setBlockAndNotifyAdequately(w, i2, k1, k2, this.leavesBlock, this.leavesMeta);
-                                        }
-                                    }
-                                }
-                            }
-                        }
+				                    if (block1.isAir(w, new BlockPos(i2, k1, k2)) || block1.isLeaves(w, new BlockPos(i2, k1, k2)))
+				                    {
+				                        this.func_175905_a(w, new BlockPos(i2, k1, k2), this.leavesBlock, this.leavesMeta);
+				                    }
+				                }
+				            }
+				        }
+				    }
 
-                        for (k1 = 0; k1 < height; ++k1)
-                        {
-                            block = w.getBlock(x, y + k1, z);
+				    for (k1 = 0; k1 < height; ++k1)
+				    {
+				        block = w.getBlockState(new BlockPos(x, y + k1, z)).getBlock();
 
-                            if (block.isAir(w, x, y + k1, z) || block.isLeaves(w, x, y + k1, z))
-                            {
-                                this.setBlockAndNotifyAdequately(w, x, y + k1, z, this.trunkBlock, this.trunkMeta);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
+				        if (block.isAir(w, new BlockPos(x, y + k1, z)) || block.isLeaves(w, new BlockPos(x, y + k1, z)))
+				        {
+				            this.func_175905_a(w, new BlockPos(x, y + k1, z), this.trunkBlock, this.trunkMeta);
+				        }
+				    }
+				}
+				else
+				{
+				    return false;
+				}
             }
         }
     	
