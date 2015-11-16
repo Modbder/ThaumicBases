@@ -3,15 +3,20 @@ package tb.common.event;
 import DummyCore.Utils.Coord3D;
 import DummyCore.Utils.Pair;
 import net.minecraft.client.Minecraft;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.NameFormat;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
+import tb.common.block.BlockPyrofluid;
 import tb.common.item.ItemHerobrinesScythe;
 import tb.core.TBCore;
 import tb.utils.TBConfig;
@@ -20,6 +25,13 @@ import tb.utils.TBUtils;
 public class TBEventHandler {
 	
 	public static int clientUkuleleSoundPlayDelay = 0;
+	
+	@SubscribeEvent
+	public void bucketFill(FillBucketEvent event)
+	{
+		if(event.target != null && event.world != null && event.target.typeOfHit == MovingObjectType.BLOCK && event.world.getBlockState(event.target.getBlockPos()).getBlock() instanceof BlockPyrofluid)
+			{event.result = new ItemStack(Items.lava_bucket,1,0);event.setCanceled(true);}
+	}
 	
 	@SubscribeEvent
 	public void nameFormatEvent(NameFormat event)
