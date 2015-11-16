@@ -121,7 +121,7 @@ public class TileAuraLinker extends TileEntity implements IWandable,IUpdatePlaye
 	
 	public boolean instabilityCheck()
 	{
-		if(this.worldObj.rand.nextInt(50) <= this.instability)
+		if(instability > 0 && this.worldObj.rand.nextInt(50) <= this.instability)
 		{
 			int rnd = this.worldObj.rand.nextInt(this.instability);
 			if(rnd == 49)
