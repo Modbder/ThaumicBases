@@ -335,7 +335,7 @@ public class TBThaumonomicon {
 			}else
 				for(int j = 0; j < 6; ++j)
 					obj[1+j] = new ItemStack(ItemsTC.shard,1,shardMeta[i]);
-			clusters[i] = new ShapelessArcaneRecipe("TB.Clusters", new ItemStack(TBItems.shardCluster,1,i), new AspectList().add(Aspect.CRAFT, 1), obj);
+			clusters[i] = new ShapelessArcaneRecipe("TB.Clusters", new ItemStack(TBItems.shardCluster,1,i), new AspectList().add(Aspect.ORDER, 1), obj);
 		}
 		
 		/*
@@ -978,7 +978,6 @@ public class TBThaumonomicon {
 		});
 		
 		InfusionRecipe resistanceUkuleleRec = new InfusionRecipe("TB.Ukulele.Resistance",new ItemStack(TBItems.ukulele,1,4),8,new AspectList().add(Aspect.AURA, 64).add(Aspect.PROTECT, 48).add(Aspect.LIFE, 64).add(Aspect.EXCHANGE, 36),new ItemStack(TBItems.ukulele,0),new ItemStack[]{
-				new ItemStack(ItemsTC.focusWarding,1,0),
 				new ItemStack(ItemsTC.primalCharm,1,0),
 				new ItemStack(ItemsTC.primordialPearl,1,0),
 				new ItemStack(ItemsTC.primalCharm,1,0)
