@@ -141,7 +141,9 @@ public class ItemKnoseFragment extends Item implements IOldItem
 	    	}
     	player.inventory.decrStackSize(player.inventory.currentItem, 1);
     	
-    	return stk.stackSize <= 0 ? null : stk;
+    	--stk.stackSize;
+    	
+    	return stk;
     }
 	
     @SuppressWarnings({ "unchecked", "rawtypes" })
