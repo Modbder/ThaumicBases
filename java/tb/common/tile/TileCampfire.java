@@ -19,18 +19,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import tb.common.entity.EntityAIAvoidCampfire;
 import thaumcraft.api.blocks.BlocksTC;
+import thaumcraft.api.potions.PotionFluxTaint;
 import thaumcraft.common.config.Config;
 
-public class TileCampfire extends TileEntity implements IUpdatePlayerListBox
+public class TileCampfire extends TileEntity implements ITickable
 {
 	public int burnTime;
 	public int logTime;
@@ -207,7 +208,7 @@ public class TileCampfire extends TileEntity implements IUpdatePlayerListBox
 			for(EntityLivingBase elb : creatures)
 			{
 				if(this.tainted && this.worldObj.rand.nextDouble() < 0.003D)
-					elb.addPotionEffect(new PotionEffect(Config.potionTaintPoisonID,200,0,true,false));
+					elb.addPotionEffect(new PotionEffect(PotionFluxTaint.instance.getId(),200,0,true,false));
 				
 				if(!(elb instanceof EntityCreature))
 					continue;

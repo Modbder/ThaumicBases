@@ -7,7 +7,6 @@ import DummyCore.Client.Icon;
 import DummyCore.Client.IconRegister;
 import DummyCore.Client.RenderAccessLibrary;
 import DummyCore.Utils.BlockStateMetadata;
-import DummyCore.Utils.BlockStateMetadata.MetadataValues;
 import DummyCore.Utils.IOldCubicBlock;
 import DummyCore.Utils.MetadataBasedMethodsHelper;
 import net.minecraft.block.Block;
@@ -110,8 +109,8 @@ public class BlockTBLog extends Block implements IOldCubicBlock{
     {
         IBlockState state = world.getBlockState(pos);
         int meta = BlockStateMetadata.getMetaFromState(state);
-        MetadataValues mv = getMetaFromAxis(axis.getAxis(),meta % 4);
-        world.setBlockState(pos, getStateFromMeta(mv.meta));
+        int mv = getMetaFromAxis(axis.getAxis(),meta % 4);
+        world.setBlockState(pos, getStateFromMeta(mv));
         return false;
     }
     
@@ -125,7 +124,7 @@ public class BlockTBLog extends Block implements IOldCubicBlock{
         return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockStateMetadata.METADATA, getMetaFromAxis(facing.getAxis(),meta));
     }
     
-    public MetadataValues getMetaFromAxis(EnumFacing.Axis axis, int originalMeta)
+    public int getMetaFromAxis(EnumFacing.Axis axis, int originalMeta)
     {
     	int addedMeta = 0;
     	switch(axis)
@@ -147,12 +146,12 @@ public class BlockTBLog extends Block implements IOldCubicBlock{
 	    	}
     	}
     	
-    	return BlockStateMetadata.MetadataValues.values()[originalMeta+addedMeta*4];
+    	return originalMeta+addedMeta*4;
     }
     
     public IBlockState getStateFromMeta(int meta)
     {
-    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, BlockStateMetadata.MetadataValues.values()[meta]);
+    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, meta);
     }
     
     public int getMetaFromState(IBlockState state)

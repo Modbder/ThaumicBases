@@ -1,9 +1,11 @@
 package tb.utils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import DummyCore.Utils.Coord3D;
 import DummyCore.Utils.Pair;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.util.FakePlayer;
 import thaumcraft.api.internal.EnumWarpType;
@@ -77,6 +79,16 @@ public class TBUtils {
 				return;
 			}
 		}
+	}
+	
+	public static List<Entity> castLst(List<? extends Entity> l)
+	{
+		List<Entity> retLst = new ArrayList<Entity>();
+		
+		for(Object e : l)
+			retLst.add((Entity) e);
+		
+		return retLst;
 	}
 
 }

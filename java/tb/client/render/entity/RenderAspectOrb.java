@@ -2,6 +2,7 @@ package tb.client.render.entity;
 
 import org.lwjgl.opengl.GL11;
 
+import DummyCore.Utils.TessellatorWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -60,18 +61,16 @@ public class RenderAspectOrb extends Render{
         float f9 = 0.1F + 0.3F * (((float)orb.orbMaxAge - (float)orb.orbAge) / orb.orbMaxAge);
         GlStateManager.scale(f9, f9, f9);
         
-	    Tessellator tessellator = Tessellator.getInstance();
-	    WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+	    TessellatorWrapper worldrenderer = TessellatorWrapper.getInstance();
 	    worldrenderer.startDrawingQuads();
 	    if (orb.getAspect() != null)
 	    	worldrenderer.setColorRGBA_I(orb.getAspect().getColor(), 128);
 	    
-	    worldrenderer.setNormal(0.0F, 1.0F, 0.0F);
 	    worldrenderer.addVertexWithUV(0.0F - f7, 0.0F - f8, 0.0D, f2, f5);
 	    worldrenderer.addVertexWithUV(f6 - f7, 0.0F - f8, 0.0D, f3, f5);
 	    worldrenderer.addVertexWithUV(f6 - f7, 1.0F - f8, 0.0D, f3, f4);
 	    worldrenderer.addVertexWithUV(0.0F - f7, 1.0F - f8, 0.0D, f2, f4);
-	    tessellator.draw();
+	    worldrenderer.draw();
 	    
         GlStateManager.disableBlend();
         GlStateManager.disableRescaleNormal();

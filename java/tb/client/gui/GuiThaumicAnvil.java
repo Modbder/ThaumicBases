@@ -56,7 +56,7 @@ public class GuiThaumicAnvil extends GuiContainer implements ICrafting
         this.nameField.setEnableBackgroundDrawing(false);
         this.nameField.setMaxStringLength(40);
         this.inventorySlots.removeCraftingFromCrafters(this);
-        this.inventorySlots.addCraftingToCrafters(this);
+        this.inventorySlots.onCraftGuiOpened(this);
     }
 
     /**
@@ -237,4 +237,15 @@ public class GuiThaumicAnvil extends GuiContainer implements ICrafting
     public void sendProgressBarUpdate(Container containerIn, int varToUpdate, int newValue) {}
 
     public void func_175173_a(Container p_175173_1_, IInventory p_175173_2_) {}
+
+	@Override
+	public void updateCraftingInventory(Container containerToSend, List<ItemStack> itemsList) {
+		sendContainerAndContentsToPlayer(containerToSend,itemsList);
+	}
+
+	@Override
+	public void sendAllWindowProperties(Container p_175173_1_, IInventory p_175173_2_) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -165,7 +165,7 @@ public class BlockTBLeaves extends Block implements IOldCubicBlock, IShearable{
 	
     public IBlockState getStateFromMeta(int meta)
     {
-    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, BlockStateMetadata.MetadataValues.values()[meta]);
+    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, meta);
     }
     
     public int getMetaFromState(IBlockState state)
@@ -361,7 +361,7 @@ public class BlockTBLeaves extends Block implements IOldCubicBlock, IShearable{
     		    						EntityLiving el = EntityLiving.class.cast(c.getConstructor(World.class).newInstance(w));
     		    						
     		    			    		el.setPositionAndRotation(x+0.5D, y+1, z+0.5D, 0, 0);
-    		    			    		el.func_180482_a(w.getDifficultyForLocation(new BlockPos(el)), null);
+    		    			    		el.onInitialSpawn(w.getDifficultyForLocation(new BlockPos(el)), null);
     		    			    		
     		    			    		if(el.getCanSpawnHere())
     		    			    		{
@@ -440,7 +440,7 @@ public class BlockTBLeaves extends Block implements IOldCubicBlock, IShearable{
     		    						EntityLiving el = EntityLiving.class.cast(c.getConstructor(World.class).newInstance(w));
     		    						
     		    			    		el.setPositionAndRotation(x+0.5D, y+1, z+0.5D, 0, 0);
-    		    			    		el.func_180482_a(w.getDifficultyForLocation(new BlockPos(el)), null);
+    		    			    		el.onInitialSpawn(w.getDifficultyForLocation(new BlockPos(el)), null);
     		    			    		
     		    			    		if(w.isAirBlock(new BlockPos(x, y+1, z)))
     		    			    		{

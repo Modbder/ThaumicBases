@@ -31,17 +31,6 @@ public class InventoryRevolver implements IInventory
 		return inventory[0];
 	}
 	
-	public ItemStack getStackInSlotOnClosing(int slot)
-	{
-		if (this.inventory[0] != null)
-		{
-			ItemStack stk = this.inventory[0];
-			this.inventory[0] = null;
-			return stk;
-		}
-		return null;
-	}
-	
 	public ItemStack decrStackSize(int slot, int amount)
 	{
 		if (inventory[0] != null)
@@ -153,6 +142,17 @@ public class InventoryRevolver implements IInventory
 	@Override
 	public void clear() {
 		inventory = new ItemStack[1];
+	}
+
+	@Override
+	public ItemStack removeStackFromSlot(int index) {
+		if (this.inventory[0] != null)
+		{
+			ItemStack stk = this.inventory[0];
+			this.inventory[0] = null;
+			return stk;
+		}
+		return null;
 	}
 	
 }

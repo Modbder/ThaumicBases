@@ -43,11 +43,11 @@ import tb.utils.TBConfig;
 public class TBCore {
 	
 	public static final String modid = "thaumicbases";
-	public static final String version = "1.4.18.7";
+	public static final String version = "1.4.189.9";
 	public static final String name = "Thaumic Bases";
 	public static final String serverProxy = "tb.network.proxy.TBServer";
 	public static final String clientProxy = "tb.network.proxy.TBClient";
-	public static final String dependencies = "required-after:Thaumcraft@[5.0.1,);required-after:Baubles@[1.1.1.0,);required-after:DummyCore@[2.1.18.0,);";
+	public static final String dependencies = "required-after:Thaumcraft@[5.1.1,);required-after:Baubles@[1.1.1.0,);required-after:DummyCore@[2.1.189.7,);";
 
 	@SidedProxy(serverSide = serverProxy,clientSide = clientProxy)
 	public static TBServer proxy;
@@ -102,7 +102,7 @@ public class TBCore {
 		meta.modId = modid;
 		meta.name = name;
 		meta.version = version;
-		meta.description = "A Thaumcraft addon, that adds more earlygame and midgame content";
+		meta.description = "A huge addon to an amazing mod named Thaumcraft by Azanor";
 		ArrayList<String> authors = new ArrayList<String>();
 		authors.add("Modbder");
 		meta.authorList = authors;

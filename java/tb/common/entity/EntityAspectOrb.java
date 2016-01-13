@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import tb.utils.TBUtils;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.common.items.wands.ItemWand;
 
@@ -92,7 +93,7 @@ public class EntityAspectOrb extends Entity implements IEntityAdditionalSpawnDat
         this.pushOutOfBlocks(this.posX, (this.getEntityBoundingBox().minY + this.getEntityBoundingBox().maxY) / 2.0D, this.posZ);
         double d0 = 8.0D;
 
-        EntityPlayer player = (EntityPlayer) MiscUtils.getClosestEntity(this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.fromBounds(this.posX, this.posY, this.posZ, this.posX, this.posY, this.posZ).expand(8, 8, 8)), posX, posY, posZ);
+        EntityPlayer player = (EntityPlayer) MiscUtils.getClosestEntity(TBUtils.castLst(this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.fromBounds(this.posX, this.posY, this.posZ, this.posX, this.posY, this.posZ).expand(8, 8, 8))), posX, posY, posZ);
         if(isWandInHotbarWithRoom(getAspect(), this.aspectValue,player) >= 0)
         	closestPlayer = player;
         

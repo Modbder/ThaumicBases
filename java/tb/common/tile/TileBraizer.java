@@ -10,16 +10,16 @@ import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import tb.common.entity.EntityAIAvoidCampfire;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.common.lib.events.EssentiaHandler;
 
-public class TileBraizer extends TileEntity implements IUpdatePlayerListBox
+public class TileBraizer extends TileEntity implements ITickable
 {
 	public int burnTime;
 	public int uptime;

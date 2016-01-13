@@ -23,6 +23,7 @@ import thaumcraft.api.aspects.AspectHelper;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.entities.IEldritchMob;
 import thaumcraft.api.entities.ITaintedMob;
+import thaumcraft.api.potions.PotionFluxTaint;
 import thaumcraft.common.config.Config;
 
 public class RevolverUpgrade {
@@ -196,7 +197,7 @@ public class RevolverUpgrade {
 	{
 		if(this == tainted)
 			if(base.worldObj.rand.nextDouble() <= 0.1D)
-				base.addPotionEffect(new PotionEffect(Config.potionTaintPoisonID,200,1,true,false));
+				base.addPotionEffect(new PotionEffect(PotionFluxTaint.instance.getId(),200,1,true,false));
 		
 		if(this == poisoned)
 			base.addPotionEffect(new PotionEffect(Potion.poison.id,200,1,true,false));

@@ -5,9 +5,9 @@ import DummyCore.Utils.Pair;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
@@ -55,7 +55,7 @@ public class TBEventHandler {
 					for(int i = 0; i < world.loadedTileEntityList.size(); ++i)
 					{
 						Object obj = world.loadedTileEntityList.get(i);
-						if(obj instanceof TileEntity && obj instanceof TileEntityMobSpawner && !TileEntity.class.cast(obj).isInvalid() && TileEntity.class.cast(obj) instanceof IUpdatePlayerListBox)
+						if(obj instanceof TileEntity && obj instanceof TileEntityMobSpawner && !TileEntity.class.cast(obj).isInvalid() && TileEntity.class.cast(obj) instanceof ITickable)
 						{
 							TileEntity tile = TileEntity.class.cast(obj);
 							Coord3D coords = new Coord3D(tile.getPos().getX(),tile.getPos().getY(),tile.getPos().getZ());

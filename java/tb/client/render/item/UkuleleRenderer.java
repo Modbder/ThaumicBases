@@ -1,7 +1,8 @@
 package tb.client.render.item;
 
 import javax.vecmath.Matrix4f;
-import javax.vecmath.Vector3f;
+
+import org.lwjgl.util.vector.Vector3f;
 
 import DummyCore.Client.AdvancedModelLoader;
 import DummyCore.Client.IItemRenderer;
@@ -79,7 +80,7 @@ public class UkuleleRenderer implements IItemRenderer{
             	GlStateManager.translate(0, 0, Math.sin(Math.toRadians(oOffset))/20);
             }
             
-            renderplayer.func_177138_b(Minecraft.getMinecraft().thePlayer);
+            renderplayer.renderRightArm(Minecraft.getMinecraft().thePlayer);
 			
             GlStateManager.popMatrix();
             
@@ -101,7 +102,7 @@ public class UkuleleRenderer implements IItemRenderer{
             	GlStateManager.translate(0, 0, -0.03+Math.sin(Math.toRadians(-oOffset))/100);
             }
             
-            renderplayer.func_177138_b(Minecraft.getMinecraft().thePlayer);
+            renderplayer.renderRightArm(Minecraft.getMinecraft().thePlayer);
 			
             GlStateManager.popMatrix();
             

@@ -27,7 +27,7 @@ public class RotatedAnvil extends Block implements IRotationProvider {
 
     public IBlockState getStateFromMeta(int meta)
     {
-    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, BlockStateMetadata.MetadataValues.values()[meta]);
+    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, meta);
     }
     
     public int getMetaFromState(IBlockState state)

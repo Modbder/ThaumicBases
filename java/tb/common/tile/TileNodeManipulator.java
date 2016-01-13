@@ -7,13 +7,14 @@ import DummyCore.Utils.MiscUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import tb.common.entity.EntityAspectOrb;
+import tb.utils.TBUtils;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectHelper;
 import thaumcraft.api.aspects.AspectList;
@@ -28,7 +29,7 @@ import thaumcraft.common.lib.aura.NTTaint;
 import thaumcraft.common.lib.aura.NTUnstable;
 import thaumcraft.common.lib.aura.NodeType;
 
-public class TileNodeManipulator extends TileEntity implements IUpdatePlayerListBox{
+public class TileNodeManipulator extends TileEntity implements ITickable{
 	public int workTime = 0;
 	public EntityAuraNode node = null;
 	public boolean firstTick = true;
@@ -55,7 +56,7 @@ public class TileNodeManipulator extends TileEntity implements IUpdatePlayerList
 			beam = null;
 		if((firstTick || ticksExisted % 20 == 0) && node == null)
 		{
-			List<Entity> nodes = this.worldObj.getEntitiesWithinAABB(EntityAuraNode.class, AxisAlignedBB.fromBounds(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ()).expand(3, 3, 3));
+			List<Entity> nodes = TBUtils.castLst(this.worldObj.getEntitiesWithinAABB(EntityAuraNode.class, AxisAlignedBB.fromBounds(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ()).expand(3, 3, 3)));
 			if(!nodes.isEmpty())
 				node = (EntityAuraNode) MiscUtils.getClosestEntity(nodes, pos.getX(), pos.getY(), pos.getZ());
 		}

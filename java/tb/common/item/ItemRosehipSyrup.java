@@ -15,7 +15,12 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import thaumcraft.api.items.ItemsTC;
+import thaumcraft.api.potions.PotionFluxTaint;
 import thaumcraft.common.config.Config;
+import thaumcraft.common.lib.potions.PotionBlurredVision;
+import thaumcraft.common.lib.potions.PotionInfectiousVisExhaust;
+import thaumcraft.common.lib.potions.PotionThaumarhia;
+import thaumcraft.common.lib.potions.PotionUnnaturalHunger;
 
 public class ItemRosehipSyrup extends Item implements IOldItem{
 
@@ -104,7 +109,7 @@ public class ItemRosehipSyrup extends Item implements IOldItem{
     public static boolean canDecreaseLevel(Potion p)
     {
     	int id = p.getId();
-    	return p != null && (id == Config.potionBlurredID || id == Config.potionInfVisExhaustID || id == Config.potionTaintPoisonID || id == Config.potionThaumarhiaID || id == Config.potionUnHungerID || id == Config.potionVisExhaustID);
+    	return p != null && (id == PotionBlurredVision.instance.getId() || id == PotionInfectiousVisExhaust.instance.getId() || id == PotionFluxTaint.instance.getId() || id == PotionThaumarhia.instance.getId() || id == PotionUnnaturalHunger.instance.getId());
     }
     
     public static void reflectPotionEffect(EntityPlayer p, PotionEffect effect)

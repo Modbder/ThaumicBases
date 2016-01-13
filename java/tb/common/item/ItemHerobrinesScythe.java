@@ -198,10 +198,10 @@ public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarp
 
                         if (p_71059_1_ instanceof EntityLivingBase)
                         {
-                            EnchantmentHelper.func_151384_a((EntityLivingBase)p_71059_1_, p);
+                            EnchantmentHelper.applyThornEnchantments((EntityLivingBase)p_71059_1_, p);
                         }
 
-                        EnchantmentHelper.func_151385_b(p, p_71059_1_);
+                        EnchantmentHelper.applyArthropodEnchantments(p, p_71059_1_);
                         ItemStack itemstack = p.getCurrentEquippedItem();
                         Object object = p_71059_1_;
 

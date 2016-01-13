@@ -163,7 +163,7 @@ public class WorldGenBigOak extends WorldGenAbstractTree
                     }
                     else
                     {
-                        this.func_175905_a(this.worldObj, new BlockPos(aint1[0], aint1[1], aint1[2]), p_150529_6_, this.leavesMeta);
+                        this.setBlockAndNotifyAdequately(this.worldObj, new BlockPos(aint1[0], aint1[1], aint1[2]), p_150529_6_.getStateFromMeta(this.leavesMeta));
                         ++j1;
                     }
                 }
@@ -278,7 +278,7 @@ public class WorldGenBigOak extends WorldGenAbstractTree
                     }
                 }
 
-                this.func_175905_a(this.worldObj, new BlockPos(aint3[0], aint3[1], aint3[2]), p_150530_3_, b5);
+                this.setBlockAndNotifyAdequately(this.worldObj, new BlockPos(aint3[0], aint3[1], aint3[2]), p_150530_3_.getStateFromMeta(b5));
             }
         }
     }

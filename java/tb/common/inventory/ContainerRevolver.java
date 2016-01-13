@@ -113,7 +113,7 @@ public class ContainerRevolver extends Container
  	{
  		if (!this.worldObj.isRemote)
  		{
- 			ItemStack var3 = this.input.getStackInSlotOnClosing(0);
+ 			ItemStack var3 = this.input.removeStackFromSlot(0);
  			if (var3 != null) 
  			{
  				NBTTagCompound var4 = new NBTTagCompound();

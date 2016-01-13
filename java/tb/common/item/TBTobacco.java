@@ -22,6 +22,7 @@ import tb.utils.TBUtils;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.common.config.Config;
 import thaumcraft.common.entities.monster.EntityWisp;
+import thaumcraft.common.lib.potions.PotionDeathGaze;
 
 public class TBTobacco extends Item implements ITobacco, IOldItem{
 	
@@ -61,7 +62,7 @@ public class TBTobacco extends Item implements ITobacco, IOldItem{
 			{
 				if(!smoker.worldObj.isRemote)
 				{
-					smoker.addPotionEffect(new PotionEffect(Config.potionDeathGazeID,2000,0,true,false));
+					smoker.addPotionEffect(new PotionEffect(PotionDeathGaze.instance.getId(),2000,0,true,false));
 					if(!isSilverwood)
 						TBUtils.addWarpToPlayer(smoker, 3, 0);
 				}

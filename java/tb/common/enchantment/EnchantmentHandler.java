@@ -23,6 +23,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import tb.common.entity.EntityAspectOrb;
 import tb.init.TBEnchant;
+import tb.utils.TBUtils;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectHelper;
 import thaumcraft.api.aspects.AspectList;
@@ -30,6 +31,7 @@ import thaumcraft.api.entities.IEldritchMob;
 import thaumcraft.api.entities.ITaintedMob;
 import thaumcraft.api.items.ItemGenericEssentiaContainer;
 import thaumcraft.api.items.ItemsTC;
+import thaumcraft.api.potions.PotionFluxTaint;
 import thaumcraft.common.config.Config;
 import thaumcraft.common.lib.aura.EntityAuraNode;
 
@@ -47,7 +49,7 @@ public class EnchantmentHandler {
 			World w = event.entityItem.worldObj;
 			ItemStack is = event.entityItem.getEntityItem();
 			
-			EntityAuraNode node = (EntityAuraNode) MiscUtils.getClosestEntity(event.entityItem.worldObj.getEntitiesWithinAABB(EntityAuraNode.class, AxisAlignedBB.fromBounds(x, y, z, x, y, z).expand(8, 8, 8)),x,y,z);
+			EntityAuraNode node = (EntityAuraNode) MiscUtils.getClosestEntity(TBUtils.castLst(event.entityItem.worldObj.getEntitiesWithinAABB(EntityAuraNode.class, AxisAlignedBB.fromBounds(x, y, z, x, y, z).expand(8, 8, 8))),x,y,z);
 			if(node != null && node.getNodeType() == 4)
 			{
 				if(is.getItem() instanceof ItemSword)
@@ -186,7 +188,7 @@ public class EnchantmentHandler {
 						event.ammount += enchLevel*3F;
 						if(player.worldObj.rand.nextInt(Math.max(1,4-enchLevel)) == 0)
 						{
-							mob.addPotionEffect(new PotionEffect(Config.potionTaintPoisonID,200,enchLevel-1,true,false));
+							mob.addPotionEffect(new PotionEffect(PotionFluxTaint.instance.getId(),200,enchLevel-1,true,false));
 						}
 					}
 				}

@@ -1,12 +1,14 @@
 package tb.client.render.item;
 
 import javax.vecmath.Matrix4f;
-import javax.vecmath.Vector3f;
+
+import org.lwjgl.util.vector.Vector3f;
 
 import DummyCore.Client.AdvancedModelLoader;
 import DummyCore.Client.IItemRenderer;
 import DummyCore.Client.IModelCustom;
 import DummyCore.Utils.DrawUtils;
+import DummyCore.Utils.TessellatorWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
@@ -66,7 +68,7 @@ public class CastingBraceletRenderer implements IItemRenderer{
             	 GlStateManager.rotate(60, 1, 0, 0);
             	 GlStateManager.translate(0, 0, 0);
             }
-            renderplayer.func_177138_b(Minecraft.getMinecraft().thePlayer);
+            renderplayer.renderRightArm(Minecraft.getMinecraft().thePlayer);
 			
 			GlStateManager.popMatrix();
 			
@@ -108,7 +110,7 @@ public class CastingBraceletRenderer implements IItemRenderer{
 			GlStateManager.scale(ds, ds, ds);
 			GlStateManager.translate(-8, 22, -8);
 			DrawUtils.bindTexture("thaumcraft", "textures/models/vcrystal.png");
-			WorldRenderer tec = Tessellator.getInstance().getWorldRenderer();
+			TessellatorWrapper tec = TessellatorWrapper.getInstance();
 			int color = wand.getFocus(item).getFocusColor(focusStack);
 			
 			RenderHelper.disableStandardItemLighting();

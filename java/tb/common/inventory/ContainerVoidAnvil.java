@@ -444,9 +444,9 @@ public class ContainerVoidAnvil extends ContainerRepair{
         }
     }
     
-    public void addCraftingToCrafters(ICrafting p_75132_1_)
+    public void onCraftGuiOpened(ICrafting p_75132_1_)
     {
-        super.addCraftingToCrafters(p_75132_1_);
+        super.onCraftGuiOpened(p_75132_1_);
         p_75132_1_.sendProgressBarUpdate(this, 0, this.maximumCost);
     }
     
@@ -467,7 +467,7 @@ public class ContainerVoidAnvil extends ContainerRepair{
         {
             for (int i = 0; i < this.inputSlots.getSizeInventory(); ++i)
             {
-                ItemStack itemstack = this.inputSlots.getStackInSlotOnClosing(i);
+                ItemStack itemstack = this.inputSlots.removeStackFromSlot(i);
 
                 if (itemstack != null)
                 {

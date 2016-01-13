@@ -3,9 +3,9 @@ package tb.client.render.item;
 import java.util.ArrayList;
 
 import javax.vecmath.Matrix4f;
-import javax.vecmath.Vector3f;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.vector.Vector3f;
 
 import DummyCore.Client.AdvancedModelLoader;
 import DummyCore.Client.IItemRenderer;

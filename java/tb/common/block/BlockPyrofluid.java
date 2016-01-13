@@ -14,11 +14,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
@@ -34,7 +36,7 @@ public class BlockPyrofluid extends Block implements IOldCubicBlock{
 
 	public BlockPyrofluid()
 	{
-		super(Material.lava);
+		super(Material.rock);
         float f = 0.0F;
         float f1 = 0.0F;
         this.setBlockBounds(0.0F + f1, 0.0F + f, 0.0F + f1, 1.0F + f1, 1.0F + f, 1.0F + f1);
@@ -58,7 +60,7 @@ public class BlockPyrofluid extends Block implements IOldCubicBlock{
 	
     public IBlockState getStateFromMeta(int meta)
     {
-    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, BlockStateMetadata.MetadataValues.values()[meta]);
+    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, meta);
     }
     
     public int getMetaFromState(IBlockState state)
@@ -85,7 +87,13 @@ public class BlockPyrofluid extends Block implements IOldCubicBlock{
     @Override
     public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state)
     {
-        return null;
+        return super.getCollisionBoundingBox(world, pos, state);
+    }
+    
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entityIn) 
+    {
+    	entityIn.attackEntityFrom(DamageSource.lava, 5);
+    	entityIn.setFire(10);
     }
     
     @Override
@@ -124,7 +132,7 @@ public class BlockPyrofluid extends Block implements IOldCubicBlock{
         double d1 = pos.getY();
         double d2 = pos.getZ();
 
-        if (this.blockMaterial == Material.lava && worldIn.getBlockState(pos.up()).getBlock().getMaterial() == Material.air && !worldIn.getBlockState(pos.up()).getBlock().isOpaqueCube())
+        if (worldIn.getBlockState(pos.up()).getBlock().getMaterial() == Material.air && !worldIn.getBlockState(pos.up()).getBlock().isOpaqueCube())
         {
             if (rand.nextInt(100) == 0)
             {

@@ -1,7 +1,8 @@
 package tb.client.render.item;
 
 import javax.vecmath.Matrix4f;
-import javax.vecmath.Vector3f;
+
+import org.lwjgl.util.vector.Vector3f;
 
 import DummyCore.Client.AdvancedModelLoader;
 import DummyCore.Client.IItemRenderer;
@@ -45,7 +46,7 @@ public class SpawnerCompassRenderer implements IItemRenderer{
             RenderPlayer renderplayer = (RenderPlayer)render;
             float f10 = 2.0F;
             GlStateManager.scale(f10, f10, f10);
-            renderplayer.func_177138_b(Minecraft.getMinecraft().thePlayer);
+            renderplayer.renderRightArm(Minecraft.getMinecraft().thePlayer);
             GlStateManager.popMatrix();
             
             GlStateManager.pushMatrix();

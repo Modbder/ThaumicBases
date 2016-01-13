@@ -1,6 +1,6 @@
 package tb.init;
 
-import DummyCore.Utils.MiscUtils;
+import DummyCore.Utils.OreDictUtils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -86,55 +86,55 @@ public class TBThaumonomicon {
 		
 		copy(ResearchCategories.getResearchList("ARTIFICE").research.get("ARCANEEAR"),"TB.ARCANEEAR",catName,-10,-16).setHidden().registerResearchItem();
 		
-		CrucibleRecipe wool3Rec = new CrucibleRecipe("TB.AdvancedEntropy",new ItemStack(Items.string,3,0),new ItemStack(Blocks.wool,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ENTROPY, 1));
-		CrucibleRecipe sandstone3Rec = new CrucibleRecipe("TB.AdvancedEntropy",new ItemStack(Blocks.sand,3,0),new ItemStack(Blocks.sandstone,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ENTROPY, 1));
-		CrucibleRecipe blaze3Rec = new CrucibleRecipe("TB.AdvancedEntropy",new ItemStack(Items.blaze_powder,3,0),new ItemStack(Items.blaze_rod,1,0),new AspectList().add(Aspect.ENTROPY, 1));	
+		CrucibleRecipe wool3Rec = new CrucibleRecipe(new String[]{"TB.AdvancedEntropy"},new ItemStack(Items.string,3,0),new ItemStack(Blocks.wool,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ENTROPY, 1));
+		CrucibleRecipe sandstone3Rec = new CrucibleRecipe(new String[]{"TB.AdvancedEntropy"},new ItemStack(Blocks.sand,3,0),new ItemStack(Blocks.sandstone,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ENTROPY, 1));
+		CrucibleRecipe blaze3Rec = new CrucibleRecipe(new String[]{"TB.AdvancedEntropy"},new ItemStack(Items.blaze_powder,3,0),new ItemStack(Items.blaze_rod,1,0),new AspectList().add(Aspect.ENTROPY, 1));	
 		
-		CrucibleRecipe wool4Rec = new CrucibleRecipe("TB.MasterEntropy",new ItemStack(Items.string,4,0),new ItemStack(Blocks.wool,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.CRAFT, 1));
-		CrucibleRecipe sandstone4Rec = new CrucibleRecipe("TB.MasterEntropy",new ItemStack(Blocks.sand,4,0),new ItemStack(Blocks.sandstone,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.CRAFT, 1));
-		CrucibleRecipe blaze4Rec = new CrucibleRecipe("TB.MasterEntropy",new ItemStack(Items.blaze_powder,4,0),new ItemStack(Items.blaze_rod,1,0),new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.CRAFT, 1));	
+		CrucibleRecipe wool4Rec = new CrucibleRecipe(new String[]{"TB.MasterEntropy"},new ItemStack(Items.string,4,0),new ItemStack(Blocks.wool,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.CRAFT, 1));
+		CrucibleRecipe sandstone4Rec = new CrucibleRecipe(new String[]{"TB.MasterEntropy"},new ItemStack(Blocks.sand,4,0),new ItemStack(Blocks.sandstone,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.CRAFT, 1));
+		CrucibleRecipe blaze4Rec = new CrucibleRecipe(new String[]{"TB.MasterEntropy"},new ItemStack(Items.blaze_powder,4,0),new ItemStack(Items.blaze_rod,1,0),new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.CRAFT, 1));	
 		
-		CrucibleRecipe glassSand = new CrucibleRecipe("TB.StrongEntropy",new ItemStack(Blocks.sand,1,0),"blockGlass",new AspectList().add(Aspect.ENTROPY, 1));
-		CrucibleRecipe gravelSand = new CrucibleRecipe("TB.StrongEntropy",new ItemStack(Blocks.sand,1,0),new ItemStack(Blocks.gravel),new AspectList().add(Aspect.ENTROPY, 1));
-		CrucibleRecipe barsIron = new CrucibleRecipe("TB.StrongEntropy",new ItemStack(ItemsTC.nuggets,3,0),new ItemStack(Blocks.iron_bars),new AspectList().add(Aspect.ENTROPY, 1));
+		CrucibleRecipe glassSand = new CrucibleRecipe(new String[]{"TB.StrongEntropy"},new ItemStack(Blocks.sand,1,0),"blockGlass",new AspectList().add(Aspect.ENTROPY, 1));
+		CrucibleRecipe gravelSand = new CrucibleRecipe(new String[]{"TB.StrongEntropy"},new ItemStack(Blocks.sand,1,0),new ItemStack(Blocks.gravel),new AspectList().add(Aspect.ENTROPY, 1));
+		CrucibleRecipe barsIron = new CrucibleRecipe(new String[]{"TB.StrongEntropy"},new ItemStack(ItemsTC.nuggets,3,0),new ItemStack(Blocks.iron_bars),new AspectList().add(Aspect.ENTROPY, 1));
 		
-		CrucibleRecipe arrows = new CrucibleRecipe("TB.SimpleDublication",new ItemStack(Items.arrow,2,0),new ItemStack(Items.arrow,1,0),new AspectList().add(Aspect.AVERSION, 1));
-		CrucibleRecipe snowball = new CrucibleRecipe("TB.SimpleDublication",new ItemStack(Items.snowball,2,0),new ItemStack(Items.snowball,1,0),new AspectList().add(Aspect.COLD, 1));
-		CrucibleRecipe redstone = new CrucibleRecipe("TB.SimpleDublication",new ItemStack(Items.redstone,2,0),new ItemStack(Items.redstone,1,0),new AspectList().add(Aspect.MECHANISM, 1).add(Aspect.ENERGY, 1));
+		CrucibleRecipe arrows = new CrucibleRecipe(new String[]{"TB.SimpleDublication"},new ItemStack(Items.arrow,2,0),new ItemStack(Items.arrow,1,0),new AspectList().add(Aspect.AVERSION, 1));
+		CrucibleRecipe snowball = new CrucibleRecipe(new String[]{"TB.SimpleDublication"},new ItemStack(Items.snowball,2,0),new ItemStack(Items.snowball,1,0),new AspectList().add(Aspect.COLD, 1));
+		CrucibleRecipe redstone = new CrucibleRecipe(new String[]{"TB.SimpleDublication"},new ItemStack(Items.redstone,2,0),new ItemStack(Items.redstone,1,0),new AspectList().add(Aspect.MECHANISM, 1).add(Aspect.ENERGY, 1));
 		
-		CrucibleRecipe amber = new CrucibleRecipe("TB.Amber",new ItemStack(ItemsTC.amber,1,0),new ItemStack(Blocks.sapling,1,1),new AspectList().add(Aspect.TRAP, 2));
-		CrucibleRecipe cinnabar = new CrucibleRecipe("TB.Quicksilver",new ItemStack(ItemsTC.quicksilver, 3, 0),new ItemStack(BlocksTC.log,1,3),new AspectList().add(Aspect.ORDER, 1).add(Aspect.EXCHANGE, 1));
-		CrucibleRecipe salisMundis = new CrucibleRecipe("TB.SM",new ItemStack(ItemsTC.salisMundus, 2, 0),new ItemStack(ItemsTC.salisMundus,1,0),new AspectList().add(primals(2)).add(Aspect.ENERGY, 3));
+		CrucibleRecipe amber = new CrucibleRecipe(new String[]{"TB.Amber"},new ItemStack(ItemsTC.amber,1,0),new ItemStack(Blocks.sapling,1,1),new AspectList().add(Aspect.TRAP, 2));
+		CrucibleRecipe cinnabar = new CrucibleRecipe(new String[]{"TB.Quicksilver"},new ItemStack(ItemsTC.quicksilver, 3, 0),new ItemStack(BlocksTC.log,1,3),new AspectList().add(Aspect.ORDER, 1).add(Aspect.EXCHANGE, 1));
+		CrucibleRecipe salisMundis = new CrucibleRecipe(new String[]{"TB.SM"},new ItemStack(ItemsTC.salisMundus, 2, 0),new ItemStack(ItemsTC.salisMundus,1,0),new AspectList().add(primals(2)).add(Aspect.ENERGY, 3));
 		
-		CrucibleRecipe chiseledBricks = new CrucibleRecipe("TB.AlchemyRestoration",new ItemStack(Blocks.stonebrick,1,3),new ItemStack(Blocks.stonebrick,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ORDER, 1));
-		CrucibleRecipe gravel2Cobble = new CrucibleRecipe("TB.AlchemyRestoration",new ItemStack(Blocks.cobblestone,1,0),new ItemStack(Blocks.gravel,1,0),new AspectList().add(Aspect.ORDER, 1));
-		CrucibleRecipe icePacking = new CrucibleRecipe("TB.AlchemyRestoration",new ItemStack(Blocks.packed_ice,1,0),new ItemStack(Blocks.ice,1,0),new AspectList().add(Aspect.EARTH, 1));
+		CrucibleRecipe chiseledBricks = new CrucibleRecipe(new String[]{"TB.AlchemyRestoration"},new ItemStack(Blocks.stonebrick,1,3),new ItemStack(Blocks.stonebrick,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ORDER, 1));
+		CrucibleRecipe gravel2Cobble = new CrucibleRecipe(new String[]{"TB.AlchemyRestoration"},new ItemStack(Blocks.cobblestone,1,0),new ItemStack(Blocks.gravel,1,0),new AspectList().add(Aspect.ORDER, 1));
+		CrucibleRecipe icePacking = new CrucibleRecipe(new String[]{"TB.AlchemyRestoration"},new ItemStack(Blocks.packed_ice,1,0),new ItemStack(Blocks.ice,1,0),new AspectList().add(Aspect.EARTH, 1));
 		
-		CrucibleRecipe blazepowderRest = new CrucibleRecipe("TB.Backprocessing",new ItemStack(Items.blaze_rod,1,0),new ItemStack(Items.blaze_powder,1,0),new AspectList().add(Aspect.ORDER, 6).add(Aspect.FIRE, 3).add(Aspect.ENERGY, 2).add(Aspect.CRAFT, 8).add(Aspect.EXCHANGE, 6).add(Aspect.ENERGY, 3));
-		CrucibleRecipe boneRest = new CrucibleRecipe("TB.Backprocessing",new ItemStack(Items.bone,1,0),new ItemStack(Items.dye,1,15),new AspectList().add(Aspect.ORDER, 2).add(Aspect.SENSES, 6).add(Aspect.CRAFT, 2).add(Aspect.EXCHANGE, 1).add(Aspect.DEATH, 4));
-		CrucibleRecipe sugarRest = new CrucibleRecipe("TB.Backprocessing",new ItemStack(Items.reeds,1,0),new ItemStack(Items.sugar,1,0),new AspectList().add(Aspect.ORDER, 1).add(Aspect.LIFE, 2));
-		CrucibleRecipe cactiRest = new CrucibleRecipe("TB.Backprocessing",new ItemStack(Blocks.cactus,1,0),new ItemStack(Items.dye,1,2),new AspectList().add(Aspect.ORDER, 1).add(Aspect.LIFE, 2).add(Aspect.EARTH, 1));
+		CrucibleRecipe blazepowderRest = new CrucibleRecipe(new String[]{"TB.Backprocessing"},new ItemStack(Items.blaze_rod,1,0),new ItemStack(Items.blaze_powder,1,0),new AspectList().add(Aspect.ORDER, 6).add(Aspect.FIRE, 3).add(Aspect.ENERGY, 2).add(Aspect.CRAFT, 8).add(Aspect.EXCHANGE, 6).add(Aspect.ENERGY, 3));
+		CrucibleRecipe boneRest = new CrucibleRecipe(new String[]{"TB.Backprocessing"},new ItemStack(Items.bone,1,0),new ItemStack(Items.dye,1,15),new AspectList().add(Aspect.ORDER, 2).add(Aspect.SENSES, 6).add(Aspect.CRAFT, 2).add(Aspect.EXCHANGE, 1).add(Aspect.DEATH, 4));
+		CrucibleRecipe sugarRest = new CrucibleRecipe(new String[]{"TB.Backprocessing"},new ItemStack(Items.reeds,1,0),new ItemStack(Items.sugar,1,0),new AspectList().add(Aspect.ORDER, 1).add(Aspect.LIFE, 2));
+		CrucibleRecipe cactiRest = new CrucibleRecipe(new String[]{"TB.Backprocessing"},new ItemStack(Blocks.cactus,1,0),new ItemStack(Items.dye,1,2),new AspectList().add(Aspect.ORDER, 1).add(Aspect.LIFE, 2).add(Aspect.EARTH, 1));
 		
-		CrucibleRecipe thauminiteRec = new CrucibleRecipe("TB.Thauminite",new ItemStack(TBItems.resource,8,0),new ItemStack(ItemsTC.ingots,1,0),new AspectList().add(primals(1)).add(Aspect.CRYSTAL, 8).add(Aspect.CRAFT, 2));
+		CrucibleRecipe thauminiteRec = new CrucibleRecipe(new String[]{"TB.Thauminite"},new ItemStack(TBItems.resource,8,0),new ItemStack(ItemsTC.ingots,1,0),new AspectList().add(primals(1)).add(Aspect.CRYSTAL, 8).add(Aspect.CRAFT, 2));
 		
-		CrucibleRecipe pyrofluidRec = new CrucibleRecipe("TB.Pyrofluid",new ItemStack(TBItems.pyroBucket,1,0),new ItemStack(Items.lava_bucket,1,0),new AspectList().add(Aspect.FIRE, 24).add(Aspect.ENERGY, 8));
+		CrucibleRecipe pyrofluidRec = new CrucibleRecipe(new String[]{"TB.Pyrofluid"},new ItemStack(TBItems.pyroBucket,1,0),new ItemStack(Items.lava_bucket,1,0),new AspectList().add(Aspect.FIRE, 24).add(Aspect.ENERGY, 8));
 		
-		CrucibleRecipe plaxRec = new CrucibleRecipe("TB.Plax",new ItemStack(TBItems.plaxSeed,1,0),new ItemStack(Items.wheat_seeds),new AspectList().add(Aspect.CRAFT, 4));
-		CrucibleRecipe metalleatRec = new CrucibleRecipe("TB.Metalleat",new ItemStack(TBItems.metalleatSeeds,1,0),new ItemStack(Items.wheat_seeds),new AspectList().add(Aspect.ORDER, 4).add(Aspect.METAL, 12).add(Aspect.LIFE, 4));
-		CrucibleRecipe lucriteRec = new CrucibleRecipe("TB.Lucrite",new ItemStack(TBItems.lucriteSeeds,1,0),new ItemStack(Items.golden_carrot),new AspectList().add(Aspect.DEATH, 4).add(Aspect.DESIRE, 12).add(Aspect.LIFE, 4));
+		CrucibleRecipe plaxRec = new CrucibleRecipe(new String[]{"TB.Plax"},new ItemStack(TBItems.plaxSeed,1,0),new ItemStack(Items.wheat_seeds),new AspectList().add(Aspect.CRAFT, 4));
+		CrucibleRecipe metalleatRec = new CrucibleRecipe(new String[]{"TB.Metalleat"},new ItemStack(TBItems.metalleatSeeds,1,0),new ItemStack(Items.wheat_seeds),new AspectList().add(Aspect.ORDER, 4).add(Aspect.METAL, 12).add(Aspect.LIFE, 4));
+		CrucibleRecipe lucriteRec = new CrucibleRecipe(new String[]{"TB.Lucrite"},new ItemStack(TBItems.lucriteSeeds,1,0),new ItemStack(Items.golden_carrot),new AspectList().add(Aspect.DEATH, 4).add(Aspect.DESIRE, 12).add(Aspect.LIFE, 4));
 		
-		CrucibleRecipe aureliaRec = new CrucibleRecipe("TB.Aurelia",new ItemStack(TBBlocks.aurelia),new ItemStack(Blocks.red_flower,1,7),new AspectList().add(Aspect.PLANT, 8).add(Aspect.ELDRITCH, 2).add(Aspect.AURA, 2));
-		CrucibleRecipe knoseRec = new CrucibleRecipe("TB.Knose",new ItemStack(TBItems.knoseSeed),new ItemStack(Blocks.double_plant,1,4),new AspectList().add(Aspect.MIND, 16).add(Aspect.LIFE, 8).add(Aspect.ENERGY, 2));
-		CrucibleRecipe knowledgeFragmentRec = new CrucibleRecipe("TB.Knose",new ItemStack(ItemsTC.knowledgeFragment,1,0),new ItemStack(TBItems.knoseFragment,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ORDER, 1).add(Aspect.EXCHANGE, 1));
-		CrucibleRecipe sweedRec = new CrucibleRecipe("TB.BasicPlants",new ItemStack(TBItems.sweedSeeds),new ItemStack(Blocks.tallgrass,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.MOTION, 2).add(Aspect.LIFE, 1));
-		CrucibleRecipe lazulliaRec = new CrucibleRecipe("TB.Lazullia",new ItemStack(TBItems.lazulliaSeeds),new ItemStack(Items.wheat_seeds),new AspectList().add(Aspect.SENSES, 12).add(Aspect.DESIRE, 3));
-		CrucibleRecipe rainbowCactiRec = new CrucibleRecipe("TB.RainbowCacti",new ItemStack(TBBlocks.rainbowCactus),new ItemStack(Blocks.cactus),new AspectList().add(Aspect.EXCHANGE, 24).add(Aspect.SENSES, 6));
-		CrucibleRecipe redlonRec = new CrucibleRecipe("TB.Redlon",new ItemStack(TBItems.redlonSeeds),new ItemStack(Items.melon_seeds),new AspectList().add(Aspect.MECHANISM, 16).add(Aspect.ENERGY, 16));
-		CrucibleRecipe aspectShroomRec = new CrucibleRecipe("TB.Ashroom",new ItemStack(TBBlocks.ashroom,1,0),new ItemStack(BlocksTC.vishroom,1,0),new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.PLANT, 2));
-		CrucibleRecipe flaxiumRec = new CrucibleRecipe("TB.Flaxium",new ItemStack(TBBlocks.flaxium,1,0),new ItemStack(Blocks.red_flower,1,2),new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.ENERGY, 2));
-		CrucibleRecipe glieoniaRec = new CrucibleRecipe("TB.Glieonia",new ItemStack(TBItems.glieoniaSeed,1,0),new ItemStack(Blocks.red_flower,1,3),new AspectList().add(Aspect.LIGHT, 8).add(Aspect.ENERGY, 6).add(Aspect.LIFE, 4));
-		CrucibleRecipe briarRec = new CrucibleRecipe("TB.Briar",new ItemStack(TBBlocks.briar,1,0),new ItemStack(Blocks.double_plant,1,4),new AspectList().add(Aspect.LIFE, 4).add(Aspect.LIFE, 4).add(Aspect.PLANT, 4));
-		CrucibleRecipe cleanEFabricRec = new CrucibleRecipe("TB.Spike.Iron",new ItemStack(ItemsTC.fabric,1,0),new ItemStack(TBItems.resource,1,8),new AspectList().add(Aspect.ORDER, 1));
+		CrucibleRecipe aureliaRec = new CrucibleRecipe(new String[]{"TB.Aurelia"},new ItemStack(TBBlocks.aurelia),new ItemStack(Blocks.red_flower,1,7),new AspectList().add(Aspect.PLANT, 8).add(Aspect.ELDRITCH, 2).add(Aspect.AURA, 2));
+		CrucibleRecipe knoseRec = new CrucibleRecipe(new String[]{"TB.Knose"},new ItemStack(TBItems.knoseSeed),new ItemStack(Blocks.double_plant,1,4),new AspectList().add(Aspect.MIND, 16).add(Aspect.LIFE, 8).add(Aspect.ENERGY, 2));
+		CrucibleRecipe knowledgeFragmentRec = new CrucibleRecipe(new String[]{"TB.Knose"},new ItemStack(ItemsTC.knowledgeFragment,1,0),new ItemStack(TBItems.knoseFragment,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ORDER, 1).add(Aspect.EXCHANGE, 1));
+		CrucibleRecipe sweedRec = new CrucibleRecipe(new String[]{"TB.BasicPlants"},new ItemStack(TBItems.sweedSeeds),new ItemStack(Blocks.tallgrass,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.MOTION, 2).add(Aspect.LIFE, 1));
+		CrucibleRecipe lazulliaRec = new CrucibleRecipe(new String[]{"TB.Lazullia"},new ItemStack(TBItems.lazulliaSeeds),new ItemStack(Items.wheat_seeds),new AspectList().add(Aspect.SENSES, 12).add(Aspect.DESIRE, 3));
+		CrucibleRecipe rainbowCactiRec = new CrucibleRecipe(new String[]{"TB.RainbowCacti"},new ItemStack(TBBlocks.rainbowCactus),new ItemStack(Blocks.cactus),new AspectList().add(Aspect.EXCHANGE, 24).add(Aspect.SENSES, 6));
+		CrucibleRecipe redlonRec = new CrucibleRecipe(new String[]{"TB.Redlon"},new ItemStack(TBItems.redlonSeeds),new ItemStack(Items.melon_seeds),new AspectList().add(Aspect.MECHANISM, 16).add(Aspect.ENERGY, 16));
+		CrucibleRecipe aspectShroomRec = new CrucibleRecipe(new String[]{"TB.Ashroom"},new ItemStack(TBBlocks.ashroom,1,0),new ItemStack(BlocksTC.vishroom,1,0),new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.PLANT, 2));
+		CrucibleRecipe flaxiumRec = new CrucibleRecipe(new String[]{"TB.Flaxium"},new ItemStack(TBBlocks.flaxium,1,0),new ItemStack(Blocks.red_flower,1,2),new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.ENERGY, 2));
+		CrucibleRecipe glieoniaRec = new CrucibleRecipe(new String[]{"TB.Glieonia"},new ItemStack(TBItems.glieoniaSeed,1,0),new ItemStack(Blocks.red_flower,1,3),new AspectList().add(Aspect.LIGHT, 8).add(Aspect.ENERGY, 6).add(Aspect.LIFE, 4));
+		CrucibleRecipe briarRec = new CrucibleRecipe(new String[]{"TB.Briar"},new ItemStack(TBBlocks.briar,1,0),new ItemStack(Blocks.double_plant,1,4),new AspectList().add(Aspect.LIFE, 4).add(Aspect.LIFE, 4).add(Aspect.PLANT, 4));
+		CrucibleRecipe cleanEFabricRec = new CrucibleRecipe(new String[]{"TB.Spike.Iron"},new ItemStack(ItemsTC.fabric,1,0),new ItemStack(TBItems.resource,1,8),new AspectList().add(Aspect.ORDER, 1));
 		
 		ShapelessArcaneRecipe salisMundusBlockRec = new ShapelessArcaneRecipe("TB.SMB", new ItemStack(TBBlocks.dustBlock), new AspectList().add(primals(1)), new Object[]{new ItemStack(ItemsTC.salisMundus,1,0),new ItemStack(ItemsTC.salisMundus,1,0),new ItemStack(ItemsTC.salisMundus,1,0),new ItemStack(ItemsTC.salisMundus,1,0),new ItemStack(ItemsTC.salisMundus,1,0),new ItemStack(ItemsTC.salisMundus,1,0),new ItemStack(ItemsTC.salisMundus,1,0),new ItemStack(ItemsTC.salisMundus,1,0),new ItemStack(ItemsTC.salisMundus,1,0)});
 		ShapelessArcaneRecipe rosehipRec = new ShapelessArcaneRecipe("TB.Briar",new ItemStack(TBItems.rosehipSyrup),new AspectList().add(Aspect.FIRE, 3).add(Aspect.WATER, 5), new Object[]{
@@ -271,12 +271,12 @@ public class TBThaumonomicon {
 		
 		for(int i = 0; i < 8; ++i)
 			if(i < 6)
-				cBlocks[i] = new CrucibleRecipe("TB.CrystalBlocks",new ItemStack(TBBlocks.crystalBlock,1,i),new ItemStack(TBItems.shardCluster,1,shardClusterMeta[i]),new AspectList().add(primals(1)).add(Aspect.CRAFT, 2).add(getPrimalForLoop(i), 2));
+				cBlocks[i] = new CrucibleRecipe(new String[]{"TB.CrystalBlocks"},new ItemStack(TBBlocks.crystalBlock,1,i),new ItemStack(TBItems.shardCluster,1,shardClusterMeta[i]),new AspectList().add(primals(1)).add(Aspect.CRAFT, 2).add(getPrimalForLoop(i), 2));
 			else
 				if(i == 7)
-					cBlocks[i] = new CrucibleRecipe("TB.CrystalBlocks",new ItemStack(TBBlocks.crystalBlock,1,i),new ItemStack(TBItems.shardCluster,1,shardClusterMeta[i]),new AspectList().add(primals(1)).add(Aspect.CRAFT, 2).add(primals(1)));
+					cBlocks[i] = new CrucibleRecipe(new String[]{"TB.CrystalBlocks"},new ItemStack(TBBlocks.crystalBlock,1,i),new ItemStack(TBItems.shardCluster,1,shardClusterMeta[i]),new AspectList().add(primals(1)).add(Aspect.CRAFT, 2).add(primals(1)));
 				else
-					cBlocks[i] = new CrucibleRecipe("TB.CrystalBlocks",new ItemStack(TBBlocks.crystalBlock,1,i),new ItemStack(TBItems.shardCluster,1,shardClusterMeta[i]),new AspectList().add(primals(1)).add(Aspect.CRAFT, 2).add(Aspect.FLUX, 2).add(primals(1)));
+					cBlocks[i] = new CrucibleRecipe(new String[]{"TB.CrystalBlocks"},new ItemStack(TBBlocks.crystalBlock,1,i),new ItemStack(TBItems.shardCluster,1,shardClusterMeta[i]),new AspectList().add(primals(1)).add(Aspect.CRAFT, 2).add(Aspect.FLUX, 2).add(primals(1)));
 		
 		InfusionRecipe voidRodRecipe = new InfusionRecipe("ROD_tbvoid", new ItemStack(TBItems.resource,1,4), 6, new AspectList().add(Aspect.ELDRITCH, 64).add(Aspect.VOID, 64).add(Aspect.ENERGY, 64).add(Aspect.AURA, 24).add(Aspect.ENERGY, 24), new ItemStack(TBItems.resource,1,3), new ItemStack[]{
 			new ItemStack(ItemsTC.ingots,1,1),
@@ -743,7 +743,7 @@ public class TBThaumonomicon {
 			new ItemStack(ItemsTC.salisMundus,1,0),
 		});
 		
-		ItemStack silver = MiscUtils.oreDictionaryContains("ingotSilver") && OreDictionary.getOres("ingotSilver") != null && OreDictionary.getOres("ingotSilver").size() > 0? OreDictionary.getOres("ingotSilver").get(0) : new ItemStack(ItemsTC.primalCharm,1,0);
+		ItemStack silver = OreDictUtils.oreDictionaryContains("ingotSilver") && OreDictionary.getOres("ingotSilver") != null && OreDictionary.getOres("ingotSilver").size() > 0? OreDictionary.getOres("ingotSilver").get(0) : new ItemStack(ItemsTC.primalCharm,1,0);
 		
 		RevolverInfusionRecipe silverRec = new RevolverInfusionRecipe("TB.Revolver.Silver", RevolverUpgrade.silver, 0, new AspectList().add(Aspect.DEATH, 8).add(Aspect.BEAST, 8).add(Aspect.UNDEAD, 8), new ItemStack[]{
 			new ItemStack(ItemsTC.salisMundus,1,0),
@@ -2156,11 +2156,11 @@ public class TBThaumonomicon {
 				"pestleAndMortar",
 				new ItemStack(TBItems.resource,1,7)
 			});
-			CrucibleRecipe tobaccoSeedRec = new CrucibleRecipe("TB.Tobacco",new ItemStack(TBItems.tobaccoSeeds,1,0),new ItemStack(Items.wheat_seeds,1,0),new AspectList().add(Aspect.MIND, 4).add(Aspect.WATER, 4).add(Aspect.MAN, 4).add(Aspect.CRAFT, 4));
-			CrucibleRecipe angryTobaccoRec = new CrucibleRecipe("TB.Tobacco.Angry",new ItemStack(TBItems.tobacco,1,2),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.AVERSION, 4).add(Aspect.DEATH, 4));
-			CrucibleRecipe miningTobaccoRec = new CrucibleRecipe("TB.Tobacco.Mining",new ItemStack(TBItems.tobacco,1,5),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.MOTION, 4));
-			CrucibleRecipe wisdomTobaccoRec = new CrucibleRecipe("TB.Tobacco.Wisdom",new ItemStack(TBItems.tobacco,1,4),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.MIND, 4).add(Aspect.AIR, 4));
-			CrucibleRecipe taintTobaccoRec = new CrucibleRecipe("TB.Tobacco.Tainted",new ItemStack(TBItems.tobacco,1,7),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.FLUX, 4).add(Aspect.MIND, 4));
+			CrucibleRecipe tobaccoSeedRec = new CrucibleRecipe(new String[]{"TB.Tobacco"},new ItemStack(TBItems.tobaccoSeeds,1,0),new ItemStack(Items.wheat_seeds,1,0),new AspectList().add(Aspect.MIND, 4).add(Aspect.WATER, 4).add(Aspect.MAN, 4).add(Aspect.CRAFT, 4));
+			CrucibleRecipe angryTobaccoRec = new CrucibleRecipe(new String[]{"TB.Tobacco.Angry"},new ItemStack(TBItems.tobacco,1,2),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.AVERSION, 4).add(Aspect.DEATH, 4));
+			CrucibleRecipe miningTobaccoRec = new CrucibleRecipe(new String[]{"TB.Tobacco.Mining"},new ItemStack(TBItems.tobacco,1,5),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.MOTION, 4));
+			CrucibleRecipe wisdomTobaccoRec = new CrucibleRecipe(new String[]{"TB.Tobacco.Wisdom"},new ItemStack(TBItems.tobacco,1,4),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.MIND, 4).add(Aspect.AIR, 4));
+			CrucibleRecipe taintTobaccoRec = new CrucibleRecipe(new String[]{"TB.Tobacco.Tainted"},new ItemStack(TBItems.tobacco,1,7),new ItemStack(TBItems.tobacco,1,0),new AspectList().add(Aspect.FLUX, 4).add(Aspect.MIND, 4));
 			ShapelessArcaneRecipe sanityTobaccoRec = new ShapelessArcaneRecipe("TB.Tobacco.Sanity",new ItemStack(TBItems.tobacco,1,6),new AspectList().add(Aspect.ORDER, 10).add(Aspect.AIR, 10).add(Aspect.ENTROPY, 10),new Object[]{new ItemStack(TBItems.tobacco,1,0)});
 			
 			new ResearchItem("TB.Tobacco",catName,new AspectList().add(Aspect.PLANT, 4).add(Aspect.CRAFT, 4).add(Aspect.MAN, 4).add(Aspect.MIND, 4),1,-13,3,new ItemStack(TBItems.greatwoodPipe,1,0))

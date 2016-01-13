@@ -237,7 +237,7 @@ public class BlockTBPlant extends BlockBush implements IGrowable, IOldCubicBlock
     
     public IBlockState getStateFromMeta(int meta)
     {
-    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, BlockStateMetadata.MetadataValues.values()[meta]);
+    	return this.getDefaultState().withProperty(BlockStateMetadata.METADATA, meta);
     }
     
     public int getMetaFromState(IBlockState state)

@@ -19,7 +19,7 @@ public class WorldGenOak extends WorldGenTrees{
 	public int minTreeHeight;
 
 	public WorldGenOak(boolean doBlockNotify, int minHeight,int metaWood, int metaLeaves, boolean doVines, Block tree, Block leaves) {
-		super(doBlockNotify, minHeight, metaWood, metaLeaves, doVines);
+		super(doBlockNotify, minHeight, tree.getStateFromMeta(metaWood), leaves.getStateFromMeta(metaLeaves), doVines);
 		trunkMeta = metaWood;
 		leavesMeta = metaLeaves;
 		leavesBlock = leaves;
@@ -114,7 +114,7 @@ public class WorldGenOak extends WorldGenTrees{
 
 				                    if (block1.isAir(w, new BlockPos(i2, k1, k2)) || block1.isLeaves(w, new BlockPos(i2, k1, k2)))
 				                    {
-				                        this.func_175905_a(w, new BlockPos(i2, k1, k2), this.leavesBlock, this.leavesMeta);
+				                        this.setBlockAndNotifyAdequately(w, new BlockPos(i2, k1, k2), this.leavesBlock.getStateFromMeta(this.leavesMeta));
 				                    }
 				                }
 				            }
@@ -127,7 +127,7 @@ public class WorldGenOak extends WorldGenTrees{
 
 				        if (block.isAir(w, new BlockPos(x, y + k1, z)) || block.isLeaves(w, new BlockPos(x, y + k1, z)))
 				        {
-				            this.func_175905_a(w, new BlockPos(x, y + k1, z), this.trunkBlock, this.trunkMeta);
+				            this.setBlockAndNotifyAdequately(w, new BlockPos(x, y + k1, z), this.trunkBlock.getStateFromMeta(this.trunkMeta));
 				        }
 				    }
 				}

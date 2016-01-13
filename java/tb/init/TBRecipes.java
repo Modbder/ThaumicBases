@@ -24,7 +24,6 @@ import thaumcraft.common.lib.utils.CropUtils;
 
 public class TBRecipes {
 	
-	@SuppressWarnings("unused")
 	public static void setup()
 	{
 		new BraceletState.BraceletStateGeneric("iron", loc("thaumcraft","textures/blocks/base_metal.png"), ConfigItems.WAND_CAP_IRON, ConfigItems.WAND_ROD_WOOD, 50);

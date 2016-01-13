@@ -1,7 +1,8 @@
 package tb.client.render.item;
 
 import javax.vecmath.Matrix4f;
-import javax.vecmath.Vector3f;
+
+import org.lwjgl.util.vector.Vector3f;
 
 import DummyCore.Client.IModelMatrixHandler;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
