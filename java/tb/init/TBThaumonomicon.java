@@ -106,7 +106,6 @@ public class TBThaumonomicon {
 		CrucibleRecipe cinnabar = new CrucibleRecipe(new String[]{"TB.Quicksilver"},new ItemStack(ItemsTC.quicksilver, 3, 0),new ItemStack(BlocksTC.log,1,3),new AspectList().add(Aspect.ORDER, 1).add(Aspect.EXCHANGE, 1));
 		CrucibleRecipe salisMundis = new CrucibleRecipe(new String[]{"TB.SM"},new ItemStack(ItemsTC.salisMundus, 2, 0),new ItemStack(ItemsTC.salisMundus,1,0),new AspectList().add(primals(2)).add(Aspect.ENERGY, 3));
 		
-		CrucibleRecipe chiseledBricks = new CrucibleRecipe(new String[]{"TB.AlchemyRestoration"},new ItemStack(Blocks.stonebrick,1,3),new ItemStack(Blocks.stonebrick,1,OreDictionary.WILDCARD_VALUE),new AspectList().add(Aspect.ORDER, 1));
 		CrucibleRecipe gravel2Cobble = new CrucibleRecipe(new String[]{"TB.AlchemyRestoration"},new ItemStack(Blocks.cobblestone,1,0),new ItemStack(Blocks.gravel,1,0),new AspectList().add(Aspect.ORDER, 1));
 		CrucibleRecipe icePacking = new CrucibleRecipe(new String[]{"TB.AlchemyRestoration"},new ItemStack(Blocks.packed_ice,1,0),new ItemStack(Blocks.ice,1,0),new AspectList().add(Aspect.EARTH, 1));
 		
@@ -1068,7 +1067,6 @@ public class TBThaumonomicon {
 		.setParents("TB.CRUCIBLE")
 		.setPages(
 			new ResearchPage("tb.rec.alcRest.page.0"),
-			new ResearchPage(chiseledBricks),
 			new ResearchPage(gravel2Cobble),
 			new ResearchPage(icePacking)
 			).registerResearchItem();
@@ -1407,14 +1405,6 @@ public class TBThaumonomicon {
 		.setPages(
 			new ResearchPage("tb.rec.spikeVoid.page.0"),
 			new ResearchPage(voidSpikeRec)
-			).registerResearchItem();
-		
-		
-		
-		
-		new ResearchItem("TB.TaintMinor",catName,new AspectList().add(Aspect.FLUX, 32).add(Aspect.MIND, 16).add(Aspect.ELDRITCH, 16),14,3,4,new ResourceLocation("thaumicbases","textures/thaumonomicon/taint_minor.png"))
-		.setPages(
-			new ResearchPage("tb.rec.minorTaint.page.0")
 			).registerResearchItem();
 		
 		/*
@@ -2080,7 +2070,6 @@ public class TBThaumonomicon {
 		
 		ThaumcraftApi.getCraftingRecipes().add(cinnabar);
 		ThaumcraftApi.getCraftingRecipes().add(salisMundis);
-		ThaumcraftApi.getCraftingRecipes().add(chiseledBricks);
 		ThaumcraftApi.getCraftingRecipes().add(gravel2Cobble);
 		ThaumcraftApi.getCraftingRecipes().add(icePacking);
 		ThaumcraftApi.getCraftingRecipes().add(blazepowderRest);
