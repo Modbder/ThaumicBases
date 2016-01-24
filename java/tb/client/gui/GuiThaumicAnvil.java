@@ -22,11 +22,8 @@ import net.minecraft.network.play.client.C17PacketCustomPayload;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import tb.common.inventory.ContainerThaumicAnvil;
 
-@SideOnly(Side.CLIENT)
 public class GuiThaumicAnvil extends GuiContainer implements ICrafting
 {
     private static final ResourceLocation anvilResource = new ResourceLocation("textures/gui/container/anvil.png");
@@ -235,8 +232,6 @@ public class GuiThaumicAnvil extends GuiContainer implements ICrafting
      * @param newValue The value the variable is to be updated with.
      */
     public void sendProgressBarUpdate(Container containerIn, int varToUpdate, int newValue) {}
-
-    public void func_175173_a(Container p_175173_1_, IInventory p_175173_2_) {}
 
 	@Override
 	public void updateCraftingInventory(Container containerToSend, List<ItemStack> itemsList) {
