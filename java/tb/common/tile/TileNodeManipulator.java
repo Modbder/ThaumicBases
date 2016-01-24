@@ -48,7 +48,6 @@ public class TileNodeManipulator extends TileEntity implements ITickable{
         tag.setInteger("workTime", workTime);
     }
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void update(){
 		++ticksExisted;

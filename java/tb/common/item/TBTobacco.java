@@ -20,7 +20,6 @@ import tb.api.ITobacco;
 import tb.core.TBCore;
 import tb.utils.TBUtils;
 import thaumcraft.api.aspects.Aspect;
-import thaumcraft.common.config.Config;
 import thaumcraft.common.entities.monster.EntityWisp;
 import thaumcraft.common.lib.potions.PotionDeathGaze;
 
@@ -177,6 +176,8 @@ public class TBTobacco extends Item implements ITobacco, IOldItem{
 				}
 				break;
 			}
+		default:
+			break;
 		}
 	}
 	

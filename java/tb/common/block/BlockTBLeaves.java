@@ -301,8 +301,7 @@ public class BlockTBLeaves extends Block implements IOldCubicBlock, IShearable{
     		BiomeGenBase base = w.getBiomeGenForCoords(new BlockPos(x,0, z));
     		if(base != null)
     		{
-    			@SuppressWarnings("unchecked")
-				List<SpawnListEntry> l = base.getSpawnableList(EnumCreatureType.CREATURE);
+    			List<SpawnListEntry> l = base.getSpawnableList(EnumCreatureType.CREATURE);
     			if(l != null && !l.isEmpty())
     			{
     				SpawnListEntry entry = l.get(rnd.nextInt(l.size()));
@@ -346,8 +345,7 @@ public class BlockTBLeaves extends Block implements IOldCubicBlock, IShearable{
     				if(netheric && rnd.nextDouble() <= 0.05D)
     				{
     					BiomeGenBase hellBiome = BiomeGenBase.hell;
-    	    			@SuppressWarnings("unchecked")
-    					List<SpawnListEntry> l = rnd.nextBoolean() ? hellBiome.getSpawnableList(EnumCreatureType.CREATURE) : hellBiome.getSpawnableList(EnumCreatureType.MONSTER);
+    	    			List<SpawnListEntry> l = rnd.nextBoolean() ? hellBiome.getSpawnableList(EnumCreatureType.CREATURE) : hellBiome.getSpawnableList(EnumCreatureType.MONSTER);
     	    			if(l != null && !l.isEmpty())
     	    			{
     	    				SpawnListEntry entry = l.get(rnd.nextInt(l.size()));
@@ -425,8 +423,7 @@ public class BlockTBLeaves extends Block implements IOldCubicBlock, IShearable{
     				if(end && rnd.nextDouble() <= 0.02D)
     				{
     					BiomeGenBase hellBiome = BiomeGenBase.sky;
-    	    			@SuppressWarnings("unchecked")
-    					List<SpawnListEntry> l = rnd.nextBoolean() ? hellBiome.getSpawnableList(EnumCreatureType.CREATURE) : hellBiome.getSpawnableList(EnumCreatureType.MONSTER);
+    	    			List<SpawnListEntry> l = rnd.nextBoolean() ? hellBiome.getSpawnableList(EnumCreatureType.CREATURE) : hellBiome.getSpawnableList(EnumCreatureType.MONSTER);
     					if(l != null && !l.isEmpty())
     	    			{
     	    				SpawnListEntry entry = l.get(rnd.nextInt(l.size()));

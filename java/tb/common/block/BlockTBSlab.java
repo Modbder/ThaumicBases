@@ -85,7 +85,7 @@ public abstract class BlockTBSlab extends Block implements IOldCubicBlock, IInfu
             this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
     }
     
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings({ "rawtypes", "unchecked" })
 	public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
     {
         this.setBlockBoundsBasedOnState(worldIn, pos);

@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
+@SuppressWarnings("rawtypes")
 public class RenderBullet extends Render{
 
 	public RenderBullet() {

@@ -101,7 +101,6 @@ public class BlockFlaxium extends BlockBush implements IOldCubicBlock{
         return false;
     }
     
-	@SuppressWarnings("unchecked")
 	public static boolean canGrowOn(World w, BlockPos pos)
 	{
 		return !w.isAirBlock(pos) && (w.getBlockState(pos).getBlock().isReplaceableOreGen(w, pos,BlockHelper.forBlock(Blocks.grass)) || w.getBlockState(pos).getBlock().isReplaceableOreGen(w, pos, BlockHelper.forBlock(Blocks.dirt)));

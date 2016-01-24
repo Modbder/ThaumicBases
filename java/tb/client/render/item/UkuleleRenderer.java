@@ -57,7 +57,7 @@ public class UkuleleRenderer implements IItemRenderer{
 			
             Minecraft.getMinecraft().getTextureManager().bindTexture(Minecraft.getMinecraft().thePlayer.getLocationSkin());
         	
-            Render render = Minecraft.getMinecraft().getRenderManager().getEntityRenderObject(Minecraft.getMinecraft().thePlayer);
+            Render<?> render = Minecraft.getMinecraft().getRenderManager().getEntityRenderObject(Minecraft.getMinecraft().thePlayer);
             RenderPlayer renderplayer = (RenderPlayer)render;
             
             GlStateManager.pushMatrix();

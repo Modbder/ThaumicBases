@@ -7,7 +7,6 @@ import org.lwjgl.util.vector.Vector3f;
 import DummyCore.Client.AdvancedModelLoader;
 import DummyCore.Client.IItemRenderer;
 import DummyCore.Client.IModelCustom;
-import DummyCore.Client.RenderAccessLibrary;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
@@ -42,7 +41,7 @@ public class SpawnerCompassRenderer implements IItemRenderer{
             GlStateManager.translate(0.6D, 0.1D, -0.3D);
             GlStateManager.rotate(160, 0, 1, 0);
             GlStateManager.rotate(-20, 1, 0, 0);
-            Render render = Minecraft.getMinecraft().getRenderManager().getEntityRenderObject(Minecraft.getMinecraft().thePlayer);
+            Render<?> render = Minecraft.getMinecraft().getRenderManager().getEntityRenderObject(Minecraft.getMinecraft().thePlayer);
             RenderPlayer renderplayer = (RenderPlayer)render;
             float f10 = 2.0F;
             GlStateManager.scale(f10, f10, f10);
@@ -67,7 +66,7 @@ public class SpawnerCompassRenderer implements IItemRenderer{
 			GlStateManager.rotate(90, 1, 0, 0);
 			GlStateManager.rotate(-45, 0, 0, 1);
 			GlStateManager.scale(0.25d, 0.25d, 0.25d);
-			if(type == RenderAccessLibrary.ENTITY)
+			if(type == TransformType.GROUND)
 				GlStateManager.translate(0, 3, 0);
 	        Minecraft.getMinecraft().renderEngine.bindTexture(textures);
 	        compassModel.renderAll();

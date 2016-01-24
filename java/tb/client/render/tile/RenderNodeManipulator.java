@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import tb.common.item.ItemNodeFoci;
 
+@SuppressWarnings("rawtypes")
 public class RenderNodeManipulator extends TileEntitySpecialRenderer{
 	public static final IModelCustom model = AdvancedModelLoader.loadModel(new ResourceLocation("thaumicbases","models/nodeManipulator/nodeManipulator.obj"));
 	public static final ResourceLocation genIcon = new ResourceLocation("thaumicbases","textures/blocks/nodeManipulator/baseUVMap.png");

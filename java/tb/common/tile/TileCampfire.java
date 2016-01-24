@@ -29,7 +29,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import tb.common.entity.EntityAIAvoidCampfire;
 import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.potions.PotionFluxTaint;
-import thaumcraft.common.config.Config;
 
 public class TileCampfire extends TileEntity implements ITickable
 {
@@ -155,7 +154,7 @@ public class TileCampfire extends TileEntity implements ITickable
     	return oldState.getBlock() == newSate.getBlock() ? false : super.shouldRefresh(world, pos, oldState, newSate);
     }
     
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "rawtypes" })
 	public void update() 
 	{
 		if(syncTimer <= 0)

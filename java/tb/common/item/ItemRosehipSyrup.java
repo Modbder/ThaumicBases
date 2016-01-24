@@ -16,7 +16,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import thaumcraft.api.items.ItemsTC;
 import thaumcraft.api.potions.PotionFluxTaint;
-import thaumcraft.common.config.Config;
 import thaumcraft.common.lib.potions.PotionBlurredVision;
 import thaumcraft.common.lib.potions.PotionInfectiousVisExhaust;
 import thaumcraft.common.lib.potions.PotionThaumarhia;
@@ -40,7 +39,6 @@ public class ItemRosehipSyrup extends Item implements IOldItem{
         return 32;
     }
     
-    @SuppressWarnings("unchecked")
 	public ItemStack onItemUseFinish(ItemStack stack, World w, EntityPlayer player)
     {
         if (!player.capabilities.isCreativeMode)

@@ -72,8 +72,7 @@ public class EntityAspectOrb extends Entity implements IEntityAdditionalSpawnDat
         return j | k << 16;
     }
     
-    @SuppressWarnings("unchecked")
-	public void onUpdate()
+    public void onUpdate()
     {
         super.onUpdate();
 

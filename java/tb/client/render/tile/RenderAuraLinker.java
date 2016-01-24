@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
+@SuppressWarnings("rawtypes")
 public class RenderAuraLinker extends TileEntitySpecialRenderer{
 
 	public static final IModelCustom model = AdvancedModelLoader.loadModel(new ResourceLocation("thaumicbases","models/nodeLinker/nodeLinker.obj"));

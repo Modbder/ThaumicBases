@@ -165,7 +165,6 @@ public class BlockBriar extends BlockBush implements IGrowable,IOldCubicBlock{
     	return super.getDrops(w, pos, state, fortune);
     }
     
-    @SuppressWarnings("unchecked")
 	@Override
     public boolean canBlockStay(World w, BlockPos pos, IBlockState state)
     {

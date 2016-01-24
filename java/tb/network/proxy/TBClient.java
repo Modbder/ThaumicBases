@@ -119,6 +119,7 @@ public class TBClient extends TBServer {
 		return null;
 	}
 	
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public void registerRenderInformation()
 	{

@@ -179,7 +179,6 @@ public class TileAuraLinker extends TileEntity implements IWandable,ITickable{
 		return destroyed;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public int zap()
 	{
 		int x = pos.getX();

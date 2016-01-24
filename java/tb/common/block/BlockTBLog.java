@@ -144,6 +144,8 @@ public class BlockTBLog extends Block implements IOldCubicBlock{
 	    		addedMeta = 2;
 	    		break;
 	    	}
+		default:
+			break;
     	}
     	
     	return originalMeta+addedMeta*4;

@@ -41,7 +41,7 @@ public class TileBraizer extends TileEntity implements ITickable
         tag.setInteger("burnTime", burnTime);
     }
     
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "rawtypes" })
 	public void update() 
 	{
 		++uptime;

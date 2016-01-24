@@ -24,7 +24,6 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.entities.IEldritchMob;
 import thaumcraft.api.entities.ITaintedMob;
 import thaumcraft.api.potions.PotionFluxTaint;
-import thaumcraft.common.config.Config;
 
 public class RevolverUpgrade {
 	

@@ -6,20 +6,20 @@ import DummyCore.Utils.TessellatorWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import tb.common.entity.EntityAspectOrb;
 import thaumcraft.client.fx.ParticleEngine;
 
+@SuppressWarnings("rawtypes")
 public class RenderAspectOrb extends Render{
 
+	@SuppressWarnings("unchecked")
 	public RenderAspectOrb() {
 		super(Minecraft.getMinecraft().getRenderManager());
-	    this.shadowSize = 0.1F;
-	    this.shadowOpaque = 0.5F;
+	    shadowSize = 0.1F;
+	    shadowOpaque = 0.5F;
 	}
 
 	@Override
@@ -77,7 +77,8 @@ public class RenderAspectOrb extends Render{
         GlStateManager.popMatrix();
 	}
 	
-    public void doRender(Entity entity, double x, double y, double z, float p_76986_8_, float partialTicks)
+    @SuppressWarnings("unchecked")
+	public void doRender(Entity entity, double x, double y, double z, float p_76986_8_, float partialTicks)
     {
     	this.renderAO(EntityAspectOrb.class.cast(entity), x, y, z, partialTicks);
     	super.doRender(entity, x, y, z, p_76986_8_, partialTicks);

@@ -15,7 +15,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.block.model.ItemTransformVec3f;
 import net.minecraft.client.renderer.entity.Render;
@@ -54,7 +53,7 @@ public class CastingBraceletRenderer implements IItemRenderer{
 			
             Minecraft.getMinecraft().getTextureManager().bindTexture(entityclientplayermp.getLocationSkin());
         	
-            Render render = Minecraft.getMinecraft().getRenderManager().getEntityRenderObject(Minecraft.getMinecraft().thePlayer);
+            Render<?> render = Minecraft.getMinecraft().getRenderManager().getEntityRenderObject(Minecraft.getMinecraft().thePlayer);
             RenderPlayer renderplayer = (RenderPlayer)render;
             
             float f10 = 4.0F;

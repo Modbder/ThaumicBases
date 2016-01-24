@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import tb.common.tile.TileOverchanter;
 
+@SuppressWarnings("rawtypes")
 public class RenderOverchanter extends TileEntitySpecialRenderer{
 
 	@Override

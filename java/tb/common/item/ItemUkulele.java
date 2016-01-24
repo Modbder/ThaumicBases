@@ -116,8 +116,6 @@ public class ItemUkulele extends ItemAmuletVis{
 		return originalAL;
 	}
 
-	
-	@SuppressWarnings({ "unchecked" })
 	public void onUsingTick(ItemStack stack, EntityPlayer player, int count)
 	{
 		{

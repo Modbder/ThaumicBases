@@ -32,12 +32,10 @@ import thaumcraft.api.entities.ITaintedMob;
 import thaumcraft.api.items.ItemGenericEssentiaContainer;
 import thaumcraft.api.items.ItemsTC;
 import thaumcraft.api.potions.PotionFluxTaint;
-import thaumcraft.common.config.Config;
 import thaumcraft.common.lib.aura.EntityAuraNode;
 
 public class EnchantmentHandler {
 	
-	@SuppressWarnings("unchecked")
 	@SubscribeEvent
 	public void itemExpire(ItemExpireEvent event)
 	{
