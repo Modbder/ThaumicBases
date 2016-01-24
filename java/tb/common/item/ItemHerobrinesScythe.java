@@ -66,7 +66,6 @@ public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarp
 			stk.damageItem(-1, (EntityLivingBase)entity);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static void attack(EntityPlayer attacker, List<EntityLivingBase> doNotAttack, EntityLivingBase attacked)
 	{
 		AxisAlignedBB aabb = AxisAlignedBB.fromBounds(attacked.posX-1, attacked.posY-1, attacked.posZ-1, attacked.posX+1, attacked.posY+1, attacked.posZ+1).expand(6, 6, 6);
@@ -252,11 +251,11 @@ public class ItemHerobrinesScythe extends ItemSword implements IRepairable,IWarp
 	}
 	
     @SuppressWarnings({ "rawtypes", "unchecked" })
-	public Multimap getAttributeModifiers(ItemStack stack)
+    public Multimap<String, AttributeModifier> getItemAttributeModifiers()
     {
     	Multimap attribs = HashMultimap.create();
     	
-    	attribs.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF"), "Weapon modifier", 14.5F, 0));
+    	attribs.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Weapon modifier", 14.5F, 0));
     	attribs.put(SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName(), new AttributeModifier(UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CE"), "Speed modifier", 0.5F, 2));
     	
     	return attribs;
