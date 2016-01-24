@@ -47,7 +47,6 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
 		return 1;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void update() 
 	{
 		++ticksExisted;
@@ -79,7 +78,7 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
         		{
         			renderedLightning = new Lightning(this.worldObj.rand, new Coord3D(0,0,0), new Coord3D(MathUtils.randomDouble(this.worldObj.rand)/50,MathUtils.randomDouble(this.worldObj.rand)/50,MathUtils.randomDouble(this.worldObj.rand)/50), 0.3F, 1,0,1);
         			this.worldObj.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), "thaumcraft:infuserstart", 1F, 1.0F);
-	        		if(EssentiaHandler.drainEssentia(this, Aspect.AURA, null, 8, false))
+	        		if(EssentiaHandler.drainEssentia(this, Aspect.ENERGY, null, 8, false))
 	        		{
 	        			++enchantingTime;
 	        			if(enchantingTime >= 16 && !this.xpAbsorbed)
@@ -163,7 +162,6 @@ public class TileOverchanter extends TileEntity implements IInventory, IWandable
 		return false;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public int findEnchantment(ItemStack enchanted)
 	{
 		NBTTagCompound stackTag = MiscUtils.getStackTag(inventory);
