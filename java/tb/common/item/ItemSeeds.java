@@ -35,7 +35,7 @@ public class ItemSeeds extends Item implements IPlantable, IOldItem
         {
             return false;
         }
-        else if (worldIn.getBlockState(pos).getBlock().canSustainPlant(worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up()))
+        else if (worldIn.getBlockState(pos).getBlock() == soilBlockID && worldIn.isAirBlock(pos.up()))
         {
             worldIn.setBlockState(pos.up(), this.crops.getDefaultState());
             --stack.stackSize;
