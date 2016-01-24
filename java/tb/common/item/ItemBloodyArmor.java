@@ -1,6 +1,5 @@
 package tb.common.item;
 
-import java.util.List;
 import java.util.UUID;
 
 import com.google.common.collect.HashMultimap;
@@ -15,8 +14,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.items.IRepairable;
 import thaumcraft.api.items.IRunicArmor;
@@ -56,13 +53,6 @@ public class ItemBloodyArmor extends ItemArmor implements IRepairable, IVisDisco
 	public int getRunicCharge(ItemStack itemstack) {
 		return 0;
 	}
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-		list.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("tc.visdiscount") + ": " + getVisDiscount(stack, player, null) + "%");
-		super.addInformation(stack, player, list, par4);
-	}
 	
     @SuppressWarnings({ "rawtypes", "unchecked" })
 	public Multimap getAttributeModifiers(ItemStack stack)
@@ -86,6 +76,8 @@ public class ItemBloodyArmor extends ItemArmor implements IRepairable, IVisDisco
 	    		map.put(SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName(), new AttributeModifier(UUID.fromString("f6d1384c-74c3-4cce-9a80-11b91dbd4ff4"), "moveSpeed", 0.1F, 2));
 	    		break;
 	    	}
+		default:
+			break;
     	}
     	
     	return map;
