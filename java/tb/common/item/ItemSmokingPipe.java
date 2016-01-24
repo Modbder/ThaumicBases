@@ -74,6 +74,8 @@ public class ItemSmokingPipe extends Item implements IOldItem
 	public ItemStack onItemUseFinish(ItemStack stack, World w, EntityPlayer player)
 	{
 		ItemStack tobacco = getTobacco(player);
+		if(tobacco == null)
+			return stack;
 		ITobacco t = ITobacco.class.cast(tobacco.getItem());
 		t.performTobaccoEffect(player, tobacco.getItemDamage(), isSilverwood);
 		for(int i = 0; i < player.inventory.getSizeInventory(); ++i)
