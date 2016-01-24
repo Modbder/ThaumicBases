@@ -708,6 +708,7 @@ item.tb.shardCluster.order.name=Order Crystal Cluster
 item.tb.shardCluster.entropy.name=Entropy Crystal Cluster
 item.tb.shardCluster.mixed.name=Mixed Crystal Cluster
 item.tb.shardCluster.tainted.name=Tainted Crystal Cluster
+item.tb.bracelet.brass=Brass Bracelet
 
 #research
 tc.research_name.TB.SpawnerCompass=Thauminite Compass
