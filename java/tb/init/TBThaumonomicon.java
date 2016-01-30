@@ -30,7 +30,6 @@ import thaumcraft.api.research.ResearchPage;
 
 public class TBThaumonomicon {
 	
-	@SuppressWarnings("unchecked")
 	public static void setup()
 	{
 		OreDictionary.registerOre("pestleAndMortar", new ItemStack(TBItems.mortar,1,OreDictionary.WILDCARD_VALUE));
@@ -2054,54 +2053,54 @@ public class TBThaumonomicon {
 		ThaumcraftApi.addWarpToResearch("TB.Bracelet.Primal", 4);
 		
 
-		ThaumcraftApi.getCraftingRecipes().add(wool3Rec);
-		ThaumcraftApi.getCraftingRecipes().add(sandstone3Rec);
-		ThaumcraftApi.getCraftingRecipes().add(blaze3Rec);
-		ThaumcraftApi.getCraftingRecipes().add(wool4Rec);
-		ThaumcraftApi.getCraftingRecipes().add(sandstone4Rec);
-		ThaumcraftApi.getCraftingRecipes().add(blaze4Rec);
-		ThaumcraftApi.getCraftingRecipes().add(glassSand);
-		ThaumcraftApi.getCraftingRecipes().add(gravelSand);
-		ThaumcraftApi.getCraftingRecipes().add(barsIron);
-		ThaumcraftApi.getCraftingRecipes().add(arrows);
-		ThaumcraftApi.getCraftingRecipes().add(snowball);
-		ThaumcraftApi.getCraftingRecipes().add(redstone);
-		ThaumcraftApi.getCraftingRecipes().add(amber);
+		add(wool3Rec);
+		add(sandstone3Rec);
+		add(blaze3Rec);
+		add(wool4Rec);
+		add(sandstone4Rec);
+		add(blaze4Rec);
+		add(glassSand);
+		add(gravelSand);
+		add(barsIron);
+		add(arrows);
+		add(snowball);
+		add(redstone);
+		add(amber);
 		
-		ThaumcraftApi.getCraftingRecipes().add(cinnabar);
-		ThaumcraftApi.getCraftingRecipes().add(salisMundis);
-		ThaumcraftApi.getCraftingRecipes().add(gravel2Cobble);
-		ThaumcraftApi.getCraftingRecipes().add(icePacking);
-		ThaumcraftApi.getCraftingRecipes().add(blazepowderRest);
-		ThaumcraftApi.getCraftingRecipes().add(boneRest);
-		ThaumcraftApi.getCraftingRecipes().add(sugarRest);
-		ThaumcraftApi.getCraftingRecipes().add(cactiRest);
+		add(cinnabar);
+		add(salisMundis);
+		add(gravel2Cobble);
+		add(icePacking);
+		add(blazepowderRest);
+		add(boneRest);
+		add(sugarRest);
+		add(cactiRest);
 		
-		ThaumcraftApi.getCraftingRecipes().add(salisMundusBlockRec);
+		add(salisMundusBlockRec);
 		
-		ThaumcraftApi.getCraftingRecipes().add(thauminiteRec);
+		add(thauminiteRec);
 		
-		ThaumcraftApi.getCraftingRecipes().add(thauminiteCaps);
+		add(thauminiteCaps);
 		
-		ThaumcraftApi.getCraftingRecipes().add(pyrofluidRec);
-		ThaumcraftApi.getCraftingRecipes().add(aureliaRec);
+		add(pyrofluidRec);
+		add(aureliaRec);
 		
-		ThaumcraftApi.getCraftingRecipes().add(thaumicWandCore);
-		ThaumcraftApi.getCraftingRecipes().add(voidRodRecipe);
-		ThaumcraftApi.getCraftingRecipes().add(plaxRec);
-		ThaumcraftApi.getCraftingRecipes().add(metalleatRec);
-		ThaumcraftApi.getCraftingRecipes().add(lucriteRec);
-		ThaumcraftApi.getCraftingRecipes().add(knoseRec);
-		ThaumcraftApi.getCraftingRecipes().add(knowledgeFragmentRec);
-		ThaumcraftApi.getCraftingRecipes().add(sweedRec);
-		ThaumcraftApi.getCraftingRecipes().add(lazulliaRec);
-		ThaumcraftApi.getCraftingRecipes().add(rainbowCactiRec);
-		ThaumcraftApi.getCraftingRecipes().add(redlonRec);
-		ThaumcraftApi.getCraftingRecipes().add(aspectShroomRec);
-		ThaumcraftApi.getCraftingRecipes().add(flaxiumRec);
-		ThaumcraftApi.getCraftingRecipes().add(glieoniaRec);
-		ThaumcraftApi.getCraftingRecipes().add(briarRec);
-		ThaumcraftApi.getCraftingRecipes().add(rosehipRec);
+		add(thaumicWandCore);
+		add(voidRodRecipe);
+		add(plaxRec);
+		add(metalleatRec);
+		add(lucriteRec);
+		add(knoseRec);
+		add(knowledgeFragmentRec);
+		add(sweedRec);
+		add(lazulliaRec);
+		add(rainbowCactiRec);
+		add(redlonRec);
+		add(aspectShroomRec);
+		add(flaxiumRec);
+		add(glieoniaRec);
+		add(briarRec);
+		add(rosehipRec);
 		
 		
 		if(TBConfig.allowTobacco)
@@ -2245,115 +2244,126 @@ public class TBThaumonomicon {
 				new ResearchPage(silverwoodPipeRec)
 				).registerResearchItem();
 			
-			ThaumcraftApi.getCraftingRecipes().add(tobaccoSeedRec);
-			ThaumcraftApi.getCraftingRecipes().add(pestleRecipe);
-			ThaumcraftApi.getCraftingRecipes().add(pipeRecipe);
-			ThaumcraftApi.getCraftingRecipes().add(genTobaccoRec);
-			ThaumcraftApi.getCraftingRecipes().add(eldritchTobacoRec);
-			ThaumcraftApi.getCraftingRecipes().add(wispyTobaccoRec);
-			ThaumcraftApi.getCraftingRecipes().add(angryTobaccoRec);
-			ThaumcraftApi.getCraftingRecipes().add(miningTobaccoRec);
-			ThaumcraftApi.getCraftingRecipes().add(wisdomTobaccoRec);
-			ThaumcraftApi.getCraftingRecipes().add(taintTobaccoRec);
-			ThaumcraftApi.getCraftingRecipes().add(saturatingTobaccoRec);
-			ThaumcraftApi.getCraftingRecipes().add(saturatingTobaccoRecM);
-			ThaumcraftApi.getCraftingRecipes().add(sanityTobaccoRec);
-			ThaumcraftApi.getCraftingRecipes().add(silverwoodPipeRec);
+			add(tobaccoSeedRec);
+			add(pestleRecipe);
+			add(pipeRecipe);
+			add(genTobaccoRec);
+			add(eldritchTobacoRec);
+			add(wispyTobaccoRec);
+			add(angryTobaccoRec);
+			add(miningTobaccoRec);
+			add(wisdomTobaccoRec);
+			add(taintTobaccoRec);
+			add(saturatingTobaccoRec);
+			add(saturatingTobaccoRecM);
+			add(sanityTobaccoRec);
+			add(silverwoodPipeRec);
 		}
-		ThaumcraftApi.getCraftingRecipes().add(voidSeedRec);
-		ThaumcraftApi.getCraftingRecipes().add(ironSpikeRec);
-		ThaumcraftApi.getCraftingRecipes().add(thaumiumSpikeRec);
-		ThaumcraftApi.getCraftingRecipes().add(voidSpikeRec);
-		ThaumcraftApi.getCraftingRecipes().add(cleanEFabricRec);
-		ThaumcraftApi.getCraftingRecipes().add(bloodyChestRec);
-		ThaumcraftApi.getCraftingRecipes().add(bloodyLegsRec);
-		ThaumcraftApi.getCraftingRecipes().add(bloodyBootsRec);
-		ThaumcraftApi.getCraftingRecipes().add(cryingObsidianRec);
-		ThaumcraftApi.getCraftingRecipes().add(overchanterRec);
-		ThaumcraftApi.getCraftingRecipes().add(goldenOakRec);
-		ThaumcraftApi.getCraftingRecipes().add(nodeManipulatorRec);
+		add(voidSeedRec);
+		add(ironSpikeRec);
+		add(thaumiumSpikeRec);
+		add(voidSpikeRec);
+		add(cleanEFabricRec);
+		add(bloodyChestRec);
+		add(bloodyLegsRec);
+		add(bloodyBootsRec);
+		add(cryingObsidianRec);
+		add(overchanterRec);
+		add(goldenOakRec);
+		add(nodeManipulatorRec);
 		
-		ThaumcraftApi.getCraftingRecipes().add(brightFociRec);
-		ThaumcraftApi.getCraftingRecipes().add(destructionFociRec);
-		ThaumcraftApi.getCraftingRecipes().add(efficiencyFociRec);
-		ThaumcraftApi.getCraftingRecipes().add(hungerFociRec);
-		ThaumcraftApi.getCraftingRecipes().add(unstableFociRec);
-		ThaumcraftApi.getCraftingRecipes().add(pureFociRec);
-		ThaumcraftApi.getCraftingRecipes().add(sinisterFociRec);
-		ThaumcraftApi.getCraftingRecipes().add(speedFociRec);
-		ThaumcraftApi.getCraftingRecipes().add(stabilityFociRec);
-		ThaumcraftApi.getCraftingRecipes().add(taintFociRec);
-		ThaumcraftApi.getCraftingRecipes().add(herobrinesScytheRec);
-		ThaumcraftApi.getCraftingRecipes().add(thaumicAnvilRec);
-		ThaumcraftApi.getCraftingRecipes().add(voidAnvilRec);
-		ThaumcraftApi.getCraftingRecipes().add(peacefulSaplingRec);
-		ThaumcraftApi.getCraftingRecipes().add(netherSaplingRec);
-		ThaumcraftApi.getCraftingRecipes().add(enderSaplingRec);
+		add(brightFociRec);
+		add(destructionFociRec);
+		add(efficiencyFociRec);
+		add(hungerFociRec);
+		add(unstableFociRec);
+		add(pureFociRec);
+		add(sinisterFociRec);
+		add(speedFociRec);
+		add(stabilityFociRec);
+		add(taintFociRec);
+		add(herobrinesScytheRec);
+		add(thaumicAnvilRec);
+		add(voidAnvilRec);
+		add(peacefulSaplingRec);
+		add(netherSaplingRec);
+		add(enderSaplingRec);
 		
 		CraftingManager.getInstance().getRecipeList().add(voidShearsRec);
 		CraftingManager.getInstance().getRecipeList().add(voidFlint);
 		
-		ThaumcraftApi.getCraftingRecipes().add(revolverRec);
-		ThaumcraftApi.getCraftingRecipes().add(accuracyRec);
-		ThaumcraftApi.getCraftingRecipes().add(atropodsRec);
-		ThaumcraftApi.getCraftingRecipes().add(eldritchBRec);
-		ThaumcraftApi.getCraftingRecipes().add(duelingRec);
-		ThaumcraftApi.getCraftingRecipes().add(efficiencyRec);
-		ThaumcraftApi.getCraftingRecipes().add(eldritchRec);
-		ThaumcraftApi.getCraftingRecipes().add(heavyRec);
-		ThaumcraftApi.getCraftingRecipes().add(knowledgeRec);
-		ThaumcraftApi.getCraftingRecipes().add(piercingRec);
-		ThaumcraftApi.getCraftingRecipes().add(powerRec);
-		ThaumcraftApi.getCraftingRecipes().add(primalRec);
-		ThaumcraftApi.getCraftingRecipes().add(silverRec);
-		ThaumcraftApi.getCraftingRecipes().add(speedRec);
-		ThaumcraftApi.getCraftingRecipes().add(taintedRec);
-		ThaumcraftApi.getCraftingRecipes().add(voidRec);
+		add(revolverRec);
+		add(accuracyRec);
+		add(atropodsRec);
+		add(eldritchBRec);
+		add(duelingRec);
+		add(efficiencyRec);
+		add(eldritchRec);
+		add(heavyRec);
+		add(knowledgeRec);
+		add(piercingRec);
+		add(powerRec);
+		add(primalRec);
+		add(silverRec);
+		add(speedRec);
+		add(taintedRec);
+		add(voidRec);
 		
-		ThaumcraftApi.getCraftingRecipes().add(nodeLinkRec);
-		ThaumcraftApi.getCraftingRecipes().add(campfireRec);
-		ThaumcraftApi.getCraftingRecipes().add(brazierRec);
+		add(nodeLinkRec);
+		add(campfireRec);
+		add(brazierRec);
 		
-		ThaumcraftApi.getCraftingRecipes().add(ironBraceletRec);
-		ThaumcraftApi.getCraftingRecipes().add(goldBraceletRec);
-		ThaumcraftApi.getCraftingRecipes().add(greatwoodBraceletRec);
-		ThaumcraftApi.getCraftingRecipes().add(thaumiumBraceletRec);
-		ThaumcraftApi.getCraftingRecipes().add(silverwoodBraceletRec);
-		ThaumcraftApi.getCraftingRecipes().add(voidBraceletRec);
-		ThaumcraftApi.getCraftingRecipes().add(reedBraceletRec);
-		ThaumcraftApi.getCraftingRecipes().add(boneBraceletRec);
-		ThaumcraftApi.getCraftingRecipes().add(obsidianBraceletRec);
-		ThaumcraftApi.getCraftingRecipes().add(blazeBraceletRec);
-		ThaumcraftApi.getCraftingRecipes().add(iceBraceletRec);
-		ThaumcraftApi.getCraftingRecipes().add(quartzBraceletRec);
-		ThaumcraftApi.getCraftingRecipes().add(primalBraceletRec);
+		add(ironBraceletRec);
+		add(goldBraceletRec);
+		add(greatwoodBraceletRec);
+		add(thaumiumBraceletRec);
+		add(silverwoodBraceletRec);
+		add(voidBraceletRec);
+		add(reedBraceletRec);
+		add(boneBraceletRec);
+		add(obsidianBraceletRec);
+		add(blazeBraceletRec);
+		add(iceBraceletRec);
+		add(quartzBraceletRec);
+		add(primalBraceletRec);
 		
-		ThaumcraftApi.getCraftingRecipes().add(spawnerCompassRec);
+		add(spawnerCompassRec);
 		
 		
-		ThaumcraftApi.getCraftingRecipes().add(ukuleleRec);
-		ThaumcraftApi.getCraftingRecipes().add(knowledgeUkuleleRec);
-		ThaumcraftApi.getCraftingRecipes().add(sanityUkuleleRec);
-		ThaumcraftApi.getCraftingRecipes().add(electricUkuleleRec);
-		ThaumcraftApi.getCraftingRecipes().add(resistanceUkuleleRec);
-		ThaumcraftApi.getCraftingRecipes().add(buffingUkuleleRec);
-		ThaumcraftApi.getCraftingRecipes().add(confusionUkuleleRec);
-		ThaumcraftApi.getCraftingRecipes().add(growthUkuleleRec);
-		ThaumcraftApi.getCraftingRecipes().add(loveUkuleleRec);
+		add(ukuleleRec);
+		add(knowledgeUkuleleRec);
+		add(sanityUkuleleRec);
+		add(electricUkuleleRec);
+		add(resistanceUkuleleRec);
+		add(buffingUkuleleRec);
+		add(confusionUkuleleRec);
+		add(growthUkuleleRec);
+		add(loveUkuleleRec);
 		
 		//TODO actual recipes
 		
 		for(int i = 0; i < oldRec.length; ++i)
-			ThaumcraftApi.getCraftingRecipes().add(oldRec[i]);
+			add(oldRec[i]);
 		
 		for(int i = 0; i < 10; ++i)
-			ThaumcraftApi.getCraftingRecipes().add(toolsRec[i]);
+			add(toolsRec[i]);
 
 		for(int i = 0; i < cBlocks.length; ++i)
-			ThaumcraftApi.getCraftingRecipes().add(cBlocks[i]);
+			add(cBlocks[i]);
 		
 		for(int i = 0; i < clusters.length; ++i)
-			ThaumcraftApi.getCraftingRecipes().add(clusters[i]);
+			add(clusters[i]);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void add(Object rec)
+	{
+		if(rec instanceof IRecipe)
+		{
+			if(rec instanceof ShapedArcaneRecipe || rec instanceof ShapelessArcaneRecipe)
+				CraftingManager.getInstance().addRecipe((IRecipe) rec);
+		}
+		ThaumcraftApi.getCraftingRecipes().add(rec);
 	}
 	
 	public static Aspect getPrimalForLoop(int loopInt)

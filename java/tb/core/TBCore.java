@@ -42,7 +42,7 @@ import tb.utils.TBConfig;
 public class TBCore {
 	
 	public static final String modid = "thaumicbases";
-	public static final String version = "1.4.189.21";
+	public static final String version = "1.4.189.23";
 	public static final String name = "Thaumic Bases";
 	public static final String serverProxy = "tb.network.proxy.TBServer";
 	public static final String clientProxy = "tb.network.proxy.TBClient";
