@@ -96,8 +96,8 @@ public class TBItems {
 		ItemRegistry.registerItem(shardCluster, "shardCluster",core);
 		
 		WAND_CAP_THAUMINITE = new WandCap("thauminite",0.85F,1,new ItemStack(resource,1,2),6,new ResourceLocation("thaumicbases","items/thauminite/wand_cap_thauminite_uv"));	
-		WAND_ROD_THAUMIUM = new WandRod("tbthaumium", 80, new ItemStack(resource,1,3), 6, new WandRodPrimalOnUpdate(), new ResourceLocation("thaumicbases","items/wand_rod_thaumium_uv"));
-		WAND_ROD_VOID = new WandRod("tbvoid", 160, new ItemStack(resource,1,4), 16, new WandRodPrimalOnUpdate(), new ResourceLocation("thaumicbases","items/wand_rod_void_uv"));
+		WAND_ROD_THAUMIUM = new WandRod("tbthaumium", 450, new ItemStack(resource,1,3), 6, new WandRodPrimalOnUpdate(), new ResourceLocation("thaumicbases","items/wand_rod_thaumium_uv"));
+		WAND_ROD_VOID = new WandRod("tbvoid", 750, new ItemStack(resource,1,4), 16, new WandRodPrimalOnUpdate(), new ResourceLocation("thaumicbases","items/wand_rod_void_uv"));
 
 	}
 	
