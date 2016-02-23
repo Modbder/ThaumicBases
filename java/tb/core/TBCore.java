@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -42,11 +43,11 @@ import tb.utils.TBConfig;
 public class TBCore {
 	
 	public static final String modid = "thaumicbases";
-	public static final String version = "1.4.189.23";
+	public static final String version = "2.1.189.32";
 	public static final String name = "Thaumic Bases";
 	public static final String serverProxy = "tb.network.proxy.TBServer";
 	public static final String clientProxy = "tb.network.proxy.TBClient";
-	public static final String dependencies = "required-after:Thaumcraft@[5.1.1,);required-after:Baubles@[1.1.1.0,);required-after:DummyCore@[2.2.189.0,);";
+	public static final String dependencies = "required-after:Thaumcraft@[5.1.6,);required-after:Baubles@[1.1.1.0,);required-after:DummyCore@[2.2.189.0,);";
 
 	@SidedProxy(serverSide = serverProxy,clientSide = clientProxy)
 	public static TBServer proxy;
@@ -65,6 +66,7 @@ public class TBCore {
 		TBItems.setup();
 		TBEnchant.setup();
 		TBTiles.setup();
+		FMLInterModComms.sendMessage("Waila", "register", "tb.utils.WAILACompat.callbackRegister");	
 	}
 	
 	@EventHandler
@@ -85,6 +87,7 @@ public class TBCore {
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("thaumbases");
 		network.registerMessage(TBNetworkManager.class, PacketTB.class, 0, Side.SERVER);
 		network.registerMessage(TBNetworkManager.class, PacketTB.class, 0, Side.CLIENT);
+		
 	}
 	
 	@EventHandler
