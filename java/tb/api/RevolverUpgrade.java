@@ -259,7 +259,7 @@ public class RevolverUpgrade {
 			return -1;
 		
 		if(this == efficiency)
-			return hasPrimal ? modLevel == 5 ? 1 : -1 : originalLevel+modLevel;
+			return hasPrimal ? modLevel == 5 ? 2 : -1 : originalLevel+modLevel;
 		
 		return originalLevel;
 	}
