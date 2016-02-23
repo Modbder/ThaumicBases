@@ -10,6 +10,7 @@ import DummyCore.Client.IModelCustom;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.block.model.ItemTransformVec3f;
 import net.minecraft.client.renderer.entity.Render;
@@ -32,6 +33,8 @@ public class SpawnerCompassRenderer implements IItemRenderer{
 	public void renderItem(TransformType type, ItemStack item) {
 		EntityPlayerSP entityclientplayermp = Minecraft.getMinecraft().thePlayer;
 		GlStateManager.pushMatrix();
+		RenderHelper.disableStandardItemLighting();
+		
 		if(type == TransformType.FIRST_PERSON)
 		{
 			GlStateManager.pushMatrix();
@@ -72,6 +75,7 @@ public class SpawnerCompassRenderer implements IItemRenderer{
 	        compassModel.renderAll();
 	        GlStateManager.popMatrix();
 		}
+		RenderHelper.enableStandardItemLighting();
 		GlStateManager.popMatrix();
 	}
 	

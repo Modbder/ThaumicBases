@@ -13,6 +13,7 @@ import DummyCore.Client.IModelCustom;
 import DummyCore.Utils.Pair;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.block.model.ItemTransformVec3f;
 import net.minecraft.item.ItemStack;
@@ -38,7 +39,7 @@ public class RenderRevolver implements IItemRenderer{
 	public void renderItem(TransformType type, ItemStack item) {
 		
 		GlStateManager.pushMatrix();
-		
+		RenderHelper.disableStandardItemLighting();
 		GlStateManager.disableAlpha();
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -106,6 +107,7 @@ public class RenderRevolver implements IItemRenderer{
 		
 		GlStateManager.enableAlpha();
 		GlStateManager.disableBlend();
+		RenderHelper.enableStandardItemLighting();
 		GlStateManager.popMatrix();
 		
 	}

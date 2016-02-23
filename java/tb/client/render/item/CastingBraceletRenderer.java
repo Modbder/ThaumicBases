@@ -46,7 +46,7 @@ public class CastingBraceletRenderer implements IItemRenderer{
 		ItemStack focusStack = wand.getFocusStack(item);
 		
 		GlStateManager.pushMatrix();
-		
+		RenderHelper.disableStandardItemLighting();
 		if(type == TransformType.FIRST_PERSON)
 		{
 			GlStateManager.pushMatrix();
@@ -152,7 +152,7 @@ public class CastingBraceletRenderer implements IItemRenderer{
 			GlStateManager.popMatrix();
 		}
 		GlStateManager.popMatrix();
-		
+		RenderHelper.enableStandardItemLighting();
 		GlStateManager.popMatrix();
 	}
 

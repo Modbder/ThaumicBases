@@ -8,6 +8,7 @@ import DummyCore.Client.IModelCustom;
 import DummyCore.Client.RPAwareModel;
 import DummyCore.Utils.DrawUtils;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -27,6 +28,8 @@ public class NodeFociRenderer implements IItemRenderer {
 	public void renderItem(TransformType type, ItemStack item) {
 		
 		GlStateManager.pushMatrix();
+		RenderHelper.disableStandardItemLighting();
+		RenderHelper.enableGUIStandardItemLighting();
 		
 		GlStateManager.scale(0.25, 0.25, 0.25);
 		GlStateManager.translate(2, 1, 2);

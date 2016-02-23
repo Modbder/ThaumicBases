@@ -9,6 +9,7 @@ import DummyCore.Client.IItemRenderer;
 import DummyCore.Client.IModelCustom;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.block.model.ItemTransformVec3f;
 import net.minecraft.client.renderer.entity.Render;
@@ -34,7 +35,7 @@ public class UkuleleRenderer implements IItemRenderer{
 	@Override
 	public void renderItem(TransformType type, ItemStack item) {
 		GlStateManager.pushMatrix();
-		
+		RenderHelper.disableStandardItemLighting();
 		GlStateManager.scale(0.4, 0.4, 0.4);
 		GlStateManager.translate(1, 0, 1);
 		
@@ -115,7 +116,7 @@ public class UkuleleRenderer implements IItemRenderer{
 		model.renderPart("strings_Cube.003");
 		Minecraft.getMinecraft().renderEngine.bindTexture(handle);
 		model.renderPart("hand_Cube.002");
-		
+		RenderHelper.enableStandardItemLighting();
 		GlStateManager.popMatrix();
 	}
 

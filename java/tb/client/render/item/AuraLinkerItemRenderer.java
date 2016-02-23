@@ -8,6 +8,7 @@ import DummyCore.Client.IModelCustom;
 import DummyCore.Client.RPAwareModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -26,6 +27,7 @@ public class AuraLinkerItemRenderer implements IItemRenderer {
 	@Override
 	public void renderItem(TransformType type, ItemStack item) {
 		GlStateManager.pushMatrix();
+		RenderHelper.disableStandardItemLighting();
 		
 		GlStateManager.scale(0.5, 0.5, 0.5);
 		GlStateManager.translate(1, 1.5, 1);
@@ -33,6 +35,7 @@ public class AuraLinkerItemRenderer implements IItemRenderer {
 		Minecraft.getMinecraft().renderEngine.bindTexture(genIcon);
 		model.renderAll();
 		
+		RenderHelper.enableGUIStandardItemLighting();
 		GlStateManager.popMatrix();
 	}
 
