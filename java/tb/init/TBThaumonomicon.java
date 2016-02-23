@@ -1484,7 +1484,7 @@ public class TBThaumonomicon {
 			).registerResearchItem();
 		
 		new ResearchItem("TB.NodeMan",catName,new AspectList().add(Aspect.MECHANISM, 8).add(Aspect.AURA, 8).add(Aspect.ENERGY, 16).add(Aspect.ENERGY, 8),0,-25,3,new ItemStack(TBBlocks.nodeManipulator))
-		.setParents("TB.INFUSION","TB.NODESTABILIZERADV","TB.VISPOWER")
+		.setParents("TB.INFUSION")
 		
 		.setPages(
 			new ResearchPage("tb.rec.nodeMan.page.0"),
