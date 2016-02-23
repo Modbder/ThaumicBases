@@ -51,7 +51,7 @@ public class TileBraizer extends TileEntity implements ITickable
 			--burnTime;
 		}else
 		{
-			if(EssentiaHandler.drainEssentia(this, Aspect.FIRE, null, 6, false))
+			if(EssentiaHandler.drainEssentia(this, Aspect.FIRE, null, 6, false, 6))
 			{
 				burnTime = 1600;
 				this.worldObj.setBlockState(getPos(), worldObj.getBlockState(getPos()).getBlock().getStateFromMeta(1));
